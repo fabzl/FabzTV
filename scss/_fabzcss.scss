@@ -376,7 +376,7 @@
 	font-family: 'denseregular';
 	text-align: center;
 	background-color: rgba(100, 100, 100, 0.6);
-	top:100%;
+//	top:100%;
 	width:100%;
 	position:absolute;
 	z-index: -10;
@@ -402,7 +402,7 @@
 
 	@include respond-min($breakpoint-mid) {
 
-	padding: 10% 2% 10% 2%;
+//	padding: 10% 2% 10% 2%;
 	background-color: rgba(0, 0, 0, 0);
 	position:relative;
 	top: auto;
@@ -474,7 +474,6 @@
 
 // arrows
 
-
 .arrow-keys-warning{ 
 
 	display:none;
@@ -483,11 +482,13 @@
 		//	padding: 10% 2% 10% 2%;
 		font-family: 'denseregular';
 		text-align: center;
-		width:100%;
+		width:5%;
 		font-size: 1em;
 		color:#FFF;
 		display:block;
-
+		position:absolute;
+		bottom:5px;
+		position:fixed;
 
 	}
 

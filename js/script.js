@@ -89,7 +89,7 @@ Function.prototype.throttle = function (milliseconds) {
 		KO.Config.indexSections();
 		KO.Config.resizeSections();
 		KO.Config.moveBackToPosition();
-	}.throttle(500));
+	}.debounce(150));
 
 	KO.Config = {
 
@@ -99,6 +99,7 @@ Function.prototype.throttle = function (milliseconds) {
 		arrowTooltip:{},
 		socialIcons:{},
 		stateObj : {},
+		$fabzLogo : $(".fabz-logo-romboid-container"),
 		$sectionsAmount : $('.section').length,
 		currentSection : 0,
 		$navigation : $('.nav-content-btn'),
@@ -110,6 +111,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$loaderBg : $(".loader-bg"),
 		$loaderSpinner : $(".loader"),
 		$wrapper : $(".wrapper"),
+		$sideBar : $(".sidebar-wrapper"),
 		currentAnchorTag:{},
 		storeTemporaryAnchorTag:{},
 		// arrows 
@@ -150,6 +152,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.onLostfocusManager();
 			KO.Config.fadeOutLoader();
 			KO.Config.activateMobileNavButtons();
+			KO.Config.adjustSideBarElements();
 
 		},
 
@@ -161,7 +164,36 @@ Function.prototype.throttle = function (milliseconds) {
 			// add the functionality to Share toggle
 			KO.Config.shareToggle.addEventListener( "click",KO.Config.openMobileShareToggle);
 		},
+		adjustSideBarElements:function() { 
 
+			if (KO.Config.verticalMode === false ) {
+
+				var sideBarH 				= KO.Config.$sideBar.height();
+				var fabzLogoH 				= KO.Config.$fabzLogo.height();
+				var navigationH 			= KO.Config.$navigationContainer .height();
+				var socialIconsContainerH	= KO.Config.$socialIconsContainer.height();
+
+				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
+				var differenceH 			= sideBarH-objectsTotal;
+
+				console.log("$sideBar  :",sideBarH);
+				console.log("$fabzLogo :",	fabzLogoH);
+				console.log("$navigationContainer :",	navigationH	); 
+				console.log("$socialIconsContainer :",	socialIconsContainerH	);
+				console.log("objT",objectsTotal ,"SB : ",sideBarH,"dif : ",differenceH);
+
+				if (sideBarH < objectsTotal ) {
+
+					console.log("sidebar compresss");
+
+					KO.Config.$fabzLogo.height(fabzLogoH+(differenceH*.3));
+
+				}else { 
+					console.log("sidebar extend");
+
+				}
+			}
+		},
 		openMobileNavToggle:function () {
 
 			//if share toggle is open close it
@@ -334,13 +366,13 @@ Function.prototype.throttle = function (milliseconds) {
 		onLostfocusManager:function () { 
 
 			KO.Config.$window.blur(function() {
-			console.log( "Handler for .blur() called." );
+		//	console.log( "Handler for .blur() called." );
 			// Focus the parent
 				parent.focus();
 			});
 
 			$("vimeo-video").focus(function() {
-					console.log( "Handler for .blur() called." );
+	//				console.log( "Handler for .blur() called." );
 				});
 		},
 
@@ -629,7 +661,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//		console.log("moving down");
 
-			console.log(KO.Config.currentSection, KO.Config.$sectionsAmount);
+		//	console.log(KO.Config.currentSection, KO.Config.$sectionsAmount);
 			if(KO.Config.currentSection < KO.Config.$sectionsAmount-1 ) { 
 				KO.Config.moveContentByIndexVertically(KO.Config.currentSection - direction ); 
 			}
@@ -646,20 +678,17 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//	console.log("direction -1 ");
 
-		//console.log("current :",KO.Config.$sections[KO.Config.currentSection].currentArticle ,"total : ",KO.Config.$sections[KO.Config.currentSection].totalArticle );
-
 		if ($currentArticle < $totalArticles-1)	{
 
 				KO.Config.$sections[KO.Config.currentSection].currentArticle ++;
 			//	console.log($sections[currentSection].currentArticle)
 			//	console.log("move left");
-			//	console.log("currentArt",KO.Config.$sections[KO.Config.currentSection].currentArticle);
 				KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
 		}
 
 	}else {
 
-		console.log("direction 1 ");
+	//	console.log("direction 1 ");
 
 		if (KO.Config.$sections[KO.Config.currentSection].currentArticle > 0 )	{
 
@@ -720,7 +749,7 @@ Function.prototype.throttle = function (milliseconds) {
 				$currentSlides.css("width", KO.Config.$window.stageW);
 				$currentSlides.css("height", KO.Config.$window.stageH);
 				// analize the canvas to detect gaps
-				if (  KO.Config.$window.stageH > KO.Config.$window.stageW ) {
+				if (KO.Config.$window.stageH > KO.Config.$window.stageW) {
 
 					scaleValue = KO.Config.$showcaseWrapper.height() - $currentImages.height();
 				//	console.log("1 more height than wide");
@@ -816,7 +845,7 @@ Function.prototype.throttle = function (milliseconds) {
 			//	console.log("activeClass");
 
 				displacementToogleInfo = $contentHolder.height()+toggleDisplayOffset; 
-				console.log("displacementToogleInfo :",displacementToogleInfo);
+		//		console.log("displacementToogleInfo :",displacementToogleInfo);
 			}else{
 
 				displacementToogleInfo = 0;
@@ -839,7 +868,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 	},
 	displayDescription : function (e) {
-		console.log($(e).parent().find("description-content-holder"));
+	//	console.log($(e).parent().find("description-content-holder"));
 		
 	},
 
@@ -874,14 +903,14 @@ Function.prototype.throttle = function (milliseconds) {
 		KO.Config.stopPlayingvideos();
 
 	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
-
+		KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 	},
 
 	updateCurrentArticleHorizontal :function(currentArticle) {
 
-		console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
-	//	console.log("currentSectionHorizontal :",currentSection);
+//		console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 //		KO.Config.$sections[currentSection].currentArticle = KO.Config.$sections[currentSection].currentArticle;
+
 		KO.Config.updateArrowsVisibility();
 	},
 

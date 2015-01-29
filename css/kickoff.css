@@ -2331,7 +2331,6 @@ textarea[contenteditable] {
   font-family: 'denseregular';
   text-align: center;
   background-color: rgba(100, 100, 100, 0.6);
-  top: 100%;
   width: 100%;
   position: absolute;
   z-index: -10;
@@ -2358,7 +2357,6 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .nav-content {
-    padding: 10% 2% 10% 2%;
     background-color: transparent;
     position: relative;
     top: auto;
@@ -2411,10 +2409,13 @@ textarea[contenteditable] {
   .arrow-keys-warning {
     font-family: 'denseregular';
     text-align: center;
-    width: 100%;
+    width: 5%;
     font-size: 1em;
     color: #FFF;
     display: block;
+    position: absolute;
+    bottom: 5px;
+    position: fixed;
   }
 }
 
