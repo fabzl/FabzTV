@@ -1,0 +1,724 @@
+.dynamicImage { 
+
+	///max-width: 120% !important;
+	transition : all  .3s ease-in-out;
+	width:100%;
+
+}
+
+.client-logo {
+
+	display:inline-block;
+	width: auto;
+	padding:0;
+	margin:0;
+	img { 
+	padding:0;
+	margin:0;
+
+	}
+}
+
+.stripe-down .stripe-up { 
+
+	stroke:#FFF;
+
+	@include respond-min($breakpoint-mid) {
+		display: none;
+	}
+
+}
+
+.share-icon-svg {
+
+	fill:#666;
+	transition: fill .4s ease;
+	&:hover {
+
+		fill:#FFF;
+		trasform:scale(1.2);
+	}
+}
+
+.touch-area-share-icons {
+
+	fill:rgba(0,0,0,0);
+}
+
+.description-text {
+
+	padding: 0 10% 0 0;
+	color:#FFF;
+	font-size: .7em;
+
+}
+
+
+.contact-illustration {
+
+	width: 40%;
+	position: absolute;
+	bottom: 2%;
+	right: 5%;
+
+	@include respond-min($breakpoint-mid) {
+		width: 50%;
+		float: right;
+		margin:auto;
+		//padding: 30% 0% 0% 0%;
+		position: relative;
+		right: 2%;
+		top: 50%;
+ 		transform: translateY(-50%);
+	}
+
+}
+.contact-info {
+
+	width: 50%;
+	line-height:auto;
+	
+	@include respond-min($breakpoint-mid) {
+		width: auto;
+	}
+
+	address {
+		padding-left:20px;
+	}
+}
+
+
+.overlayer-contact {
+
+	width: 95%;
+	line-height: 90%;
+	font-size: 1em;
+	padding:  10% 2% 0% 2%;
+	z-index: 1;
+	margin: 0 auto;
+//	position:absolute;
+
+	@include respond-min($breakpoint-mid) {
+		width: 50%;
+		float:left;
+		padding: 10% 2% 2% 2%;
+
+	}
+
+}
+
+.overlayer-about {
+
+	width: 40%;
+	line-height: 90%;
+	font-size: .8em;
+	padding: 10% 0% 2% 5%;
+	z-index: 1;
+	position:absolute;
+	background-color:rgba(0, 0, 17, 0.9);
+
+	@include respond-min($breakpoint-mid) {
+
+	font-size: 1em;
+	}
+
+}
+
+.overlayer {
+
+	padding: 2% 0% 2% .5%;
+	z-index: 1;
+	position:absolute;
+	background-color:rgba(0, 0, 17, 0.9)
+}
+.overlayer-description {
+
+//	top:0;
+	z-index: 1;
+	position:absolute;
+	height: 100%;
+//	border:thin solid #FF0000;
+}
+
+.description-content-holder {
+
+	position:absolute;
+	background-color:rgba(255, 255, 255, 0.9);
+	text-align:left;
+	bottom: 0;
+	padding-right: 75px;
+	height: auto;
+	min-width: 100px;
+	right: 5%;
+
+	transition : all  .3s ease-in-out;
+
+	h2 {
+		white-space: nowrap;
+		border-bottom: 1px solid #001;
+		padding: 0 10px 0 10px;
+	//	font-size: 20px;
+		color: #001;
+
+	}
+	p, a ,li { 
+		color: #001;
+		padding: 10px;
+		display : none; 
+		opacity:0;
+	}
+
+	&.active {
+
+		display: block;
+		bottom:0;
+		opacity:1;
+		right:0;
+		max-height:initial;
+		transform: translateY(0);
+		padding-right: 100px;
+		//left: 0;
+		p, a ,li { 
+			opacity:1;
+			display : inline-block; 
+		}
+	}
+}
+
+.more-info-toggle { 
+
+	min-width:60px;
+//	border: solid thin blue;
+	margin: 0 auto;
+	transition : all .3s ease-in-out;
+	transform: rotate(0deg) scale(1);
+
+	&.active {
+		transform:rotate(-45deg) scale(1.4);
+
+	}
+	@include respond-min($breakpoint-mid) {
+		}
+	}
+
+.more-info-toggle-container {
+	right: 5%;
+//	top:90%;
+	bottom: 0;
+	position: absolute;
+	//text-align: center;
+	cursor: pointer;
+	//border: solid thin red;
+	//transform:rotate(0deg);
+//	transform-origin: 100% 0%;
+	transition : all .3s ease-in-out;
+	&.active {
+	//	transform:rotate(-45deg);
+
+	}
+}
+
+
+.social-icons {
+	cursor: pointer;
+//transform: scale(1);
+
+	@include respond-min($breakpoint-mid) {
+		transform: scale(.75);
+	}
+
+}
+
+.social-icons-container {
+
+	display: none;
+
+	&.active {
+		display: block;
+		background-color:rgba(0, 0, 17, 0.9);
+
+	}
+
+	@include respond-min($breakpoint-mid) {
+		display: block;
+	}
+}
+
+.nav-toggle {
+
+	float:right;
+	display: block;
+
+	@include respond-min($breakpoint-mid) {
+		display: none;
+	}
+}
+
+.fabz-logo-romboid-container {
+
+	padding-top:0px;
+	width : 100px;
+	height: 100px;
+	margin: 7px auto;
+	top:50px;
+	z-index:998;
+
+	@include respond-min($breakpoint-mid) {
+
+
+		padding-top:50px;
+		width : 95%;
+		height:auto;
+		margin: 0 auto;
+
+	}
+
+	.side-logo {
+
+		overflow: visible;
+	}
+
+}
+
+.section {
+
+	overflow:hidden;
+}
+
+.slide {
+
+	display:inline;
+	position :relative;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	float: left;
+
+	img picture { 
+		height:auto;
+		top: 50%;
+		margin:0;
+		padding:0;
+		position:absolute;
+
+		//transform: translateY(-25%);
+	}
+}
+.wrapper {
+
+	@include clearfix;
+	overflow:hidden;
+	position: relative;
+	height:100%;
+
+}
+
+.sidebar-wrapper {
+
+	min-width: 50px;
+	min-height: 100px;
+	background-color: #001;
+	overflow:visible;
+	width: 100%;
+	height:10%;
+	position: absolute;
+	top: 0;
+	z-index: 999;
+
+	@include respond-min($breakpoint-mid) {
+		width: 15%;
+		height:100%;
+		overflow:hidden;
+
+	}
+
+}
+
+.showcase-wrapper {
+
+	width: 100%;
+	//height:90%;
+	left: 0%;
+	top:10%;
+	overflow:hidden;
+	cursor:crosshair;
+	position: absolute;
+
+	@include respond-min($breakpoint-mid) {
+		width: 85%;
+		height:100%;
+		left: 15%;
+		top:0%;
+		&.active {
+
+		top:0%;
+	}
+	}
+}
+
+.content {
+
+	top:0;
+	position: relative;
+	transition : top .5s ease-in-out;
+}
+
+.slider-container {
+	position: relative;
+	transition : left .5s ease-in-out;
+	height: 100%;
+//width:auto;
+	left:0;
+};
+
+.nav-content {
+
+	font-family: 'denseregular';
+	text-align: center;
+	background-color: rgba(100, 100, 100, 0.6);
+	top:100%;
+	width:100%;
+	position:absolute;
+	z-index: -10;
+
+	li {
+
+		display: none;
+		padding-left: 1.5%;
+		margin :10px 10px 10px 10px;
+
+		@include respond-min($breakpoint-mid) {
+			font-size:1em;
+			width:100%;
+		}
+	}
+
+		.active {
+
+			display:inline-block;
+			transition : top .5s ease-in-out;
+			transition : opacity .5s ease-in-out;
+		} 
+
+	@include respond-min($breakpoint-mid) {
+
+	padding: 10% 2% 10% 2%;
+	background-color: rgba(0, 0, 0, 0);
+	position:relative;
+	top: auto;
+
+		li { 
+		//	float: left;
+			display: inline-block;
+			margin-left: 5%;
+			margin-right: 2%;
+			width:100%;
+			font-size: 1.2em;
+			text-align: left;
+			border-bottom: 1px solid #444;
+			//	font-size: 2vmax;
+		}
+
+
+	}
+}
+
+.fabz-logo {
+
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%) scale(.6,.6);
+
+}
+
+.nav-content-btn {
+
+	//for the navigation  
+}
+.home {
+
+	text-align: center;
+	background-image: url("../../img/bg_swansea.jpg");
+	background-size: cover;
+
+}
+
+.graphics-slider-container { 
+
+	overflow:hidden;
+
+}
+
+.graphics-slider { 
+
+	overflow:hidden;
+
+}
+
+
+// fonts 
+
+@font-face {
+    font-family: 'denseregular';
+    src: url('fonts/dense-regular-webfont.eot');
+    src: url('fonts/dense-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/dense-regular-webfont.woff2') format('woff2'),
+         url('fonts/dense-regular-webfont.woff') format('woff'),
+         url('fonts/dense-regular-webfont.ttf') format('truetype'),
+         url('fonts/dense-regular-webfont.svg#denseregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+// arrows
+
+
+.arrow-keys-warning{ 
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+		//	padding: 10% 2% 10% 2%;
+		font-family: 'denseregular';
+		text-align: center;
+		width:100%;
+		font-size: 1em;
+		color:#FFF;
+		display:block;
+
+
+	}
+
+}
+.arrow_keys_tip {
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+		transform: scale(.75);
+		display: inline-block;
+	}
+}
+.arrow-key-info {
+
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+
+		margin-top: 50%;
+		width:50%;
+		display: inline-block;
+	}
+}
+
+.nav-arrows { 
+//	position: absolute;
+}
+
+.nav-arrow-btn {
+
+	position: relative;
+	z-index:2;
+	width: 3%;
+	height: 3%;
+	transform: scale(1.2);
+}
+
+.arrow-top {
+		position: absolute;
+		top: 70%;
+		left:7.5%;
+	}
+
+.arrow-right {
+		
+		position: absolute;
+		top: 75%;
+		left:10%
+	}
+
+.arrow-bottom {
+		
+		position: absolute;
+		top: 80%;
+		left:7.5%
+	}
+
+.arrow-left {
+	
+		position: absolute;
+		top: 75%;
+		left:5%
+	}
+
+/// LOADER STUFFF
+
+.loader-bg {
+
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	top:0;
+	left:0;
+	background-color: #001;
+	transition : opacity 1s ease-in-out;
+}
+
+.loader {
+
+	height:120px;
+	width:120px;
+	position:relative;
+	margin:100px auto;
+
+	.spin {
+
+		height:120px;
+		width:120px;
+		-webkit-animation:myspin 1s ease infinite;
+
+	&, &:before {
+		box-sizing:border-box;
+		border:5px solid blue;
+		border-left-color:#fff;
+		border-top-color:#d8dce5;
+		border-right-color:#7a9cbf;
+		border-bottom-color:#255688;
+		border-radius:50%;
+		position:absolute;
+		display:block;
+	}
+
+	&:before {
+		content:" ";
+		left:50%;
+		top:50%;
+		height:96px;
+		width:96px;
+		margin:-48px;
+		border-width:6px;
+		border-left-color:rgba(0,0,0,0);
+		border-right-color:rgba(0,0,0,0);
+		border-top-color:rgba(0,0,0,0);
+		border-bottom-color:rgba(255,255,255,.8);
+		opacity:1;
+		-webkit-animation:myspin 1s reverse ease infinite;
+		}
+	}
+}
+
+@-webkit-keyframes myspin {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+
+//////////////////// ANIMATED BURGER 
+
+
+.nav-toggle {
+
+	position: absolute;
+	right: 5%;
+	top: 34%;
+}
+
+.nav-toggle {
+
+	cursor: pointer;
+	padding: 10px 35px 16px 0px;
+}
+
+.nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
+
+	cursor: pointer;
+	border-radius: 1px;
+	height: 5px;
+	width: 35px;
+	background: white;
+	position: absolute;
+	display: block;
+	content: '';
+}
+
+.share-toggle {
+
+	cursor: pointer;
+	left: 5%;
+	top: 33%;
+	position: absolute;
+	width: 35px;
+
+	@include respond-min($breakpoint-mid) {
+		display: none;
+
+	&.active { 
+		display: none;
+		}
+	}
+
+}
+
+
+.nav-toggle span:before {
+	top: -10px; 
+}
+
+.nav-toggle span:after {
+	bottom: -10px;
+}
+
+.nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
+	transition: all 500ms ease-in-out;
+}
+
+.nav-toggle.active span {
+	background-color: transparent;
+
+	@include respond-min($breakpoint-mid) {
+		display: none;
+	}
+
+}
+.nav-toggle.active span:before, .nav-toggle.active span:after {
+	top: 0;
+}
+
+.nav-toggle.active span:before {
+	transform: rotate(45deg);
+}
+
+.nav-toggle.active span:after {
+	transform: rotate(-45deg);
+}
+
+html, body {
+	height: 100%;
+}
+
+h2 {
+	font-family: 'denseregular';
+	text-align: left;
+	//	float: left;
+	width:100%;
+	font-size: 1.5em;
+	border-bottom: 1px solid #FFF;
+	color:#FFF;
+}
+
+h3 {
+	font-family: 'denseregular';
+	text-align: left;
+	font-size: 1.2em;
+	color:#001;
+	background-color:#FFF;
+}
