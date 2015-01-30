@@ -208,7 +208,7 @@
 	position: absolute;
 	//text-align: center;
 	cursor: pointer;
-	//border: solid thin red;
+	
 	//transform:rotate(0deg);
 //	transform-origin: 100% 0%;
 	transition : all .3s ease-in-out;
@@ -241,6 +241,7 @@
 
 	@include respond-min($breakpoint-mid) {
 		display: block;
+	//	border: red thin solid;
 	}
 }
 
@@ -256,7 +257,7 @@
 
 .fabz-logo-romboid-container {
 
-	padding-top:0px;
+	padding-top:0;
 	width : 100px;
 	height: 100px;
 	margin: 7px auto;
@@ -265,8 +266,7 @@
 
 	@include respond-min($breakpoint-mid) {
 
-
-		padding-top:50px;
+	padding-top:10%;
 		width : 95%;
 		height:auto;
 		margin: 0 auto;
@@ -385,11 +385,19 @@
 
 		display: none;
 		padding-left: 1.5%;
-		margin :10px 10px 10px 10px;
+	//	margin :10px 10px 10px 10px;
+	transition : all .2s ease-in-out;
 
 		@include respond-min($breakpoint-mid) {
 			font-size:1em;
 			width:100%;
+	//		border: red thin solid;
+			&:hover { 
+				padding-left: 20%;
+		//		font-size: 30px;
+				letter-spacing:5px;
+			}
+
 		}
 	}
 
@@ -423,11 +431,16 @@
 	}
 }
 
-.fabz-logo {
+.fabz-logo-wrapper {
 
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%) scale(.6,.6);
+
+}
+
+
+.fabz-logo {
 
 }
 
@@ -471,47 +484,36 @@
 
 }
 
-
 // arrows
 
-.arrow-keys-warning{ 
+.arrow-keys-tip {
 
 	display:none;
 
 	@include respond-min($breakpoint-mid) {
-		//	padding: 10% 2% 10% 2%;
-		font-family: 'denseregular';
-		text-align: center;
-		width:5%;
-		font-size: 1em;
-		color:#FFF;
-		display:block;
+		display: inline-block;
+	//	transform: scale(.1);
+		width:100%;
+		position:relative;
+
+	}
+}
+
+.arrow-keys-info {
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+		z-index: 88;
+	//	margin-bottom: -5%;
+		width:60px;
+		right: 0;
+		display: inline-block;
+	//	transform: scale(.1);
+		text-align:center;
+		background-color:rgba(0,0,0,0);
 		position:absolute;
-		bottom:5px;
-		position:fixed;
-
-	}
-
-}
-.arrow_keys_tip {
-
-	display:none;
-
-	@include respond-min($breakpoint-mid) {
-		transform: scale(.75);
-		display: inline-block;
-	}
-}
-.arrow-key-info {
-
-
-	display:none;
-
-	@include respond-min($breakpoint-mid) {
-
-		margin-top: 50%;
-		width:50%;
-		display: inline-block;
+		bottom: 0;
 	}
 }
 
@@ -566,7 +568,7 @@
 	top:0;
 	left:0;
 	background-color: #001;
-	transition : opacity 1s ease-in-out;
+	transition : opacity 1s ease-out;
 }
 
 .loader {
@@ -574,7 +576,9 @@
 	height:120px;
 	width:120px;
 	position:relative;
-	margin:100px auto;
+	margin: auto;
+	top: 50%;
+	transform: translateY(-50%);
 
 	.spin {
 

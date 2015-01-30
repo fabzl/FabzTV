@@ -87,8 +87,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 		KO.Config.setStageSize();
 		KO.Config.indexSections();
+		KO.Config.adjustSideBarElements();
 		KO.Config.resizeSections();
 		KO.Config.moveBackToPosition();
+
 	}.debounce(150));
 
 	KO.Config = {
@@ -140,23 +142,65 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.indexNavigation();
 			KO.Config.indexSVGs();
 			KO.Config.indexSections();
-			KO.Config.centerLoader();
 			// resize to fit
 			KO.Config.resizeSections();
+			// hide the sidebar elements
+			KO.Config.hideAndShowSidebar(0);
 			// add controllers
 			KO.Config.scrollerControl();
 			KO.Config.arrowControl();
-			KO.Config.clickToMove(); //todo
+			KO.Config.clickToMove();
 			KO.Config.reEvaluteImages();
 			KO.Config.detectingHistorySupport();
 			KO.Config.onLostfocusManager();
-			KO.Config.fadeOutLoader();
 			KO.Config.activateMobileNavButtons();
 			KO.Config.adjustSideBarElements();
+			KO.Config.fadeOutLoader();
+
 
 		},
 
+		onContentVisible:function() { 
+			KO.Config.animateSideBarIn();
 
+		},
+
+		hideAndShowSidebar:function(opacity) {
+
+			KO.Config.$fabzLogo.css("opacity",opacity);
+			KO.Config.$navigationContainer.css("opacity", opacity);
+			KO.Config.$socialIconsContainer.css("opacity", opacity);
+
+			if (KO.Config.verticalMode) {
+				KO.Config.$socialIconsContainer.css("opacity", 0);
+
+			}else { 
+				KO.Config.$socialIconsContainer.css("opacity", opacity);
+
+			}
+		},
+
+		animateSideBarIn:function() {
+
+
+			KO.Config.hideAndShowSidebar(1);
+			console.log(KO.Config.verticalMode);
+			if (KO.Config.verticalMode) {
+
+	//			KO.Config.$fabzLogo.removeClass("animated bounceInDown");
+				KO.Config.$navigationContainer.removeClass("animated bounceInDown");
+				KO.Config.$socialIconsContainer.removeClass("animated bounceInDown");
+			} else {
+				KO.Config.$navigationContainer.addClass("animated bounceInDown");
+				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
+
+			}
+				KO.Config.$fabzLogo.addClass("animated bounceInDown");
+		},
+
+		sectionEvaluator:function () {
+
+		},
 		activateMobileNavButtons:function() {
 
 			// add the functionality to Nav toggle
@@ -176,22 +220,41 @@ Function.prototype.throttle = function (milliseconds) {
 				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
 				var differenceH 			= sideBarH-objectsTotal;
 
-				console.log("$sideBar  :",sideBarH);
-				console.log("$fabzLogo :",	fabzLogoH);
-				console.log("$navigationContainer :",	navigationH	); 
-				console.log("$socialIconsContainer :",	socialIconsContainerH	);
-				console.log("objT",objectsTotal ,"SB : ",sideBarH,"dif : ",differenceH);
+			//	console.log("$sideBar  :",sideBarH);
+			//	console.log("$fabzLogo :",	fabzLogoH);
+			//	console.log("$navigationContainer :",	navigationH	); 
+			///	console.log("$socialIconsContainer :",	socialIconsContainerH	);
+			//	console.log("objT",objectsTotal ,"SB : ",sideBarH,"dif : ",differenceH);
+
+				// grab the sidebar elements and resize them to match the sidebar 
+				KO.Config.$fabzLogo.height(sideBarH*.3);
+				KO.Config.$socialIconsContainer.height(sideBarH*.3);
+				KO.Config.$navigationContainer.height(sideBarH*.4);
+				// put the socialIcons back
+				KO.Config.$socialIconsContainer.css("display","block");
 
 				if (sideBarH < objectsTotal ) {
 
-					console.log("sidebar compresss");
-
-					KO.Config.$fabzLogo.height(fabzLogoH+(differenceH*.3));
+					// if its to small the social icons will dissapear
+				//	console.log("sidebar compresss readjust");
+					if(differenceH < 0 ) {
+						console.log("dif - than 0 ");
+						//KO.Config.$fabzLogo.height(KO.Config.$fabzLogo.height() + differenceH );
+						KO.Config.$socialIconsContainer.css("display","none");
+					//	KO.Config.$socialIconsContainer.width(KO.Config.$socialIconsContainer.width()+ differenceH );
+					}
 
 				}else { 
-					console.log("sidebar extend");
-
+		//			console.log("sidebar extend");
 				}
+
+
+			}else { 
+				KO.Config.$fabzLogo.height("auto");
+				KO.Config.$socialIconsContainer.height("auto");
+				KO.Config.$navigationContainer.height("auto");
+
+
 			}
 		},
 		openMobileNavToggle:function () {
@@ -381,21 +444,15 @@ Function.prototype.throttle = function (milliseconds) {
 			console.log(ready);
 		},
 
-		centerLoader:function () {
-
-			KO.Config.$loaderBg.css("top", KO.Config.$window.stageH);
-
-		},
-
 		fadeOutLoader: function () { 
 
-			KO.Config.$loaderBg.css({"opacity":0});
-			KO.Config.setTimeOutHidder (KO.Config.$loaderBg,1100);
-		},
+		KO.Config.$loaderBg.css({"opacity":0});
 
-		setTimeOutHidder : function(obj,time) {
+			KO.Config.$loaderBg.on('transitionend webkitTransitionEnd', function(e){
 
-			setTimeout(function(){obj.hide()}, time );
+				KO.Config.$loaderBg.hide();
+				KO.Config.onContentVisible();
+			});
 		},
 
 		reEvaluteImages: function() { 
@@ -962,6 +1019,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// if the Height is than the min height will 100. 
 			var navigationHeight = KO.Config.getDimensionsHeight(KO.Config.$navigationContainer);
 			
+
 			if (navigationHeight < 100 && KO.Config.verticalMode ) {
 
 				navigationHeight = 100;
@@ -982,6 +1040,9 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$window.stageW -= KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 			KO.Config.verticalMode = false;
 		}
+
+		// bug fix for the navigation
+		KO.Config.hideAndShowSidebar(1);
 
 		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
