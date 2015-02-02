@@ -2178,13 +2178,17 @@ textarea[contenteditable] {
 
 .social-icons {
   cursor: pointer;
+  max-width: none;
 }
 @media screen and (min-width: 48em) {
   .social-icons {
-    -webkit-transform: scale(0.75);
-    -moz-transform: scale(0.75);
-    -ms-transform: scale(0.75);
-    transform: scale(0.75);
+    max-width: 200px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: scale(0.75) translateY(-50%);
+    -moz-transform: scale(0.75) translateY(-50%);
+    -ms-transform: scale(0.75) translateY(-50%);
+    transform: scale(0.75) translateY(-50%);
   }
 }
 
@@ -2198,6 +2202,8 @@ textarea[contenteditable] {
 @media screen and (min-width: 48em) {
   .social-icons-container {
     display: block;
+    border: red thin solid;
+    text-align: center;
   }
 }
 
@@ -2221,14 +2227,22 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .fabz-logo-romboid-container {
-    padding-top: 10%;
     width: 95%;
     height: auto;
     margin: 0 auto;
+    border: red thin solid;
+    text-align: center;
   }
 }
 .fabz-logo-romboid-container .side-logo {
+  max-width: 200px;
   overflow: visible;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .section {
@@ -2327,6 +2341,14 @@ textarea[contenteditable] {
   position: absolute;
   z-index: -10;
 }
+.nav-content ol {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 .nav-content li {
   display: none;
   padding-left: 1.5%;
@@ -2340,7 +2362,8 @@ textarea[contenteditable] {
   }
   .nav-content li:hover {
     padding-left: 20%;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
+    border: red thin solid;
   }
 }
 .nav-content .active {

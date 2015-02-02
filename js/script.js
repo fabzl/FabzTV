@@ -131,7 +131,7 @@ Function.prototype.throttle = function (milliseconds) {
 		swapToVerticalBreakpoint:768,
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
-
+		verticalSideBarBreakpoint: 600,
 
 		init : function () {
 
@@ -217,44 +217,71 @@ Function.prototype.throttle = function (milliseconds) {
 				var navigationH 			= KO.Config.$navigationContainer .height();
 				var socialIconsContainerH	= KO.Config.$socialIconsContainer.height();
 
+
+				var sideBarW 				= KO.Config.$sideBar.width();
+				var fabzLogoW 				= KO.Config.$fabzLogo.width();
+				var navigationW 			= KO.Config.$navigationContainer.width();
+				var socialIconsContainerW	= KO.Config.$socialIconsContainer.width();
+
 				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
-				var differenceH 			= sideBarH-objectsTotal;
+				var differenceH 	= sideBarH-objectsTotal;
 
-			//	console.log("$sideBar  :",sideBarH);
-			//	console.log("$fabzLogo :",	fabzLogoH);
-			//	console.log("$navigationContainer :",	navigationH	); 
-			///	console.log("$socialIconsContainer :",	socialIconsContainerH	);
+				console.log("$sideBar H :",sideBarH);
+			//	console.log("$fabzLogo H:",	fabzLogoH);
+			//	console.log("$navigationContainer H:",	navigationH	); 
+			///	console.log("$socialIconsContainer H:",	socialIconsContainerH	);
 			//	console.log("objT",objectsTotal ,"SB : ",sideBarH,"dif : ",differenceH);
+			//	console.log("///////////////////");
+			//	console.log("$sideBar W :",sideBarW);
+			//	console.log("$fabzLogo W:",	fabzLogoW);
+			//	console.log("$navigationContainer W:",	navigationW	); 
+			//	console.log("$socialIconsContainer W:",	socialIconsContainerW	);
+			//	console.log("///////////////////");
 
+
+					if(sideBarH < KO.Config.verticalSideBarBreakpoint) { 
+						// if the vertical sidebar is too small hardcoded value defined on top 
+			//			KO.Config.$sideBar.addClass(".scrollable");
+						console.log("breakpoint meet");
+					}else {
+
+						if( KO.Config.$sideBar.hasClass(".scrollable")) {
+				//			KO.Config.$sideBar.removeClass(".scrollable");
+						}
+					}
+
+
+				if (sideBarH < objectsTotal ) {
+
+
+
+					// if its to small the social icons will dissapear
+				//	console.log("sidebar compresss readjust");
+	//				if(differenceH < 0 ) {
+	//					console.log("dif - than 0 ");
+
+	//					var socialIconsContainerYOffset = differenceH;
+		//				console.log(socialIconsContainerYOffset);
+	//					//KO.Config.$fabzLogo.height(KO.Config.$fabzLogo.height() + differenceH );
+					//	KO.Config.$socialIconsContainer.css({"transform":"translateY("+socialIconsContainerYOffset+"px)"})
+		//			}
+
+				}else { 
+		//			console.log("sidebar extend");
+				}
+
+				if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
 				// grab the sidebar elements and resize them to match the sidebar 
 				KO.Config.$fabzLogo.height(sideBarH*.3);
 				KO.Config.$socialIconsContainer.height(sideBarH*.3);
 				KO.Config.$navigationContainer.height(sideBarH*.4);
 				// put the socialIcons back
 				KO.Config.$socialIconsContainer.css("display","block");
-
-				if (sideBarH < objectsTotal ) {
-
-					// if its to small the social icons will dissapear
-				//	console.log("sidebar compresss readjust");
-					if(differenceH < 0 ) {
-						console.log("dif - than 0 ");
-						//KO.Config.$fabzLogo.height(KO.Config.$fabzLogo.height() + differenceH );
-						KO.Config.$socialIconsContainer.css("display","none");
-					//	KO.Config.$socialIconsContainer.width(KO.Config.$socialIconsContainer.width()+ differenceH );
-					}
-
-				}else { 
-		//			console.log("sidebar extend");
 				}
-
-
 			}else { 
 				KO.Config.$fabzLogo.height("auto");
 				KO.Config.$socialIconsContainer.height("auto");
 				KO.Config.$navigationContainer.height("auto");
-
-
 			}
 		},
 		openMobileNavToggle:function () {
@@ -735,23 +762,30 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//	console.log("direction -1 ");
 
-		if ($currentArticle < $totalArticles-1)	{
+			if ($currentArticle < $totalArticles-1)	{
 
-				KO.Config.$sections[KO.Config.currentSection].currentArticle ++;
-			//	console.log($sections[currentSection].currentArticle)
-			//	console.log("move left");
-				KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
-		}
+					KO.Config.$sections[KO.Config.currentSection].currentArticle ++;
+				//	console.log($sections[currentSection].currentArticle)
+				//	console.log("move left");
+					KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
+			}else { 
 
-	}else {
+				//if the section finish move down to keep going
+				KO.Config.moveContentVertically(-1);
+			}
+
+		}else {
 
 	//	console.log("direction 1 ");
 
-		if (KO.Config.$sections[KO.Config.currentSection].currentArticle > 0 )	{
+			if (KO.Config.$sections[KO.Config.currentSection].currentArticle > 0 )	{
 
-				KO.Config.$sections[KO.Config.currentSection].currentArticle --;
-			//	console.log("move right");
-				KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
+					KO.Config.$sections[KO.Config.currentSection].currentArticle --;
+				//	console.log("move right");
+					KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
+			}else {
+				//if the section finish keep move up to keep going 
+				KO.Config.moveContentVertically(1);
 			}
 		}
 	},
@@ -1081,11 +1115,12 @@ Function.prototype.throttle = function (milliseconds) {
 		if(KO.Config.scrollerFlag) { 
 
 			KO.Config.scrollerFlag = false;
-			KO.Config.moveContentVertically(direction);
+
+			KO.Config.moveContentHorizontally(direction);
 			var timeRestictionInterval =  setInterval( function(){
 				KO.Config.scrollerFlag = true;
 				clearInterval(timeRestictionInterval);
-				}, 500);
+				}, 300);
 			}
 	},
 
@@ -1103,21 +1138,21 @@ Function.prototype.throttle = function (milliseconds) {
 
 			if(clickValueY < (KO.Config.$window.stageH)*.30 ) { 
 
-			//	console.log("move up");
+		//	console.log("move up");
 				KO.Config.moveContentVertically(1);
 
 			}else if(clickValueY > (KO.Config.$window.stageH)*.70 )
 			{
-			//	console.log("move down");
+		//	console.log("move down");
 				KO.Config.moveContentVertically(-1);
 
 			}else if(clickValueX < (KO.Config.$window.stageW)*.30 )
 			{
-	//			console.log("move left");
+		//	console.log("move left");
 				KO.Config.moveContentHorizontally(1);
 			}else if(clickValueX > (KO.Config.$window.stageW)*.70 )
 			{
-			//	console.log("move rigth");
+		//	console.log("move rigth");
 				KO.Config.moveContentHorizontally(-1);
 			}
 
