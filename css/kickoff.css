@@ -1004,7 +1004,6 @@ textarea,
 .fileWrapper {
   -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -1987,7 +1986,6 @@ textarea[contenteditable] {
   }
 }
 .dynamicImage {
-  -webkit-transition: all  .3s ease-in-out;
   -moz-transition: all  .3s ease-in-out;
   transition: all  .3s ease-in-out;
   width: 100%;
@@ -2015,7 +2013,6 @@ textarea[contenteditable] {
 
 .share-icon-svg {
   fill: #666;
-  -webkit-transition: fill .4s ease;
   -moz-transition: fill .4s ease;
   transition: fill .4s ease;
 }
@@ -2121,7 +2118,6 @@ textarea[contenteditable] {
   height: auto;
   min-width: 100px;
   right: 5%;
-  -webkit-transition: all  .3s ease-in-out;
   -moz-transition: all  .3s ease-in-out;
   transition: all  .3s ease-in-out;
 }
@@ -2157,7 +2153,6 @@ textarea[contenteditable] {
 .more-info-toggle {
   min-width: 60px;
   margin: 0 auto;
-  -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
   -webkit-transform: rotate(0deg) scale(1);
@@ -2177,7 +2172,6 @@ textarea[contenteditable] {
   bottom: 0;
   position: absolute;
   cursor: pointer;
-  -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
@@ -2313,14 +2307,12 @@ textarea[contenteditable] {
 .content {
   top: 0;
   position: relative;
-  -webkit-transition: top .5s ease-in-out;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
 }
 
 .slider-container {
   position: relative;
-  -webkit-transition: left .5s ease-in-out;
   -moz-transition: left .5s ease-in-out;
   transition: left .5s ease-in-out;
   height: 100%;
@@ -2338,7 +2330,6 @@ textarea[contenteditable] {
 .nav-content li {
   display: none;
   padding-left: 1.5%;
-  -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -2354,10 +2345,8 @@ textarea[contenteditable] {
 }
 .nav-content .active {
   display: inline-block;
-  -webkit-transition: top .5s ease-in-out;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
-  -webkit-transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
 }
@@ -2478,7 +2467,6 @@ textarea[contenteditable] {
   top: 0;
   left: 0;
   background-color: #001;
-  -webkit-transition: opacity 1s ease-out;
   -moz-transition: opacity 1s ease-out;
   transition: opacity 1s ease-out;
 }
@@ -2582,7 +2570,6 @@ textarea[contenteditable] {
 }
 
 .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
-  -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
