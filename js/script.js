@@ -984,7 +984,6 @@ Function.prototype.throttle = function (milliseconds) {
 		//	console.log("closeMobileNavToggle");
 		}
 	},
-
 	updateCurrentSection :function (currentSection) {
 
 		//	console.log("currentSection",currentSection);
