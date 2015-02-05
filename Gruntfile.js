@@ -329,7 +329,7 @@ module.exports = function (grunt) {
 	 * run connect and watch
 	 */
 	grunt.registerTask("serve", [
-		'uglify',
+	//	'uglify',
 		'sass:kickoff',
 		'sass:styleguide',
 		'autoprefixer:dist',

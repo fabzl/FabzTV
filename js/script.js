@@ -132,6 +132,7 @@ Function.prototype.throttle = function (milliseconds) {
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
+		canvasFillValue: 0,
 
 		init : function () {
 
@@ -184,7 +185,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 
 			KO.Config.hideAndShowSidebar(1);
-			console.log(KO.Config.verticalMode);
+		//	console.log(KO.Config.verticalMode);
 			if (KO.Config.verticalMode) {
 
 	//			KO.Config.$fabzLogo.removeClass("animated bounceInDown");
@@ -226,7 +227,7 @@ Function.prototype.throttle = function (milliseconds) {
 				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
 				var differenceH 	= sideBarH-objectsTotal;
 
-				console.log("$sideBar H :",sideBarH);
+			//	console.log("$sideBar H :",sideBarH);
 			//	console.log("$fabzLogo H:",	fabzLogoH);
 			//	console.log("$navigationContainer H:",	navigationH	); 
 			///	console.log("$socialIconsContainer H:",	socialIconsContainerH	);
@@ -271,18 +272,18 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 
 				if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
-				// grab the sidebar elements and resize them to match the sidebar 
-				KO.Config.$fabzLogo.height(sideBarH*.3);
-				KO.Config.$socialIconsContainer.height(sideBarH*.3);
-				KO.Config.$navigationContainer.height(sideBarH*.4);
-				// put the socialIcons back
-				KO.Config.$socialIconsContainer.css("display","block");
+					// grab the sidebar elements and resize them to match the sidebar 
+					KO.Config.$fabzLogo.height(sideBarH*.3);
+					KO.Config.$socialIconsContainer.height(sideBarH*.3);
+					KO.Config.$navigationContainer.height(sideBarH*.4);
+					// put the socialIcons back
+					KO.Config.$socialIconsContainer.css("display","block");
+					}
+				}else { 
+					KO.Config.$fabzLogo.height("auto");
+					KO.Config.$socialIconsContainer.height("auto");
+					KO.Config.$navigationContainer.height("auto");
 				}
-			}else { 
-				KO.Config.$fabzLogo.height("auto");
-				KO.Config.$socialIconsContainer.height("auto");
-				KO.Config.$navigationContainer.height("auto");
-			}
 		},
 		openMobileNavToggle:function () {
 
@@ -804,13 +805,24 @@ Function.prototype.throttle = function (milliseconds) {
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
 
 			KO.Config.$sections[i].style.height = KO.Config.$window.stageH + "px";
-			KO.Config.$sections[i].style.width = KO.Config.$window.stageW + "px";
+			KO.Config.$sections[i].style.width = KO.Config.$window.stageW+ "px";
 			KO.Config.$sections[i].style.top = (KO.Config.$window.stageH*i)+ "px";
 			//$sections[i].css('top', currentHeight);
 		}
 	},
 
 	indexSections:function() {
+
+		// to detect if the content wrapper is an vertical rectangle to set an offest value
+		if ( KO.Config.$window.stageH > KO.Config.$window.stageW) {
+
+	//		console.log("more taller than wide for ",KO.Config.canvasFillValue);
+			KO.Config.canvasFillValue =  KO.Config.$window.stageH - KO.Config.$window.stageW;
+
+		}else { 
+		// if not the value will be 0 so nothing is changes
+			KO.Config.canvasFillValue = 0;
+		}
 
 
 		var i = 0;
@@ -837,35 +849,33 @@ Function.prototype.throttle = function (milliseconds) {
 				var scaleValue = 0; 
 
 				//slide size is set to stage size 
-				$currentSlides.css("width", KO.Config.$window.stageW);
-				$currentSlides.css("height", KO.Config.$window.stageH);
+				$currentSlides.css("width", KO.Config.$window.stageW+KO.Config.canvasFillValue);
+				$currentSlides.css("height", KO.Config.$window.stageH+KO.Config.canvasFillValue);
 				// analize the canvas to detect gaps
-				if (KO.Config.$window.stageH > KO.Config.$window.stageW) {
-
-					scaleValue = KO.Config.$showcaseWrapper.height() - $currentImages.height();
-				//	console.log("1 more height than wide");
-
-			//		$currentImages.css("width", $currentImages.width() + scaleValue);
-			//		$currentSlides.css("height",$currentImages.height() + scaleValue);
-
-				} else { 
-			//		console.log(" 2 more wide than height");
-				}
-			//	console.log("scaleValue :",scaleValue);
-			//	KO.Config.$sections.eq(i).find(".slider-container").find(".slide").find(".dynamicImage").css("width", KO.Config.$window.stageW +scaleValue);
-
 				// and slide container is set to full size 
-				$currentContainer.css("width", KO.Config.$window.stageW*(KO.Config.$sections[i].totalArticle+1));
+				$currentContainer.css("width", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(KO.Config.$sections[i].totalArticle+1));
 			//	$currentImages.css("width", KO.Config.$window.stageW);
 				
 				// we calculate the offset value based on the elements size
 				var imageOffsetValueNumberY = -($currentImages.height() - KO.Config.$window.stageH)*.5;
 				var imageOffsetValueNumberX = -($currentImages.width() - KO.Config.$window.stageW)*.5;
 
+				if(KO.Config.canvasFillValue===0) {
+					imageOffsetValueNumberX = 0;
+				}
 				var imageOffsetValueStringY = "translateY("+imageOffsetValueNumberY+"px)";
 				var imageOffsetValueStringX = "translateX("+imageOffsetValueNumberX+"px)";
+
+
+	//			console.log("$currentImages : ",$currentImages.width(),"$currentSection : ",$currentSection.width(),$currentContainer.width(),"canvasFillValue : ",KO.Config.canvasFillValue);
+
+				var scaleValue = $currentSlides.width()+KO.Config.canvasFillValue;
+				$currentImages.width(scaleValue);
+			//	console.log("$currentImages.widthafter",$currentImages.width());
+
 				// apply the offset to 
 				$currentImages.css({
+
 					//adding the mixins
 					transform: imageOffsetValueStringY +" "+ imageOffsetValueStringX,
 					MozTransform: imageOffsetValueStringY+" "+  imageOffsetValueStringX,
@@ -886,12 +896,15 @@ Function.prototype.throttle = function (milliseconds) {
 					$currentContainer.find(".overlayer-description").each(
 
 								function (i) { 
-									$(this).find(".more-info-toggle-container").on("click",KO.Config.onClickInfoToggle);
+									$(this).find(".description-content-holder").on("click",KO.Config.onClickInfoToggle);
 
-									$(this).css("left", (KO.Config.$window.stageW)*(i+1)-KO.Config.$window.stageW);
+									$(this).css("left", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(i+1)-(KO.Config.$window.stageW+KO.Config.canvasFillValue));
 								//	$(this).find("description-content-holder").css("opacity",0);
 								});
 					};
+
+					$currentImages.css("left", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(i+1)-(KO.Config.$window.stageW+KO.Config.canvasFillValue));
+
 				// detect if there is vimeo iframes 
 
 				if ($currentSlides.find(".vimeo-video")) {
@@ -914,9 +927,9 @@ Function.prototype.throttle = function (milliseconds) {
 		e.stopPropagation();
 
 		// create the players
-		var $toggleContainer = $(e.currentTarget);
-		var toogleSVG =e.currentTarget.querySelector(".more-info-toggle"); 
-		var $contentHolder = $toggleContainer.parent().find(".description-content-holder")
+		var $contentHolder = $(e.currentTarget);
+		var $toggleContainer= $contentHolder.parent().find(".more-info-toggle-container");
+		var toogleSVG = e.currentTarget.querySelector(".more-info-toggle"); 
 		var displacementToogleInfo;
 		var displacementToogleInfoString;
 		var	toggleDisplayOffset = -67;
@@ -925,6 +938,8 @@ Function.prototype.throttle = function (milliseconds) {
 		$contentHolder.toggleClass("active");
 		$toggleContainer.toggleClass("active");
 		toogleSVG.classList.toggle("active");
+		console.log($contentHolder, $toggleContainer, toogleSVG );
+
 
 		// jquery callback
 		$toggleContainer.on('transitionend webkitTransitionEnd', function(o){
@@ -943,7 +958,7 @@ Function.prototype.throttle = function (milliseconds) {
 			//	console.log(" not active Class");
 			 }
 
-			displacementToogleInfoString =  "translateY("+-displacementToogleInfo+"px)";
+		//	displacementToogleInfoString =  "translateY("+-displacementToogleInfo+"px)";
 			//console.log(displacementToogleInfoString);
 			$toggleContainer.css({
 
@@ -1007,7 +1022,7 @@ Function.prototype.throttle = function (milliseconds) {
 	moveContentByIndexVertically:function(index) {
 
 	//	console.log("move Obj by index");
-		var newPos = -(KO.Config.$window.stageH * index);
+		var newPos = -((KO.Config.$window.stageH)* index);
 		KO.Config.$content.css("top",newPos);
 		KO.Config.updateCurrentSection(index);
 		KO.Config.updateContentTopPosition(newPos);
@@ -1016,7 +1031,7 @@ Function.prototype.throttle = function (milliseconds) {
 	moveContentByIndexHorizontally:function(index) { 
 
 		//	console.log("move Obj by index horzontally", index);
-		var newPos = -((KO.Config.$window.stageW) * index);
+		var newPos = -((KO.Config.$window.stageW+KO.Config.canvasFillValue) * index);
 		//	KO.Config.$sections[currentSection].currentArticle.css("left",newPos);
 		KO.Config.$sections.eq(KO.Config.currentSection).find(".slider-container").css("left",newPos);
 		KO.Config.updateContentTopPosition(newPos);
@@ -1119,7 +1134,7 @@ Function.prototype.throttle = function (milliseconds) {
 			var timeRestictionInterval =  setInterval( function(){
 				KO.Config.scrollerFlag = true;
 				clearInterval(timeRestictionInterval);
-				}, 300);
+				}, 150);
 			}
 	},
 
