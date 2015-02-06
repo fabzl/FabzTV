@@ -194,14 +194,10 @@ Function.prototype.throttle = function (milliseconds) {
 			} else {
 				KO.Config.$navigationContainer.addClass("animated bounceInDown");
 				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
-
 			}
 				KO.Config.$fabzLogo.addClass("animated bounceInDown");
 		},
 
-		sectionEvaluator:function () {
-
-		},
 		activateMobileNavButtons:function() {
 
 			// add the functionality to Nav toggle
@@ -254,19 +250,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				if (sideBarH < objectsTotal ) {
 
-
-
-					// if its to small the social icons will dissapear
-				//	console.log("sidebar compresss readjust");
-	//				if(differenceH < 0 ) {
-	//					console.log("dif - than 0 ");
-
-	//					var socialIconsContainerYOffset = differenceH;
-		//				console.log(socialIconsContainerYOffset);
-	//					//KO.Config.$fabzLogo.height(KO.Config.$fabzLogo.height() + differenceH );
-					//	KO.Config.$socialIconsContainer.css({"transform":"translateY("+socialIconsContainerYOffset+"px)"})
-		//			}
-
+					//  to small
 				}else { 
 		//			console.log("sidebar extend");
 				}
@@ -277,7 +261,7 @@ Function.prototype.throttle = function (milliseconds) {
 					KO.Config.$socialIconsContainer.height(sideBarH*.3);
 					KO.Config.$navigationContainer.height(sideBarH*.4);
 					// put the socialIcons back
-					KO.Config.$socialIconsContainer.css("display","block");
+					KO.Config.$socialIconsContainer.toggleClass("active");
 					}
 				}else { 
 					KO.Config.$fabzLogo.height("auto");
@@ -291,7 +275,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.closeMobileShareToggle();
 			// activate toggle 
 			this.classList.toggle("active");
-			KO.Config.$navigationContainer.find("li").toggleClass("active");
+			KO.Config.$navigationContainer.find("li").addClass("active");
 
 			// if the control flag is false change it to true
 			if(KO.Config.mobileNavToggleActiveBoolean === false) {
@@ -930,6 +914,7 @@ Function.prototype.throttle = function (milliseconds) {
 		var $contentHolder = $(e.currentTarget);
 		var $toggleContainer= $contentHolder.parent().find(".more-info-toggle-container");
 		var toogleSVG = e.currentTarget.querySelector(".more-info-toggle"); 
+		var $tdescriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
 		var displacementToogleInfo;
 		var displacementToogleInfoString;
 		var	toggleDisplayOffset = -67;
@@ -946,7 +931,6 @@ Function.prototype.throttle = function (milliseconds) {
 		/* Rather than log on screen, we'll alert the information */
 		//	console.log(o.originalEvent.propertyName);
 		//	console.log(o.originalEvent.elapsedTime + 's');
-		
 			if ($toggleContainer.hasClass( "active") ) {
 			//	console.log("activeClass");
 

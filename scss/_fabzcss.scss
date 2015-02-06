@@ -5,6 +5,13 @@
 	width:100%;
 
 }
+.clients {
+
+	text-align: center;
+	&.slide { 
+		overflow: auto;
+	}
+}
 
 .client-logo {
 
@@ -51,9 +58,7 @@
 	font-size: .7em;
 
 }
-
-
-.contact-illustration {
+.contact-illustration-container {
 
 	width: 40%;
 	position: absolute;
@@ -61,22 +66,27 @@
 	right: 5%;
 
 	@include respond-min($breakpoint-mid) {
-		width: 50%;
+		width: 40%;
 		float: right;
 		margin:auto;
 		//padding: 30% 0% 0% 0%;
 		position: relative;
-		right: 2%;
+//		right: 2%;
 		top: 50%;
  		transform: translateY(-50%);
 	}
+
+}
+
+.contact-illustration {
+
+
 
 }
 .contact-info {
 
 	width: 50%;
 	line-height:auto;
-	
 	@include respond-min($breakpoint-mid) {
 		width: auto;
 	}
@@ -92,15 +102,17 @@
 	width: 95%;
 	line-height: 90%;
 	font-size: 1em;
-	padding:  10% 2% 0% 2%;
+	padding: 3% 2% 0% 2%;
 	z-index: 1;
 	margin: 0 auto;
 //	position:absolute;
+	background-color:rgba(0, 0, 17, 0.5);
 
 	@include respond-min($breakpoint-mid) {
+
 		width: 50%;
 		float:left;
-		padding: 10% 2% 2% 2%;
+		padding: 3% 2% 2% 2%;
 
 	}
 
@@ -132,6 +144,11 @@
 }
 
 ///////// DESCRIPTION HOLDER
+
+.has-padding-top {
+	padding-top:5%;
+}
+
 .overlayer-description {
 
 //	top:0;
@@ -170,23 +187,21 @@
 		margin:0;
 	}
 	p, a ,li { 
+		float:left;
 		color: #001;
-		padding: 10px;
 		display : none; 
 		opacity:0;
 		&.description-tooltip {
 			display : inline;
 			opacity:1;
 			padding: 0 10px 0 10px;
-
-			&.active {
-				display : none; 
-				opacity:0;
-			}
+			font-size: 12px;
+			margin:0;
 		}
 	}
 
 	&.active {
+
 
 		display: block;
 		bottom:0;
@@ -198,7 +213,20 @@
 		//left: 0;
 		p, a ,li { 
 			opacity:1;
-			display : inline-block; 
+			display : block;
+
+			&.description-tooltip {
+				display : none; 
+				opacity:0;
+			}
+			&.description-text { 
+
+				padding-left:5%;
+
+			}
+			&.ul {
+				padding-left: 20%;
+				}
 		}
 	}
 }
@@ -206,7 +234,7 @@
 .more-info-toggle { 
 
 	min-width:60px;
-	border: solid thin blue;
+//	border: solid thin blue;
 	margin: 0 auto;
 	transition : all .3s ease-in-out;
 	transform: rotate(0deg) scale(.8);
@@ -232,17 +260,9 @@
 	transition : all .3s ease-in-out;
 	&.active {
 	//	transform:rotate(-45deg);
+		right: 1%;
 
 	}
-}
-
-.description-tooltip { 
-
-	font-size: 12px;
-	display:inline;
-	opacity: 1;
-	padding:0;
-	margin:0;
 }
 
 .social-icons {
@@ -295,8 +315,8 @@
 	padding-top:0;
 	width : 100px;
 	height: 100px;
-	margin: 7px auto;
-	top:50px;
+	margin: 50px auto;
+//	top:50px;
 	z-index:998;
 
 
@@ -769,6 +789,7 @@ h2 {
 	font-size: 1.5em;
 	border-bottom: 1px solid #FFF;
 	color:#FFF;
+
 }
 
 h3 {
