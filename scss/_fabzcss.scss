@@ -409,6 +409,10 @@
 	overflow:hidden;
 	cursor:crosshair;
 	position: absolute;
+	
+	&.min-height-applied-to-sidebar { 
+		top:100px;
+	}
 
 	@include respond-min($breakpoint-mid) {
 		width: 85%;
@@ -418,7 +422,7 @@
 		&.active {
 
 		top:0%;
-	}
+		}
 	}
 }
 

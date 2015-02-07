@@ -2341,6 +2341,9 @@ textarea[contenteditable] {
   cursor: crosshair;
   position: absolute;
 }
+.showcase-wrapper.min-height-applied-to-sidebar {
+  top: 100px;
+}
 @media screen and (min-width: 48em) {
   .showcase-wrapper {
     width: 85%;

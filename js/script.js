@@ -133,6 +133,7 @@ Function.prototype.throttle = function (milliseconds) {
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
 		canvasFillValue: 0,
+		ScrollerSpeed : 300,
 
 		init : function () {
 
@@ -209,6 +210,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			if (KO.Config.verticalMode === false ) {
 
+				// all relevant elements
 				var sideBarH 				= KO.Config.$sideBar.height();
 				var fabzLogoH 				= KO.Config.$fabzLogo.height();
 				var navigationH 			= KO.Config.$navigationContainer .height();
@@ -234,7 +236,6 @@ Function.prototype.throttle = function (milliseconds) {
 			//	console.log("$navigationContainer W:",	navigationW	); 
 			//	console.log("$socialIconsContainer W:",	socialIconsContainerW	);
 			//	console.log("///////////////////");
-
 
 					if(sideBarH < KO.Config.verticalSideBarBreakpoint) { 
 						// if the vertical sidebar is too small hardcoded value defined on top 
@@ -263,6 +264,7 @@ Function.prototype.throttle = function (milliseconds) {
 					// put the socialIcons back
 					KO.Config.$socialIconsContainer.toggleClass("active");
 					}
+
 				}else { 
 					KO.Config.$fabzLogo.height("auto");
 					KO.Config.$socialIconsContainer.height("auto");
@@ -1051,16 +1053,15 @@ Function.prototype.throttle = function (milliseconds) {
 			// if the Height is than the min height will 100. 
 			var navigationHeight = KO.Config.getDimensionsHeight(KO.Config.$navigationContainer);
 			
-
-			if (navigationHeight < 100 && KO.Config.verticalMode ) {
+			console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
+			if (navigationHeight <= 100 && KO.Config.verticalMode ) {
 
 				navigationHeight = 100;
-				KO.Config.$showcaseWrapper.addClass("active");
+				KO.Config.$showcaseWrapper.addClass("min-height-applied-to-sidebar");
 
 			}else {
 				// if its 
-				console.log();
-				KO.Config.$showcaseWrapper.removeClass("active");
+				KO.Config.$showcaseWrapper.removeClass("min-height-applied-to-sidebar");
 			}
 
 			KO.Config.$window.stageH -= navigationHeight;
@@ -1118,7 +1119,7 @@ Function.prototype.throttle = function (milliseconds) {
 			var timeRestictionInterval =  setInterval( function(){
 				KO.Config.scrollerFlag = true;
 				clearInterval(timeRestictionInterval);
-				}, 150);
+				}, KO.Config.scrollerSpeed);
 			}
 	},
 
