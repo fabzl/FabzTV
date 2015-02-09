@@ -146,7 +146,11 @@
 ///////// DESCRIPTION HOLDER
 
 .has-padding-top {
-	padding-top:5%;
+	padding-top:3%;
+}
+
+.has-padding-bottom {
+	padding-bottom:3%;
 }
 
 .overlayer-description {
@@ -218,14 +222,16 @@
 			&.description-tooltip {
 				display : none; 
 				opacity:0;
+				margin:auto;
 			}
 			&.description-text { 
 
 				padding-left:5%;
-
+				margin:auto;
 			}
 			&.ul {
-				padding-left: 20%;
+				padding-left: 10%;
+				margin:auto;
 				}
 		}
 	}
@@ -419,10 +425,6 @@
 		height:100%;
 		left: 15%;
 		top:0%;
-		&.active {
-
-		top:0%;
-		}
 	}
 }
 

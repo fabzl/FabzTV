@@ -2111,7 +2111,11 @@ textarea[contenteditable] {
 }
 
 .has-padding-top {
-  padding-top: 5%;
+  padding-top: 3%;
+}
+
+.has-padding-bottom {
+  padding-bottom: 3%;
 }
 
 .overlayer-description {
@@ -2176,12 +2180,15 @@ textarea[contenteditable] {
 .description-content-holder.active p.description-tooltip, .description-content-holder.active a.description-tooltip, .description-content-holder.active li.description-tooltip {
   display: none;
   opacity: 0;
+  margin: auto;
 }
 .description-content-holder.active p.description-text, .description-content-holder.active a.description-text, .description-content-holder.active li.description-text {
   padding-left: 5%;
+  margin: auto;
 }
 .description-content-holder.active p.ul, .description-content-holder.active a.ul, .description-content-holder.active li.ul {
-  padding-left: 20%;
+  padding-left: 10%;
+  margin: auto;
 }
 
 .more-info-toggle {
@@ -2349,9 +2356,6 @@ textarea[contenteditable] {
     width: 85%;
     height: 100%;
     left: 15%;
-    top: 0%;
-  }
-  .showcase-wrapper.active {
     top: 0%;
   }
 }
