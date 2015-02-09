@@ -162,7 +162,14 @@
 	//border:thin solid #FF0000;
 }
 
+.description-list {
+	
+	width:100%;
+	font-size: .7em;
+	//float:none!important;
+	padding:1% 0% 1% 5%;
 
+}
 
 .description-content-holder {
 
@@ -170,9 +177,9 @@
 	background-color:rgba(255, 255, 255, 0.9);
 	text-align:left;
 	bottom: 0;
-	padding-right: 100px;
 	height: auto;
-	min-width: 180px;
+	padding-right:20px;
+	min-width: 80px;
 	min-height:80px;
 	right: 5%;
 	handcursor:pointer;
@@ -183,7 +190,7 @@
 	h2 {
 		white-space: nowrap;
 		border-bottom: 1px solid #001;
-		padding: 0 10px 0 10px;
+		padding: 1px 10px 0 10px;
 	//	font-size: 20px;
 		color: #001;
 		float:left;
@@ -246,7 +253,7 @@
 	transform: rotate(0deg) scale(.8);
 	display:inline-block;
 	&.active {
-		transform:rotate(-45deg) scale(1.2);
+		transform:rotate(-45deg) scale(1);
 
 	}
 	@include respond-min($breakpoint-mid) {
@@ -270,6 +277,14 @@
 
 	}
 }
+
+
+.description-link {
+
+ 	font-weight: bold;
+ 	display: block;
+}
+
 
 .social-icons {
 
@@ -791,8 +806,8 @@ h2 {
 	font-family: 'denseregular';
 	text-align: left;
 	//	float: left;
-	width:100%;
-	font-size: 1.5em;
+	width:80%;
+	font-size: 1.4em;
 	border-bottom: 1px solid #FFF;
 	color:#FFF;
 

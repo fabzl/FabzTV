@@ -2124,14 +2124,20 @@ textarea[contenteditable] {
   height: 100%;
 }
 
+.description-list {
+  width: 100%;
+  font-size: .7em;
+  padding: 1% 0% 1% 5%;
+}
+
 .description-content-holder {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.9);
   text-align: left;
   bottom: 0;
-  padding-right: 100px;
   height: auto;
-  min-width: 180px;
+  padding-right: 20px;
+  min-width: 80px;
   min-height: 80px;
   right: 5%;
   handcursor: pointer;
@@ -2142,7 +2148,7 @@ textarea[contenteditable] {
 .description-content-holder h2 {
   white-space: nowrap;
   border-bottom: 1px solid #001;
-  padding: 0 10px 0 10px;
+  padding: 1px 10px 0 10px;
   color: #001;
   float: left;
   display: inline-block;
@@ -2203,10 +2209,10 @@ textarea[contenteditable] {
   display: inline-block;
 }
 .more-info-toggle.active {
-  -webkit-transform: rotate(-45deg) scale(1.2);
-  -moz-transform: rotate(-45deg) scale(1.2);
-  -ms-transform: rotate(-45deg) scale(1.2);
-  transform: rotate(-45deg) scale(1.2);
+  -webkit-transform: rotate(-45deg) scale(1);
+  -moz-transform: rotate(-45deg) scale(1);
+  -ms-transform: rotate(-45deg) scale(1);
+  transform: rotate(-45deg) scale(1);
 }
 
 .more-info-toggle-container {
@@ -2219,6 +2225,11 @@ textarea[contenteditable] {
 }
 .more-info-toggle-container.active {
   right: 1%;
+}
+
+.description-link {
+  font-weight: bold;
+  display: block;
 }
 
 .social-icons {
@@ -2672,8 +2683,8 @@ html, body {
 h2 {
   font-family: 'denseregular';
   text-align: left;
-  width: 100%;
-  font-size: 1.5em;
+  width: 80%;
+  font-size: 1.4em;
   border-bottom: 1px solid #FFF;
   color: #FFF;
 }
