@@ -2118,6 +2118,10 @@ textarea[contenteditable] {
   padding-bottom: 3%;
 }
 
+.has-text-center {
+  text-align: center;
+}
+
 .overlayer-description {
   z-index: 1;
   position: absolute;
@@ -2225,6 +2229,33 @@ textarea[contenteditable] {
 }
 .more-info-toggle-container.active {
   right: 1%;
+}
+
+.face-enhancer-style {
+  -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
+  -ms-transform: translateY(10%);
+  transform: translateY(10%);
+  background-color: #ffffce;
+  width: 980px;
+  height: 640px;
+  margin: 0 auto;
+}
+
+.description-video-insert {
+  -webkit-transform: translateY(70%) translateX(25%);
+  -moz-transform: translateY(70%) translateX(25%);
+  -ms-transform: translateY(70%) translateX(25%);
+  transform: translateY(70%) translateX(25%);
+  position: absolute;
+}
+
+.description-video-insert-borderlands {
+  -webkit-transform: translateY(10%) translateX(0%);
+  -moz-transform: translateY(10%) translateX(0%);
+  -ms-transform: translateY(10%) translateX(0%);
+  transform: translateY(10%) translateX(0%);
+  z-index: 10;
 }
 
 .description-link {
