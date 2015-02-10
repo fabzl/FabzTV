@@ -229,17 +229,15 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.adjustSideBarElements();
 			KO.Config.fadeOutLoader();
 
-			KO.Config.initClientSection();
+		//	KO.Config.initClientSection();
 		},
-
-
 
 		initClientSection:function ()  {
 			
 		//	$clientVanishingPoint ;
 			
 		//	$clientsLogo.css({  
-			var scaleFactor = .5;
+			var scaleFactor = 1;
 
 			var gapY = KO.Config.$clientLogo.height()*scaleFactor;
 			var gapX = KO.Config.$clientLogo.width()*scaleFactor;
@@ -257,7 +255,7 @@ Function.prototype.throttle = function (milliseconds) {
 				function( index, value ) {
   					//console.log( index + ": " + value +$(this));
   					
-  					posX = gapX*counterColumns-(gapX*.5);
+  					posX = (gapX*counterColumns)-(gapX*.5);
   					posY = gapY*counterRows-(gapY*.5);
   					
   					counterRows ++;
@@ -265,7 +263,7 @@ Function.prototype.throttle = function (milliseconds) {
   					 if ( ( index % columns ) == 0 ) {
   						 
   						// posY = posY+gapY;
-  						counterColumns ++
+  						counterColumns ++;
   						counterRows = 0;
 
 	  					console.log("column");
