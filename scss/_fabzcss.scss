@@ -6,6 +6,11 @@
 
 }
 .clients {
+	//tartan bg
+	background-color: 	hsl(182, 57%, 60%);
+	background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+	repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+	repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
 
 	text-align: center;
 	&.slide { 
@@ -15,19 +20,37 @@
 
 .client-logo {
 
+ 	transform-style: preserve-3d;
+ 	transition: all 1.0s linear;
 	display:inline-block;
 	width: auto;
 	padding:0;
 	margin:0;
+	position:absolute;
+	//transform: rotateY(45deg)rotateX(45deg)rotateZ(45deg);
+	//  rotateY(45deg)rotateX(45deg)rotateZ(45deg)
 	img { 
 	padding:0;
 	margin:0;
 
+
 	}
 }
 
-.stripe-down .stripe-up { 
+.clients-container {
+	width:100%;
+	height:100%;
+  	border: red solid thin;
+  -webkit-perspective: 1600px;
+  -webkit-perspective-origin: 0% -100%;
+  position: relative;
+ // margin: 10px auto;
+  z-index: 1;
+ // transform:translateX(-50%);
+}
 
+.stripe-down .stripe-up { 
+	
 	stroke:#FFF;
 
 	@include respond-min($breakpoint-mid) {

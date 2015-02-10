@@ -9,6 +9,73 @@
  *     indicated number of milliseconds after the last call before
  *     calling the original function.
  */
+var cw = window.innerWidth;
+var ch = window.innerHeight;
+var rand = function(a,b){return ~~((Math.random()*(b-a+1))+a);}
+
+var particleString = '';
+var particleCount = 50;
+var maxVelocity = 2;
+
+while(particleCount--){
+	particleString += '\
+	<div \
+  	class="particle"\
+		data-x="'+cw/2+'"\
+		data-y="'+ch/2+'"\
+		data-vx="0"\
+		data-vy="0"\
+  ></div>';
+}
+
+$('body').append(particleString);    
+var particles = $('.client-logo');
+
+
+var update = function(){
+  var $this = $(this);
+  
+  $this.data('vx', $this.data('vx') + (rand(0, 10)-5)/10);
+  $this.data('vy', $this.data('vy') + (rand(0, 10)-5)/10);
+  
+  if(Math.abs($this.data('vx')) > maxVelocity){
+    var vx = ($this.data('vx') < 0) ? -maxVelocity : maxVelocity;
+    $this.data('vx', vx);
+  }
+  if(Math.abs($this.data('vy')) > maxVelocity){
+    var vy = ($this.data('vy') < 0) ? -maxVelocity : maxVelocity;
+    $this.data('vy', vy);
+  }
+  
+  $this.data('x', $this.data('x') + $this.data('vx'));
+  $this.data('y', $this.data('y') + $this.data('vy'));
+  
+  if($this.data('y') < -12){
+    $this.data('y', ch);
+	}
+  if($this.data('x') > cw){
+    $this.data('x', -12);
+  }
+  if($this.data('y') > ch){
+    $this.data('y', -12);
+  }		
+	if($this.data('x') < -12){
+    $this.data('x', cw);
+  }
+  
+  $this.css({
+    /*left: $this.data('x')+'px',
+    top: $this.data('y')+'px'*/
+    '-webkit-transform': 'translate3d(' + $this.data("x") + 'px, ' + $this.data("y") + 'px, 0)'
+  });
+}
+
+
+
+
+
+
+
 Function.prototype.debounce = function (milliseconds) {
     var baseFunction = this,
         timer = null,
@@ -134,6 +201,9 @@ Function.prototype.throttle = function (milliseconds) {
 		verticalSideBarBreakpoint: 600,
 		canvasFillValue: 0,
 		ScrollerSpeed : 300,
+	// 	$clientVanishingPoint:$(".vanishing-point"),
+		$clientsContainer:$(".clients-container"),
+		$clientLogo:$(".client-logo"),
 
 		init : function () {
 
@@ -159,12 +229,63 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.adjustSideBarElements();
 			KO.Config.fadeOutLoader();
 
+			KO.Config.initClientSection();
+		},
 
+
+
+		initClientSection:function ()  {
+			
+		//	$clientVanishingPoint ;
+			
+		//	$clientsLogo.css({  
+			var scaleFactor = .5;
+
+			var gapY = KO.Config.$clientLogo.height()*scaleFactor;
+			var gapX = KO.Config.$clientLogo.width()*scaleFactor;
+			var gapZ = 30;
+			var columns = 6;
+			var rows = 6;
+			var counterColumns = 0;
+			var counterRows = 0;
+			var posX = 0;
+			var posY = 0;
+			var posXabsolute = KO.Config.stageW*.5;
+			var posYabsolute = KO.Config.stageH*.5;
+			
+			KO.Config.$clientLogo.each(
+				function( index, value ) {
+  					//console.log( index + ": " + value +$(this));
+  					
+  					posX = gapX*counterColumns-(gapX*.5);
+  					posY = gapY*counterRows-(gapY*.5);
+  					
+  					counterRows ++;
+
+  					 if ( ( index % columns ) == 0 ) {
+  						 
+  						// posY = posY+gapY;
+  						counterColumns ++
+  						counterRows = 0;
+
+	  					console.log("column");
+  					}
+
+  					if(index === counterRows) {
+  					
+  					// counterRows = index+rows;
+  					// console.log("row");
+  					// posX = posX+gapY;
+  					}
+ 					$(this).css('-webkit-transform',"translate3d("+posX+"px, "+posY+ "px, 0px) "+"scale("+scaleFactor+")");
+					
+
+			});
+								
 		},
 
 		onContentVisible:function() { 
 			KO.Config.animateSideBarIn();
-
 		},
 
 		hideAndShowSidebar:function(opacity) {
@@ -245,6 +366,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 						if( KO.Config.$sideBar.hasClass(".scrollable")) {
 				//			KO.Config.$sideBar.removeClass(".scrollable");
+
 						}
 					}
 
