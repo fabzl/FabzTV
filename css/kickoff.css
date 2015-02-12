@@ -2098,6 +2098,7 @@ textarea[contenteditable] {
   z-index: 1;
   margin: 0 auto;
   background-color: rgba(0, 0, 17, 0.5);
+  height: 100%;
 }
 @media screen and (min-width: 48em) {
   .overlayer-contact {
@@ -2285,6 +2286,10 @@ textarea[contenteditable] {
 .social-icons {
   cursor: pointer;
   max-width: none;
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
 }
 @media screen and (min-width: 48em) {
   .social-icons {
@@ -2300,15 +2305,30 @@ textarea[contenteditable] {
 
 .social-icons-container {
   display: none;
+  top: auto;
+  overflow: hidden;
 }
 .social-icons-container.active {
-  display: block;
+  display: inline-block;
   background-color: rgba(0, 0, 17, 0.9);
+  opacity: 1;
+  width: 100%;
+  position: absolute;
+  top: 100px;
 }
 @media screen and (min-width: 48em) {
   .social-icons-container {
     display: block;
+    position: relative;
     text-align: center;
+  }
+  .social-icons-container.active {
+    display: inline-block;
+    background-color: transparent;
+    opacity: 1;
+    width: 100%;
+    position: absolute;
+    top: auto;
   }
 }
 
@@ -2323,14 +2343,14 @@ textarea[contenteditable] {
 }
 
 .fabz-logo-romboid-container {
-  padding-top: 0;
   width: 100px;
   height: 100px;
-  margin: 50px auto;
+  margin: 0px auto;
   z-index: 998;
 }
 @media screen and (min-width: 48em) {
   .fabz-logo-romboid-container {
+    padding-top: 0px;
     width: 95%;
     height: auto;
     margin: 0 auto;
@@ -2388,7 +2408,7 @@ textarea[contenteditable] {
   background-color: #001;
   overflow: visible;
   width: 100%;
-  height: 10%;
+  height: 100px;
   position: absolute;
   top: 0;
   z-index: 999;
@@ -2404,13 +2424,10 @@ textarea[contenteditable] {
 .showcase-wrapper {
   width: 100%;
   left: 0%;
-  top: 10%;
+  top: 100px;
   overflow: hidden;
   cursor: crosshair;
   position: absolute;
-}
-.showcase-wrapper.min-height-applied-to-sidebar {
-  top: 100px;
 }
 @media screen and (min-width: 48em) {
   .showcase-wrapper {
@@ -2446,11 +2463,6 @@ textarea[contenteditable] {
 }
 .nav-content ol {
   position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 .nav-content li {
   display: none;

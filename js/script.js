@@ -386,7 +386,8 @@ Function.prototype.throttle = function (milliseconds) {
 					}
 
 				}else { 
-					KO.Config.$fabzLogo.height("auto");
+
+					KO.Config.$fabzLogo.height("100px");
 					KO.Config.$socialIconsContainer.height("auto");
 					KO.Config.$navigationContainer.height("auto");
 				}
@@ -440,6 +441,7 @@ Function.prototype.throttle = function (milliseconds) {
 				if(KO.Config.mobileShareToggleActiveBoolean === false) { 
 					KO.Config.mobileShareToggleActiveBoolean = true;
 				}
+				KO.Config.$socialIconsContainer.css("opacity",1);
 				KO.Config.$socialIconsContainer.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
 		},
 
@@ -1171,19 +1173,9 @@ Function.prototype.throttle = function (milliseconds) {
 			// boolean to control the vertical positioning
 			KO.Config.verticalMode = true;
 			// if the Height is than the min height will 100. 
-			var navigationHeight = KO.Config.getDimensionsHeight(KO.Config.$navigationContainer);
+			var navigationHeight = 100;
 			
-			console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
-			if (navigationHeight <= 100 && KO.Config.verticalMode ) {
-
-				navigationHeight = 100;
-				KO.Config.$showcaseWrapper.addClass("min-height-applied-to-sidebar");
-
-			}else {
-				// if its 
-				KO.Config.$showcaseWrapper.removeClass("min-height-applied-to-sidebar");
-			}
-
+			
 			KO.Config.$window.stageH -= navigationHeight;
 			// bug fix to show the navigation again when things are changed in the main
 			KO.Config.$navigationContainer.css("opacity",1); 
@@ -1193,6 +1185,9 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$window.stageW -= KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 			KO.Config.verticalMode = false;
 		}
+
+
+			console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
 
 		// bug fix for the navigation
 		KO.Config.hideAndShowSidebar(1);
