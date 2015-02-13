@@ -217,7 +217,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
-			KO.Config.hideAndShowSidebar(0);
+			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
 			KO.Config.arrowControl();
@@ -286,19 +286,19 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.animateSideBarIn();
 		},
 
-		hideAndShowSidebar:function(opacity) {
+		hideAndShowSidebar:function(displayValue) {
 
-			KO.Config.$fabzLogo.css("opacity",opacity);
-			KO.Config.$navigationContainer.css("opacity", opacity);
-			KO.Config.$socialIconsContainer.css("opacity", opacity);
 
-			if (KO.Config.verticalMode) {
-				KO.Config.$socialIconsContainer.css("opacity", 0);
+				KO.Config.$fabzLogo.css("display",displayValue);
+				KO.Config.$navigationContainer.css("display",displayValue);
+				KO.Config.$socialIconsContainer.css("opacity", displayValue);
+	//		if (KO.Config.verticalMode) {
+		//		KO.Config.$socialIconsContainer.css("opacity", 0);
 
-			}else { 
-				KO.Config.$socialIconsContainer.css("opacity", opacity);
+	//		}else { 
+	//			KO.Config.$socialIconsContainer.css("opacity", opacity);
 
-			}
+	//		}
 		},
 
 		animateSideBarIn:function() {
@@ -588,6 +588,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.$loaderBg.hide();
 				KO.Config.onContentVisible();
+				KO.Config.hideAndShowSidebar("block");
 			});
 		},
 
@@ -1187,10 +1188,10 @@ Function.prototype.throttle = function (milliseconds) {
 		}
 
 
-			console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
+		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
 
 		// bug fix for the navigation
-		KO.Config.hideAndShowSidebar(1);
+//	KO.Config.hideAndShowSidebar(false);
 
 		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 

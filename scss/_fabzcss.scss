@@ -122,6 +122,7 @@
 
 .overlayer-contact {
 
+	
 	width: 95%;
 	line-height: 90%;
 	font-size: 1em;
@@ -146,17 +147,18 @@
 
 .overlayer-about {
 
-	width: 40%;
+	width: 100%;
 	line-height: 90%;
 	font-size: .8em;
 	padding: 10% 0% 2% 5%;
 	z-index: 1;
-	position:absolute;
+	//position:absolute;
 	background-color:rgba(0, 0, 17, 0.9);
 
 	@include respond-min($breakpoint-mid) {
 
 	font-size: 1em;
+	width: 40%;
 	}
 
 }
@@ -172,7 +174,14 @@
 ///////// DESCRIPTION HOLDER HELPERS
 
 .has-padding-top {
+
+	padding-top: 10%;
+
+	@include respond-min($breakpoint-mid) {
+
 	padding-top:3%;
+
+	}
 }
 
 .has-padding-bottom {
@@ -207,29 +216,46 @@
 
 .description-content-holder {
 
+
+
 	position:absolute;
 	background-color:rgba(255, 255, 255, 0.9);
 	text-align:left;
 	bottom: 0;
 	height: auto;
 	padding-right:20px;
-	min-width: 80px;
-	min-height:80px;
-	right: 5%;
+	min-width: 60px;
+	min-height:60px;
+	right: 0;
 	handcursor:pointer;
 	display:inline-block;
+	width: 100%;
 
 	transition : all  .3s ease-in-out;
+
+
+	@include respond-min($breakpoint-mid) {
+
+		width: auto;
+		right: 5%;
+		min-width: 80px;
+		min-height:80px;
+	}
+
 
 	h2 {
 		white-space: nowrap;
 		border-bottom: 1px solid #001;
-		padding: 1px 10px 0 10px;
+		padding: 0px 15px 0 5px;
 	//	font-size: 20px;
 		color: #001;
 		float:left;
 		display:inline-block;
 		margin:0;
+
+		@include respond-min($breakpoint-mid) {
+			padding: 1px 10px 0 10px;
+		}
 	}
 	p, a ,li { 
 		float:left;
@@ -254,7 +280,11 @@
 		right:0;
 		max-height:initial;
 		transform: translateY(0);
-		padding-right: 100px;
+		padding-right: 0px;
+
+		@include respond-min($breakpoint-mid) {
+			padding-right: 100px;
+		}
 		//left: 0;
 		p, a ,li { 
 			opacity:1;
@@ -296,7 +326,7 @@
 
 .more-info-toggle-container {
 	right: 5%;
-	top:10px;
+	top:3px;
 	//bottom: 0;
 	position: absolute;
 //text-align: center;
@@ -318,10 +348,26 @@
 	height:640px;
 	margin: 0 auto;
 //	width:100%;
+	@include respond-min($breakpoint-mid) {
+		display:none;
+	}
+
+
 }
 .description-video-insert {
-	transform:translateY(70%) translateX(25%);
-	position: absolute;
+
+
+	width:100%;
+	height:90%;
+	position: relative;
+
+	@include respond-min($breakpoint-mid) {
+
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
 }
 .description-video-insert-borderlands { 
 
@@ -514,6 +560,7 @@
 	top:0;
 	position: relative;
 	transition : top .5s ease-in-out;
+	background-color:#000;
 }
 
 .slider-container {
@@ -544,8 +591,9 @@
 	li {
 
 		display: none;
-		padding-left: 1.5%;
+		padding-left: 3%;
 		transition : all .2s ease-in-out;
+		font-size:1.3em;
 
 		@include respond-min($breakpoint-mid) {
 			font-size:1em;
@@ -874,9 +922,14 @@ h2 {
 	text-align: left;
 	//	float: left;
 	width:80%;
-	font-size: 1.4em;
+
 	border-bottom: 1px solid #FFF;
 	color:#FFF;
+
+	font-size: 1.2em;
+	@include respond-min($breakpoint-mid) {
+		font-size: 1.4em;
+	}
 
 }
 

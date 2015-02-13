@@ -31,7 +31,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-
 		/**
 		 * Watch
 		 * https://github.com/gruntjs/grunt-contrib-watch

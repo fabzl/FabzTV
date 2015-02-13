@@ -2109,17 +2109,17 @@ textarea[contenteditable] {
 }
 
 .overlayer-about {
-  width: 40%;
+  width: 100%;
   line-height: 90%;
   font-size: .8em;
   padding: 10% 0% 2% 5%;
   z-index: 1;
-  position: absolute;
   background-color: rgba(0, 0, 17, 0.9);
 }
 @media screen and (min-width: 48em) {
   .overlayer-about {
     font-size: 1em;
+    width: 40%;
   }
 }
 
@@ -2131,7 +2131,12 @@ textarea[contenteditable] {
 }
 
 .has-padding-top {
-  padding-top: 3%;
+  padding-top: 10%;
+}
+@media screen and (min-width: 48em) {
+  .has-padding-top {
+    padding-top: 3%;
+  }
 }
 
 .has-padding-bottom {
@@ -2161,22 +2166,36 @@ textarea[contenteditable] {
   bottom: 0;
   height: auto;
   padding-right: 20px;
-  min-width: 80px;
-  min-height: 80px;
-  right: 5%;
+  min-width: 60px;
+  min-height: 60px;
+  right: 0;
   handcursor: pointer;
   display: inline-block;
+  width: 100%;
   -moz-transition: all  .3s ease-in-out;
   transition: all  .3s ease-in-out;
+}
+@media screen and (min-width: 48em) {
+  .description-content-holder {
+    width: auto;
+    right: 5%;
+    min-width: 80px;
+    min-height: 80px;
+  }
 }
 .description-content-holder h2 {
   white-space: nowrap;
   border-bottom: 1px solid #001;
-  padding: 1px 10px 0 10px;
+  padding: 0px 15px 0 5px;
   color: #001;
   float: left;
   display: inline-block;
   margin: 0;
+}
+@media screen and (min-width: 48em) {
+  .description-content-holder h2 {
+    padding: 1px 10px 0 10px;
+  }
 }
 .description-content-holder p, .description-content-holder a, .description-content-holder li {
   float: left;
@@ -2201,7 +2220,12 @@ textarea[contenteditable] {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);
-  padding-right: 100px;
+  padding-right: 0px;
+}
+@media screen and (min-width: 48em) {
+  .description-content-holder.active {
+    padding-right: 100px;
+  }
 }
 .description-content-holder.active p, .description-content-holder.active a, .description-content-holder.active li {
   opacity: 1;
@@ -2241,7 +2265,7 @@ textarea[contenteditable] {
 
 .more-info-toggle-container {
   right: 5%;
-  top: 10px;
+  top: 3px;
   position: absolute;
   display: inline-block;
   -moz-transition: all .3s ease-in-out;
@@ -2261,13 +2285,26 @@ textarea[contenteditable] {
   height: 640px;
   margin: 0 auto;
 }
+@media screen and (min-width: 48em) {
+  .face-enhancer-style {
+    display: none;
+  }
+}
 
 .description-video-insert {
-  -webkit-transform: translateY(70%) translateX(25%);
-  -moz-transform: translateY(70%) translateX(25%);
-  -ms-transform: translateY(70%) translateX(25%);
-  transform: translateY(70%) translateX(25%);
-  position: absolute;
+  width: 100%;
+  height: 90%;
+  position: relative;
+}
+@media screen and (min-width: 48em) {
+  .description-video-insert {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }
 
 .description-video-insert-borderlands {
@@ -2443,6 +2480,7 @@ textarea[contenteditable] {
   position: relative;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
+  background-color: #000;
 }
 
 .slider-container {
@@ -2466,9 +2504,10 @@ textarea[contenteditable] {
 }
 .nav-content li {
   display: none;
-  padding-left: 1.5%;
+  padding-left: 3%;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+  font-size: 1.3em;
 }
 @media screen and (min-width: 48em) {
   .nav-content li {
@@ -2746,9 +2785,14 @@ h2 {
   font-family: 'denseregular';
   text-align: left;
   width: 80%;
-  font-size: 1.4em;
   border-bottom: 1px solid #FFF;
   color: #FFF;
+  font-size: 1.2em;
+}
+@media screen and (min-width: 48em) {
+  h2 {
+    font-size: 1.4em;
+  }
 }
 
 h3 {
