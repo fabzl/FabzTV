@@ -91,7 +91,9 @@ h1, .h1, .alpha {
 h2, .h2, .beta {
 	@include font-size($h2-size);
 	margin-top: 0;
-	margin-bottom: $base-line-height + px;
+	@include respond-min($breakpoint-mid) {
+		margin-bottom: $base-line-height + px;
+	}
 }
 
 h3, .h3, .gamma {

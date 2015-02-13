@@ -87,11 +87,13 @@
 	position: absolute;
 	bottom: 2%;
 	right: 5%;
+	display:none;
 
 	@include respond-min($breakpoint-mid) {
 		width: 40%;
 		float: right;
 		margin:auto;
+		display:inline-block;
 		//padding: 30% 0% 0% 0%;
 		position: relative;
 //		right: 2%;
@@ -108,12 +110,13 @@
 }
 .contact-info {
 
+	display:none;
 	width: 50%;
 	line-height:auto;
 	@include respond-min($breakpoint-mid) {
 		width: auto;
+		display:display-block;
 	}
-
 	address {
 		padding-left:20px;
 	}
@@ -122,7 +125,6 @@
 
 .overlayer-contact {
 
-	
 	width: 95%;
 	line-height: 90%;
 	font-size: 1em;
@@ -139,8 +141,10 @@
 		float:left;
 		padding: 3% 2% 2% 2%;
 		//height: auto;
+	}
 
-
+	@media screen and (max-height:500px) {
+		// add new breakpoint for mobile
 	}
 
 }
