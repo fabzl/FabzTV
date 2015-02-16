@@ -98,10 +98,10 @@ label {
 	& select {
 		display: block;
 	}
-		@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-mid) {
 			line-heigth: 2.5em;
 			margin-bottom: 5px;
-			font-size:2.5em;
+			font-size:1em;
 	}
 }
 
@@ -145,7 +145,7 @@ input {
 		height: auto;
 		padding: 0;
 		margin: 3px 0;
-		line-height: normal;
+		line-heigth: normal;
 		cursor: pointer;
 		@include border-radius(0);
 		@include box-sizing(border-box);
@@ -160,7 +160,7 @@ input {
 		width: auto;
 		height: 28px;
 		padding: initial;
-		line-height: initial;
+		line-heigth: initial;
 		border: initial;
 		background-color: $input-background;
 		background-color: initial;
@@ -570,7 +570,7 @@ textarea {
 
 		// Move over buttons in .form-actions to align with .form-controlGroup-input
 		& .form-actions {
-			padding-left: 160px;
+		//	padding-left: 160px;
 		}
 	}
 }

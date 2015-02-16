@@ -204,6 +204,25 @@ Function.prototype.throttle = function (milliseconds) {
 	// 	$clientVanishingPoint:$(".vanishing-point"),
 		$clientsContainer:$(".clients-container"),
 		$clientLogo:$(".client-logo"),
+		totalLogoClientsCount:54,
+
+
+		// 3js stuff 
+
+		////// clients section /// threee JS include 
+		camera:{}, 
+		scene3D:{},
+		renderer:{},
+		cube:{}, 
+		cubeMaterial:{},
+		cubeMesh:{},
+		sphere:{},
+		sphereMaterial:{}, 
+		sphereMesh:{}, 
+		mouseX : 0, 
+		mouseY : 0,
+		stats:{},
+		clientsLogoGroup:{},
 
 		init : function () {
 
@@ -229,56 +248,59 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.adjustSideBarElements();
 			KO.Config.fadeOutLoader();
 
-		//	KO.Config.initClientSection();
+			KO.Config.initClientSection();
 		},
 
 		initClientSection:function ()  {
 			
-		//	$clientVanishingPoint ;
-			
-		//	$clientsLogo.css({  
-			var scaleFactor = 1;
 
-			var gapY = KO.Config.$clientLogo.height()*scaleFactor;
-			var gapX = KO.Config.$clientLogo.width()*scaleFactor;
-			var gapZ = 30;
-			var columns = 6;
-			var rows = 6;
-			var counterColumns = 0;
-			var counterRows = 0;
-			var posX = 0;
-			var posY = 0;
-			var posXabsolute = KO.Config.stageW*.5;
-			var posYabsolute = KO.Config.stageH*.5;
-			
-			KO.Config.$clientLogo.each(
-				function( index, value ) {
-  					//console.log( index + ": " + value +$(this));
-  					
-  					posX = (gapX*counterColumns)-(gapX*.5);
-  					posY = gapY*counterRows-(gapY*.5);
-  					
-  					counterRows ++;
+			KO.Config.initClients();
 
-  					 if ( ( index % columns ) == 0 ) {
+					// //	$clientVanishingPoint ;
+			
+		// //	$clientsLogo.css({  
+		// 	var scaleFactor = 1;
+
+		// 	var gapY = KO.Config.$clientLogo.height()*scaleFactor;
+		// 	var gapX = KO.Config.$clientLogo.width()*scaleFactor;
+		// 	var gapZ = 30;
+		// 	var columns = 6;
+		// 	var rows = 6;
+		// 	var counterColumns = 0;
+		// 	var counterRows = 0;
+		// 	var posX = 0;
+		// 	var posY = 0;
+		// 	var posXabsolute = KO.Config.stageW*.5;
+		// 	var posYabsolute = KO.Config.stageH*.5;
+			
+		// 	KO.Config.$clientLogo.each(
+		// 		function( index, value ) {
+  // 					//console.log( index + ": " + value +$(this));
+  					
+  // 					posX = (gapX*counterColumns)-(gapX*.5);
+  // 					posY = gapY*counterRows-(gapY*.5);
+  					
+  // 					counterRows ++;
+
+  // 					 if ( ( index % columns ) == 0 ) {
   						 
-  						// posY = posY+gapY;
-  						counterColumns ++;
-  						counterRows = 0;
+  // 						// posY = posY+gapY;
+  // 						counterColumns ++;
+  // 						counterRows = 0;
 
-	  					console.log("column");
-  					}
+	 //  					console.log("column");
+  // 					}
 
-  					if(index === counterRows) {
+  // 					if(index === counterRows) {
   					
-  					// counterRows = index+rows;
-  					// console.log("row");
-  					// posX = posX+gapY;
-  					}
- 					$(this).css('-webkit-transform',"translate3d("+posX+"px, "+posY+ "px, 0px) "+"scale("+scaleFactor+")");
+  // 					// counterRows = index+rows;
+  // 					// console.log("row");
+  // 					// posX = posX+gapY;
+  // 					}
+ 	// 				$(this).css('-webkit-transform',"translate3d("+posX+"px, "+posY+ "px, 0px) "+"scale("+scaleFactor+")");
 					
 
-			});
+	//		});
 								
 		},
 
@@ -1275,6 +1297,299 @@ Function.prototype.throttle = function (milliseconds) {
 		});
 
 	},
+
+
+/// 3d js insert for clients section
+
+			initClients:function () {
+
+				KO.Config.create3DScene();
+				KO.Config.createLights();
+		//		KO.Config.createCube();
+		//		KO.Config.createSky();
+
+		//		KO.Config.createSphere();
+				KO.Config.create3DAxis();
+	//			KO.Config.createStats();
+				KO.Config.createFloatingClientLogo();
+
+				KO.Config.animate();
+				KO.Config.createMouseController();
+
+
+			 },
+
+
+			create3DScene:function() { 
+
+				KO.Config.scene3D = new THREE.Scene();
+				KO.Config.clientsLogoGroup = new THREE.Object3D();
+
+				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
+				KO.Config.camera.position.z = 1000;
+				KO.Config.scene3D.add(KO.Config.camera);
+
+				KO.Config.renderer = new THREE.WebGLRenderer();
+				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
+				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
+
+			//	window.addEventListener( 'resize', onWindowResize, false );
+
+			},
+
+			createFloatingClientLogo:function() { 
+
+				var i = 1;
+				var gap = 50;
+				var distance = 180;
+				var shiftX = 4;
+				var shiftY = 8;
+				var controlShiftX = 0;
+				var controlShiftY = 0;
+				
+				for ( i ; i <= KO.Config.totalLogoClientsCount ; i ++ ) {
+
+					// create the urls to load te images
+					var texture, material, plane;
+					var urltoLoadClientLogo = "000"+i;
+					var dir = "../img/clients/";
+					var extension = ".jpg";
+
+					// striping the extra zeros out 
+					while(urltoLoadClientLogo.toString().length > 4) {
+						urltoLoadClientLogo = urltoLoadClientLogo.substr(1);
+					}
+					// adding the rest of the path
+					urltoLoadClientLogo = dir+urltoLoadClientLogo+extension;
+
+					console.log(urltoLoadClientLogo);
+
+					texture = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
+
+					// assuming you want the texture to repeat in both directions:
+					texture.wrapS = THREE.RepeatWrapping; 
+					texture.wrapT = THREE.RepeatWrapping;
+
+					// how many times to repeat in each direction; the default is (1,1),
+					//   which is probably why your example wasn't working
+					texture.repeat.set( 1, 1 ); 
+
+					material = new THREE.MeshLambertMaterial({ map : texture });
+					plane = new THREE.Mesh(new THREE.PlaneGeometry(180, 140), material);
+					plane.material.side = THREE.DoubleSide;
+				
+					plane.position.set(KO.Config.fibonacciPositioning(KO.Config.totalLogoClientsCount-1,i));
+					plane.rotation.x = 45;
+					// if(controlShiftX < shiftX) {
+					// 	controlShiftX ++
+					// }else { 
+					// 	controlShiftX = 0; 
+					// 	controlShiftY ++;
+					// }
+
+				//	plane.position.x = (distance +gap)*controlShiftX;
+				//	plane.position.y = 100*i;
+					//plane.position.z = (distance)*controlShiftZ;
+				//	plane.position.y = (140+gap)*i;
+				//	plane.position.z = (180+gap)*i;
+
+				
+
+					// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
+					// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
+					plane.rotation.y = 180;
+
+					KO.Config.clientsLogoGroup.add(plane);
+				}
+
+			//	KO.Config.clientsLogoGroup. 
+
+				KO.Config.scene3D.add(KO.Config.clientsLogoGroup);
+				
+
+			// //	var texture, material, plane;
+
+			// 					texture = THREE.ImageUtils.loadTexture("../img/clients/0001.jpg");
+
+			// 	// assuming you want the texture to repeat in both directions:
+			// 	texture.wrapS = THREE.RepeatWrapping; 
+			// 	texture.wrapT = THREE.RepeatWrapping;
+
+			// 	// how many times to repeat in each direction; the default is (1,1),
+			// 	//   which is probably why your example wasn't working
+			// 	texture.repeat.set( 1, 1 ); 
+
+			// 	material = new THREE.MeshLambertMaterial({ map : texture });
+			// 	plane = new THREE.Mesh(new THREE.PlaneGeometry(180, 140), material);
+			// 	plane.material.side = THREE.DoubleSide;
+			// 	plane.position.x = 100;
+
+			// 	// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
+			// 	// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
+			// //	plane.rotation.z = Math.PI / 2;
+
+			// 	KO.Config.scene3D.add(plane);
+
+
+
+			},
+
+			// N is equal to loop total and K is a loop iteration 
+			fibonacciPositioning:function (N,k) {
+
+				var distance = 150;
+				var inc =  Math.PI  * (3 - Math.sqrt(5));
+				var off = 2 / N;
+				var y = k * off - 1 + (off / 2);
+				var r = Math.sqrt(1 - y*y);
+				var phi = k * inc;
+
+				var newPos3D = new THREE.Vector3((Math.cos(phi)*r), y, Math.sin(phi)*r);
+				console.log((Math.cos(phi)*r)*distance, y*distance, Math.sin(phi)*r*distance);
+				return newPos3D; 
+			},
+
+			create3DAxis:function() { 
+
+				// axes
+				var axes = new THREE.AxisHelper(100);
+				KO.Config.scene3D.add( axes );
+
+			},
+
+
+			createCube:function() {
+
+				KO.Config.cube = new THREE.CubeGeometry(300,300,300);
+
+
+				KO.Config.cubeMaterial = new THREE.MeshLambertMaterial( {
+									color: 0xFFFFFF,
+									shading: THREE.FlatShading,
+									side: THREE.DoubleSide
+								} );
+				KO.Config.cubeMesh = new THREE.Mesh(KO.Config.cube,KO.Config.cubeMaterial);
+				KO.Config.scene3D.add(KO.Config.cubeMesh);
+			},
+
+
+			createSphere:function() {
+
+ 				// set up the sphere vars
+				var radius = 30, 
+				 	segments = 12,
+				    rings = 12;
+
+				// create a new mesh with
+				KO.Config.sphereMaterial =  new THREE.MeshLambertMaterial(  { color: 0xFFFFFF  });
+				KO.Config.sphereMesh = new THREE.Mesh(new THREE.SphereGeometry( radius, segments, rings ), KO.Config.sphereMaterial);
+
+				// add the sphere to the scene
+				KO.Config.scene3D.add(KO.Config.sphereMesh);
+				KO.Config.sphereMesh.position.x +=300;
+
+			},
+
+
+			// createSky:function() {
+
+
+			// 	var skyGeometry = new THREE.CubeGeometry( 5000, 5000, 5000 );	
+			// 	var materialArray = [];
+			// 	for (var i = 0; i < 1; i++)
+			// 		materialArray.push( new THREE.MeshBasicMaterial({
+			// 		map: THREE.ImageUtils.loadTexture( "img/clients/bg-color.jpg" ),
+			// 		side: THREE.BackSide
+			// 	}));	
+
+			// 	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+			// 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+			// 	KO.Config.scene3D.add( skyBox );
+
+			// },
+
+
+			createLights:function () {
+
+				var light1 = new THREE.PointLight( 0xff8844, 5, 300 );
+				KO.Config.scene3D.add( light1 );
+
+				var light2 = new THREE.PointLight( 0x8844ff, 3, 300 );
+				KO.Config.scene3D.add( light2 );
+
+				// create a point light
+				var pointLight =  new THREE.PointLight(0xFFFFFF);
+
+				// set its position
+				pointLight.position.x = 10;
+				pointLight.position.y = 50;
+				pointLight.position.z = 130;
+
+				// add to the scene
+				KO.Config.scene3D.add(pointLight);
+			 },
+
+
+
+			animate:function() {
+
+				requestAnimationFrame(KO.Config.animate);
+
+				// if(KO.Config.cubeMesh) {
+				// 	KO.Config.cubeMesh.rotation.x += 0.02;
+				// 	KO.Config.cubeMesh.rotation.y += 0.02;
+				// }
+
+				// if(KO.Config.sphereMesh) {
+
+				// 	KO.Config.sphereMesh.rotation.x += 0.02;
+				// 	KO.Config.sphereMesh.rotation.y += 0.02;
+				// }
+
+
+				KO.Config.camera.position.x += ( KO.Config.mouseX - KO.Config.camera.position.x ) * .05;
+				KO.Config.camera.position.y += ( - KO.Config.mouseY - KO.Config.camera.position.y ) * .05;
+
+				KO.Config.camera.lookAt( KO.Config.scene3D.position );
+
+//				if(stats) { 
+//					stats.update();
+//				}
+
+				KO.Config.renderer.render(KO.Config.scene3D,KO.Config.camera);
+			},
+
+			createStats:function () { 
+		 		// STATS
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.bottom = '0px';
+				stats.domElement.style.zIndex = 100;
+				document.body.appendChild( stats.domElement );
+
+			},
+
+			onWindowResizeClients:function () {
+ 
+				KO.Config.camera.aspect = KO.Config.$window.stageW / KO.Config.$window.stageH;
+				KO.Config.camera.updateProjectionMatrix();
+
+				KO.Config.renderer.setSize( KO.Config.$window.stageW, wKO.Config.$window.stageH );
+
+			},
+
+			createMouseController:function() {
+
+				document.addEventListener( 'mousemove', KO.Config.onDocumentMouseMove, false );
+
+			},
+
+			onDocumentMouseMove:function (event) {
+
+				KO.Config.mouseX = ( event.clientX - window.innerWidth *.5 ) * 10;
+				KO.Config.mouseY = ( event.clientY - window.innerHeight *.5 ) * 10;
+
+			}
 
 	// closure end
 	}
