@@ -184,8 +184,8 @@ Function.prototype.throttle = function (milliseconds) {
 		currentAnchorTag:{},
 		storeTemporaryAnchorTag:{},
 		// arrows 
-		$arrowRight: $(".arrow_top"),
-		$arrowUp: $(".arrow_right"),
+		$arrowRight: $(".arrow_right"),
+		$arrowUp: $(".arrow_top"),
 		$arrowDown: $(".arrow_down"),
 		$arrowLeft: $(".arrow_left"),
 		$socialIconsContainer: $(".social-icons-container"),
@@ -715,8 +715,6 @@ Function.prototype.throttle = function (milliseconds) {
 			//	console.log(i);
 				KO.Config.shareIconsArray[i][0].linkUrl = KO.Config.shareIconsArray[i][1];
 				KO.Config.shareIconsArray[i][0].windowTarget = KO.Config.shareIconsArray[i][2];
-			//	console.log(element);
-			//	console.log(KO.Config.jumpToShareURL);
 				// we use snap to add the click instance to 
 				KO.Config.shareIconsArray[i][0].click(KO.Config.jumpToShareURL);
 			}
@@ -782,7 +780,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		//	console.log("KEY DOWN");
 			switch(e.which) {
-				case 37: // left
+				case 37: // right
 					KO.Config.moveContentHorizontally(1);
 				break;
 
@@ -790,7 +788,7 @@ Function.prototype.throttle = function (milliseconds) {
 					KO.Config.moveContentVertically(1);
 				break;
 
-				case 39: // right
+				case 39: // left
 					KO.Config.moveContentHorizontally(-1);
 				break;
 
@@ -802,17 +800,20 @@ Function.prototype.throttle = function (milliseconds) {
 			}
 			e.preventDefault(); // prevent the default action (scroll / move caret)
 		});
-		// on click events for stage arrows 
+		// on click events for stage arrows and side logo arrows
 
-			//left
+			//right
 			KO.Config.$arrowLeft.click(function () { KO.Config.moveContentHorizontally(1) });
 			//up
 			KO.Config.$arrowUp.click(function () { KO.Config.moveContentVertically(1) });
 			//down
 			KO.Config.$arrowDown.click(function () { KO.Config.moveContentVertically(-1) });
-			//right
+			//left
 			KO.Config.$arrowRight.click(function () { KO.Config.moveContentHorizontally(-1) });
 
+			// if we click on the logo will take you to next section
+			KO.Config.sideLogo.square2.click(function () { KO.Config.moveContentHorizontally(-1); });
+			KO.Config.sideLogo.letters.click(function () { KO.Config.moveContentHorizontally(-1) });
 		},
 
 		updateArrowsVisibility:function () {
@@ -1213,7 +1214,7 @@ Function.prototype.throttle = function (milliseconds) {
 		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
 
 		// bug fix for the navigation
-//	KO.Config.hideAndShowSidebar(false);
+		KO.Config.hideAndShowSidebar("none");
 
 		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
@@ -1362,7 +1363,7 @@ Function.prototype.throttle = function (milliseconds) {
 					// adding the rest of the path
 					urltoLoadClientLogo = dir+urltoLoadClientLogo+extension;
 
-					console.log(urltoLoadClientLogo);
+				//	console.log(urltoLoadClientLogo);
 
 					texture = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
 

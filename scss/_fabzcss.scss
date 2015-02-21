@@ -329,7 +329,7 @@
 	transform: rotate(0deg) scale(.8);
 	display:inline-block;
 	&.active {
-		transform:rotate(-45deg) scale(1);
+		transform:rotate(-45deg) scale(.8);
 
 	}
 	@include respond-min($breakpoint-mid) {
@@ -338,7 +338,7 @@
 
 .more-info-toggle-container {
 	right: 5%;
-	top:11px;
+	top:3px;
 	//bottom: 0;
 	position: absolute;
 //text-align: center;
@@ -347,6 +347,10 @@
 	//transform:rotate(0deg);
 //	transform-origin: 100% 0%;
 	transition : all .3s ease-in-out;
+	@include respond-min($breakpoint-mid) {
+		top:11px;
+	}
+
 	&.active {
 	//	transform:rotate(-45deg);
 		right: 1%;
@@ -354,14 +358,16 @@
 	}
 }
 .face-enhancer-style {
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+		
 	transform:translateY(10%);
 	background-color:#ffffce;
 	width:980px;
 	height:640px;
 	margin: 0 auto;
-//	width:100%;
-	@include respond-min($breakpoint-mid) {
-		display:none;
 	}
 
 
@@ -417,6 +423,8 @@
 	display: none;
 	top: auto;
 	overflow:hidden;
+	opacity:0;
+
 	&.active {
 		display: inline-block;
 		background-color:rgba(0, 0, 17, 0.9);

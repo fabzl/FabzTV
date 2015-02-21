@@ -76,7 +76,7 @@ $sent = mail($email_to, $email_subject, $email_message, $headers);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Fabz.tv - GRhotographer</title>
+    <title>Fabz.tv </title>
     <meta name="description" content="Fabz tv portfolio - London based hotographer. Available for bookings both in the UK and abroad." />
     <meta name="keywords" content="photographer, london, fabz, design, UK, animation, coding, designer, developer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
@@ -100,49 +100,7 @@ $sent = mail($email_to, $email_subject, $email_message, $headers);
 
 <body>
 
-    <!--  ==============  -->
-    <!--  === Masthead ===  -->
-    <!--  ==============  -->
-    <header class="masthead" role="banner">
-    <!-- slideshow background -->
-        <ul class="cb-slideshow unstyled">
-            <li><span>Image 01</span><div></div></li>
-            <li><span>Image 02</span><div></div></li>
-            <li><span>Image 03</span><div></div></li>
-            <li><span>Image 04</span><div></div></li>
-            <li><span>Image 05</span><div></div></li>
-            <li><span>Image 06</span><div></div></li>
-        </ul>
 
-        <div class="codrops-top">
-            <ul class="right l-list--floated right">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="http://www.black-crayon.co.uk/blog/" target="_blank">Blog</a></li>
-                <li><a href="http://www.facebook.com/blackcrayonphotography/" target="_blank">facebook</a></li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <!--/ Codrops top bar -->
-
-        <div class="toggle">
-            <a href="#" class="toggleButton">
-                <img src="images/toggle.png" alt="" class="">
-            </a>
-        </div>
-
-        <div class="header">
-            <h1>
-                <span>
-                    <img class="blackCrayonLogo" src="./images/Untitled-1.png" alt="Black Crayon Logo" />
-                </span>
-            </h1>
-
-            <div class="clearfooter"></div>
-        </div>
 
     </header>
 
@@ -151,14 +109,14 @@ $sent = mail($email_to, $email_subject, $email_message, $headers);
     <!--  === Main content ===  -->
     <!--  ====================  -->
     <div class="g-container" role="main">
-      <h2>Thank you for contacting Black Crayon.</h2>
+      <h2>Thank you for contacting Fabz tv.</h2>
 
       <p>
         We will be in touch with you very soon.
         <br><br>
         Kind regards
         <br><br>
-        Black Crayon Limited <br>
+        Fabian Andrade <br>
         <a href="http://www.fabz.tv" target="_blank">Fabz.tv</a>
         <br><br>
       </p>
