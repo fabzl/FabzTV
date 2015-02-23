@@ -214,23 +214,28 @@
 
 .description-list {
 	
+
 	width:100%;
 	font-size: .7em;
 	//float:none!important;
 	padding:1% 0% 1% 5%;
 
 }
+.description-list:before {
+
+	content:'\00B7';
+	padding-right:5px;
+	font-size:1em;
+}
 
 .description-content-holder {
-
-
 
 	position:absolute;
 	background-color:rgba(255, 255, 255, 0.9);
 	text-align:left;
 	bottom: 0;
 	height: auto;
-	padding-right:20px;
+	padding-right: 85px;
 	min-width: 60px;
 	min-height:60px;
 	right: 0;
@@ -244,7 +249,7 @@
 	@include respond-min($breakpoint-mid) {
 
 		width: auto;
-		right: 5%;
+		//right: 5%;
 		min-width: 80px;
 		min-height:80px;
 	}
@@ -362,16 +367,15 @@
 	display:none;
 
 	@include respond-min($breakpoint-mid) {
-		
-	transform:translateY(10%);
-	background-color:#ffffce;
-	width:980px;
-	height:640px;
-	margin: 0 auto;
+		display:block;		
+		transform:translateY(10%);
+		background-color:#ffffce;
+		width:980px;
+		height:640px;
+		margin: 0 auto;
 	}
-
-
 }
+
 .description-video-insert {
 
 
@@ -398,7 +402,128 @@
 
  	font-weight: bold;
  	display: block;
+ 	width:100%;
 }
+
+
+// description icon size 
+$iconsSize : 14px;
+
+.icon-arrow:before {
+
+  display: inline-block;
+  content: '';
+  transform: translateY(15%);
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_arrow.svg');
+  background-size: $iconsSize $iconsSize;
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-book:before {
+
+  display: inline-block;
+  content: '';
+  transform: translateY(15%);
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_book.svg');
+  background-size: $iconsSize $iconsSize;
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-envelope:before {
+
+  display: inline-block;
+  content: '';
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_envelope.svg');
+  background-size: $iconsSize $iconsSize;
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-file:before {
+
+  display: inline-block;
+  content: '';
+  transform: translateY(15%);
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_file.svg');
+  background-size: $iconsSize $iconsSize;
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-mobile:before {
+
+  display: inline-block;
+  content: '';
+  transform: translateY(15%);
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_mobile.svg');
+  background-size: $iconsSize $iconsSize;
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-phone:before {
+
+  display: inline-block;
+  content: '';
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_phone.svg');
+  background-size: $iconsSize $iconsSize;
+  transform: translateY(15%);
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+}
+
+.icon-fb:before {
+
+  display: inline-block;
+  content: '';
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_fb.svg');
+  background-size: $iconsSize $iconsSize;
+  transform: translateY(15%);
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+}
+
+.icon-source:before {
+
+  display: inline-block;
+  content: '';
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_source.svg');
+  background-size: $iconsSize $iconsSize;
+  transform: translateY(15%);
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
+
+.icon-tv:before {
+
+  display: inline-block;
+  content: '';
+  padding-left: $iconsSize * 1.5;
+  background-image: url('../img/svg-icons/icon_tv.svg');
+  background-size: $iconsSize $iconsSize;
+  transform: translateY(15%);
+  background-repeat:no-repeat;
+  height: $iconsSize;
+  width: $iconsSize;
+} 
 
 
 .social-icons {
@@ -488,7 +613,7 @@
 	}
 
 	.side-logo {
-
+		cursor: pointer;
 		max-width: 200px;
 		overflow: visible;
 		position: relative;
@@ -941,7 +1066,7 @@ h2 {
 	font-family: 'denseregular';
 	text-align: left;
 	//	float: left;
-	width:80%;
+	width:100%;
 
 	border-bottom: 1px solid #FFF;
 	color:#FFF;

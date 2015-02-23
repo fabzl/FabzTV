@@ -200,7 +200,7 @@ Function.prototype.throttle = function (milliseconds) {
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
 		canvasFillValue: 0,
-		ScrollerSpeed : 300,
+		ScrollerSpeed : 1000,
 	// 	$clientVanishingPoint:$(".vanishing-point"),
 		$clientsContainer:$(".clients-container"),
 		$clientLogo:$(".client-logo"),
@@ -251,56 +251,9 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.initClientSection();
 		},
 
-		initClientSection:function ()  {
-			
+		initClientSection:function ()  {	
 
 			KO.Config.initClients();
-
-					// //	$clientVanishingPoint ;
-			
-		// //	$clientsLogo.css({  
-		// 	var scaleFactor = 1;
-
-		// 	var gapY = KO.Config.$clientLogo.height()*scaleFactor;
-		// 	var gapX = KO.Config.$clientLogo.width()*scaleFactor;
-		// 	var gapZ = 30;
-		// 	var columns = 6;
-		// 	var rows = 6;
-		// 	var counterColumns = 0;
-		// 	var counterRows = 0;
-		// 	var posX = 0;
-		// 	var posY = 0;
-		// 	var posXabsolute = KO.Config.stageW*.5;
-		// 	var posYabsolute = KO.Config.stageH*.5;
-			
-		// 	KO.Config.$clientLogo.each(
-		// 		function( index, value ) {
-  // 					//console.log( index + ": " + value +$(this));
-  					
-  // 					posX = (gapX*counterColumns)-(gapX*.5);
-  // 					posY = gapY*counterRows-(gapY*.5);
-  					
-  // 					counterRows ++;
-
-  // 					 if ( ( index % columns ) == 0 ) {
-  						 
-  // 						// posY = posY+gapY;
-  // 						counterColumns ++;
-  // 						counterRows = 0;
-
-	 //  					console.log("column");
-  // 					}
-
-  // 					if(index === counterRows) {
-  					
-  // 					// counterRows = index+rows;
-  // 					// console.log("row");
-  // 					// posX = posX+gapY;
-  // 					}
- 	// 				$(this).css('-webkit-transform',"translate3d("+posX+"px, "+posY+ "px, 0px) "+"scale("+scaleFactor+")");
-					
-
-	//		});
 								
 		},
 
@@ -1341,14 +1294,20 @@ Function.prototype.throttle = function (milliseconds) {
 			createFloatingClientLogo:function() { 
 
 				var i = 1;
-				var gap = 50;
-				var distance = 180;
-				var shiftX = 4;
-				var shiftY = 8;
+				var totalObjects = KO.Config.totalLogoClientsCount;
+				var center3D = new THREE.Vector3(0,0,0);
 				var controlShiftX = 0;
 				var controlShiftY = 0;
+				var controlShiftZ = 0;
+				var planeHeight = 140;
+				var planeWidth	= 180;
+				var angleIncrement = 360/totalObjects;
+				var initialRadius =KO.Config.$window.stageW*.75;
+				var radius = initialRadius;
+				var angle = 10;
+				var meshHeight = 20;
 				
-				for ( i ; i <= KO.Config.totalLogoClientsCount ; i ++ ) {
+				for ( i ; i <= totalObjects  ; i ++ ) {
 
 					// create the urls to load te images
 					var texture, material, plane;
@@ -1369,36 +1328,57 @@ Function.prototype.throttle = function (milliseconds) {
 
 					// assuming you want the texture to repeat in both directions:
 					texture.wrapS = THREE.RepeatWrapping; 
-					texture.wrapT = THREE.RepeatWrapping;
+					texture.wrapT = THREE.RepeatWrapping; 
 
 					// how many times to repeat in each direction; the default is (1,1),
 					//   which is probably why your example wasn't working
 					texture.repeat.set( 1, 1 ); 
 
 					material = new THREE.MeshLambertMaterial({ map : texture });
-					plane = new THREE.Mesh(new THREE.PlaneGeometry(180, 140), material);
+					plane = new THREE.Mesh(new THREE.PlaneGeometry(planeWidth, planeHeight), material);
 					plane.material.side = THREE.DoubleSide;
 				
-					plane.position.set(KO.Config.fibonacciPositioning(KO.Config.totalLogoClientsCount-1,i));
-					plane.rotation.x = 45;
-					// if(controlShiftX < shiftX) {
-					// 	controlShiftX ++
-					// }else { 
-					// 	controlShiftX = 0; 
-					// 	controlShiftY ++;
+					controlShiftX = radius * Math.cos(angle);
+					controlShiftZ = radius * Math.sin(angle);
+					angle += angleIncrement;
+
+					plane.position.y = (meshHeight)*i  - ((meshHeight)*totalObjects*.5);
+					plane.position.x = controlShiftX;
+					plane.position.z = controlShiftZ;
+					plane.lookAt(center3D);
+					console.dir(plane);
+
+					// for ( var i = 0; i < plane.geometry.faces.length; i ++ ) {
+
+					//     var face = plane.geometry.faces[ i ];
+					//     var temp = face.a;
+					//     face.a = face.c;
+					//     face.c = temp;
+
 					// }
 
-				//	plane.position.x = (distance +gap)*controlShiftX;
-				//	plane.position.y = 100*i;
-					//plane.position.z = (distance)*controlShiftZ;
-				//	plane.position.y = (140+gap)*i;
-				//	plane.position.z = (180+gap)*i;
+					// plane.geometry.computeFaceNormals();
+					// plane.geometry.computeVertexNormals();
 
+					// var faceVertexUvs = plane.geometry.faceVertexUvs[ 0 ];
+					// for ( var i = 0; i < faceVertexUvs.length; i ++ ) {
+
+					//     var temp = faceVertexUvs[ i ][ 0 ];
+					//     faceVertexUvs[ i ][ 0 ] = faceVertexUvs[ i ][ 2 ];
+					//     faceVertexUvs[ i ][ 2 ] = temp;
+
+					// }
+
+					console.dir(plane.geometry.faces);
+					
 				
-
-					// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
-					// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
-					plane.rotation.y = 180;
+					//orginal formula pi  
+					// angle = start_angle
+					// angle_increment = 360 / n_sides
+					// for n_sides:
+					//     x = x_centre + radius * cos(angle)
+					//     y = y_centre + radius * sin(angle)
+					//     angle += angle_increment
 
 					KO.Config.clientsLogoGroup.add(plane);
 				}
@@ -1406,48 +1386,7 @@ Function.prototype.throttle = function (milliseconds) {
 			//	KO.Config.clientsLogoGroup. 
 
 				KO.Config.scene3D.add(KO.Config.clientsLogoGroup);
-				
 
-			// //	var texture, material, plane;
-
-			// 					texture = THREE.ImageUtils.loadTexture("../img/clients/0001.jpg");
-
-			// 	// assuming you want the texture to repeat in both directions:
-			// 	texture.wrapS = THREE.RepeatWrapping; 
-			// 	texture.wrapT = THREE.RepeatWrapping;
-
-			// 	// how many times to repeat in each direction; the default is (1,1),
-			// 	//   which is probably why your example wasn't working
-			// 	texture.repeat.set( 1, 1 ); 
-
-			// 	material = new THREE.MeshLambertMaterial({ map : texture });
-			// 	plane = new THREE.Mesh(new THREE.PlaneGeometry(180, 140), material);
-			// 	plane.material.side = THREE.DoubleSide;
-			// 	plane.position.x = 100;
-
-			// 	// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
-			// 	// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
-			// //	plane.rotation.z = Math.PI / 2;
-
-			// 	KO.Config.scene3D.add(plane);
-
-
-
-			},
-
-			// N is equal to loop total and K is a loop iteration 
-			fibonacciPositioning:function (N,k) {
-
-				var distance = 150;
-				var inc =  Math.PI  * (3 - Math.sqrt(5));
-				var off = 2 / N;
-				var y = k * off - 1 + (off / 2);
-				var r = Math.sqrt(1 - y*y);
-				var phi = k * inc;
-
-				var newPos3D = new THREE.Vector3((Math.cos(phi)*r), y, Math.sin(phi)*r);
-				console.log((Math.cos(phi)*r)*distance, y*distance, Math.sin(phi)*r*distance);
-				return newPos3D; 
 			},
 
 			create3DAxis:function() { 
@@ -1457,7 +1396,6 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.scene3D.add( axes );
 
 			},
-
 
 			createCube:function() {
 
@@ -1492,39 +1430,24 @@ Function.prototype.throttle = function (milliseconds) {
 			},
 
 
-			// createSky:function() {
-
-
-			// 	var skyGeometry = new THREE.CubeGeometry( 5000, 5000, 5000 );	
-			// 	var materialArray = [];
-			// 	for (var i = 0; i < 1; i++)
-			// 		materialArray.push( new THREE.MeshBasicMaterial({
-			// 		map: THREE.ImageUtils.loadTexture( "img/clients/bg-color.jpg" ),
-			// 		side: THREE.BackSide
-			// 	}));	
-
-			// 	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
-			// 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-			// 	KO.Config.scene3D.add( skyBox );
-
-			// },
-
-
 			createLights:function () {
 
-				var light1 = new THREE.PointLight( 0xff8844, 5, 300 );
-				KO.Config.scene3D.add( light1 );
+				var light1 = new THREE.PointLight( 0xff8844, 3, 300 );
+			//	KO.Config.scene3D.add( light1 );
 
 				var light2 = new THREE.PointLight( 0x8844ff, 3, 300 );
-				KO.Config.scene3D.add( light2 );
+			//	KO.Config.scene3D.add( light2 );
+
+				var ambient = new THREE.AmbientLight( 0x404040 ); // soft white light
+				KO.Config.scene3D.add( ambient );
 
 				// create a point light
 				var pointLight =  new THREE.PointLight(0xFFFFFF);
 
 				// set its position
-				pointLight.position.x = 10;
-				pointLight.position.y = 50;
-				pointLight.position.z = 130;
+				pointLight.position.x = 100;
+				pointLight.position.y = 500;
+				pointLight.position.z = 1500;
 
 				// add to the scene
 				KO.Config.scene3D.add(pointLight);
