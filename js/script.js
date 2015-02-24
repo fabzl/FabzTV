@@ -540,9 +540,9 @@ Function.prototype.throttle = function (milliseconds) {
 		onLostfocusManager:function () { 
 
 			KO.Config.$window.blur(function() {
-		//	console.log( "Handler for .blur() called." );
+			console.log( "Handler for .blur() called." );
 			// Focus the parent
-				parent.focus();
+				KO.Config.$window.focus();
 			});
 
 			$("vimeo-video").focus(function() {
@@ -1318,69 +1318,48 @@ Function.prototype.throttle = function (milliseconds) {
 					while(urltoLoadClientLogo.toString().length > 4) {
 						urltoLoadClientLogo = urltoLoadClientLogo.substr(1);
 					}
+
 					// adding the rest of the path
 					urltoLoadClientLogo = dir+urltoLoadClientLogo+extension;
-				//	console.log(urltoLoadClientLogo);
-
+					// we create 2 textures fron and back  
 					textureFront = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
 					textureBack  = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
-			//		textureBack.flipY = false;
-					// assuming you want the texture to repeat in both directions:
-			//		textureFront.wrapS = THREE.RepeatWrapping;
-			//		textureFront.wrapT = THREE.RepeatWrapping;
-
-			//		textureBack.wrapS = THREE.MirroredRepeatWrapping;
-			//		textureBack.wrapT = THREE.MirroredRepeatWrapping;
-
-					// how many times to repeat in each direction; the default is (1,1),
 					//   which is probably why your example wasn't working
 					textureFront.repeat.set( 1, 1 ); 
-//					textureBack.repeat.set( 1, 1 ); 
+					// for the back texture we reverse it and offset it 
 					textureBack.repeat.set(-1, 1);
 					textureBack.offset.set( 1, 0);
-
+					// create an obj for the mat 
 					materials = [
 								new THREE.MeshBasicMaterial({map: textureFront, side: THREE.FrontSide}),
 								new THREE.MeshBasicMaterial({map: textureBack, side: THREE.BackSide})
 								];
 
-
+					// create the geometry 
 					plane = new THREE.PlaneGeometry(planeWidth, planeHeight);
 
+					// for each face we add the texture
 					for (var e = 0, len = plane.faces.length; e < len; e++) {
 						var face = plane.faces[e].clone();
 						face.materialIndex = 1;
-					//	console.dir(face);
 						plane.faces.push(face);
 						plane.faceVertexUvs[0].push(plane.faceVertexUvs[0][e].slice(0));
 					};
-
+					// we weld all together in a new mesh 
 					planeMesh = new THREE.Mesh(plane, new THREE.MeshFaceMaterial(materials));
-
-
-
-
-					//console.dir(plane);
-
-					//orginal formula pi  
-					// angle = start_angle
-					// angle_increment = 360 / n_sides
-					// for n_sides:
-					//     x = x_centre + radius * cos(angle)
-					//     y = y_centre + radius * sin(angle)
-					//     angle += angle_increment
-
+					// calculate the pos of the obj according to pi formula 
 					controlShiftX = radius * Math.cos(angle);
 					controlShiftZ = radius * Math.sin(angle);
 					angle += angleIncrement;
+					// position the elements in Y 
 					planeMesh.position.y = (meshHeight)*i  - ((meshHeight)*totalObjects*.5);
 					planeMesh.position.x = controlShiftX;
 					planeMesh.position.z = controlShiftZ;
+					// make the objects look center
 					planeMesh.lookAt(center3D);
+					// add the final stuff to a container 
 					KO.Config.clientsLogoGroup.add(planeMesh);
 				}
-
-			//	KO.Config.clientsLogoGroup. 
 
 				KO.Config.scene3D.add(KO.Config.clientsLogoGroup);
 
@@ -1451,37 +1430,19 @@ Function.prototype.throttle = function (milliseconds) {
 			 },
 
 
-
+			// fot the camara animation in clients
 			animate:function() {
 
 				requestAnimationFrame(KO.Config.animate);
 
-				// if(KO.Config.cubeMesh) {
-				// 	KO.Config.cubeMesh.rotation.x += 0.02;
-				// 	KO.Config.cubeMesh.rotation.y += 0.02;
-				// }
-
-				// if(KO.Config.sphereMesh) {
-
-				// 	KO.Config.sphereMesh.rotation.x += 0.02;
-				// 	KO.Config.sphereMesh.rotation.y += 0.02;
-				// }
-
-
 				KO.Config.camera.position.x += ( KO.Config.mouseX - KO.Config.camera.position.x ) * .05;
 				KO.Config.camera.position.y += ( - KO.Config.mouseY - KO.Config.camera.position.y ) * .05;
-
 				KO.Config.camera.lookAt( KO.Config.scene3D.position );
-			//	console.log( KO.Config.scene3D.position );
-//				if(stats) { 
-//					stats.update();
-//				}
-
 				KO.Config.renderer.render(KO.Config.scene3D,KO.Config.camera);
 			},
 
 			createStats:function () { 
-		 		// STATS
+				// STATS
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
 				stats.domElement.style.bottom = '0px';
