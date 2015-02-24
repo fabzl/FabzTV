@@ -1263,18 +1263,17 @@ Function.prototype.throttle = function (milliseconds) {
 		//		KO.Config.createSky();
 
 		//		KO.Config.createSphere();
-				KO.Config.create3DAxis();
-	//			KO.Config.createStats();
+		//		KO.Config.create3DAxis();
+		//		KO.Config.createStats();
 				KO.Config.createFloatingClientLogo();
 
 				KO.Config.animate();
 				KO.Config.createMouseController();
 
+			},
 
-			 },
 
-
-			create3DScene:function() { 
+			create3DScene:function() {
 
 				KO.Config.scene3D = new THREE.Scene();
 				KO.Config.clientsLogoGroup = new THREE.Object3D();
@@ -1310,7 +1309,7 @@ Function.prototype.throttle = function (milliseconds) {
 				for ( i ; i <= totalObjects  ; i ++ ) {
 
 					// create the urls to load te images
-					var texture, material, plane;
+					var textureFront, textureBack, materials, plane, planeMesh;
 					var urltoLoadClientLogo = "000"+i;
 					var dir = "../img/clients/";
 					var extension = ".jpg";
@@ -1321,57 +1320,48 @@ Function.prototype.throttle = function (milliseconds) {
 					}
 					// adding the rest of the path
 					urltoLoadClientLogo = dir+urltoLoadClientLogo+extension;
-
 				//	console.log(urltoLoadClientLogo);
 
-					texture = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
-
+					textureFront = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
+					textureBack  = THREE.ImageUtils.loadTexture(urltoLoadClientLogo);
+			//		textureBack.flipY = false;
 					// assuming you want the texture to repeat in both directions:
-					texture.wrapS = THREE.RepeatWrapping; 
-					texture.wrapT = THREE.RepeatWrapping; 
+			//		textureFront.wrapS = THREE.RepeatWrapping;
+			//		textureFront.wrapT = THREE.RepeatWrapping;
+
+			//		textureBack.wrapS = THREE.MirroredRepeatWrapping;
+			//		textureBack.wrapT = THREE.MirroredRepeatWrapping;
 
 					// how many times to repeat in each direction; the default is (1,1),
 					//   which is probably why your example wasn't working
-					texture.repeat.set( 1, 1 ); 
+					textureFront.repeat.set( 1, 1 ); 
+//					textureBack.repeat.set( 1, 1 ); 
+					textureBack.repeat.set(-1, 1);
+					textureBack.offset.set( 1, 0);
 
-					material = new THREE.MeshLambertMaterial({ map : texture });
-					plane = new THREE.Mesh(new THREE.PlaneGeometry(planeWidth, planeHeight), material);
-					plane.material.side = THREE.DoubleSide;
-				
-					controlShiftX = radius * Math.cos(angle);
-					controlShiftZ = radius * Math.sin(angle);
-					angle += angleIncrement;
+					materials = [
+								new THREE.MeshBasicMaterial({map: textureFront, side: THREE.FrontSide}),
+								new THREE.MeshBasicMaterial({map: textureBack, side: THREE.BackSide})
+								];
 
-					plane.position.y = (meshHeight)*i  - ((meshHeight)*totalObjects*.5);
-					plane.position.x = controlShiftX;
-					plane.position.z = controlShiftZ;
-					plane.lookAt(center3D);
-					console.dir(plane);
 
-					// for ( var i = 0; i < plane.geometry.faces.length; i ++ ) {
+					plane = new THREE.PlaneGeometry(planeWidth, planeHeight);
 
-					//     var face = plane.geometry.faces[ i ];
-					//     var temp = face.a;
-					//     face.a = face.c;
-					//     face.c = temp;
+					for (var e = 0, len = plane.faces.length; e < len; e++) {
+						var face = plane.faces[e].clone();
+						face.materialIndex = 1;
+					//	console.dir(face);
+						plane.faces.push(face);
+						plane.faceVertexUvs[0].push(plane.faceVertexUvs[0][e].slice(0));
+					};
 
-					// }
+					planeMesh = new THREE.Mesh(plane, new THREE.MeshFaceMaterial(materials));
 
-					// plane.geometry.computeFaceNormals();
-					// plane.geometry.computeVertexNormals();
 
-					// var faceVertexUvs = plane.geometry.faceVertexUvs[ 0 ];
-					// for ( var i = 0; i < faceVertexUvs.length; i ++ ) {
 
-					//     var temp = faceVertexUvs[ i ][ 0 ];
-					//     faceVertexUvs[ i ][ 0 ] = faceVertexUvs[ i ][ 2 ];
-					//     faceVertexUvs[ i ][ 2 ] = temp;
 
-					// }
+					//console.dir(plane);
 
-					console.dir(plane.geometry.faces);
-					
-				
 					//orginal formula pi  
 					// angle = start_angle
 					// angle_increment = 360 / n_sides
@@ -1380,7 +1370,14 @@ Function.prototype.throttle = function (milliseconds) {
 					//     y = y_centre + radius * sin(angle)
 					//     angle += angle_increment
 
-					KO.Config.clientsLogoGroup.add(plane);
+					controlShiftX = radius * Math.cos(angle);
+					controlShiftZ = radius * Math.sin(angle);
+					angle += angleIncrement;
+					planeMesh.position.y = (meshHeight)*i  - ((meshHeight)*totalObjects*.5);
+					planeMesh.position.x = controlShiftX;
+					planeMesh.position.z = controlShiftZ;
+					planeMesh.lookAt(center3D);
+					KO.Config.clientsLogoGroup.add(planeMesh);
 				}
 
 			//	KO.Config.clientsLogoGroup. 
@@ -1416,8 +1413,8 @@ Function.prototype.throttle = function (milliseconds) {
 
  				// set up the sphere vars
 				var radius = 30, 
-				 	segments = 12,
-				    rings = 12;
+					segments = 12,
+					rings = 12;
 
 				// create a new mesh with
 				KO.Config.sphereMaterial =  new THREE.MeshLambertMaterial(  { color: 0xFFFFFF  });
@@ -1475,7 +1472,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera.position.y += ( - KO.Config.mouseY - KO.Config.camera.position.y ) * .05;
 
 				KO.Config.camera.lookAt( KO.Config.scene3D.position );
-
+			//	console.log( KO.Config.scene3D.position );
 //				if(stats) { 
 //					stats.update();
 //				}
