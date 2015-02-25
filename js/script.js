@@ -247,14 +247,24 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.activateMobileNavButtons();
 			KO.Config.adjustSideBarElements();
 			KO.Config.fadeOutLoader();
-
-			KO.Config.initClientSection();
+			KO.Config.initClients();
+			KO.Config.swipeControl();
 		},
 
-		initClientSection:function ()  {	
+		swipeControl:function ()  {	
 
-			KO.Config.initClients();
-								
+			
+			    $showcaseWrapper.on('swipeleft',  function(){ /*...*/ })
+				                .on('swiperight', function(){ /*...*/ })
+				                .on('swipeup',    function(){ /*...*/ })
+				                .on('swipedown',  function(){ /*...*/ });
+
+	 			$.detectSwipe.enabled // true on touch devices, false otherwise
+
+				//Global setting:
+
+    			$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
+   				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
 		},
 
 		onContentVisible:function() { 
@@ -266,31 +276,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.$fabzLogo.css("display",displayValue);
 				KO.Config.$navigationContainer.css("display",displayValue);
-				KO.Config.$socialIconsContainer.css("opacity", displayValue);
-	//		if (KO.Config.verticalMode) {
-		//		KO.Config.$socialIconsContainer.css("opacity", 0);
+				KO.Config.$socialIconsContainer.css("display", displayValue);
 
-	//		}else { 
-	//			KO.Config.$socialIconsContainer.css("opacity", opacity);
-
-	//		}
-		},
-
-		animateSideBarIn:function() {
-
-
-			KO.Config.hideAndShowSidebar(1);
-		//	console.log(KO.Config.verticalMode);
-			if (KO.Config.verticalMode) {
-
-	//			KO.Config.$fabzLogo.removeClass("animated bounceInDown");
-				KO.Config.$navigationContainer.removeClass("animated bounceInDown");
-				KO.Config.$socialIconsContainer.removeClass("animated bounceInDown");
-			} else {
-				KO.Config.$navigationContainer.addClass("animated bounceInDown");
-				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
-			}
-				KO.Config.$fabzLogo.addClass("animated bounceInDown");
 		},
 
 		activateMobileNavButtons:function() {
