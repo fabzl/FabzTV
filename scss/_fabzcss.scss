@@ -1,3 +1,15 @@
+.tooltip { 
+
+	text-align:center;
+	background-color:rgba(0, 0, 17, 0.8);
+	position:absolute;
+	padding: 10px 10px 10px 10px;
+	z-index:999;
+	border-radius: 3px;
+	font-size:.7em;
+	color:#FFF;
+}
+
 .dynamicImage { 
 
 	///max-width: 120% !important;
@@ -154,18 +166,27 @@
 
 .overlayer-about {
 
-	width: 100%;
+	max-height:40%;
+	margin-top: 60%;
 	line-height: 90%;
-	font-size: .8em;
+	font-size: .7em;
 	padding: 10% 0% 2% 5%;
 	z-index: 1;
-	//position:absolute;
-	background-color:rgba(0, 0, 17, 0.9);
-
+	position:absolute;
+	background-color:rgba(0, 0, 17, 0.8);
+	orphans: 3;
+	
 	@include respond-min($breakpoint-mid) {
 
-	font-size: 1em;
-	width: 40%;
+		
+		max-height:none;
+		margin-top: auto;
+		font-size: 1em;
+		width: 40%;
+		line-height: auto;
+		h2 { 
+			width: 90%;		
+		}
 	}
 
 }
@@ -235,7 +256,7 @@
 	text-align:left;
 	bottom: 0;
 	height: auto;
-	padding-right: 85px;
+	padding-right: 0;
 	min-width: 60px;
 	min-height:60px;
 	right: 0;
@@ -252,6 +273,7 @@
 		//right: 5%;
 		min-width: 80px;
 		min-height:80px;
+		padding-right: 85px;
 	}
 
 
@@ -302,6 +324,7 @@
 		@include respond-min($breakpoint-mid) {
 			padding-right: 100px;
 		}
+
 		//left: 0;
 		p, a ,li { 
 			opacity:1;
@@ -380,23 +403,20 @@
 
 
 	width:100%;
-	height:90%;
+	height:60%;
 	position: relative;
 
 	@include respond-min($breakpoint-mid) {
-
+		width:80%;
+		height:60%;
 		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+		top: 40%;
+		left: 50%;
+		transform: translateY(-50%) translateX(-50%);
 	}
 
 }
-.description-video-insert-borderlands { 
 
-	transform:translateY(10%) translateX(0%);
-	//position: absolute;
-	z-index:10;
-}
 
 .description-link {
 
@@ -1066,14 +1086,20 @@ h2 {
 	font-family: 'denseregular';
 	text-align: left;
 	//	float: left;
-	width:100%;
+	width:80%;
 
 	border-bottom: 1px solid #FFF;
 	color:#FFF;
 
 	font-size: 1.2em;
+	
+	&.active { 
+		width: 80%;
+	}
+
 	@include respond-min($breakpoint-mid) {
 		font-size: 1.4em;
+		width:100%;
 	}
 
 }

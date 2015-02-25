@@ -151,12 +151,13 @@ Function.prototype.throttle = function (milliseconds) {
 	// WINDOW.RESIZE
 	
 	$(window).resize(function() {
-
+		
 		KO.Config.setStageSize();
 		KO.Config.indexSections();
 		KO.Config.adjustSideBarElements();
 		KO.Config.resizeSections();
 		KO.Config.moveBackToPosition();
+		KO.Config.onWindowResizeClients();
 
 	}.debounce(150));
 
@@ -208,7 +209,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 
 		// 3js stuff 
-
 		////// clients section /// threee JS include 
 		camera:{}, 
 		scene3D:{},
@@ -229,6 +229,7 @@ Function.prototype.throttle = function (milliseconds) {
 			console.debug('Fabz.tv is running on clouds');
 			// read stage size 
 			// create nav
+			KO.Config.browserSupportCheck();
 			KO.Config.setStageSize();
 			KO.Config.indexNavigation();
 			KO.Config.indexSVGs();
@@ -246,18 +247,49 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.onLostfocusManager();
 			KO.Config.activateMobileNavButtons();
 			KO.Config.adjustSideBarElements();
-			KO.Config.fadeOutLoader();
 			KO.Config.initClients();
 			KO.Config.swipeControl();
+			KO.Config.fadeOutLoader();
+			KO.Config.displayTooltips();
+		},
+
+		displayTooltips: function () { 
+
+			KO.Config.createTooltip("press the logo to move", "vertical-top",100,50);
+		},
+
+		createTooltip:function(copy,orientation,pX,poY) { 
+
+			KO.Config.$wrapper.append("<div class='tooltip "+orientation+"'>"+copy+"</div>");
+			// $(tooltip).css({
+			// 	top: pX;
+			// 	left: pY;
+			// });
+
+		},
+
+		browserSupportCheck:function () { 
+
+			KO.Config.isAndroidNativeBrowser();
+			if(KO.Config.isAndroidNativeBrowserBoolean ) { 
+				KO.Config.displayRoadBlock();
+			} 
+
+		},
+
+		displayRoadBlock:function() { 
+
+			alert("Please get yourself a descent Browser");
+			KO.Config.$wrapper.css("display","none");
 		},
 
 		swipeControl:function ()  {	
 
 			
-			    $showcaseWrapper.on('swipeleft',  function(){ /*...*/ })
-				                .on('swiperight', function(){ /*...*/ })
-				                .on('swipeup',    function(){ /*...*/ })
-				                .on('swipedown',  function(){ /*...*/ });
+			    KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
+				                .on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
+				                .on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
+				                .on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
 
@@ -268,16 +300,39 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 
 		onContentVisible:function() { 
+		
 			KO.Config.animateSideBarIn();
 		},
+
+		animateSideBarIn:function() {
+
+
+			KO.Config.hideAndShowSidebar("block");
+
+			if (KO.Config.verticalMode) {
+
+				KO.Config.$socialIconsContainer.css("display", "none");
+				KO.Config.$navigationContainer.removeClass("animated bounceInDown");
+				KO.Config.$socialIconsContainer.removeClass("animated bounceInDown");
+			} else {
+				KO.Config.$navigationContainer.addClass("animated bounceInDown");
+				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
+			}
+				KO.Config.$fabzLogo.addClass("animated bounceInDown");
+		},
+
 
 		hideAndShowSidebar:function(displayValue) {
 
 
 				KO.Config.$fabzLogo.css("display",displayValue);
 				KO.Config.$navigationContainer.css("display",displayValue);
-				KO.Config.$socialIconsContainer.css("display", displayValue);
 
+				if (KO.Config.verticalMode) {
+					KO.Config.$socialIconsContainer.css("display", "none");
+				}else { 
+					KO.Config.$socialIconsContainer.css("display", displayValue);
+				}
 		},
 
 		activateMobileNavButtons:function() {
@@ -306,18 +361,7 @@ Function.prototype.throttle = function (milliseconds) {
 				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
 				var differenceH 	= sideBarH-objectsTotal;
 
-			//	console.log("$sideBar H :",sideBarH);
-			//	console.log("$fabzLogo H:",	fabzLogoH);
-			//	console.log("$navigationContainer H:",	navigationH	); 
-			///	console.log("$socialIconsContainer H:",	socialIconsContainerH	);
-			//	console.log("objT",objectsTotal ,"SB : ",sideBarH,"dif : ",differenceH);
-			//	console.log("///////////////////");
-			//	console.log("$sideBar W :",sideBarW);
-			//	console.log("$fabzLogo W:",	fabzLogoW);
-			//	console.log("$navigationContainer W:",	navigationW	); 
-			//	console.log("$socialIconsContainer W:",	socialIconsContainerW	);
-			//	console.log("///////////////////");
-
+		
 					if(sideBarH < KO.Config.verticalSideBarBreakpoint) { 
 						// if the vertical sidebar is too small hardcoded value defined on top 
 			//			KO.Config.$sideBar.addClass(".scrollable");
@@ -461,11 +505,16 @@ Function.prototype.throttle = function (milliseconds) {
 
 		},
 
-		historyReplaceValue: function (name) {
+		historyReplaceValue: function (nameSection,nameArticle) {
 
+		
 			if(KO.Config.$historySupported) {
 				//	console.log("historyPushValue");
-				history.pushState(KO.Config.stateObj,"", "#!/"+name);
+				if (nameArticle == "null" ) {
+					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection);
+				}else { 
+				//	history.pushState(KO.Config.stateObj,"", "#!/"+nameSection+"/"+nameArticle);
+				}
 			}
 		},
 
@@ -481,7 +530,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			} else {
 				// home change to home 
-				KO.Config.historyReplaceValue("home");
+				KO.Config.historyReplaceValue("home","null");
 				KO.Config.updateArrowsVisibility();
 			}
 		},
@@ -503,6 +552,21 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.moveContentByIndexVertically(matchedNumber);
 		},
 
+		gotoArticleByURL: function (currentURL) {
+
+			// find the section name match it with the exisitng ones and goes there.
+			var sectionURL = currentURL.replace(/^.*#!/,'');
+			var matchedNumber;
+				for(var i=0 ; i < KO.Config.$sectionsAmount ; i++ ) { 
+			//	console.log($sections[i].currentArticleName, sectionURL);
+				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
+					KO.Config.currentSection = i;
+					matchedNumber = i;
+					break;
+					}
+				}
+				KO.Config.moveContentByIndexVertically(matchedNumber);
+		},
 		// pause vimeo player 
 		stopPlayingvideos: function() { 
 			// post pause action
@@ -1010,6 +1074,7 @@ Function.prototype.throttle = function (milliseconds) {
 		// activate the toggles
 		$contentHolder.toggleClass("active");
 		$toggleContainer.toggleClass("active");
+		$contentHolder.find("h2").toggleClass("active");
 		toogleSVG.classList.toggle("active");
 		console.log($contentHolder, $toggleContainer, toogleSVG );
 
@@ -1065,10 +1130,9 @@ Function.prototype.throttle = function (milliseconds) {
 		var clickedItem = $(this);
 		var clickedItemIndex =  KO.Config.$navigation.index(clickedItem);
 		KO.Config.moveContentByIndexVertically(clickedItemIndex);
-	//	console.log("vertical mode :" , KO.Config.verticalMode)
+
 		if( KO.Config.verticalMode === true ) {
 			KO.Config.closeMobileNavToggle();
-		//	console.log("closeMobileNavToggle");
 		}
 	},
 	updateCurrentSection :function (currentSection) {
@@ -1076,7 +1140,7 @@ Function.prototype.throttle = function (milliseconds) {
 		//	console.log("currentSection",currentSection);
 		KO.Config.currentSection  = currentSection;
 		KO.Config.updateArrowsVisibility();
-		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName);
+		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName,"null");
 		KO.Config.stopPlayingvideos();
 
 	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
@@ -1151,12 +1215,9 @@ Function.prototype.throttle = function (milliseconds) {
 		}
 
 
-		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
+//		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
 
-		// bug fix for the navigation
-		KO.Config.hideAndShowSidebar("none");
-
-		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
+//		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
 	},
 
@@ -1204,39 +1265,38 @@ Function.prototype.throttle = function (milliseconds) {
 
 	clickToMove:function() {
 
-		KO.Config.$showcaseWrapper.click(function() {
-			//console.log( "Handler for .click() called." );
-			console.log( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
-			var clickValueX = event.pageX;
+		if (KO.Config.verticalMode === false ) { 
+			KO.Config.$showcaseWrapper.click(function() {
+				//console.log( "Handler for .click() called." );
+				console.log( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
-			var clickValueY = event.pageY ;
+				var clickValueX = event.pageX;
 
-		//		if(clickValueY  < (KO.Config.$window.stageH)*.25 || clickValueY > (KO.Config.$window.stageH)*.75 )
+				var clickValueY = event.pageY ;
 
-			if(clickValueY < (KO.Config.$window.stageH)*.30 ) { 
+				if(clickValueY < (KO.Config.$window.stageH)*.30 ) { 
 
-		//	console.log("move up");
-				KO.Config.moveContentVertically(1);
+					//	console.log("move up");
+					KO.Config.moveContentVertically(1);
 
-			}else if(clickValueY > (KO.Config.$window.stageH)*.70 )
-			{
-		//	console.log("move down");
-				KO.Config.moveContentVertically(-1);
+				}else if(clickValueY > (KO.Config.$window.stageH)*.70 )
+				{
+					//	console.log("move down");
+					KO.Config.moveContentVertically(-1);
 
-			}else if(clickValueX < (KO.Config.$window.stageW)*.30 )
-			{
-		//	console.log("move left");
-				KO.Config.moveContentHorizontally(1);
-			}else if(clickValueX > (KO.Config.$window.stageW)*.70 )
-			{
-		//	console.log("move rigth");
-				KO.Config.moveContentHorizontally(-1);
-			}
+				}else if(clickValueX < (KO.Config.$window.stageW)*.30 )
+				{
+					//	console.log("move left");
+					KO.Config.moveContentHorizontally(1);
+				}else if(clickValueX > (KO.Config.$window.stageW)*.70 )
+				{
+					//	console.log("move rigth");
+					KO.Config.moveContentHorizontally(-1);
+				}
 
-			//console.log( KO.Config.getDimensionsHeight(KO.Config.$showcaseWrapper), KO.Config.getDimensionsWidth(KO.Config.$showcaseWrapper));
-		});
-
+			});
+		}
 	},
 
 
@@ -1246,12 +1306,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.create3DScene();
 				KO.Config.createLights();
-		//		KO.Config.createCube();
-		//		KO.Config.createSky();
-
-		//		KO.Config.createSphere();
 		//		KO.Config.create3DAxis();
-		//		KO.Config.createStats();
 				KO.Config.createFloatingClientLogo();
 
 				KO.Config.animate();
@@ -1288,10 +1343,17 @@ Function.prototype.throttle = function (milliseconds) {
 				var planeHeight = 140;
 				var planeWidth	= 180;
 				var angleIncrement = 360/totalObjects;
+				var meshHeight = 20;
 				var initialRadius =KO.Config.$window.stageW*.75;
+
+				if (KO.Config.verticalMode) { 
+					// if mobile add more space
+					initialRadius = initialRadius*2.2;	
+					meshHeight = meshHeight*.8;				
+				}
 				var radius = initialRadius;
 				var angle = 10;
-				var meshHeight = 20;
+				
 				
 				for ( i ; i <= totalObjects  ; i ++ ) {
 
@@ -1360,38 +1422,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 			},
 
-			createCube:function() {
-
-				KO.Config.cube = new THREE.CubeGeometry(300,300,300);
-
-
-				KO.Config.cubeMaterial = new THREE.MeshLambertMaterial( {
-									color: 0xFFFFFF,
-									shading: THREE.FlatShading,
-									side: THREE.DoubleSide
-								} );
-				KO.Config.cubeMesh = new THREE.Mesh(KO.Config.cube,KO.Config.cubeMaterial);
-				KO.Config.scene3D.add(KO.Config.cubeMesh);
-			},
-
-
-			createSphere:function() {
-
- 				// set up the sphere vars
-				var radius = 30, 
-					segments = 12,
-					rings = 12;
-
-				// create a new mesh with
-				KO.Config.sphereMaterial =  new THREE.MeshLambertMaterial(  { color: 0xFFFFFF  });
-				KO.Config.sphereMesh = new THREE.Mesh(new THREE.SphereGeometry( radius, segments, rings ), KO.Config.sphereMaterial);
-
-				// add the sphere to the scene
-				KO.Config.scene3D.add(KO.Config.sphereMesh);
-				KO.Config.sphereMesh.position.x +=300;
-
-			},
-
 
 			createLights:function () {
 
@@ -1417,13 +1447,18 @@ Function.prototype.throttle = function (milliseconds) {
 			 },
 
 
-			// fot the camara animation in clients
+			// for the camara animation in clients
 			animate:function() {
 
 				requestAnimationFrame(KO.Config.animate);
 
-				KO.Config.camera.position.x += ( KO.Config.mouseX - KO.Config.camera.position.x ) * .05;
-				KO.Config.camera.position.y += ( - KO.Config.mouseY - KO.Config.camera.position.y ) * .05;
+
+				if (KO.Config.verticalMode) { 
+						KO.Config.clientsLogoGroup.rotation.y += 0.01;
+				}else { 
+					KO.Config.camera.position.x += ( KO.Config.mouseX - KO.Config.camera.position.x ) * .05;
+					KO.Config.camera.position.y += ( - KO.Config.mouseY - KO.Config.camera.position.y ) * .05;
+				}
 				KO.Config.camera.lookAt( KO.Config.scene3D.position );
 				KO.Config.renderer.render(KO.Config.scene3D,KO.Config.camera);
 			},
@@ -1450,6 +1485,10 @@ Function.prototype.throttle = function (milliseconds) {
 			createMouseController:function() {
 
 				document.addEventListener( 'mousemove', KO.Config.onDocumentMouseMove, false );
+				
+
+			},
+			mobileRotation:function () { 
 
 			},
 
