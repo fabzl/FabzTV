@@ -102,8 +102,25 @@
 	padding: 0 10% 0 0;
 	color:#FFF;
 	font-size: .7em;
+}
+
+
+
+.contact-mailto-link { 
+
+	text-align:center;
+	background-color:rgba(0, 0, 17, 0.8);
+	position:relative;
+	padding: 10px 10px 10px 10px;
+	border-radius: 3px;
+	font-size:.8em;
+	color:#FFF;
+	float:right;
 
 }
+
+
+
 .contact-illustration-container {
 
 	width: 40%;
@@ -133,6 +150,7 @@
 }
 .contact-info {
 
+	
 	display:none;
 	width: 50%;
 	line-height:auto;
@@ -160,6 +178,7 @@
 //	position:absolute;
 	background-color:rgba(0, 0, 17, 0.5);
 	height: 100%;
+	overflow: auto;
 
 	@include respond-min($breakpoint-mid) {
 
