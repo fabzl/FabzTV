@@ -2020,6 +2020,13 @@ textarea[contenteditable] {
   font-size: .7em;
   color: #FFF;
 }
+.tooltip .vertical-top {
+  top: -15px;
+  right: 50px;
+  bottom: auto;
+  left: auto;
+  border-width: 0px 21px 15px;
+}
 
 .dynamicImage {
   -moz-transition: all  .3s ease-in-out;
@@ -2656,7 +2663,6 @@ textarea[contenteditable] {
   left: 0%;
   top: 100px;
   overflow: hidden;
-  cursor: crosshair;
   position: absolute;
 }
 @media screen and (min-width: 48em) {

@@ -27,6 +27,15 @@ module.exports = function (grunt) {
 				fileList : [
 					'js/helpers/console.js',
 					'js/script.js'
+
+					// ,
+					// 'js/libs/jquery-2.1.1.min.js',
+					// 'js/libs/jquery.detect_swipe.js',
+					// 'js/libs/picturefill.js',
+					// 'js/libs/snap.svg-min.js',
+					// 'http://a.vimeocdn.com/js/froogaloop2.min.js',
+					// 'js/libs/three.min.js',
+					// 'js/dist/app.min.js'
 				]
 			}
 		},

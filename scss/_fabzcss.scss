@@ -719,7 +719,7 @@ $iconsSize : 14px;
 	left: 0%;
 	top:100px;
 	overflow:hidden;
-	cursor:crosshair;
+	//cursor:crosshair;
 	position: absolute;
 
 	@include respond-min($breakpoint-mid) {
