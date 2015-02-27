@@ -83,4 +83,3 @@ if($sent) {
 else {
     echo "There was an error to deliver your message, please try again!";
 }
-?>
