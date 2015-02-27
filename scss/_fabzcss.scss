@@ -8,6 +8,9 @@
 	border-radius: 3px;
 	font-size:.7em;
 	color:#FFF;
+	//-webkit-box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
+	//-moz-box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
+	box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
 	
 	.vertical-top { 
 
@@ -19,6 +22,22 @@
 
 	}
 }
+
+.tooltip:after {
+	position: absolute;
+	bottom: 150%;
+	left: 50%;
+	margin-left: -5px;
+	width: 0;
+	border-top: 5px solid #000;
+	border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	content: " ";
+	font-size: 0;
+	line-height: 0;
+}
+
 
 
 .dynamicImage { 

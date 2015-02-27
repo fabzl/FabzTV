@@ -256,16 +256,16 @@ Function.prototype.throttle = function (milliseconds) {
 
 		displayTooltips: function () { 
 
-			KO.Config.createTooltip("press the logo to move", "vertical-top",100,50);
+			KO.Config.createTooltip("press the logo to move", "vertical-top","100px","50%");
 		},
 
-		createTooltip:function(copy,orientation,pX,poY) { 
+		createTooltip:function(copy,orientation,pX,pY) { 
 
 			KO.Config.$wrapper.append("<div class='tooltip "+orientation+"'>"+copy+"</div>");
-			// $(tooltip).css({
-			// 	top: pX;
-			// 	left: pY;
-			// });
+			KO.Config.$wrapper.find(".tooltip").css({
+				"top": pX,
+				"left": pY
+			});
 
 		},
 
