@@ -1,44 +1,113 @@
+
+$triangleSizeTooltip : 10px;
+$shadowColourTooltip :  rgba(112,112,112,1);
+$backgroundColourTooltip : rgba(0, 0, 17, 0.8); 
+
 .tooltip { 
 
 	text-align:center;
-	background-color:rgba(0, 0, 17, 0.8);
+	background-color:$backgroundColourTooltip;
 	position:absolute;
 	padding: 10px 10px 10px 10px;
 	z-index:999;
 	border-radius: 3px;
 	font-size:.7em;
 	color:#FFF;
-	//-webkit-box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
-	//-moz-box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
-	box-shadow: 0px 10px 24px -14px rgba(112,112,112,1);
+	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
+	left:50%;
+   	animation: tooltipLogoAnimationMobileIn 1s 1;
+	transform: translateX(-50%);
+	transition-delay: 2s;
 	
-	.vertical-top { 
 
-	top: -15px;
-    right: 50px;
-    bottom: auto;
-    left: auto;
-    border-width: 0px 21px 15px;
+	@include respond-min($breakpoint-mid) {
+		left:15%;
+	   	animation: tooltipLogoAnimationDesktopIn 1s 1;
+		transform: translateX($triangleSizeTooltip) translateY(-50%);
+		transition-delay: 2s;
+	
+	}
 
+	&.tooltip:after { 
+
+		bottom: 100%;
+		left: 50%;
+		position: absolute;
+		transform:translateX(-50%);
+		content: " ";
+		font-size: 0;
+		line-height: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip;
+		border-color: transparent transparent $backgroundColourTooltip transparent;
+		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
+
+		@include respond-min($breakpoint-mid) {
+
+			bottom: 0%;
+			left: 0%;
+			transform: translateY(-50%) translateX(-100%);
+			border-width: $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip 0;
+			border-color: transparent $backgroundColourTooltip transparent transparent;
+		}
 	}
 }
 
-.tooltip:after {
-	position: absolute;
-	bottom: 150%;
-	left: 50%;
-	margin-left: -5px;
-	width: 0;
-	border-top: 5px solid #000;
-	border-top: 5px solid hsla(0, 0%, 20%, 0.9);
-	border-right: 5px solid transparent;
-	border-left: 5px solid transparent;
-	content: " ";
-	font-size: 0;
-	line-height: 0;
+@keyframes tooltipLogoAnimationMobileIn {
+
+	0% {
+
+		transform: translateY(100%) translateX(-50%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0) translateX(-50%);
+		opacity: 1;
+	}
+ 
+}
+
+@keyframes tooltipLogoAnimationMobileOut {
+
+	0% {
+
+		transform: translateY(0) translateX(-50%);
+		opacity: 1;
+	}
+	100% {
+	
+		transform: translateY(100%) translateX(-50%);
+		opacity: 0;
+	}
+ 
 }
 
 
+@keyframes tooltipLogoAnimationDesktopIn {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(-50%);
+		opacity: 1;
+	}
+}
+
+@keyframes tooltipLogoAnimationDesktopOut {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(-50%);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 0;
+	}
+}
 
 .dynamicImage { 
 
@@ -434,35 +503,21 @@
 
 	}
 }
-.face-enhancer-style {
 
-	display:none;
-
-	@include respond-min($breakpoint-mid) {
-		display:block;		
-		transform:translateY(10%);
-		background-color:#ffffce;
-		width:980px;
-		height:640px;
-		margin: 0 auto;
-	}
-}
 
 .description-video-insert {
 
 
 	width:100%;
-	height:60%;
 	position: relative;
 
 	@include respond-min($breakpoint-mid) {
-		width:80%;
-		height:60%;
-		position: relative;
-		top: 40%;
-		left: 50%;
-		transform: translateY(-50%) translateX(-50%);
-	}
+	 	width:80%;
+	 	position: relative;
+	 	top: 40%;
+	 	left: 50%;
+	 	transform: translateY(-50%) translateX(-50%);
+	 }
 
 }
 
@@ -781,13 +836,12 @@ $iconsSize : 14px;
 	position: relative;
 	transition : left .5s ease-in-out;
 	height: 100%;
-//width:auto;
 	left:0;
 };
 
 .nav-content {
 
-//	overflow-x:hidden;
+	overflow: visible;
 	font-family: 'denseregular';
 	text-align: center;
 	background-color: rgba(100, 100, 100, 0.6);

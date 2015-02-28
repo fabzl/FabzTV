@@ -207,6 +207,8 @@ Function.prototype.throttle = function (milliseconds) {
 		$clientLogo:$(".client-logo"),
 		totalLogoClientsCount:54,
 		$submitFormBtn:$(".btn--primary"),
+		tooltipOnBoolean:true,
+
 
 		// 3js stuff 
 		////// clients section /// threee JS include 
@@ -250,22 +252,57 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.initClients();
 			KO.Config.swipeControl();
 			KO.Config.fadeOutLoader();
-			KO.Config.displayTooltips();
 			KO.Config.activateForm();
 		},
 
 		displayTooltips: function () { 
 
-			KO.Config.createTooltip("press the logo to move", "vertical-top","100px","50%");
+			KO.Config.createTooltipLogo();
 		},
 
-		createTooltip:function(copy,orientation,pX,pY) { 
+		createTooltipLogo:function() { 
 
-			KO.Config.$wrapper.append("<div class='tooltip "+orientation+"'>"+copy+"</div>");
+			KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
+			KO.Config.$wrapper.find(".tooltip").click(KO.Config.destroyTooltip);
+			
+			var topTooltip = "120px";
+			
+			if(!KO.Config.verticalMode) {
+				topTooltip = KO.Config.$fabzLogo.height()*.5+"px";
+			}
+
 			KO.Config.$wrapper.find(".tooltip").css({
-				"top": pX,
-				"left": pY
+
+				"top":topTooltip
 			});
+		},
+
+		checkToDestroyTooltip:function() {
+
+			if(KO.Config.tooltipOnBoolean ) {
+
+				KO.Config.tooltipOnBoolean = false;
+				KO.Config.destroyTooltipLogo();
+			}
+		},
+
+		destroyTooltipLogo:function () {
+
+			
+		//	console.log("destroy tooltip");
+			var tooltip = KO.Config.$wrapper.find(".tooltip");
+			var animation = (KO.Config.verticalMode) ? "tooltipLogoAnimationMobileOut" : "tooltipLogoAnimationDesktopOut";
+			tooltip.bind('oanimationend animationend webkitAnimationEnd', function(){
+				tooltip.remove();
+		//		console.log("ontransitionend");
+			});
+			//	KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
+			tooltip.css({
+				"animation-direction": "alternate",
+				"animation": animation+" .5s 1"
+ 				
+			});
+
 
 		},
 
@@ -303,6 +340,8 @@ Function.prototype.throttle = function (milliseconds) {
 		onContentVisible:function() { 
 		
 			KO.Config.animateSideBarIn();
+			KO.Config.displayTooltips();
+
 		},
 
 		animateSideBarIn:function() {
@@ -591,15 +630,34 @@ Function.prototype.throttle = function (milliseconds) {
 
 		onLostfocusManager:function () { 
 
-			KO.Config.$window.blur(function() {
-			console.log( "Handler for .blur() called." );
-			// Focus the parent
+			KO.Config.focusCheck();
+
+			KO.Config.$window.focusout(function() {
+				console.log( "focus out" );
+				// Focus the parent
 				KO.Config.$window.focus();
+
+					KO.Config.focusCheck();	
 			});
 
 			$("vimeo-video").focus(function() {
-	//				console.log( "Handler for .blur() called." );
+					console.log( "vimeo video focus" );
+					//document.hasFocus();
 				});
+		},
+
+
+		focusCheck:function () { 
+
+			console.log("document.hasFocus() : ",document.hasFocus(),"active el is : ",document.activeElement);
+			console.log(document.activeElement == $("iframe"));
+			if (!document.hasFocus()) { 
+				console.log("condition meet .hasFocus() : ",document.hasFocus(),"active el is : ",document.activeElement);
+
+				KO.Config.$window.focus();
+				console.log("focus changed to : ",document.hasFocus(),"active el is : ",document.activeElement);
+
+			}
 		},
 
 		ready: function () {
@@ -780,8 +838,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 	arrowControl: function () {
 
-		// key listener 
-		$(window).keydown(function(e) {
+		// key listener
+		$(document).keydown(function(e) {
 
 		//	console.log("KEY DOWN");
 			switch(e.which) {
@@ -803,6 +861,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				default: return; // exit this handler for other keys
 			}
+			e.stopPropagation();
 			e.preventDefault(); // prevent the default action (scroll / move caret)
 		});
 		// on click events for stage arrows and side logo arrows
@@ -868,6 +927,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 	moveContentVertically: function(direction) {
 
+		KO.Config.checkToDestroyTooltip();
 		//	console.log("moveContentVertically");
 		if(direction != -1) {
 
@@ -883,7 +943,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//		console.log("moving down");
 
-		//	console.log(KO.Config.currentSection, KO.Config.$sectionsAmount);
 			if(KO.Config.currentSection < KO.Config.$sectionsAmount-1 ) { 
 				KO.Config.moveContentByIndexVertically(KO.Config.currentSection - direction ); 
 			}
@@ -893,6 +952,9 @@ Function.prototype.throttle = function (milliseconds) {
 	moveContentHorizontally:function(direction) {
 
 	//	console.log("moveContentHorizontally");
+	KO.Config.checkToDestroyTooltip();
+
+
 	var $currentArticle = KO.Config.$sections[KO.Config.currentSection].currentArticle;
 	var $totalArticles  =  KO.Config.$sections[KO.Config.currentSection].totalArticle;
 
@@ -1077,7 +1139,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$toggleContainer.toggleClass("active");
 		$contentHolder.find("h2").toggleClass("active");
 		toogleSVG.classList.toggle("active");
-		console.log($contentHolder, $toggleContainer, toogleSVG );
+		//console.log($contentHolder, $toggleContainer, toogleSVG );
 
 
 		// jquery callback
@@ -1239,11 +1301,11 @@ Function.prototype.throttle = function (milliseconds) {
 		$(window).bind('mousewheel', function(event) {
 
 			if (event.originalEvent.wheelDelta >= 0) {
-				console.log('Scroll up')
+				//	console.log('Scroll up')
 				//move content up
 				KO.Config.scrollRestrictor(1);
 			} else {
-				console.log('Scroll down');
+				//	console.log('Scroll down');
 				//move content down
 				KO.Config.scrollRestrictor(-1);
 			}
