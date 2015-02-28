@@ -126,9 +126,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 //// end throttle proto 
 
-
-
-// Create a closure to maintain scope of the '$' and KO (Kickoff)
+// Create a closure to maintain scope
 ;(function(KO, $) {
 
 		//vimeo controllers (they need to be outside the closure to work )
@@ -162,16 +160,21 @@ Function.prototype.throttle = function (milliseconds) {
 	}.debounce(150));
 
 	KO.Config = {
-
+		//main
 		$window:$(window),
-		isAndroidNativeBrowserBoolean: false,
+		//objs
 		sideLogo:{},
 		arrowTooltip:{},
 		socialIcons:{},
 		stateObj : {},
+		shareIconsArray:[],
+		currentSection : 0,
+		canvasFillValue: 0,
+		navToggle:document.querySelector(".nav-toggle"),
+		shareToggle:document.querySelector(".share-toggle"),
+		//jquery objs
 		$fabzLogo : $(".fabz-logo-romboid-container"),
 		$sectionsAmount : $('.section').length,
-		currentSection : 0,
 		$navigation : $('.nav-content-btn'),
 		$navigationContainer : $('.nav-content'),
 		$sections : $('.section'),
@@ -182,36 +185,30 @@ Function.prototype.throttle = function (milliseconds) {
 		$loaderSpinner : $(".loader"),
 		$wrapper : $(".wrapper"),
 		$sideBar : $(".sidebar-wrapper"),
-		currentAnchorTag:{},
-		storeTemporaryAnchorTag:{},
+		$socialIconsContainer: $(".social-icons-container"),
+		$clientsContainer:$(".clients-container"),
+		$clientLogo:$(".client-logo"),
+		$submitFormBtn:$(".btn--primary"),
+		$overlayerContact:$(".overlayer-contact"),
 		// arrows 
 		$arrowRight: $(".arrow_right"),
 		$arrowUp: $(".arrow_top"),
 		$arrowDown: $(".arrow_down"),
 		$arrowLeft: $(".arrow_left"),
-		$socialIconsContainer: $(".social-icons-container"),
-		shareIconsArray:[],
-		navToggle:document.querySelector(".nav-toggle"),
-		shareToggle:document.querySelector(".share-toggle"),
+		//booleans
+		tooltipOnBoolean:true,
+		isAndroidNativeBrowserBoolean: false,
 		historySupported : false,
 		scrollerFlag: true,
 		verticalMode:false,
+		// value holders
 		swapToVerticalBreakpoint:768,
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
-		canvasFillValue: 0,
 		ScrollerSpeed : 1000,
-	// 	$clientVanishingPoint:$(".vanishing-point"),
-		$clientsContainer:$(".clients-container"),
-		$clientLogo:$(".client-logo"),
 		totalLogoClientsCount:54,
-		$submitFormBtn:$(".btn--primary"),
-		tooltipOnBoolean:true,
-		$overlayerContact:$(".overlayer-contact"),
-
-		// 3js stuff 
-		////// clients section /// threee JS include 
+		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
 		scene3D:{},
 		renderer:{},
@@ -251,8 +248,10 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.adjustSideBarElements();
 			KO.Config.initClients();
 			KO.Config.swipeControl();
-			KO.Config.fadeOutLoader();
 			KO.Config.activateForm();
+			// get rid of the loader screen
+			KO.Config.fadeOutLoader();
+
 		},
 
 		displayTooltips: function () { 
@@ -284,7 +283,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		checkToDestroyTooltip:function() {
 
-			if(KO.Config.tooltipOnBoolean ) {
+			if(KO.Config.tooltipOnBoolean) {
 
 				KO.Config.tooltipOnBoolean = false;
 				KO.Config.destroyTooltipLogo();
@@ -294,21 +293,16 @@ Function.prototype.throttle = function (milliseconds) {
 		destroyTooltipLogo:function () {
 
 			
-		//	console.log("destroy tooltip");
+			//	console.log("destroy tooltip");
 			var tooltip = KO.Config.$wrapper.find(".tooltip");
 			var animation = (KO.Config.verticalMode) ? "tooltipLogoAnimationMobileOut" : "tooltipLogoAnimationDesktopOut";
 			tooltip.bind('oanimationend animationend webkitAnimationEnd', function(){
 				tooltip.remove();
-		//		console.log("ontransitionend");
 			});
-			//	KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
 			tooltip.css({
 				"animation-direction": "alternate",
-				"animation": animation+" .5s 1"
- 				
+				"animation": animation+" .5s 1" 				
 			});
-
-
 		},
 
 		browserSupportCheck:function () { 
@@ -397,36 +391,13 @@ Function.prototype.throttle = function (milliseconds) {
 				var fabzLogoH 				= KO.Config.$fabzLogo.height();
 				var navigationH 			= KO.Config.$navigationContainer .height();
 				var socialIconsContainerH	= KO.Config.$socialIconsContainer.height();
-
-
 				var sideBarW 				= KO.Config.$sideBar.width();
 				var fabzLogoW 				= KO.Config.$fabzLogo.width();
 				var navigationW 			= KO.Config.$navigationContainer.width();
 				var socialIconsContainerW	= KO.Config.$socialIconsContainer.width();
+				var objectsTotal 			= fabzLogoH + navigationH + socialIconsContainerH;
+				var differenceH 			= sideBarH-objectsTotal;
 
-				var objectsTotal = fabzLogoH + navigationH + socialIconsContainerH;
-				var differenceH 	= sideBarH-objectsTotal;
-
-		
-					if(sideBarH < KO.Config.verticalSideBarBreakpoint) { 
-						// if the vertical sidebar is too small hardcoded value defined on top 
-			//			KO.Config.$sideBar.addClass(".scrollable");
-				//		console.log("breakpoint meet");
-					}else {
-
-						if( KO.Config.$sideBar.hasClass(".scrollable")) {
-				//			KO.Config.$sideBar.removeClass(".scrollable");
-
-						}
-					}
-
-
-				if (sideBarH < objectsTotal ) {
-
-					//  to small
-				}else { 
-		//			console.log("sidebar extend");
-				}
 
 				if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
 					// grab the sidebar elements and resize them to match the sidebar 
@@ -921,10 +892,10 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 
 				if(KO.Config.$sections[KO.Config.currentSection].currentArticle === KO.Config.$sections[KO.Config.currentSection].totalArticle-1) {
-				//	console.log("end of the slider");
+					//	console.log("end of the slider");
 					KO.Config.displayObjectHelper(KO.Config.sideLogo.arrows.rightA,false,.5);
 				}else {
-				//	console.log("not end of the slider");
+					//	console.log("not end of the slider");
 					KO.Config.displayObjectHelper(KO.Config.sideLogo.arrows.rightA,true,.5);
 				}
 			}
@@ -933,12 +904,11 @@ Function.prototype.throttle = function (milliseconds) {
 
 	moveContentVertically: function(direction) {
 
-		KO.Config.checkToDestroyTooltip();
 		//	console.log("moveContentVertically");
+		KO.Config.checkToDestroyTooltip();	
 		if(direction != -1) {
 
-		//		console.log("moving up");
-
+			//		console.log("moving up");
 			if(KO.Config.currentSection != 0) {
 
 				KO.Config.moveContentByIndexVertically(KO.Config.currentSection - direction ); 
@@ -947,8 +917,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		if(direction != 1 ) {
 
-	//		console.log("moving down");
-
+			//		console.log("moving down");
 			if(KO.Config.currentSection < KO.Config.$sectionsAmount-1 ) { 
 				KO.Config.moveContentByIndexVertically(KO.Config.currentSection - direction ); 
 			}
@@ -959,8 +928,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//	console.log("moveContentHorizontally");
 	KO.Config.checkToDestroyTooltip();
-
-
 	var $currentArticle = KO.Config.$sections[KO.Config.currentSection].currentArticle;
 	var $totalArticles  =  KO.Config.$sections[KO.Config.currentSection].totalArticle;
 
@@ -970,9 +937,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 			if ($currentArticle < $totalArticles-1)	{
 
+					//	console.log("move left");
 					KO.Config.$sections[KO.Config.currentSection].currentArticle ++;
-				//	console.log($sections[currentSection].currentArticle)
-				//	console.log("move left");
 					KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
 			}else { 
 
@@ -986,9 +952,9 @@ Function.prototype.throttle = function (milliseconds) {
 
 			if (KO.Config.$sections[KO.Config.currentSection].currentArticle > 0 )	{
 
-					KO.Config.$sections[KO.Config.currentSection].currentArticle --;
 				//	console.log("move right");
-					KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
+				KO.Config.$sections[KO.Config.currentSection].currentArticle --;
+				KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle); 
 			}else {
 				//if the section finish keep move up to keep going 
 				KO.Config.moveContentVertically(1);
@@ -1006,13 +972,12 @@ Function.prototype.throttle = function (milliseconds) {
 		var i = 0;
 		var currentHeight = KO.Config.$window.stageH;
 
-	//	console.log(currentHeight);
+		//	console.log(currentHeight);
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
 
 			KO.Config.$sections[i].style.height = KO.Config.$window.stageH + "px";
 			KO.Config.$sections[i].style.width = KO.Config.$window.stageW+ "px";
 			KO.Config.$sections[i].style.top = (KO.Config.$window.stageH*i)+ "px";
-			//$sections[i].css('top', currentHeight);
 		}
 	},
 
@@ -1369,7 +1334,7 @@ Function.prototype.throttle = function (milliseconds) {
 	},
 
 
-/// 3d js insert for clients section
+	/// 3d js insert for clients section
 
 			initClients:function () {
 
@@ -1388,16 +1353,12 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.scene3D = new THREE.Scene();
 				KO.Config.clientsLogoGroup = new THREE.Object3D();
-
 				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
 				KO.Config.camera.position.z = 1000;
 				KO.Config.scene3D.add(KO.Config.camera);
-
 				KO.Config.renderer = new THREE.WebGLRenderer();
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
 				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
-
-			//	window.addEventListener( 'resize', onWindowResize, false );
 
 			},
 
@@ -1493,12 +1454,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 
 			createLights:function () {
-
-				var light1 = new THREE.PointLight( 0xff8844, 3, 300 );
-			//	KO.Config.scene3D.add( light1 );
-
-				var light2 = new THREE.PointLight( 0x8844ff, 3, 300 );
-			//	KO.Config.scene3D.add( light2 );
 
 				var ambient = new THREE.AmbientLight( 0x404040 ); // soft white light
 				KO.Config.scene3D.add( ambient );

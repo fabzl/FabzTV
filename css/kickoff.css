@@ -2926,6 +2926,7 @@ textarea[contenteditable] {
     background-color: transparent;
     position: relative;
     top: auto;
+    z-index: 10;
   }
   .nav-content li {
     display: inline-block;
