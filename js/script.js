@@ -208,7 +208,7 @@ Function.prototype.throttle = function (milliseconds) {
 		totalLogoClientsCount:54,
 		$submitFormBtn:$(".btn--primary"),
 		tooltipOnBoolean:true,
-
+		$overlayerContact:$(".overlayer-contact"),
 
 		// 3js stuff 
 		////// clients section /// threee JS include 
@@ -257,7 +257,12 @@ Function.prototype.throttle = function (milliseconds) {
 
 		displayTooltips: function () { 
 
-			KO.Config.createTooltipLogo();
+			// if the section is home display tooltip
+			if(window.location.hash == "#!/home") {
+				KO.Config.createTooltipLogo();
+			}else{
+				KO.Config.tooltipOnBoolean = false;
+			}
 		},
 
 		createTooltipLogo:function() { 
@@ -323,7 +328,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		swipeControl:function ()  {	
 
-			
+			if(KO.Config.verticalMode) { 
 			    KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
 				                .on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
 				                .on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
@@ -335,6 +340,7 @@ Function.prototype.throttle = function (milliseconds) {
 
     			$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
    				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
+			}
 		},
 
 		onContentVisible:function() { 
@@ -630,18 +636,18 @@ Function.prototype.throttle = function (milliseconds) {
 
 		onLostfocusManager:function () { 
 
-			KO.Config.focusCheck();
+			//KO.Config.focusCheck();
 
 			KO.Config.$window.focusout(function() {
-				console.log( "focus out" );
+		//		console.log( "focus out" );
 				// Focus the parent
-				KO.Config.$window.focus();
+		//		KO.Config.$window.focus();
 
-					KO.Config.focusCheck();	
+				//	KO.Config.focusCheck();	
 			});
 
 			$("vimeo-video").focus(function() {
-					console.log( "vimeo video focus" );
+				//	console.log( "vimeo video focus" );
 					//document.hasFocus();
 				});
 		},
@@ -1566,27 +1572,26 @@ Function.prototype.throttle = function (milliseconds) {
 			activateForm:function () {
 
 			// contact stuff
-				$(".form").submit(KO.Config.formValidation);
+				$(".form").submit(KO.Config.formFunctionality);
 			},
 
 			// process the form
-			formValidation:function(event) {
+			formFunctionality:function(event) {
 
-				// stop the form from submitting the normal way and refreshing the page
+
+				// stop the form from submitting the normal way 
 				event.preventDefault();
 
-			//	$('.form-group').removeClass('has-error'); // remove the error class
-			//	$('.help-block').remove(); // remove the error text
-
+			
 				// get the form data
-				// there are many ways to get this data using jQuery (you can use the class or id also)
 				var formData = {
-					'first_name'					: $('input[name=first_name]').val(),
+					'first_name'				: $('input[name=first_name]').val(),
 					'last_name'					: $('input[name=last_name]').val(),
 					'email'						: $('input[name=email]').val(),
 					'comments'					: $('#comments').val()
 				};
-				console.dir(formData);
+
+				//console.dir(formData);
 
 				// process the form
 				$.ajax({
@@ -1599,15 +1604,37 @@ Function.prototype.throttle = function (milliseconds) {
 
 				// using the done promise callback
 				.always(function(data) {
-						console.log("done   !!!!!!");
 						// log data to the console so we can see
-						console.dir(data);
-						console.log(data.responseText);
-					})
+						//console.dir(data);
+						KO.Config.clearFormAndDisplayThankYouMessage(data.responseText);
+						}
+					)
 		},
 
-	// closure end
-	}
+		clearFormAndDisplayThankYouMessage:function(data) { 
+
+				// clean the fields
+				$('input[name=first_name]').val('');
+				$('input[name=last_name]').val('');
+				$('input[name=email]').val('');
+				$('#comments').val('');
+				// hide the form
+				$(".form").hide();
+				// create the answer
+				KO.Config.$overlayerContact.prepend("<div class='email-sent'>"+data+"<div class='form-actions text_centre'><input value='< go back' class='show-form-btn btn btn--primary form_el'/></div></div>");
+				KO.Config.$wrapper.find(".email-sent").find(".show-form-btn").click(KO.Config.showFormAgain);
+
+		},
+
+		showFormAgain:function(e) {
+			// 
+			e.preventDefault();
+			$(".form").show();
+			KO.Config.$overlayerContact.find(".email-sent").hide();
+		},
+
+	
+	}// closure end
 
 //sidelogo.square1.animate({ry:1}, 220, function(){
 //     ellipse.animate({ry: 90}, 300);
