@@ -1,4 +1,4 @@
-
+// tooltip config
 $triangleSizeTooltip : 10px;
 $shadowColourTooltip :  rgba(112,112,112,1);
 $backgroundColourTooltip : rgba(0, 0, 17, 0.8); 
@@ -111,17 +111,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 .dynamicImage { 
 
-	///max-width: 120% !important;
-	transition : all  .3s ease-in-out;
+	transition : all .3s ease-in-out;
 	width:100%;
-
 }
+
 .clients {
-	//tartan bg
-//	background-color: 	hsl(182, 57%, 60%);
-//	background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
-	//repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
-//	repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
 
 	text-align: center;
 	&.slide { 
@@ -138,26 +132,23 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	padding:0;
 	margin:0;
 	position:absolute;
-	//transform: rotateY(45deg)rotateX(45deg)rotateZ(45deg);
-	//  rotateY(45deg)rotateX(45deg)rotateZ(45deg)
-	img { 
-	padding:0;
-	margin:0;
 
+	img {
 
+		padding:0;
+		margin:0;
 	}
 }
 
 .clients-container {
+
 	width:100%;
 	height:100%;
   	border: red solid thin;
-  -webkit-perspective: 1600px;
-  -webkit-perspective-origin: 0% -100%;
-  position: relative;
- // margin: 10px auto;
-  z-index: 1;
- // transform:translateX(-50%);
+	-webkit-perspective: 1600px;
+	-webkit-perspective-origin: 0% -100%;
+	position: relative;
+	z-index: 1;
 }
 
 .stripe-down .stripe-up { 
@@ -192,8 +183,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	font-size: .7em;
 }
 
-
-
 .contact-mailto-link { 
 
 	text-align:center;
@@ -204,10 +193,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	font-size:.8em;
 	color:#FFF;
 	float:right;
-
 }
-
-
 
 .contact-illustration-container {
 
@@ -222,30 +208,26 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		float: right;
 		margin:auto;
 		display:inline-block;
-		//padding: 30% 0% 0% 0%;
 		position: relative;
-//		right: 2%;
 		top: 50%;
  		transform: translateY(-50%);
 	}
-
 }
 
 .contact-illustration {
 
-
-
 }
 .contact-info {
-
 	
 	display:none;
 	width: 50%;
 	line-height:auto;
+
 	@include respond-min($breakpoint-mid) {
 		width: 100%;
 		display:inline-block;
 	}
+
 	address {
 		padding-left:20px;
 		color:#FFF;
@@ -253,7 +235,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		margin-bottom: 10px;
 	}
 }
-
 
 .overlayer-contact {
 
@@ -263,7 +244,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	padding: 3% 2% 0% 2%;
 	z-index: 1;
 	margin: 0 auto;
-//	position:absolute;
 	background-color:rgba(0, 0, 17, 0.5);
 	height: 100%;
 	overflow: auto;
@@ -273,13 +253,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		width: 50%;
 		float:left;
 		padding: 3% 2% 2% 2%;
-		//height: auto;
 	}
-
-	@media screen and (max-height:500px) {
-		// add new breakpoint for mobile
-	}
-
 }
 
 .overlayer-about {
@@ -295,13 +269,13 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	orphans: 3;
 	
 	@include respond-min($breakpoint-mid) {
-
-		
+	
 		max-height:none;
 		margin-top: auto;
 		font-size: 1em;
 		width: 40%;
 		line-height: auto;
+
 		h2 { 
 			width: 90%;		
 		}
@@ -325,8 +299,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	@include respond-min($breakpoint-mid) {
 
-	padding-top:3%;
-
+		padding-top:3%;
 	}
 }
 
@@ -339,27 +312,20 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	text-align:center;
 }
 
-
-
-
 .overlayer-description {
 
-//	top:0;
 	z-index: 1;
 	position:absolute;
 	height: 100%;
-	//border:thin solid #FF0000;
 }
 
 .description-list {
 	
-
 	width:100%;
 	font-size: .7em;
-	//float:none!important;
 	padding:1% 0% 1% 5%;
-
 }
+
 .description-list:before {
 
 	content:'\00B7';
@@ -381,25 +347,20 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	handcursor:pointer;
 	display:inline-block;
 	width: 100%;
-
 	transition : all  .3s ease-in-out;
-
 
 	@include respond-min($breakpoint-mid) {
 
 		width: auto;
-		//right: 5%;
 		min-width: 80px;
 		min-height:80px;
 		padding-right: 85px;
 	}
 
-
 	h2 {
 		white-space: nowrap;
 		border-bottom: 1px solid #001;
 		padding: 0px 15px 0 5px;
-	//	font-size: 20px;
 		color: #001;
 		float:left;
 		display:inline-block;
@@ -410,11 +371,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		}
 
 		& contact { 
-
 			width:100%;
 		}
 	}
 	p, a ,li { 
+
 		float:left;
 		color: #001;
 		display : none; 
@@ -430,7 +391,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	&.active {
 
-
 		display: block;
 		bottom:0;
 		opacity:1;
@@ -443,7 +403,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			padding-right: 100px;
 		}
 
-		//left: 0;
 		p, a ,li { 
 			opacity:1;
 			display : block;
@@ -459,9 +418,10 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 				margin:auto;
 			}
 			&.ul {
+
 				padding-left: 10%;
 				margin:auto;
-				}
+			}
 		}
 	}
 }
@@ -469,58 +429,48 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 .more-info-toggle { 
 
 	min-width:60px;
-//	border: solid thin blue;
 	margin: 0 auto;
 	transition : all .3s ease-in-out;
 	transform: rotate(0deg) scale(.8);
 	display:inline-block;
+
 	&.active {
 		transform:rotate(-45deg) scale(.8);
-
-	}
-	@include respond-min($breakpoint-mid) {
 		}
 	}
 
 .more-info-toggle-container {
+
 	right: 5%;
 	top:3px;
-	//bottom: 0;
 	position: absolute;
-//text-align: center;
-	//float:left;
 	display:inline-block;
-	//transform:rotate(0deg);
-//	transform-origin: 100% 0%;
 	transition : all .3s ease-in-out;
+
 	@include respond-min($breakpoint-mid) {
 		top:11px;
 	}
-
 	&.active {
-	//	transform:rotate(-45deg);
-		right: 1%;
 
+		right: 1%;
 	}
 }
 
 
 .description-video-insert {
 
-
 	width:100%;
 	position: relative;
 
 	@include respond-min($breakpoint-mid) {
+
 	 	width:80%;
 	 	position: relative;
 	 	top: 40%;
 	 	left: 50%;
 	 	transform: translateY(-50%) translateX(-50%);
 	 }
-
 }
-
 
 .description-link {
 
@@ -528,7 +478,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
  	display: block;
  	width:100%;
 }
-
 
 // description icon size 
 $iconsSize : 14px;
@@ -649,7 +598,6 @@ $iconsSize : 14px;
   width: $iconsSize;
 } 
 
-
 .social-icons {
 
 	cursor: pointer;
@@ -662,9 +610,7 @@ $iconsSize : 14px;
 		position: relative;
 		top: 50%;
 		transform: scale(.75) translateY(-50%);
-
 	}
-
 }
 
 .social-icons-container {
@@ -681,26 +627,21 @@ $iconsSize : 14px;
 		width:100%;
 		position: absolute;
 		top: 100px;
-
 	}
 
 	@include respond-min($breakpoint-mid) {
 		display: block;
-	//	border: red thin solid;
 		position: relative;
 		text-align:center;
-	//	position:absolute;
-	//	bottom:0;
 		
-			&.active {
-		display: inline-block;
-		background-color:transparent;
-		opacity:1;
-		width:100%;
-		position: absolute;
-		top: auto;
-
-	}
+		&.active {
+			display: inline-block;
+			background-color:transparent;
+			opacity:1;
+			width:100%;
+			position: absolute;
+			top: auto;
+		}
 	}
 }
 
@@ -708,6 +649,7 @@ $iconsSize : 14px;
 
 	float:right;
 	display: block;
+	cursor: pointer;
 
 	@include respond-min($breakpoint-mid) {
 		display: none;
@@ -716,14 +658,11 @@ $iconsSize : 14px;
 
 .fabz-logo-romboid-container {
 
-//	padding-top: 50px;;
+	
 	width : 100px;
 	height: 100px;
 	margin: 0px auto;
-//	top:50px;
 	z-index:998;
-
-
 
 	@include respond-min($breakpoint-mid) {
 
@@ -731,12 +670,11 @@ $iconsSize : 14px;
 		width : 95%;
 		height:auto;
 		margin: 0 auto;
-	//	border: red thin solid;
 		text-align: center;
-
 	}
 
 	.side-logo {
+
 		cursor: pointer;
 		max-width: 200px;
 		overflow: visible;
@@ -744,7 +682,6 @@ $iconsSize : 14px;
 		top: 50%;
 		transform: translateY(-50%);
 	}
-
 }
 
 .section {
@@ -767,17 +704,15 @@ $iconsSize : 14px;
 		margin:0;
 		padding:0;
 		position:absolute;
-
-		//transform: translateY(-25%);
 	}
 }
+
 .wrapper {
 
 	@include clearfix;
 	overflow:hidden;
 	position: relative;
 	height:100%;
-
 }
 
 .sidebar-wrapper {
@@ -795,24 +730,16 @@ $iconsSize : 14px;
 	@include respond-min($breakpoint-mid) {
 		width: 15%;
 		height:100%;
-		overflow:hidden;
-
-		&.scrollable {
-	//		overflow-y: scroll;
-		}
-
+		overflow: hidden;
 	}
-
 }
 
 .showcase-wrapper {
 
 	width: 100%;
-	//height:90%;
 	left: 0%;
 	top:100px;
 	overflow:hidden;
-	//cursor:crosshair;
 	position: absolute;
 
 	@include respond-min($breakpoint-mid) {
@@ -821,7 +748,6 @@ $iconsSize : 14px;
 		left: 15%;
 		top:0%;
 	}
-	
 }
 
 .content {
@@ -833,11 +759,12 @@ $iconsSize : 14px;
 }
 
 .slider-container {
+
 	position: relative;
 	transition : left .5s ease-in-out;
 	height: 100%;
 	left:0;
-};
+}
 
 .nav-content {
 
@@ -852,9 +779,6 @@ $iconsSize : 14px;
 	ol {
 
 		position: relative;
-		//top: 50%;
-		//transform: translateY(-50%);
-
 	}
 	li {
 
@@ -864,35 +788,37 @@ $iconsSize : 14px;
 		font-size:1.3em;
 
 		@include respond-min($breakpoint-mid) {
+
 			font-size:1em;
 			width:100%;
+			
 			&:hover { 
 				padding-left: 20%;
-		//		font-size: 30px;
 				letter-spacing:2px;
-		//		border: red thin solid;
 			}
+		}
 
+		&.active { 
+			padding-left: 20%;
+			letter-spacing:2px;
 		}
 	}
 
-		.active {
+	.active {
 
 			display:inline-block;
 			transition : top .5s ease-in-out;
 			transition : opacity .5s ease-in-out;
-		} 
+	} 
 
 	@include respond-min($breakpoint-mid) {
 
-//	padding: 10% 2% 10% 2%;
-	background-color: rgba(0, 0, 0, 0);
-	position:relative;
-	top: auto;
-	z-index: 10;
+		background-color: rgba(0, 0, 0, 0);
+		position:relative;
+		top: auto;
+		z-index: 10;
 
 		li { 
-		//	float: left;
 			display: inline-block;
 			margin-left: 5%;
 			margin-right: 2%;
@@ -900,10 +826,7 @@ $iconsSize : 14px;
 			font-size: 1.2em;
 			text-align: left;
 			border-bottom: 1px solid #444;
-			//	font-size: 2vmax;
 		}
-
-
 	}
 }
 
@@ -912,9 +835,7 @@ $iconsSize : 14px;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%) scale(.6,.6);
-
 }
-
 
 .fabz-logo {
 
@@ -924,26 +845,23 @@ $iconsSize : 14px;
 
 	//for the navigation  
 }
+
 .home {
 
 	text-align: center;
 	background-image: url("../../img/bg_swansea.jpg");
 	background-size: cover;
-
 }
 
 .graphics-slider-container { 
 
 	overflow:hidden;
-
 }
 
 .graphics-slider { 
 
 	overflow:hidden;
-
 }
-
 
 // fonts 
 
@@ -957,7 +875,6 @@ $iconsSize : 14px;
          url('fonts/dense-regular-webfont.svg#denseregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 // arrows
@@ -967,11 +884,10 @@ $iconsSize : 14px;
 	display:none;
 
 	@include respond-min($breakpoint-mid) {
+
 		display: inline-block;
-	//	transform: scale(.1);
 		width:100%;
 		position:relative;
-
 	}
 }
 
@@ -981,11 +897,9 @@ $iconsSize : 14px;
 
 	@include respond-min($breakpoint-mid) {
 		z-index: 88;
-	//	margin-bottom: -5%;
 		width:60px;
 		right: 0;
 		display: inline-block;
-	//	transform: scale(.1);
 		text-align:center;
 		background-color:rgba(0,0,0,0);
 		position:absolute;
@@ -994,7 +908,6 @@ $iconsSize : 14px;
 }
 
 .nav-arrows { 
-//	position: absolute;
 }
 
 .nav-arrow-btn {
@@ -1007,31 +920,32 @@ $iconsSize : 14px;
 }
 
 .arrow-top {
-		position: absolute;
-		top: 70%;
-		left:7.5%;
-	}
+
+	position: absolute;
+	top: 70%;
+	left:7.5%;
+}
 
 .arrow-right {
 		
-		position: absolute;
-		top: 75%;
-		left:10%
-	}
+	position: absolute;
+	top: 75%;
+	left:10%
+}
 
 .arrow-bottom {
 		
-		position: absolute;
-		top: 80%;
-		left:7.5%
-	}
+	position: absolute;
+	top: 80%;
+	left:7.5%
+}
 
 .arrow-left {
 	
-		position: absolute;
-		top: 75%;
-		left:5%
-	}
+	position: absolute;
+	top: 75%;
+	left:5%
+}
 
 /// LOADER STUFFF
 
@@ -1104,8 +1018,6 @@ $iconsSize : 14px;
 
 
 //////////////////// ANIMATED BURGER 
-
-
 .nav-toggle {
 
 	position: absolute;
@@ -1140,21 +1052,24 @@ $iconsSize : 14px;
 	width: 35px;
 
 	@include respond-min($breakpoint-mid) {
+
 		display: none;
 
-	&.active { 
-		display: none;
+		&.active { 
+
+			display: none;
 		}
 	}
-
 }
 
 
 .nav-toggle span:before {
+
 	top: -10px; 
 }
 
 .nav-toggle span:after {
+
 	bottom: -10px;
 }
 
@@ -1171,30 +1086,32 @@ $iconsSize : 14px;
 
 }
 .nav-toggle.active span:before, .nav-toggle.active span:after {
+
 	top: 0;
 }
 
 .nav-toggle.active span:before {
+
 	transform: rotate(45deg);
 }
 
 .nav-toggle.active span:after {
+
 	transform: rotate(-45deg);
 }
 
 html, body {
+
 	height: 100%;
 }
 
 h2 {
+
 	font-family: 'denseregular';
 	text-align: left;
-	//	float: left;
 	width:80%;
-
 	border-bottom: 1px solid #FFF;
 	color:#FFF;
-
 	font-size: 1.2em;
 	
 	&.active { 
@@ -1202,13 +1119,14 @@ h2 {
 	}
 
 	@include respond-min($breakpoint-mid) {
+
 		font-size: 1.4em;
 		width:100%;
 	}
-
 }
 
 h3 {
+	
 	font-family: 'denseregular';
 	text-align: left;
 	font-size: 1.2em;

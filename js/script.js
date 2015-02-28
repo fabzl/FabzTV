@@ -559,7 +559,7 @@ Function.prototype.throttle = function (milliseconds) {
 			var sectionURL = currentURL.replace(/^.*#!/,'');
 			var matchedNumber;
 				for(var i=0 ; i < KO.Config.$sectionsAmount ; i++ ) { 
-			//	console.log($sections[i].currentArticleName, sectionURL);
+				console.log($sections[i].currentArticleName, sectionURL);
 				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
 					KO.Config.currentSection = i;
 					matchedNumber = i;
@@ -1476,7 +1476,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 				requestAnimationFrame(KO.Config.animate);
 
-
 				if (KO.Config.verticalMode) { 
 						KO.Config.clientsLogoGroup.rotation.y += 0.01;
 				}else { 
@@ -1487,15 +1486,6 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.renderer.render(KO.Config.scene3D,KO.Config.camera);
 			},
 
-			createStats:function () { 
-				// STATS
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.bottom = '0px';
-				stats.domElement.style.zIndex = 100;
-				document.body.appendChild( stats.domElement );
-
-			},
 
 			onWindowResizeClients:function () {
  
@@ -1512,9 +1502,6 @@ Function.prototype.throttle = function (milliseconds) {
 				
 
 			},
-			mobileRotation:function () { 
-
-			},
 
 			onDocumentMouseMove:function (event) {
 
@@ -1526,7 +1513,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			activateForm:function () {
 
-			// contact stuff
+				// contact stuff
 				$(".form").submit(KO.Config.formFunctionality);
 			},
 
@@ -1582,7 +1569,7 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 
 		showFormAgain:function(e) {
-			// 
+
 			e.preventDefault();
 			$(".form").show();
 			KO.Config.$overlayerContact.find(".email-sent").hide();
