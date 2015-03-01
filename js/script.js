@@ -249,6 +249,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.initClients();
 			KO.Config.swipeControl();
 			KO.Config.activateForm();
+			KO.Config.addRomboidToNav();
 			// get rid of the loader screen
 			KO.Config.fadeOutLoader();
 
@@ -534,6 +535,27 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 			}
 		},
+		addRomboidToNav:function() { 
+
+		if(!KO.Config.verticalMode)	
+			KO.Config.$navigation.each(
+
+				function (i) { 
+					
+					if(i === KO.Config.currentSection) {
+
+						$(KO.Config.$navigation[i]).parent().addClass("romboid");
+					}else {
+					
+						if ($(KO.Config.$navigation[i]).parent().hasClass("romboid")) {
+
+							$(KO.Config.$navigation[i]).parent().removeClass("romboid");
+						}
+					}
+
+				});
+
+		},
 
 		gotoCorrectURL: function () {
 
@@ -559,7 +581,7 @@ Function.prototype.throttle = function (milliseconds) {
 			var sectionURL = currentURL.replace(/^.*#!/,'');
 			var matchedNumber;
 				for(var i=0 ; i < KO.Config.$sectionsAmount ; i++ ) { 
-				console.log($sections[i].currentArticleName, sectionURL);
+			//	console.log($sections[i].currentArticleName, sectionURL);
 				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
 					KO.Config.currentSection = i;
 					matchedNumber = i;
@@ -905,7 +927,9 @@ Function.prototype.throttle = function (milliseconds) {
 	moveContentVertically: function(direction) {
 
 		//	console.log("moveContentVertically");
-		KO.Config.checkToDestroyTooltip();	
+		KO.Config.checkToDestroyTooltip();
+		KO.Config.addRomboidToNav();
+
 		if(direction != -1) {
 
 			//		console.log("moving up");
@@ -1100,7 +1124,7 @@ Function.prototype.throttle = function (milliseconds) {
 		var $contentHolder = $(e.currentTarget);
 		var $toggleContainer= $contentHolder.parent().find(".more-info-toggle-container");
 		var toogleSVG = e.currentTarget.querySelector(".more-info-toggle"); 
-		var $tdescriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
+		var $descriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
 		var displacementToogleInfo;
 		var displacementToogleInfoString;
 		var	toggleDisplayOffset = -67;
@@ -1110,7 +1134,6 @@ Function.prototype.throttle = function (milliseconds) {
 		$toggleContainer.toggleClass("active");
 		$contentHolder.find("h2").toggleClass("active");
 		toogleSVG.classList.toggle("active");
-		//console.log($contentHolder, $toggleContainer, toogleSVG );
 
 
 		// jquery callback
@@ -1164,6 +1187,7 @@ Function.prototype.throttle = function (milliseconds) {
 		var clickedItem = $(this);
 		var clickedItemIndex =  KO.Config.$navigation.index(clickedItem);
 		KO.Config.moveContentByIndexVertically(clickedItemIndex);
+		KO.Config.addRomboidToNav();
 
 		if( KO.Config.verticalMode === true ) {
 			KO.Config.closeMobileNavToggle();
@@ -1196,6 +1220,7 @@ Function.prototype.throttle = function (milliseconds) {
 		KO.Config.$content.css("top",newPos);
 		KO.Config.updateCurrentSection(index);
 		KO.Config.updateContentTopPosition(newPos);
+		KO.Config.addRomboidToNav();
 	},
 
 	moveContentByIndexHorizontally:function(index) { 

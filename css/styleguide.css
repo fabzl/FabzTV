@@ -528,13 +528,13 @@ samp {
 }
 
 ::-moz-selection {
-  color: #fff;
-  background: #FFF;
+  color: #001;
+  background: #666;
 }
 
 ::selection {
-  color: #fff;
-  background: #FFF;
+  color: #001;
+  background: #666;
 }
 
 /* ==========================================================================
