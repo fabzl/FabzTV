@@ -2010,9 +2010,68 @@ textarea[contenteditable] {
     page-break-after: avoid;
   }
 }
+@-webkit-keyframes stripesAnimation {
+  0% {
+    -webkit-transform: translateX(-100);
+    transform: translateX(-100);
+    opacity: 0;
+  }
+  20% {
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+@-moz-keyframes stripesAnimation {
+  0% {
+    -moz-transform: translateX(-100);
+    transform: translateX(-100);
+    opacity: 0;
+  }
+  20% {
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    -moz-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
+@keyframes stripesAnimation {
+  0% {
+    -webkit-transform: translateX(-100);
+    -moz-transform: translateX(-100);
+    transform: translateX(-100);
+    opacity: 0;
+  }
+  20% {
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}
 .loader-description {
   font-family: 'denseregular';
-  font-size: 1.8em;
+  font-size: 2.2em;
 }
 
 .main-description {
@@ -2357,8 +2416,6 @@ textarea[contenteditable] {
 }
 @-webkit-keyframes tooltipKeysInfoAnimationOut {
   0% {
-    -webkit-transform: translateY(100%) translateX(-50%);
-    transform: translateY(100%) translateX(-50%);
     opacity: 1;
   }
   100% {
@@ -2369,8 +2426,6 @@ textarea[contenteditable] {
 }
 @-moz-keyframes tooltipKeysInfoAnimationOut {
   0% {
-    -moz-transform: translateY(100%) translateX(-50%);
-    transform: translateY(100%) translateX(-50%);
     opacity: 1;
   }
   100% {
@@ -2381,9 +2436,6 @@ textarea[contenteditable] {
 }
 @keyframes tooltipKeysInfoAnimationOut {
   0% {
-    -webkit-transform: translateY(100%) translateX(-50%);
-    -moz-transform: translateY(100%) translateX(-50%);
-    transform: translateY(100%) translateX(-50%);
     opacity: 1;
   }
   100% {
@@ -3001,10 +3053,10 @@ textarea[contenteditable] {
     transform: scale(0.75) translateY(-50%);
   }
   .social-icons:hover {
-    -webkit-transform: scale(1.2) translateY(-50%);
-    -moz-transform: scale(1.2) translateY(-50%);
-    -ms-transform: scale(1.2) translateY(-50%);
-    transform: scale(1.2) translateY(-50%);
+    -webkit-transform: scale(1) translateY(-50%);
+    -moz-transform: scale(1) translateY(-50%);
+    -ms-transform: scale(1) translateY(-50%);
+    transform: scale(1) translateY(-50%);
   }
 }
 
@@ -3093,10 +3145,10 @@ textarea[contenteditable] {
   transform-origin: 50% 0%;
 }
 .fabz-logo-romboid-container .side-logo:hover {
-  -webkit-transform: scale(1) translateY(-50%);
-  -moz-transform: scale(1) translateY(-50%);
-  -ms-transform: scale(1) translateY(-50%);
-  transform: scale(1) translateY(-50%);
+  -webkit-transform: scale(1.2) translateY(-50%);
+  -moz-transform: scale(1.2) translateY(-50%);
+  -ms-transform: scale(1.2) translateY(-50%);
+  transform: scale(1.2) translateY(-50%);
 }
 
 .section {
@@ -3525,6 +3577,17 @@ textarea[contenteditable] {
 
 html, body {
   height: 100%;
+}
+
+body {
+  scrollbar-arrow-color: #001;
+  scrollbar-base-color: #001;
+  scrollbar-dark-shadow-color: #001;
+  scrollbar-track-color: #001;
+  scrollbar-face-color: #001;
+  scrollbar-shadow-color: #001;
+  scrollbar-highlight-color: #001;
+  scrollbar-3d-light-color: #001;
 }
 
 h2 {

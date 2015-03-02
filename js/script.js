@@ -197,6 +197,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowLeft: $(".arrow_left"),
 		//booleans
 		tooltipOnBoolean:true,
+		arrowKeysInfoBoolean:true,
 		isAndroidNativeBrowserBoolean: false,
 		historySupported : false,
 		scrollerFlag: true,
@@ -274,7 +275,8 @@ Function.prototype.throttle = function (milliseconds) {
 			var topTooltip = "120px";
 			
 			if(!KO.Config.verticalMode) {
-				topTooltip = KO.Config.$fabzLogo.height()*.5+"px";
+				topTooltip = ( KO.Config.$window.stageH*.3) *.5+"px";
+				console.log("topTooltip",topTooltip)
 			}
 
 			KO.Config.$wrapper.find(".tooltip").css({
@@ -294,16 +296,16 @@ Function.prototype.throttle = function (milliseconds) {
 			if(KO.Config.tooltipOnBoolean) {
 
 				KO.Config.tooltipOnBoolean = false;
-				KO.Config.destroyTooltipLogo();
+				KO.Config.destroyTooltips();
 		
-				if(!KO.Config.verticalMode) {
+				if(!KO.Config.verticalMode === true) {
 					KO.Config.destroyTooltipArrows();
 				}
 			}
 		},
 
 
-		destroyTooltipLogo:function () {
+		destroyTooltips:function () {
 
 			
 			//	console.log("destroy tooltip");
@@ -321,7 +323,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			
 			//	console.log("destroy tooltip arrowKeys");
-			var tooltip = KO.Config.$wrapper.find(".tooltip");
+			var tooltip = KO.Config.$wrapper.find(".tooltip-arrowKeys");
 			var animation = "tooltipLogoAnimationDesktopOut";
 			tooltip.bind('oanimationend animationend webkitAnimationEnd', function(){
 				tooltip.remove();
@@ -336,7 +338,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 		destroyTooltipArrowsKeysInfo:function () {
 
-			if(!KO.Config.verticalMode) {
+				if(!KO.Config.verticalMode && KO.Config.arrowKeysInfoBoolean) {
+
+	
+				KO.Config.arrowKeysInfoBoolean = false;
 
 				var arrowKeysInfo = $( ".arrow-keys-info");
 				var animation = "tooltipKeysInfoAnimationOut";
@@ -501,7 +506,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.closeMobileNavToggle();
 				this.classList.toggle("active");
 				KO.Config.navToggle.classList.toggle("active");
-				KO.Config.$socialIconsContainer.toggleClass("active");
+				KO.Config.$socialIconsContainerMobile.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
 				KO.Config.shareToggle.removeEventListener("click",KO.Config.openMobileShareToggle);
@@ -512,8 +517,8 @@ Function.prototype.throttle = function (milliseconds) {
 				if(KO.Config.mobileShareToggleActiveBoolean === false) { 
 					KO.Config.mobileShareToggleActiveBoolean = true;
 				}
-				KO.Config.$socialIconsContainer.css("opacity",1);
-				KO.Config.$socialIconsContainer.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
+				KO.Config.$socialIconsContainerMobile.css("opacity",1);
+				KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
 		},
 
 		closeMobileShareToggle:function () {
@@ -526,7 +531,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.mobileShareToggleActiveBoolean = false;
 
 				KO.Config.shareToggle.classList.toggle("active");
-				KO.Config.$socialIconsContainer.toggleClass("active");
+				KO.Config.$socialIconsContainerMobile.toggleClass("active");
 
 				KO.Config.navToggle.classList.toggle("active");
 				// reactivate the Nav Buttons
@@ -889,21 +894,25 @@ Function.prototype.throttle = function (milliseconds) {
 		//	console.log("KEY DOWN");
 			switch(e.which) {
 				case 37: // right
+					KO.Config.checkToDestroyTooltip();
 					KO.Config.moveContentHorizontally(1);
 					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 38: // up
+					KO.Config.checkToDestroyTooltip();
 					KO.Config.moveContentVertically(1);
 					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 39: // left
+					KO.Config.checkToDestroyTooltip();
 					KO.Config.moveContentHorizontally(-1);
 					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 40: // down
+					KO.Config.checkToDestroyTooltip();
 					KO.Config.moveContentVertically(-1);
 					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
@@ -1080,15 +1089,11 @@ Function.prototype.throttle = function (milliseconds) {
 			var $currentContainer = $currentSection.find(".slider-container");
 			var $currentSlides    = $currentContainer.find(".slide");
 			var $currentImagesStatic = $currentSlides.find(".dynamicImage");
-			
 			var $currentImages 	  = $currentSlides.find(".dynamicImage");
-			var $currentImagesStaticH = 200;
-			var $currentImagesStaticW = 200;
 
-
-			console.log("currentImages : ",$currentImages.height() , $currentImages.width() );
-			console.log("currentImagesStatic : ",$currentImagesStaticH ,$currentImagesStaticW );
-			console.log(KO.Config.$window.stageH, KO.Config.$window.stageW);
+		//	console.log("currentImages : ",$currentImages.height() , $currentImages.width() );
+		//	console.log("currentImagesStatic : ",$currentImagesStaticH ,$currentImagesStaticW );
+		//	console.log(KO.Config.$window.stageH, KO.Config.$window.stageW);
 
 			// define the current acticule name
 			KO.Config.$sections[i].currentArticleName =  KO.Config.$navigation[i].getAttribute("href").toString();
