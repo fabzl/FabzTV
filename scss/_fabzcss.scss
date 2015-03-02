@@ -1,7 +1,38 @@
+.loader-description {
+
+	font-family: 'denseregular';
+	font-size:1.8em;
+}
+
+//main description home
+
+.main-description {
+
+	text-align:center;
+	max-width:600px;
+	background-color:#FFF;
+	color:#001;
+	font-size:1.6em;
+	font-family: 'denseregular';
+	position: relative;
+	padding:11px;
+	margin:0 auto;
+	font-style:bold;
+	border:solid #FFF 20px;
+	
+	@include respond-min($breakpoint-mid) {
+		font-size:2.2em;
+	}
+}
+
+
 // tooltip config
+
 $triangleSizeTooltip : 10px;
 $shadowColourTooltip :  rgba(112,112,112,1);
 $backgroundColourTooltip : rgba(0, 0, 17, 0.8); 
+
+// tooltip log
 
 .tooltip { 
 
@@ -17,15 +48,14 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	left:50%;
    	animation: tooltipLogoAnimationMobileIn 1s 1;
 	transform: translateX(-50%);
-	transition-delay: 2s;
+	transition-delay: 5s;
 	
 
 	@include respond-min($breakpoint-mid) {
 		left:15%;
 	   	animation: tooltipLogoAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translateY(-50%);
-		transition-delay: 2s;
-	
+		transition-delay: 5s;
 	}
 
 	&.tooltip:after { 
@@ -59,10 +89,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	0% {
 
-		transform: translateY(100%) translateX(-50%);
+		transform: translateY(0) translateX(100%);
 		opacity: 0;
 	}
 	100% {
+
 		transform: translateY(0) translateX(-50%);
 		opacity: 1;
 	}
@@ -78,7 +109,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	}
 	100% {
 	
-		transform: translateY(100%) translateX(-50%);
+		transform: translateY(0) translateX(100%);
 		opacity: 0;
 	}
  
@@ -108,6 +139,123 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		opacity: 0;
 	}
 }
+
+/// tooltip-arrowKeys
+
+
+.tooltip-arrowKeys { 
+
+	text-align:center;
+	background-color:$backgroundColourTooltip;
+	position:absolute;
+	padding: 10px 10px 10px 10px;
+	z-index:999;
+	border-radius: 3px;
+	font-size:.7em;
+	color:#FFF;
+	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
+	left:50%;
+   	animation: tooltipLogoAnimationMobileIn 1s 1;
+
+	
+	bottom: 0;
+
+	@include respond-min($breakpoint-mid) {
+		left:15%;
+	   	animation: tooltipLogoAnimationDesktopIn 1s 1;
+		transform: translateX($triangleSizeTooltip);
+		transition-delay: 6s;
+	}
+
+	&.tooltip-arrowKeys:after { 
+
+		bottom: 100%;
+		left: 50%;
+		position: absolute;
+		transform:translateX(-50%);
+		content: " ";
+		font-size: 0;
+		line-height: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip;
+		border-color: transparent transparent $backgroundColourTooltip transparent;
+		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
+
+		@include respond-min($breakpoint-mid) {
+
+			bottom: 0%;
+			left: 0%;
+			transform: translateY(-50%) translateX(-100%);
+			border-width: $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip 0;
+			border-color: transparent $backgroundColourTooltip transparent transparent;
+		}
+	}
+}
+
+/// tooltip keys info  / the small arrow icons
+
+@keyframes tooltipKeysInfoAnimationIn {
+
+	0% {
+
+		transform: translateY(100%) translateX(-50%);
+		opacity: 1;
+	}
+	100% {
+
+		transform: scale(2);
+		opacity: 0;
+	}
+ 
+}
+
+
+@keyframes tooltipKeysInfoAnimationOut {
+
+	0% {
+
+		transform: translateY(100%) translateX(-50%);
+		opacity: 1;
+	}
+	100% {
+
+		transform: scale(2);
+		opacity: 0;
+	}
+ 
+}
+
+
+
+
+
+@keyframes tooltiparrowKeysAnimationDesktopIn {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(-50%);
+		opacity: 1;
+	}
+}
+
+@keyframes tooltipLogoAnimationDesktopOut {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(-50%);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 0;
+	}
+}
+
+ /// dynamic images for picture fill js .
 
 .dynamicImage { 
 
@@ -332,8 +480,8 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 .description-year {
 	
 	color:#444;
-	font-size: .7em;
-	font-style:italic;
+	font-size: .5em;
+	font-style:bold;
 	display : inline;
 	margin-bottom:2px!important;
 	
@@ -347,9 +495,19 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 .description-text {
 
 	padding: 0 10% 0 0;
-	color:#FFF!important;
+	color:#FFF;
 	font-size: 12px;
 }
+
+.white {
+		color:#001!important;
+}
+.black { 
+		color:#FFF!important;
+}
+
+
+
 
 .description-list {
 	
@@ -379,7 +537,8 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	cursor:pointer;
 	display:inline-block;
 	width: 100%;
-	transition : all  .3s ease-in-out;
+	//transition : all  .3s ease-in-out;
+	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 
 	@include respond-min($breakpoint-mid) {
 
@@ -478,7 +637,9 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	min-width:60px;
 	margin: 0 auto;
-	transition : all .3s ease-in-out;
+	//transition : all .3s ease-in-out;
+   	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+
 	transform: rotate(0deg) scale(.8);
 	display:inline-block;
 
@@ -648,9 +809,11 @@ $iconsSize : 14px;
 
 .social-icons {
 
+	transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 	cursor: pointer;
 	max-width:none;
 	transform: scale(.75);
+	transform-origin: 50% 0%;
 
 	@include respond-min($breakpoint-mid) {
 
@@ -658,6 +821,12 @@ $iconsSize : 14px;
 		position: relative;
 		top: 50%;
 		transform: scale(.75) translateY(-50%);
+
+		&:hover {
+
+			transform: scale(1.2) translateY(-50%) ;	
+			
+		}
 	}
 }
 
@@ -677,10 +846,13 @@ $iconsSize : 14px;
 		top: 100px;
 	}
 
+
 	@include respond-min($breakpoint-mid) {
 		display: block;
 		position: relative;
 		text-align:center;
+		transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+
 		
 		&.active {
 			display: inline-block;
@@ -689,6 +861,11 @@ $iconsSize : 14px;
 			width:100%;
 			position: absolute;
 			top: auto;
+		}
+
+		&:hover { 
+			transform:scale(3);
+
 		}
 	}
 }
@@ -706,7 +883,7 @@ $iconsSize : 14px;
 
 .fabz-logo-romboid-container {
 
-	
+	text-align:center;
 	width : 100px;
 	height: 100px;
 	margin: 0px auto;
@@ -724,11 +901,17 @@ $iconsSize : 14px;
 	.side-logo {
 
 		cursor: pointer;
-		max-width: 200px;
+		max-width: 180px;
 		overflow: visible;
 		position: relative;
 		top: 50%;
 		transform: translateY(-50%);
+		transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+		transform-origin: 50% 0%;
+
+		&:hover { 
+			transform: scale(1) translateY(-50%);
+		}	
 	}
 }
 
@@ -798,6 +981,7 @@ $iconsSize : 14px;
 	}
 }
 
+
 .content {
 
 	top:0;
@@ -828,6 +1012,7 @@ $iconsSize : 14px;
 
 		position: relative;
 	}
+
 	li {
 
 		display: none;
@@ -837,16 +1022,18 @@ $iconsSize : 14px;
 
 		@include respond-min($breakpoint-mid) {
 
-			font-size:1em;
+			font-size:.8em;
 			width:100%;
 			z-index: 10;
 
 			&:hover { 
 				padding-left: 20%;
 				letter-spacing:2px;
+				font-size:1.6em;
 			}
 			&.romboid { 
-				padding-left: 20%;
+				padding-left: auto!important;
+				padding-right: 25%;
 				letter-spacing:2px;
 				// romboid
 				width: 0;
@@ -855,6 +1042,7 @@ $iconsSize : 14px;
 				border-bottom-color:rgba(37,86,136,.5);
 				position: relative;
 				top: -25px;
+				font-size:1.3em!important;
 			}
 			&.romboid:after {
 				content: '';
@@ -867,18 +1055,36 @@ $iconsSize : 14px;
 				border-top-color:  rgba(122,156,191,.5);
 
 			}
+			&.romboid:before {
+				content: '';
+				position: absolute;
+				width:12px; 
+			    height:12px; 
+			    border:1px solid #000; 
+			    left:50%;
+			    top:2em;
+			    background:#FFF;
+			    transform: skew(-20deg); 
+			    -webkit-transform: skew(-20deg);
+			    transform: rotate(45deg) translateX(-100%);
+				text-align: center;
+
+			}
+
+
 			a {
 				padding-right: 100%;
+
 			}
 		}
 	}
 
-
 	.active {
 
-			display:inline-block;
-			transition : top .5s ease-in-out;
-			transition : opacity .5s ease-in-out;
+		color:#FFF;
+		display:inline-block;
+		transition : top .5s ease-in-out;
+		transition : opacity .5s ease-in-out;
 	} 
 
 	@include respond-min($breakpoint-mid) {
@@ -905,6 +1111,7 @@ $iconsSize : 14px;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%) scale(.6,.6);
+
 }
 
 .fabz-logo {
@@ -936,6 +1143,7 @@ $iconsSize : 14px;
 // fonts 
 
 @font-face {
+
     font-family: 'denseregular';
     src: url('fonts/dense-regular-webfont.eot');
     src: url('fonts/dense-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -945,7 +1153,10 @@ $iconsSize : 14px;
          url('fonts/dense-regular-webfont.svg#denseregular') format('svg');
     font-weight: normal;
     font-style: normal;
+
 }
+
+
 
 // arrows
 
@@ -1029,6 +1240,11 @@ $iconsSize : 14px;
 	left:0;
 	background-color: #001;
 	transition : opacity 1s ease-out;
+}
+.loader-description {
+
+	text-align:center;
+	margin-top: 35%;
 }
 
 .loader {

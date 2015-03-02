@@ -137,13 +137,13 @@ Function.prototype.throttle = function (milliseconds) {
 
 	$(function() {
 
-
+		KO.Config.init();
 	});// END DOC READY
 
 
 	$(window).load(function() {
 
-			KO.Config.init();
+		
 		})// on Page loaded
 
 	// WINDOW.RESIZE
@@ -260,6 +260,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// if the section is home display tooltip
 			if(window.location.hash == "#!/home") {
 				KO.Config.createTooltipLogo();
+				KO.Config.createTooltipArrowKeys();
 			}else{
 				KO.Config.tooltipOnBoolean = false;
 			}
@@ -282,14 +283,25 @@ Function.prototype.throttle = function (milliseconds) {
 			});
 		},
 
+		createTooltipArrowKeys:function() { 
+
+			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
+			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
+			
+		},
 		checkToDestroyTooltip:function() {
 
 			if(KO.Config.tooltipOnBoolean) {
 
 				KO.Config.tooltipOnBoolean = false;
 				KO.Config.destroyTooltipLogo();
+		
+				if(!KO.Config.verticalMode) {
+					KO.Config.destroyTooltipArrows();
+				}
 			}
 		},
+
 
 		destroyTooltipLogo:function () {
 
@@ -305,6 +317,41 @@ Function.prototype.throttle = function (milliseconds) {
 				"animation": animation+" .5s 1" 				
 			});
 		},
+		destroyTooltipArrows:function () {
+
+			
+			//	console.log("destroy tooltip arrowKeys");
+			var tooltip = KO.Config.$wrapper.find(".tooltip");
+			var animation = "tooltipLogoAnimationDesktopOut";
+			tooltip.bind('oanimationend animationend webkitAnimationEnd', function(){
+				tooltip.remove();
+			});
+			tooltip.css({
+				"animation-direction": "alternate",
+				"animation": animation+" .5s 1" 			
+			});
+
+			
+		},
+
+		destroyTooltipArrowsKeysInfo:function () {
+
+			if(!KO.Config.verticalMode) {
+
+				var arrowKeysInfo = $( ".arrow-keys-info");
+				var animation = "tooltipKeysInfoAnimationOut";
+
+				arrowKeysInfo.bind('oanimationend animationend webkitAnimationEnd', function(){
+					arrowKeysInfo.remove();
+				});
+
+				arrowKeysInfo.css({
+			
+					"animation": animation+" .5s 1"			
+				});
+			}
+		},
+
 
 		browserSupportCheck:function () { 
 
@@ -535,6 +582,7 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 			}
 		},
+
 		addRomboidToNav:function() { 
 
 		if(!KO.Config.verticalMode)	
@@ -554,7 +602,6 @@ Function.prototype.throttle = function (milliseconds) {
 					}
 
 				});
-
 		},
 
 		gotoCorrectURL: function () {
@@ -573,7 +620,6 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.updateArrowsVisibility();
 			}
 		},
-
 
 		gotoSectionByURL: function (currentURL) {
 
@@ -844,18 +890,22 @@ Function.prototype.throttle = function (milliseconds) {
 			switch(e.which) {
 				case 37: // right
 					KO.Config.moveContentHorizontally(1);
+					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 38: // up
 					KO.Config.moveContentVertically(1);
+					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 39: // left
 					KO.Config.moveContentHorizontally(-1);
+					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				case 40: // down
 					KO.Config.moveContentVertically(-1);
+					KO.Config.destroyTooltipArrowsKeysInfo();
 				break;
 
 				default: return; // exit this handler for other keys
@@ -1029,7 +1079,17 @@ Function.prototype.throttle = function (milliseconds) {
 			var $currentSection   = KO.Config.$sections.eq(i);
 			var $currentContainer = $currentSection.find(".slider-container");
 			var $currentSlides    = $currentContainer.find(".slide");
+			var $currentImagesStatic = $currentSlides.find(".dynamicImage");
+			
 			var $currentImages 	  = $currentSlides.find(".dynamicImage");
+			var $currentImagesStaticH = 200;
+			var $currentImagesStaticW = 200;
+
+
+			console.log("currentImages : ",$currentImages.height() , $currentImages.width() );
+			console.log("currentImagesStatic : ",$currentImagesStaticH ,$currentImagesStaticW );
+			console.log(KO.Config.$window.stageH, KO.Config.$window.stageW);
+
 			// define the current acticule name
 			KO.Config.$sections[i].currentArticleName =  KO.Config.$navigation[i].getAttribute("href").toString();
 			//	console.log(KO.Config.$sections[i].currentArticleName);
@@ -1051,8 +1111,8 @@ Function.prototype.throttle = function (milliseconds) {
 			//	$currentImages.css("width", KO.Config.$window.stageW);
 				
 				// we calculate the offset value based on the elements size
-				var imageOffsetValueNumberY = -($currentImages.height() - KO.Config.$window.stageH)*.5;
-				var imageOffsetValueNumberX = -($currentImages.width() - KO.Config.$window.stageW)*.5;
+				var imageOffsetValueNumberY = -(KO.Config.$window.stageW - KO.Config.$window.stageH)*.5;
+				var imageOffsetValueNumberX = -(KO.Config.$window.stageW - KO.Config.$window.stageW)*.5;
 
 				if(KO.Config.canvasFillValue===0) {
 					imageOffsetValueNumberX = 0;
