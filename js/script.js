@@ -264,7 +264,12 @@ Function.prototype.throttle = function (milliseconds) {
 			// if the section is home display tooltip
 			if(window.location.hash == "#!/home") {
 				KO.Config.createTooltipLogo();
-				KO.Config.createTooltipArrowKeys();
+
+				if(KO.Config.verticalMode===false) {
+
+					KO.Config.createTooltipArrowKeys();
+				}
+
 			}else{
 				KO.Config.tooltipOnBoolean = false;
 			}
@@ -1186,7 +1191,7 @@ Function.prototype.throttle = function (milliseconds) {
 				
 				// we calculate the offset value based on the elements size
 				var imageOffsetValueNumberY = -(KO.Config.$window.stageW - KO.Config.$window.stageH+KO.Config.canvasFillValue )*.5;
-				var imageOffsetValueNumberX = -(KO.Config.$window.stageW - KO.Config.$window.stageW)*.5;
+				var imageOffsetValueNumberX = -(KO.Config.$window.stageW - KO.Config.$window.stageW+KO.Config.canvasFillValue )*.5;
 
 				if(KO.Config.canvasFillValue===0) {
 					imageOffsetValueNumberX = 0;
@@ -1197,7 +1202,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//			console.log("$currentImages : ",$currentImages.width(),"$currentSection : ",$currentSection.width(),$currentContainer.width(),"canvasFillValue : ",KO.Config.canvasFillValue);
 
-				var scaleValue = $currentSlides.width()+KO.Config.canvasFillValue;
+				var scaleValue = KO.Config.$window.stageW+KO.Config.canvasFillValue;
 				$currentImages.width(scaleValue);
 			//	console.log("$currentImages.widthafter",$currentImages.width());
 
