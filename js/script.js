@@ -168,6 +168,8 @@ Function.prototype.throttle = function (milliseconds) {
 		socialIcons:{},
 		stateObj : {},
 		shareIconsArray:[],
+		shareIconsArrayMobile:[],
+
 		currentSection : 0,
 		canvasFillValue: 0,
 		navToggle:document.querySelector(".nav-toggle"),
@@ -186,6 +188,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$wrapper : $(".wrapper"),
 		$sideBar : $(".sidebar-wrapper"),
 		$socialIconsContainer: $(".social-icons-container"),
+		$socialIconsContainerMobile: $(".social-icons-container-mobile"),
 		$clientsContainer:$(".clients-container"),
 		$clientLogo:$(".client-logo"),
 		$submitFormBtn:$(".btn--primary"),
@@ -468,6 +471,7 @@ Function.prototype.throttle = function (milliseconds) {
 					KO.Config.$navigationContainer.height("auto");
 				}
 		},
+
 		openMobileNavToggle:function () {
 
 			//if share toggle is open close it
@@ -505,7 +509,9 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.closeMobileNavToggle();
 				this.classList.toggle("active");
-				KO.Config.navToggle.classList.toggle("active");
+				$(".nav-toggle").toggleClass("active");
+				
+				console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
 				KO.Config.$socialIconsContainerMobile.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
@@ -816,20 +822,76 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.socialIcons.mail = KO.Config.socialIcons.select(".mail");
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.mail,"mailto:fabian@fabz.tv?subject=Ask%20me%20whatever&amp;body=Contact%20from%20fabz.tv","_self"]);
 
-		//	console.log(sideLogo);
-			KO.Config.addLinksToShareIcons();
+			
+			KO.Config.socialIconsMobile = Snap.select('.social-icons-mobile');
+
+			KO.Config.socialIconsMobile.twitter = KO.Config.socialIconsMobile.select(".twitter");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.twitter,"https://twitter.com/fabzhole","_blank"]);
+
+			KO.Config.socialIconsMobile.facebook = KO.Config.socialIconsMobile.select(".facebook");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.facebook,"https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/pages/Fabz/136712463026919","_blank"]);
+			
+			KO.Config.socialIconsMobile.tumblr = KO.Config.socialIconsMobile.select(".tumblr");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.tumblr,"http://fabzenegger.tumblr.com/","_blank"]);
+
+			KO.Config.socialIconsMobile.flickr = KO.Config.socialIconsMobile.select(".flickr");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.flickr,"https://www.flickr.com/photos/fabzfabzfabz/","_blank"]);
+			
+			KO.Config.socialIconsMobile.instagram = KO.Config.socialIconsMobile.select(".instagram");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.instagram,"http://instagram.com/fabzhole/","_blank"]);
+
+			KO.Config.socialIconsMobile.googlePlus = KO.Config.socialIconsMobile.select(".googlePlus");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.googlePlus,"https://plus.google.com/+fabianandrade/","_blank"]);
+
+			KO.Config.socialIconsMobile.behance = KO.Config.socialIconsMobile.select(".behance");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.behance,"https://www.behance.net/FavFabz","_blank"]);
+
+			KO.Config.socialIconsMobile.github = KO.Config.socialIconsMobile.select(".github");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.github,"https://github.com/fabzl","_blank"]);
+
+			KO.Config.socialIconsMobile.linkedIn = KO.Config.socialIconsMobile.select(".linkedIn");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.linkedIn,"uk.linkedin.com/pub/fabian-andrade/25/254/1a4/","_blank"]);
+
+			KO.Config.socialIconsMobile.soundcloud = KO.Config.socialIconsMobile.select(".soundcloud");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.soundcloud,"https://soundcloud.com/fabz-vs-fabz","_blank"]);
+
+			KO.Config.socialIconsMobile.vimeo = KO.Config.socialIconsMobile.select(".vimeo");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.vimeo,"https://vimeo.com/fabzfabzfabz","_blank"]);
+
+			KO.Config.socialIconsMobile.pinterest = KO.Config.socialIconsMobile.select(".pinterest");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.pinterest,"http://uk.pinterest.com/fabzfabzfabz","_blank"]);
+
+			KO.Config.socialIconsMobile.dribble = KO.Config.socialIconsMobile.select(".dribble");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.dribble,"https://dribbble.com/fabz","_blank"]);
+
+			KO.Config.socialIconsMobile.ello = KO.Config.socialIconsMobile.select(".ello");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.ello,"https://ello.co/fabzfabz","_blank"]);
+
+			KO.Config.socialIconsMobile.skype = KO.Config.socialIconsMobile.select(".skype");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.skype,"skype:fabzfabzfabz?call","_blank"]);
+
+			KO.Config.socialIconsMobile.mail = KO.Config.socialIconsMobile.select(".mail");
+			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.mail,"mailto:fabian@fabz.tv?subject=Ask%20me%20whatever&amp;body=Contact%20from%20fabz.tv","_self"]);
+
+
+			//support functions 
+			KO.Config.addLinksToShareIcons(KO.Config.shareIconsArrayMobile);
+			//support functions 
+			KO.Config.addLinksToShareIcons(KO.Config.shareIconsArray);
+
+			
 			KO.Config.colourInSVGs();
 			KO.Config.animateSideLogo();
 
 		},
-		addLinksToShareIcons:function () {
+		addLinksToShareIcons:function (obj) {
 			var i=0;
-			for(i;i < KO.Config.shareIconsArray.length; i++) {
+			for(i;i < obj.length; i++) {
 			//	console.log(i);
-				KO.Config.shareIconsArray[i][0].linkUrl = KO.Config.shareIconsArray[i][1];
-				KO.Config.shareIconsArray[i][0].windowTarget = KO.Config.shareIconsArray[i][2];
+				obj[i][0].linkUrl = obj[i][1];
+				obj[i][0].windowTarget = obj[i][2];
 				// we use snap to add the click instance to 
-				KO.Config.shareIconsArray[i][0].click(KO.Config.jumpToShareURL);
+				obj[i][0].click(KO.Config.jumpToShareURL);
 			}
 		},
 		jumpToShareURL:function () {
@@ -1078,6 +1140,13 @@ Function.prototype.throttle = function (milliseconds) {
 		}
 
 
+		if(KO.Config.verticalMode===true) {
+			KO.Config.$socialIconsContainer.hide();
+		}else{
+			KO.Config.$socialIconsContainer.show();
+
+		}
+
 		var i = 0;
 
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
@@ -1113,10 +1182,10 @@ Function.prototype.throttle = function (milliseconds) {
 				// analize the canvas to detect gaps
 				// and slide container is set to full size 
 				$currentContainer.css("width", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(KO.Config.$sections[i].totalArticle+1));
-			//	$currentImages.css("width", KO.Config.$window.stageW);
+				//	$currentImages.css("width", KO.Config.$window.stageW);
 				
 				// we calculate the offset value based on the elements size
-				var imageOffsetValueNumberY = -(KO.Config.$window.stageW - KO.Config.$window.stageH)*.5;
+				var imageOffsetValueNumberY = -(KO.Config.$window.stageW - KO.Config.$window.stageH+KO.Config.canvasFillValue )*.5;
 				var imageOffsetValueNumberX = -(KO.Config.$window.stageW - KO.Config.$window.stageW)*.5;
 
 				if(KO.Config.canvasFillValue===0) {
@@ -1178,6 +1247,7 @@ Function.prototype.throttle = function (milliseconds) {
 					$currentSlides.find(".iframe-insert").attr("height",KO.Config.$window.stageH);
 				}
 			}
+
 		}
 	},
 
@@ -1247,6 +1317,8 @@ Function.prototype.throttle = function (milliseconds) {
 	},
 
 	onClickNavigationHandler:function(event) {
+
+		KO.Config.checkToDestroyTooltip();
 
 		event.preventDefault();
 		var clickedItem = $(this);
