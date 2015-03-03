@@ -295,10 +295,13 @@ Function.prototype.throttle = function (milliseconds) {
 
 		createTooltipArrowKeys:function() { 
 
-			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
-			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
-			
+			if( KO.Config.verticalMode===false ) {
+				KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
+				KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
+			}
 		},
+
+
 		checkToDestroyTooltip:function() {
 
 			if(KO.Config.tooltipOnBoolean) {
@@ -1523,9 +1526,18 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
 				KO.Config.camera.position.z = 1000;
 				KO.Config.scene3D.add(KO.Config.camera);
-				KO.Config.renderer = new THREE.WebGLRenderer();
+				KO.Config.renderer = KO.Config.selectProperRendender();
+				
+
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
 				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
+
+			},
+
+			selectProperRendender:function( ) { 
+
+				var renderSelect = new THREE.WebGLRenderer();
+				return renderSelect
 
 			},
 
