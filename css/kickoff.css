@@ -2866,10 +2866,10 @@ textarea[contenteditable] {
   -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
+  -webkit-transform: rotate(0deg) scale(0.8);
   -moz-transform: rotate(0deg) scale(0.8);
   -ms-transform: rotate(0deg) scale(0.8);
   transform: rotate(0deg) scale(0.8);
-  -webkit-transform: rotate(0deg) scale(0.8);
   display: inline-block;
 }
 .more-info-toggle.active {
@@ -3349,10 +3349,10 @@ textarea[contenteditable] {
     left: 50%;
     top: 2em;
     background: #FFF;
-    -webkit-transform: skew(-20deg) rotate(45deg) translateX(-100%);
-    -moz-transform: rotate(45deg) translateX(-100%) skew(-20deg);
-    -ms-transform: rotate(45deg) translateX(-100%) skew(-20deg);
-    transform: rotate(45deg) translateX(-100%) skew(-20deg);
+    -webkit-transform: rotate(45deg) translateX(-100%);
+    -moz-transform: rotate(45deg) translateX(-100%);
+    -ms-transform: rotate(45deg) translateX(-100%);
+    transform: rotate(45deg) translateX(-100%);
     text-align: center;
   }
   .nav-content li a {

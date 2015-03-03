@@ -1210,15 +1210,15 @@ $iconsSize : 14px;
 			&.romboid:before {
 				content: '';
 				position: absolute;
-				width:12px; 
-			    height:12px; 
-			    border:1px solid #000; 
-			    left:50%;
-			    top:2em;
-			    background:#FFF;
-			    -webkit-transform: skew(-20deg) rotate(45deg)  translateX(-100%);
-			    transform: rotate(45deg) translateX(-100%) skew(-20deg);
+				width:12px;
+				height:12px;
+				border:1px solid #000;
+				left:50%;
+				top:2em;
+				background:#FFF;
+				transform: rotate(45deg) translateX(-100%);
 				text-align: center;
+
 
 			}
 
