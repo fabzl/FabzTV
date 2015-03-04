@@ -608,11 +608,14 @@ Function.prototype.throttle = function (milliseconds) {
 					
 					if(i === KO.Config.currentSection) {
 
+						$(KO.Config.$navigation[i]).addClass("romboid");
 						$(KO.Config.$navigation[i]).parent().addClass("romboid");
+
 					}else {
 					
 						if ($(KO.Config.$navigation[i]).parent().hasClass("romboid")) {
 
+							$(KO.Config.$navigation[i]).removeClass("romboid");
 							$(KO.Config.$navigation[i]).parent().removeClass("romboid");
 						}
 					}
@@ -1523,10 +1526,27 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
 				KO.Config.camera.position.z = 1000;
 				KO.Config.scene3D.add(KO.Config.camera);
-				KO.Config.renderer = new THREE.WebGLRenderer();
+
+				// we check if webGl rendender otherwise we go for canvas Renderer
+				KO.Config.renderer = KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+				console.log("renderer :", KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer());
+
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
 				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
 
+			},
+
+			webglAvailable:function() {
+
+				try {
+					var canvas = document.createElement("canvas");
+					return !!
+					window.WebGLRenderingContext && 
+					(canvas.getContext("webgl") || 
+					canvas.getContext("experimental-webgl"));
+			} catch(e) {
+					return false;
+				}
 			},
 
 			createFloatingClientLogo:function() { 
