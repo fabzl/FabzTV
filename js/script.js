@@ -329,7 +329,7 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 		destroyTooltipArrows:function () {
 
-			
+
 			//	console.log("destroy tooltip arrowKeys");
 			var tooltip = KO.Config.$wrapper.find(".tooltip-arrowKeys");
 			var animation = "tooltipLogoAnimationDesktopOut";
@@ -348,11 +348,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 				if(!KO.Config.verticalMode && KO.Config.arrowKeysInfoBoolean) {
 
-	
 				KO.Config.arrowKeysInfoBoolean = false;
 
 				var arrowKeysInfo = $( ".arrow-keys-info");
-				var animation = "tooltipKeysInfoAnimationOut";
+				var animation = "tooltipArrowKeysAnimationDesktopOut";
 
 				arrowKeysInfo.bind('oanimationend animationend webkitAnimationEnd', function(){
 					arrowKeysInfo.remove();

@@ -141,7 +141,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 // tooltip log
 
-.tooltip { 
+.tooltip {
 
 	text-align:center;
 	background-color:$backgroundColourTooltip;
@@ -160,12 +160,12 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	@include respond-min($breakpoint-mid) {
 		left:15%;
-	   	animation: tooltipLogoAnimationDesktopIn 1s 1;
+		animation: tooltipLogoAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translateY(-50%);
 		transition-delay: 5s;
 	}
 
-	&.tooltip:after { 
+	&.tooltip:after {
 
 		bottom: 100%;
 		left: 50%;
@@ -192,11 +192,14 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	}
 }
 
+
+///////////// tooltip Logo
+
 @keyframes tooltipLogoAnimationMobileIn {
 
 	0% {
 
-		transform: translateY(0) translateX(100%);
+		transform: translateY(150%) translateX(-50%);
 		opacity: 0;
 	}
 	100% {
@@ -216,7 +219,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	}
 	100% {
 	
-		transform: translateY(0) translateX(100%);
+		transform: translateY(150%) translateX(-50%);
 		opacity: 0;
 	}
  
@@ -247,6 +250,38 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	}
 }
 
+
+///////////// tooltip Arrowkeys
+
+
+
+@keyframes tooltipArrowKeysAnimationDesktopIn {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(-100%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 1;
+	}
+}
+
+
+@keyframes tooltipArrowKeysAnimationDesktopOut {
+
+	0% {
+		transform: translateX($triangleSizeTooltip) translateY(0%);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX($triangleSizeTooltip) translateY(-100%);
+		opacity: 0;
+	}
+}
+
+
+
 /// tooltip-arrowKeys
 
 
@@ -262,15 +297,12 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	color:#FFF;
 	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 	left:50%;
-   	animation: tooltipLogoAnimationMobileIn 1s 1;
-
-	
 	bottom: 0;
 
 	@include respond-min($breakpoint-mid) {
 		left:15%;
-	   	animation: tooltipLogoAnimationDesktopIn 1s 1;
-		transform: translateX($triangleSizeTooltip);
+		animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
+		transform: translateX($triangleSizeTooltip) translate(0);
 		transition-delay: 6s;
 	}
 
@@ -338,30 +370,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 
 
-
-@keyframes tooltiparrowKeysAnimationDesktopIn {
-
-	0% {
-		transform: translateX($triangleSizeTooltip) translateY(0%);
-		opacity: 0;
-	}
-	100% {
-		transform: translateX($triangleSizeTooltip) translateY(-50%);
-		opacity: 1;
-	}
-}
-
-@keyframes tooltipLogoAnimationDesktopOut {
-
-	0% {
-		transform: translateX($triangleSizeTooltip) translateY(-50%);
-		opacity: 1;
-	}
-	100% {
-		transform: translateX($triangleSizeTooltip) translateY(0%);
-		opacity: 0;
-	}
-}
 
  /// dynamic images for picture fill js .
 
@@ -954,8 +962,7 @@ $iconsSize : 14px;
 
 		&:hover {
 
-			transform: scale(1) translateY(-50%) ;	
-			
+			transform: scale(1) translateY(-50%) ;
 		}
 	}
 }
@@ -1250,9 +1257,16 @@ $iconsSize : 14px;
 						pointer-events: none;
 						margin-top:0;
 						line-height: 95%;
+						//no select
+						-webkit-touch-callout: none;
+						-webkit-user-select: none;
+						-khtml-user-select: none;
+						-moz-user-select: none;
+						-ms-user-select: none;
+						user-select: none;
 					}
 
-					&:hover { 
+					&:hover {
 						padding-left: 20%;
 						letter-spacing:2px;
 						font-size:1.5em;
