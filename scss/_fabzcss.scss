@@ -755,9 +755,9 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 .more-info-toggle { 
 
 	min-width:60px;
+	max-width:60px;
 	margin: 0 auto;
-   	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
-	-webkit-transform: rotate(0deg) scale(.8);
+	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 	transform: rotate(0deg) scale(.8);
 	display:inline-block;
 
@@ -791,12 +791,12 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	@include respond-min($breakpoint-mid) {
 
-	 	width:80%;
-	 	position: relative;
-	 	top: 40%;
-	 	left: 50%;
-	 	transform: translateY(-50%) translateX(-50%);
-	 }
+		width:80%;
+		position: relative;
+		top: 40%;
+		left: 50%;
+		transform: translateY(-50%) translateX(-50%);
+	}
 }
 
 .description-link {
