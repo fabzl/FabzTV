@@ -3537,7 +3537,18 @@ textarea[contenteditable] {
 
 .loader-description {
   text-align: center;
-  margin-top: 35%;
+}
+
+.loader-container {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
 }
 
 .loader {
@@ -3545,11 +3556,6 @@ textarea[contenteditable] {
   width: 120px;
   position: relative;
   margin: auto;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 .loader .spin {
   height: 120px;

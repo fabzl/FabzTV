@@ -1440,7 +1440,17 @@ $iconsSize : 14px;
 .loader-description {
 
 	text-align:center;
-	margin-top: 35%;
+}
+
+.loader-container {
+
+	position:absolute;
+	margin: auto;
+	top: 50%;
+	left: 50%;
+	text-align:center;
+	transform: translateY(-50%) translateX(-50%);
+
 }
 
 .loader {
@@ -1449,8 +1459,6 @@ $iconsSize : 14px;
 	width:120px;
 	position:relative;
 	margin: auto;
-	top: 50%;
-	transform: translateY(-50%);
 
 	.spin {
 
