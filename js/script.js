@@ -129,43 +129,6 @@ Function.prototype.throttle = function (milliseconds) {
 // Create a closure to maintain scope
 ;(function(KO, $) {
 
-		//vimeo controllers (they need to be outside the closure to work )
-		var $iframe = $('.vimeo-video');
-		var $player = $($iframe);
-		var url = window.location.protocol + $player.attr('src').split('?')[0];
-		var $status = $('.status');
-
-// $(function() {
-//     var iframe = $('#player1')[0];
-//     var player = $f(iframe);
-//     var status = $('.status');
-
-//     // When the player is ready, add listeners for pause, finish, and playProgress
-//     player.addEvent('ready', function() {
-//         status.text('ready');
-        
-//         player.addEvent('pause', onPause);
-//         player.addEvent('finish', onFinish);
-//         player.addEvent('playProgress', onPlayProgress);
-//     });
-
-//     // Call the API when a button is pressed
-//     $('button').bind('click', function() {
-//         player.api($(this).text().toLowerCase());
-//     });
-
-//     function onPause(id) {
-//         status.text('paused');
-//     }
-
-//     function onFinish(id) {
-//         status.text('finished');
-//     }
-
-//     function onPlayProgress(data, id) {
-//         status.text(data.seconds + 's played');
-//     }
-// });
 
 
 	$(function() {
@@ -260,6 +223,13 @@ Function.prototype.throttle = function (milliseconds) {
 		stats:{},
 		clientsLogoGroup:{},
 
+
+		// vimeo obj
+
+		$player : $('.vimeo-video'),
+		url : window.location.protocol + $('.vimeo-video').attr('src').split('?')[0],
+
+
 		init : function () {
 
 			console.debug('Fabz.tv is running on clouds');
@@ -273,6 +243,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
+			KO.Config.initVimeoFroogaloop();
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
@@ -291,7 +262,87 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.fadeOutLoader();
 
 		},
+//vimeo stuff
 
+		initVimeoFroogaloop:function () { 
+
+
+			console.log("vimeoinit");
+			// Listen for messages from the player
+			if (window.addEventListener){
+
+				window.addEventListener('message', KO.Config.onMessageReceived, false);
+			}
+			else {
+				window.attachEvent('onmessage', KO.Config.onMessageReceived, false);
+			}
+
+			// Call the API when a button is pressed
+			$('fabz-logo-romboid-container').on('click', function() {
+				//	KO.Config.post($(this).text().toLowerCase());
+					KO.Config.post("pause");
+			});
+		},
+
+		// Handle messages received from the player
+		onMessageReceived:function (e) {
+			var data = JSON.parse(e.data);
+
+			switch (data.event) {
+				case 'ready':
+					KO.Config.onReady();
+					break;
+
+				case 'playProgress':
+					KO.Config.onPlayProgress(data.data);
+					break;
+
+				case 'pause':
+					KO.Config.onPause();
+					break;
+
+				case 'finish':
+					KO.Config.onFinish();
+					break;
+			}
+		},
+
+		// Helper function for sending a message to the player
+		post:function (action, value) {
+
+			console.log("posting : ", action, value); 
+			var data = {
+				method: action
+			};
+
+			if (value) {
+				data.value = value;
+			}
+
+			var message = JSON.stringify(data);
+			KO.Config.$player[0].contentWindow.postMessage(data, KO.Config.url);
+		},
+
+		onReady:function() {
+
+			KO.Config.post('addEventListener', 'pause');
+			KO.Config.post('addEventListener', 'finish');
+			KO.Config.post('addEventListener', 'playProgress');
+		},
+
+		onPause:function() {
+			console.log("paused");
+		},
+
+		onFinish:function () {
+			console.log("finished");
+		},
+
+		onPlayProgress:function (data) {
+			console.log(data.seconds + 's played');
+		},
+
+// end vimeo stuff
 		displayTooltips: function () { 
 
 			// if the section is home display tooltip
@@ -706,26 +757,26 @@ Function.prototype.throttle = function (milliseconds) {
 		// pause vimeo player 
 		stopPlayingvideos: function() { 
 			// post pause action
-			KO.Config.post("pause");
-			console.log("stop video");
+		//	KO.Config.post("pause");
+		//	console.log("stop video");
 		},
 
 
-		// Helper function for sending a message to the vimeo player
-		post:function (action, value) {
+		// // Helper function for sending a message to the vimeo player
+		// post:function (action, value) {
 
-			var data = {
-				method: action
-			};
+		// 	var data = {
+		// 		method: action
+		// 	};
 
-			if (value) {
-				data.value = value;
-			}
+		// 	if (value) {
+		// 		data.value = value;
+		// 	}
 
-			console.log(data);
-			var message = JSON.stringify(data);
-			$player[0].contentWindow.postMessage(data, url);
-		},
+		// 	console.log(data);
+		// 	var message = JSON.stringify(data);
+		// 	$player[0].contentWindow.postMessage(data, url);
+		// },
 
 		onLostfocusManager:function () { 
 
@@ -1564,8 +1615,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 				// we check if webGl rendender otherwise we go for canvas Renderer
 				KO.Config.renderer = KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-				console.log("renderer :", KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer());
-
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
 				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
 
