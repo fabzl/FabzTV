@@ -228,6 +228,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		$player : $('.vimeo-video'),
 		url : window.location.protocol + $('.vimeo-video').attr('src').split('?')[0],
+		vimeoPlayersArray  : [],
 
 
 		init : function () {
@@ -247,7 +248,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
-			KO.Config.arrowControl();
+			KO.Config.arrowControl($(document));
 			//KO.Config.clickToMove();
 			KO.Config.reEvaluteImages();
 			KO.Config.detectingHistorySupport();
@@ -276,17 +277,17 @@ Function.prototype.throttle = function (milliseconds) {
 			else {
 				window.attachEvent('onmessage', KO.Config.onMessageReceived, false);
 			}
-
-			// Call the API when a button is pressed
-			$('fabz-logo-romboid-container').on('click', function() {
-				//	KO.Config.post($(this).text().toLowerCase());
-					KO.Config.post("pause");
-			});
 		},
 
 		// Handle messages received from the player
 		onMessageReceived:function (e) {
+
+	//		console.dir(e);
 			var data = JSON.parse(e.data);
+		//	console.dir(data);
+			KO.Config.vimeoPlayersArray.push(data.player_id.toString());
+		//	console.log(KO.Config.vimeoPlayersArray);
+
 
 			switch (data.event) {
 				case 'ready':
@@ -320,7 +321,17 @@ Function.prototype.throttle = function (milliseconds) {
 			}
 
 			var message = JSON.stringify(data);
-			KO.Config.$player[0].contentWindow.postMessage(data, KO.Config.url);
+
+			for (var i= 0 ; i < KO.Config.vimeoPlayersArray.length ; i ++ ) {
+
+				console.log(KO.Config.vimeoPlayersArray[i].attr('src'),i);
+
+			//	var url = window.location.protocol + KO.Config.vimeoPlayersArray[i].attr('src').split('?')[0];
+
+				var player = $(KO.Config.vimeoPlayersArray[i]);
+			//	player.contentWindow.postMessage(data, url);
+				console.log(i,KO.Config.vimeoPlayersArray[i]);
+			}
 		},
 
 		onReady:function() {
@@ -1042,10 +1053,10 @@ Function.prototype.throttle = function (milliseconds) {
 			console.log("animate thissss completed ");
 		},
 
-	arrowControl: function () {
+	arrowControl: function (obj) {
 
 		// key listener
-		$(document).keydown(function(e) {
+		obj.keydown(function(e) {
 
 		//	console.log("KEY DOWN");
 			switch(e.which) {
@@ -1232,7 +1243,6 @@ Function.prototype.throttle = function (milliseconds) {
 		// if not the value will be 0 so nothing is changes
 			KO.Config.canvasFillValue = 0;
 		}
-
 
 		if(KO.Config.verticalMode===true) {
 			KO.Config.$socialIconsContainer.hide();
