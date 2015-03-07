@@ -24,17 +24,16 @@ module.exports = function (grunt) {
 				distFile : 'app.min.js',
 
 				// <%=config.js.fileList%>
-				fileList : 
-				[
+				fileList : [
 					'js/libs/jquery-2.1.1.js',
 					'js/helpers/console.js',
 					'js/libs/picturefill.js',
+					'js/script.js',
 					'js/libs/snap.svg-min.js',
 					'js/libs/jquery.detect_swipe.js',
-					'http://a.vimeocdn.com/js/froogaloop2.min.js',
-					'js/libs/three.min.js',
-					'js/script.js',
-				]
+					// 'http://a.vimeocdn.com/js/froogaloop2.min.js',
+					 'js/libs/three.min.js',
+									]
 			}
 		},
 
