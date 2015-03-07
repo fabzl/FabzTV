@@ -244,7 +244,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
-			KO.Config.initVimeoFroogaloop();
+			//KO.Config.initVimeoFroogaloop();
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
@@ -390,10 +390,13 @@ Function.prototype.throttle = function (milliseconds) {
 
 		createTooltipArrowKeys:function() { 
 
-			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
-			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
-			
+			if( KO.Config.verticalMode===false ) {
+				KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
+				KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
+			}
 		},
+
+
 		checkToDestroyTooltip:function() {
 
 			if(KO.Config.tooltipOnBoolean) {
@@ -1514,9 +1517,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.verticalMode = false;
 		}
 
-
 //		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
-
 //		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
 	},
@@ -1622,7 +1623,8 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
 				KO.Config.camera.position.z = 1000;
 				KO.Config.scene3D.add(KO.Config.camera);
-
+		// 		KO.Config.renderer = KO.Config.selectProperRendender();
+				
 				// we check if webGl rendender otherwise we go for canvas Renderer
 				KO.Config.renderer = KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
