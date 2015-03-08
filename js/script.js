@@ -223,13 +223,6 @@ Function.prototype.throttle = function (milliseconds) {
 		stats:{},
 		clientsLogoGroup:{},
 
-
-		// vimeo obj
-
-		$player : $('.vimeo-video'),
-		url : window.location.protocol + $('.vimeo-video').attr('src').split('?')[0],
-
-
 		init : function () {
 
 			console.debug('Fabz.tv is running on clouds');
@@ -265,7 +258,8 @@ Function.prototype.throttle = function (milliseconds) {
 //vimeo stuff
 
 		pauseAllVideos:function(){
-		    $('vimeo-video').each(function(elm){
+			console.log("pauseAllVideos");
+		    $('.vimeo-video').each(function(elm){
 		        if($(this).attr('src').match(/vimeo/ig))
 		            $(this)[0].contentWindow.postMessage(JSON.stringify({ method: 'pause' }), $(this).attr('src').split('?')[0]);
 		    });
@@ -293,19 +287,12 @@ Function.prototype.throttle = function (milliseconds) {
 			else {
 				window.attachEvent('onmessage', KO.Config.onMessageReceived, false);
 			}
-
-			// Call the API when a button is pressed
-			$('fabz-logo-romboid-container').on('click', function() {
-				//	KO.Config.post($(this).text().toLowerCase());
-		//			KO.Config.post("pause");
-
-					KO.Config.pauseAllVideos();
-			});
 		},
 
 		// Handle messages received from the player
 		onMessageReceived:function (e) {
 			var data = JSON.parse(e.data);
+			console.dir(data);
 
 			switch (data.event) {
 				case 'ready':
@@ -344,9 +331,9 @@ Function.prototype.throttle = function (milliseconds) {
 
 		onReady:function() {
 
-			KO.Config.post('addEventListener', 'pause');
-			KO.Config.post('addEventListener', 'finish');
-			KO.Config.post('addEventListener', 'playProgress');
+		///	KO.Config.post('addEventListener', 'pause');
+		//	KO.Config.post('addEventListener', 'finish');
+		//	KO.Config.post('addEventListener', 'playProgress');
 		},
 
 		onPause:function() {
@@ -1115,6 +1102,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 		updateArrowsVisibility:function () {
 
+
+		
 		//	this hide and show the arrows accordingly 
 			if(KO.Config.currentSection === 0) {
 				KO.Config.displayObjectHelper(KO.Config.sideLogo.arrows.topA,false,.5);
