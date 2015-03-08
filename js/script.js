@@ -129,11 +129,7 @@ Function.prototype.throttle = function (milliseconds) {
 // Create a closure to maintain scope
 ;(function(KO, $) {
 
-		//vimeo controllers (they need to be outside the closure to work )
-		var $iframe = $('.vimeo-video');
-		var $player = $($iframe);
-		var url = window.location.protocol + $player.attr('src').split('?')[0];
-		var $status = $('.status');
+
 
 	$(function() {
 
@@ -227,6 +223,13 @@ Function.prototype.throttle = function (milliseconds) {
 		stats:{},
 		clientsLogoGroup:{},
 
+
+		// vimeo obj
+
+		$player : $('.vimeo-video'),
+		url : window.location.protocol + $('.vimeo-video').attr('src').split('?')[0],
+
+
 		init : function () {
 
 			console.debug('Fabz.tv is running on clouds');
@@ -240,10 +243,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
-<<<<<<< HEAD
-			//KO.Config.initVimeoFroogaloop();
-=======
->>>>>>> 1e0223aede97ab75c8024f60e28ad3b1fd8fc0d3
+			KO.Config.initVimeoFroogaloop();
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
@@ -262,7 +262,87 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.fadeOutLoader();
 
 		},
+//vimeo stuff
 
+		initVimeoFroogaloop:function () { 
+
+
+			console.log("vimeoinit");
+			// Listen for messages from the player
+			if (window.addEventListener){
+
+				window.addEventListener('message', KO.Config.onMessageReceived, false);
+			}
+			else {
+				window.attachEvent('onmessage', KO.Config.onMessageReceived, false);
+			}
+
+			// Call the API when a button is pressed
+			$('fabz-logo-romboid-container').on('click', function() {
+				//	KO.Config.post($(this).text().toLowerCase());
+					KO.Config.post("pause");
+			});
+		},
+
+		// Handle messages received from the player
+		onMessageReceived:function (e) {
+			var data = JSON.parse(e.data);
+
+			switch (data.event) {
+				case 'ready':
+					KO.Config.onReady();
+					break;
+
+				case 'playProgress':
+					KO.Config.onPlayProgress(data.data);
+					break;
+
+				case 'pause':
+					KO.Config.onPause();
+					break;
+
+				case 'finish':
+					KO.Config.onFinish();
+					break;
+			}
+		},
+
+		// Helper function for sending a message to the player
+		post:function (action, value) {
+
+			console.log("posting : ", action, value); 
+			var data = {
+				method: action
+			};
+
+			if (value) {
+				data.value = value;
+			}
+
+			var message = JSON.stringify(data);
+			KO.Config.$player[0].contentWindow.postMessage(data, KO.Config.url);
+		},
+
+		onReady:function() {
+
+			KO.Config.post('addEventListener', 'pause');
+			KO.Config.post('addEventListener', 'finish');
+			KO.Config.post('addEventListener', 'playProgress');
+		},
+
+		onPause:function() {
+			console.log("paused");
+		},
+
+		onFinish:function () {
+			console.log("finished");
+		},
+
+		onPlayProgress:function (data) {
+			console.log(data.seconds + 's played');
+		},
+
+// end vimeo stuff
 		displayTooltips: function () { 
 
 			// if the section is home display tooltip
@@ -299,13 +379,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 		createTooltipArrowKeys:function() { 
 
-			if( KO.Config.verticalMode===false ) {
-				KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
-				KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
-			}
+			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
+			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
+			
 		},
-
-
 		checkToDestroyTooltip:function() {
 
 			if(KO.Config.tooltipOnBoolean) {
@@ -336,7 +413,7 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 		destroyTooltipArrows:function () {
 
-			
+
 			//	console.log("destroy tooltip arrowKeys");
 			var tooltip = KO.Config.$wrapper.find(".tooltip-arrowKeys");
 			var animation = "tooltipLogoAnimationDesktopOut";
@@ -355,11 +432,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 				if(!KO.Config.verticalMode && KO.Config.arrowKeysInfoBoolean) {
 
-	
 				KO.Config.arrowKeysInfoBoolean = false;
 
 				var arrowKeysInfo = $( ".arrow-keys-info");
-				var animation = "tooltipKeysInfoAnimationOut";
+				var animation = "tooltipArrowKeysAnimationDesktopOut";
 
 				arrowKeysInfo.bind('oanimationend animationend webkitAnimationEnd', function(){
 					arrowKeysInfo.remove();
@@ -615,11 +691,14 @@ Function.prototype.throttle = function (milliseconds) {
 					
 					if(i === KO.Config.currentSection) {
 
+						$(KO.Config.$navigation[i]).addClass("romboid");
 						$(KO.Config.$navigation[i]).parent().addClass("romboid");
+
 					}else {
 					
 						if ($(KO.Config.$navigation[i]).parent().hasClass("romboid")) {
 
+							$(KO.Config.$navigation[i]).removeClass("romboid");
 							$(KO.Config.$navigation[i]).parent().removeClass("romboid");
 						}
 					}
@@ -678,23 +757,26 @@ Function.prototype.throttle = function (milliseconds) {
 		// pause vimeo player 
 		stopPlayingvideos: function() { 
 			// post pause action
-			KO.Config.post("pause");
+		//	KO.Config.post("pause");
+		//	console.log("stop video");
 		},
 
 
-		// Helper function for sending a message to the vimeo player
-		post:function (action, value) {
-			var data = {
-				method: action
-			};
+		// // Helper function for sending a message to the vimeo player
+		// post:function (action, value) {
 
-			if (value) {
-				data.value = value;
-			}
+		// 	var data = {
+		// 		method: action
+		// 	};
 
-			var message = JSON.stringify(data);
-			$player[0].contentWindow.postMessage(data, url);
-		},
+		// 	if (value) {
+		// 		data.value = value;
+		// 	}
+
+		// 	console.log(data);
+		// 	var message = JSON.stringify(data);
+		// 	$player[0].contentWindow.postMessage(data, url);
+		// },
 
 		onLostfocusManager:function () { 
 
@@ -1422,7 +1504,9 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.verticalMode = false;
 		}
 
+
 //		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
+
 //		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
 	},
@@ -1528,26 +1612,25 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera = new THREE.PerspectiveCamera(75,KO.Config.$window.stageW/KO.Config.$window.stageH, 1, 10000);				
 				KO.Config.camera.position.z = 1000;
 				KO.Config.scene3D.add(KO.Config.camera);
-<<<<<<< HEAD
-		// 		KO.Config.renderer = KO.Config.selectProperRendender();
-				
+
 				// we check if webGl rendender otherwise we go for canvas Renderer
 				KO.Config.renderer = KO.Config.webglAvailable() ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-=======
-				KO.Config.renderer = KO.Config.selectProperRendender();
-				
-
->>>>>>> 1e0223aede97ab75c8024f60e28ad3b1fd8fc0d3
 				KO.Config.renderer.setSize(KO.Config.$window.stageW,KO.Config.$window.stageH);
 				document.querySelector(".clients3dcontainer").appendChild(KO.Config.renderer.domElement);
 
 			},
 
-			selectProperRendender:function( ) { 
+			webglAvailable:function() {
 
-				var renderSelect = new THREE.WebGLRenderer();
-				return renderSelect
-
+				try {
+					var canvas = document.createElement("canvas");
+					return !!
+					window.WebGLRenderingContext && 
+					(canvas.getContext("webgl") || 
+					canvas.getContext("experimental-webgl"));
+			} catch(e) {
+					return false;
+				}
 			},
 
 			createFloatingClientLogo:function() { 
