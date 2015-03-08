@@ -264,6 +264,23 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 //vimeo stuff
 
+		pauseAllVideos:function(){
+		    $('vimeo-video').each(function(elm){
+		        if($(this).attr('src').match(/vimeo/ig))
+		            $(this)[0].contentWindow.postMessage(JSON.stringify({ method: 'pause' }), $(this).attr('src').split('?')[0]);
+		    });
+		},
+
+		//uses CSS selector id
+		playVimeoVideo:function (id){
+		    $(id)[0].contentWindow.postMessage(JSON.stringify({ method: 'play' }), $(id).attr('src').split('?')[0]);
+		},
+
+
+
+
+
+
 		initVimeoFroogaloop:function () { 
 
 
@@ -280,7 +297,9 @@ Function.prototype.throttle = function (milliseconds) {
 			// Call the API when a button is pressed
 			$('fabz-logo-romboid-container').on('click', function() {
 				//	KO.Config.post($(this).text().toLowerCase());
-					KO.Config.post("pause");
+		//			KO.Config.post("pause");
+
+					KO.Config.pauseAllVideos();
 			});
 		},
 
