@@ -28,7 +28,7 @@ while(particleCount--){
   ></div>';
 }
 
-$('body').append(particleString);    
+$('body').append(particleString);
 var particles = $('.client-logo');
 
 
@@ -206,7 +206,7 @@ Function.prototype.throttle = function (milliseconds) {
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
-		ScrollerSpeed : 1000,
+		ScrollerSpeed : 350,
 		totalLogoClientsCount:54,
 		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
@@ -473,10 +473,10 @@ Function.prototype.throttle = function (milliseconds) {
 		swipeControl:function ()  {	
 
 			if(KO.Config.verticalMode) { 
-			    KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
-				                .on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
-				                .on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
-				                .on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
+				KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
+										.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
+										.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
+										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
 
@@ -1161,7 +1161,6 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.moveContentByIndexVertically(KO.Config.currentSection - direction ); 
 			}
 		}
-
 		if(direction != 1 ) {
 
 			//		console.log("moving down");
@@ -1464,6 +1463,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 	moveContentByIndexHorizontally:function(index) { 
 
+
 		//	console.log("move Obj by index horzontally", index);
 		var newPos = -((KO.Config.$window.stageW+KO.Config.canvasFillValue) * index);
 		//	KO.Config.$sections[currentSection].currentArticle.css("left",newPos);
@@ -1531,35 +1531,45 @@ Function.prototype.throttle = function (milliseconds) {
 		return value;
 	},
 
-	 scrollerControl:function () {
+	scrollerControl:function () {
 
-		$(window).bind('mousewheel', function(event) {
+		$(window).on('mousewheel', KO.Config.onScrollWheel); 
+	}.debounce(140),
+
+	onScrollWheel:function (event) {
+
+		$(window).off('mousewheel', KO.Config.onScrollWheel);
 
 			if (event.originalEvent.wheelDelta >= 0) {
-				//	console.log('Scroll up')
 				//move content up
-				KO.Config.scrollRestrictor(1);
+					KO.Config.scrollRestrictor(1);
 			} else {
-				//	console.log('Scroll down');
 				//move content down
-				KO.Config.scrollRestrictor(-1);
+					KO.Config.scrollRestrictor(-1);
 			}
-		});
+
+			KO.Config.scrollerFlag = false;
 	},
 
 	scrollRestrictor:function (direction) { 
 
-		if(KO.Config.scrollerFlag) { 
+	//	console.log("scrollRestrictor");
 
-			KO.Config.scrollerFlag = false;
-
+		if(	KO.Config.scrollerFlag ) { 
 			KO.Config.moveContentHorizontally(direction);
-			var timeRestictionInterval =  setInterval( function(){
-				KO.Config.scrollerFlag = true;
+
+		var timeRestictionInterval = setInterval(function(){
+
 				clearInterval(timeRestictionInterval);
+				KO.Config.scrollerControl();
+			//	console.log("clear interval");
+				KO.Config.scrollerFlag = true;
+
 				}, KO.Config.scrollerSpeed);
-			}
+
+		}
 	},
+
 
 	clickToMove:function() {
 
@@ -1573,12 +1583,11 @@ Function.prototype.throttle = function (milliseconds) {
 
 				var clickValueY = event.pageY ;
 
-				if(clickValueY < (KO.Config.$window.stageH)*.30 ) { 
-
+				if(clickValueY < (KO.Config.$window.stageH)*.30 ) {
 					//	console.log("move up");
 					KO.Config.moveContentVertically(1);
 
-				}else if(clickValueY > (KO.Config.$window.stageH)*.70 )
+				} else if(clickValueY > (KO.Config.$window.stageH)*.70 )
 				{
 					//	console.log("move down");
 					KO.Config.moveContentVertically(-1);
