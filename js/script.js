@@ -887,7 +887,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.flickr,"https://www.flickr.com/photos/fabzfabzfabz/","_blank"]);
 			
 			KO.Config.socialIcons.instagram = KO.Config.socialIcons.select(".instagram");
-			KO.Config.shareIconsArray.push([KO.Config.socialIcons.instagram,"http://instagram.com/fabzhole/","_blank"]);
+			KO.Config.shareIconsArray.push([KO.Config.socialIcons.instagram,"http://instagram.com/fabzenegger/","_blank"]);
 
 			KO.Config.socialIcons.googlePlus = KO.Config.socialIcons.select(".googlePlus");
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.googlePlus,"https://plus.google.com/+fabianandrade/","_blank"]);
@@ -899,7 +899,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.github,"https://github.com/fabzl","_blank"]);
 
 			KO.Config.socialIcons.linkedIn = KO.Config.socialIcons.select(".linkedIn");
-			KO.Config.shareIconsArray.push([KO.Config.socialIcons.linkedIn,"uk.linkedin.com/pub/fabian-andrade/25/254/1a4/","_blank"]);
+			KO.Config.shareIconsArray.push([KO.Config.socialIcons.linkedIn,"http://uk.linkedin.com/pub/fabian-andrade/25/254/1a4/","_blank"]);
 
 			KO.Config.socialIcons.soundcloud = KO.Config.socialIcons.select(".soundcloud");
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.soundcloud,"https://soundcloud.com/fabz-vs-fabz","_blank"]);

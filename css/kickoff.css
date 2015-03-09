@@ -2837,6 +2837,20 @@ textarea[contenteditable] {
     padding: 0px 10px 0 10px;
   }
 }
+.description-content-holder p.description-tooltip.description-tooltip:before, .description-content-holder a.description-tooltip.description-tooltip:before, .description-content-holder li.description-tooltip.description-tooltip:before {
+  display: inline-block;
+  content: '';
+  -webkit-transform: translateY(15%);
+  -moz-transform: translateY(15%);
+  -ms-transform: translateY(15%);
+  transform: translateY(15%);
+  padding-left: 15px;
+  background-image: url("../img/svg-icons/icon_arrow.svg");
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+  height: 8px;
+  width: 8px;
+}
 .description-content-holder p.description-year, .description-content-holder a.description-year, .description-content-holder li.description-year {
   padding: 2px 5px 0 5px;
   display: block;

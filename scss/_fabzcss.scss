@@ -711,7 +711,18 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			@include respond-min($breakpoint-mid) {
 				padding: 0px 10px 0 10px;
 			}
+			&.description-tooltip:before {
 
+			display: inline-block;
+			content: '';
+			transform: translateY(15%);
+			padding-left: 15px;
+			background-image: url('../img/svg-icons/icon_arrow.svg');
+			background-size: 8px 8px;
+			background-repeat:no-repeat;
+			height:8px;
+			width: 8px;
+			} 
 		}
 		&.description-year {
 
