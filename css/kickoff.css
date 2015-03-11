@@ -3325,7 +3325,8 @@ textarea[contenteditable] {
   font-family: 'denseregular';
   text-align: center;
   background-color: rgba(100, 100, 100, 0.6);
-  width: 100%;
+  width: 90%;
+  padding-left: 10%;
   position: absolute;
   z-index: -10;
 }
@@ -3334,32 +3335,17 @@ textarea[contenteditable] {
 }
 .nav-content li {
   display: none;
-  padding-left: 3%;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   width: auto;
+  text-align: left;
 }
 .nav-content li.romboid {
-  padding-left: auto !important;
-  padding-right: 27%;
   margin: 0 auto;
-  width: 0;
-  height: 100%;
-  border: 25px solid transparent;
-  border-bottom-color: rgba(37, 86, 136, 0.5);
+  width: 100%;
+  height: 60px;
   position: relative;
-  background-color: #FF0000;
-}
-.nav-content li.romboid:after {
-  content: '';
-  position: absolute;
-  left: -50px;
-  top: 25px;
-  width: 0;
-  height: 0;
-  border: 25px solid transparent;
-  border-top-color: rgba(122, 156, 191, 0.5);
-  background-color: #00FF00;
+  text-align: center;
 }
 .nav-content li.romboid:before {
   content: '';
@@ -3368,7 +3354,7 @@ textarea[contenteditable] {
   height: 12px;
   border: 1px solid #000;
   left: 50%;
-  top: 2.3em;
+  top: 2.2em;
   background: #FFF;
   -webkit-transform: rotate(45deg) translateX(-100%);
   -moz-transform: rotate(45deg) translateX(-100%);
@@ -3382,22 +3368,22 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .nav-content li a {
-    background-color: #2FF;
     width: 100%;
-    font-size: 1.3em;
+    color: #DDD;
+    font-size: 1.2em;
     padding-right: 100%;
     z-index: 10;
   }
   .nav-content li a.romboid {
-    z-index: 9;
-    font-size: 1.3em !important;
-    padding-right: 50%;
-    padding-left: 50%;
     letter-spacing: 2px;
     cursor: default;
     pointer-events: none;
-    margin-top: 0;
+    margin: 0 auto;
     line-height: 95%;
+    padding-right: 0;
+    color: #FFF;
+    top: 2.2em;
+    height: 50px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -3408,7 +3394,6 @@ textarea[contenteditable] {
   .nav-content li a:hover {
     padding-left: 20%;
     letter-spacing: 2px;
-    font-size: 1.5em;
     text-align: center;
   }
 }

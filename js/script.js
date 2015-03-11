@@ -1534,7 +1534,7 @@ Function.prototype.throttle = function (milliseconds) {
 	scrollerControl:function () {
 
 		$(window).on('mousewheel', KO.Config.onScrollWheel); 
-	}.debounce(140),
+	}.debounce(500),
 
 	onScrollWheel:function (event) {
 

@@ -1171,7 +1171,8 @@ $iconsSize : 14px;
 	font-family: 'denseregular';
 	text-align: center;
 	background-color: rgba(100, 100, 100, 0.6);
-	width:100%;
+	width:90%;
+	padding-left: 10%;
 	position:absolute;
 	z-index: -10;
 
@@ -1183,40 +1184,30 @@ $iconsSize : 14px;
 	li {
 
 		display: none;
-		padding-left: 3%;
 		transition : all .2s ease-in-out;
 		width:auto;
+		text-align: left;
 
 			&:hover { 
 			//	padding-left: 20%;
 
 			}
 			&.romboid { 
-				padding-left: auto!important;
-				padding-right: 27%;
+
+
+				//padding-right: 50%;
 				margin: 0 auto;
 				// romboid
-				width: 0;
-				height: 100%;
-				border: 25px solid transparent;
-				border-bottom-color:rgba(37,86,136,.5);
+				width: 100%;
+				height: 60px;
+			//	border: 30px solid transparent;
+				//border-bottom-color:rgba(37,86,136,.5);
 				position: relative;
-				background-color:#FF0000;
-	
+			//	background-color:rgba(37,86,136,.5);
+				text-align: center;
 			
 			}
 
-			&.romboid:after {
-				content: '';
-				position: absolute;
-				left: -50px;
-				top: 25px;
-				width: 0;
-				height: 0;
-				border: 25px solid transparent;
-				border-top-color:  rgba(122,156,191,.5);
-				background-color:#00FF00;
-			}
 
 			&.romboid:before {
 				content: '';
@@ -1225,7 +1216,7 @@ $iconsSize : 14px;
 				height:12px;
 				border:1px solid #000;
 				left:50%;
-				top:2.3em;
+				top:2.2em;
 				background:#FFF;
 				transform: rotate(45deg) translateX(-100%);
 				text-align: center;
@@ -1240,26 +1231,29 @@ $iconsSize : 14px;
 				transition : all .2s ease-in-out;
 
 				@include respond-min($breakpoint-mid) {
-					background-color:#2FF;
 
 					width:100%;
-
-					font-size:1.3em;
+					color:#DDD;
+					font-size:1.2em;
+					//
 					padding-right: 100%;
 					z-index: 10;
 
-					&.romboid {
 
-						z-index: 9;
-						font-size:1.3em!important;
-						padding-right: 50%;
-						padding-left: 50%;
+					&.romboid {
+						// selected nav state
+						//padding-right: 50%;
+						//padding-left: 50%;
 						letter-spacing:2px;
 						cursor: default;
 						pointer-events: none;
-						margin-top:0;
+						margin:0 auto;
 						line-height: 95%;
 						//no select
+						padding-right: 0;
+						color:#FFF;
+						top:2.2em;
+						height: 50px;
 						-webkit-touch-callout: none;
 						-webkit-user-select: none;
 						-khtml-user-select: none;
@@ -1271,7 +1265,6 @@ $iconsSize : 14px;
 					&:hover {
 						padding-left: 20%;
 						letter-spacing:2px;
-						font-size:1.5em;
 						text-align: center;
 					}
 				}
