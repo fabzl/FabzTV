@@ -122,10 +122,19 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	border:solid #FFF 20px;
 	line-height:90%;
 
+	@include respond-min($breakpoint-mid*.5) {
+		font-size:1.8em;
+		padding:11px;
+	}
+
+
 	@include respond-min($breakpoint-mid) {
 		font-size:2.2em;
 		padding:11px;
 	}
+
+
+
 
 	&.main-description:after {
 
@@ -1171,11 +1180,15 @@ $iconsSize : 14px;
 	font-family: 'denseregular';
 	text-align: center;
 	background-color: rgba(100, 100, 100, 0.6);
-	width:90%;
+	width:100%;
 	padding-left: 10%;
 	position:absolute;
 	z-index: -10;
 
+	@include respond-min($breakpoint-mid) {
+
+		width:90%;
+	}
 	ol {
 
 		position: relative;
@@ -1210,17 +1223,20 @@ $iconsSize : 14px;
 
 
 			&.romboid:before {
-				content: '';
-				position: absolute;
-				width:12px;
-				height:12px;
-				border:1px solid #000;
-				left:50%;
-				top:2.2em;
-				background:#FFF;
-				transform: rotate(45deg) translateX(-100%);
-				text-align: center;
 
+				display:none;
+				@include respond-min($breakpoint-mid) {
+					content: '';
+					position: absolute;
+					width:12px;
+					height:12px;
+					border:1px solid #000;
+					left:50%;
+					top:2.2em;
+					background:#FFF;
+					transform: rotate(45deg) translateX(-100%);
+					text-align: center;
+				}
 
 			}
 
@@ -1241,25 +1257,31 @@ $iconsSize : 14px;
 
 
 					&.romboid {
-						// selected nav state
-						//padding-right: 50%;
-						//padding-left: 50%;
-						letter-spacing:2px;
-						cursor: default;
-						pointer-events: none;
-						margin:0 auto;
-						line-height: 95%;
-						//no select
-						padding-right: 0;
-						color:#FFF;
-						top:2.2em;
-						height: 50px;
-						-webkit-touch-callout: none;
-						-webkit-user-select: none;
-						-khtml-user-select: none;
-						-moz-user-select: none;
-						-ms-user-select: none;
-						user-select: none;
+
+					display:none;
+
+						@include respond-min($breakpoint-mid) {
+							// selected nav state
+							//padding-right: 50%;
+							//padding-left: 50%;
+							letter-spacing:2px;
+							cursor: default;
+							pointer-events: none;
+							margin:0 auto;
+							line-height: 95%;
+							//no select
+							padding-right: 0;
+							color:#FFF;
+							top:2.2em;
+							height: 50px;
+							-webkit-touch-callout: none;
+							-webkit-user-select: none;
+							-khtml-user-select: none;
+							-moz-user-select: none;
+							-ms-user-select: none;
+							user-select: none;
+
+						}
 					}
 
 					&:hover {

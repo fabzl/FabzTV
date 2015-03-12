@@ -568,6 +568,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 		openMobileNavToggle:function () {
 
+
+			KO.Config.checkToDestroyTooltip();
 			//if share toggle is open close it
 			KO.Config.closeMobileShareToggle();
 			// activate toggle 
@@ -600,7 +602,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		openMobileShareToggle:function () { 
 
-
+				KO.Config.checkToDestroyTooltip();
 				KO.Config.closeMobileNavToggle();
 				this.classList.toggle("active");
 				$(".nav-toggle").toggleClass("active");

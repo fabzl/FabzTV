@@ -2088,6 +2088,12 @@ textarea[contenteditable] {
   border: solid #FFF 20px;
   line-height: 90%;
 }
+@media screen and (min-width: 24em) {
+  .main-description {
+    font-size: 1.8em;
+    padding: 11px;
+  }
+}
 @media screen and (min-width: 48em) {
   .main-description {
     font-size: 2.2em;
@@ -3325,10 +3331,15 @@ textarea[contenteditable] {
   font-family: 'denseregular';
   text-align: center;
   background-color: rgba(100, 100, 100, 0.6);
-  width: 90%;
+  width: 100%;
   padding-left: 10%;
   position: absolute;
   z-index: -10;
+}
+@media screen and (min-width: 48em) {
+  .nav-content {
+    width: 90%;
+  }
 }
 .nav-content ol {
   position: relative;
@@ -3348,19 +3359,24 @@ textarea[contenteditable] {
   text-align: center;
 }
 .nav-content li.romboid:before {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border: 1px solid #000;
-  left: 50%;
-  top: 2.2em;
-  background: #FFF;
-  -webkit-transform: rotate(45deg) translateX(-100%);
-  -moz-transform: rotate(45deg) translateX(-100%);
-  -ms-transform: rotate(45deg) translateX(-100%);
-  transform: rotate(45deg) translateX(-100%);
-  text-align: center;
+  display: none;
+}
+@media screen and (min-width: 48em) {
+  .nav-content li.romboid:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #000;
+    left: 50%;
+    top: 2.2em;
+    background: #FFF;
+    -webkit-transform: rotate(45deg) translateX(-100%);
+    -moz-transform: rotate(45deg) translateX(-100%);
+    -ms-transform: rotate(45deg) translateX(-100%);
+    transform: rotate(45deg) translateX(-100%);
+    text-align: center;
+  }
 }
 .nav-content li a {
   -moz-transition: all .2s ease-in-out;
@@ -3374,6 +3390,11 @@ textarea[contenteditable] {
     padding-right: 100%;
     z-index: 10;
   }
+  .nav-content li a.romboid {
+    display: none;
+  }
+}
+@media screen and (min-width: 48em) and (min-width: 48em) {
   .nav-content li a.romboid {
     letter-spacing: 2px;
     cursor: default;
@@ -3391,6 +3412,8 @@ textarea[contenteditable] {
     -ms-user-select: none;
     user-select: none;
   }
+}
+@media screen and (min-width: 48em) {
   .nav-content li a:hover {
     padding-left: 20%;
     letter-spacing: 2px;
