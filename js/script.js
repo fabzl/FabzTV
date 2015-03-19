@@ -387,7 +387,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
 			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
-			
+
 		},
 		checkToDestroyTooltip:function() {
 

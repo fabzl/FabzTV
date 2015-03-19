@@ -2072,6 +2072,10 @@ textarea[contenteditable] {
   transform: translateX(-50%);
   -moz-transition-delay: 5s;
   transition-delay: 5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @media screen and (min-width: 48em) {
   .tooltip {
@@ -2359,7 +2363,11 @@ textarea[contenteditable] {
   color: #FFF;
   box-shadow: 0px 10px 24px -14px #707070;
   left: 50%;
-  bottom: 0;
+  bottom: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @media screen and (min-width: 48em) {
   .tooltip-arrowKeys {

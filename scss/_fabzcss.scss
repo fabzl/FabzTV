@@ -72,10 +72,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	color:#FFF;
 	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 	left:50%;
-   	animation: tooltipLogoAnimationMobileIn 1s 1;
+	animation: tooltipLogoAnimationMobileIn 1s 1;
 	transform: translateX(-50%);
 	transition-delay: 5s;
-	
+	user-select: none;
+
 
 	@include respond-min($breakpoint-mid) {
 		left:15%;
@@ -199,10 +200,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	}
 }
 
-
-
 /// tooltip-arrowKeys
-
 
 .tooltip-arrowKeys { 
 
@@ -216,7 +214,8 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	color:#FFF;
 	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 	left:50%;
-	bottom: 0;
+	bottom: 20px;
+	user-select: none;
 
 	@include respond-min($breakpoint-mid) {
 		left:15%;
@@ -251,6 +250,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		}
 	}
 }
+
 
 /// tooltip keys info  / the small arrow icons
 
