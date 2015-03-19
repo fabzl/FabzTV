@@ -2010,65 +2010,6 @@ textarea[contenteditable] {
     page-break-after: avoid;
   }
 }
-@-webkit-keyframes stripesAnimation {
-  0% {
-    -webkit-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-@-moz-keyframes stripesAnimation {
-  0% {
-    -moz-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -moz-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-@keyframes stripesAnimation {
-  0% {
-    -webkit-transform: translateX(-100);
-    -moz-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
 .loader-description {
   font-family: 'denseregular';
   font-size: 2.2em;
@@ -3352,6 +3293,7 @@ textarea[contenteditable] {
   text-align: left;
 }
 .nav-content li.romboid {
+  display: block;
   margin: 0 auto;
   width: 100%;
   height: 60px;
@@ -3363,6 +3305,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .nav-content li.romboid:before {
+    display: block;
     content: '';
     position: absolute;
     width: 12px;
@@ -3379,6 +3322,8 @@ textarea[contenteditable] {
   }
 }
 .nav-content li a {
+  outline-style: none;
+  -moz-outline-style: none;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -3396,6 +3341,8 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) and (min-width: 48em) {
   .nav-content li a.romboid {
+    padding-top: 5px;
+    display: block;
     letter-spacing: 2px;
     cursor: default;
     pointer-events: none;

@@ -236,7 +236,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
-			KO.Config.initVimeoFroogaloop();
+		//	KO.Config.initVimeoFroogaloop();
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
@@ -258,7 +258,7 @@ Function.prototype.throttle = function (milliseconds) {
 //vimeo stuff
 
 		pauseAllVideos:function(){
-			console.log("pauseAllVideos");
+		//	console.log("pauseAllVideos");
 		    $('.vimeo-video').each(function(elm){
 		        if($(this).attr('src').match(/vimeo/ig))
 		            $(this)[0].contentWindow.postMessage(JSON.stringify({ method: 'pause' }), $(this).attr('src').split('?')[0]);
@@ -278,7 +278,7 @@ Function.prototype.throttle = function (milliseconds) {
 		initVimeoFroogaloop:function () { 
 
 
-			console.log("vimeoinit");
+	//		console.log("vimeoinit");
 			// Listen for messages from the player
 			if (window.addEventListener){
 
@@ -316,7 +316,7 @@ Function.prototype.throttle = function (milliseconds) {
 		// Helper function for sending a message to the player
 		post:function (action, value) {
 
-			console.log("posting : ", action, value); 
+		//	console.log("posting : ", action, value); 
 			var data = {
 				method: action
 			};
@@ -374,7 +374,7 @@ Function.prototype.throttle = function (milliseconds) {
 			
 			if(!KO.Config.verticalMode) {
 				topTooltip = ( KO.Config.$window.stageH*.3) *.5+"px";
-				console.log("topTooltip",topTooltip)
+			//	console.log("topTooltip",topTooltip)
 			}
 
 			KO.Config.$wrapper.find(".tooltip").css({
@@ -607,7 +607,7 @@ Function.prototype.throttle = function (milliseconds) {
 				this.classList.toggle("active");
 				$(".nav-toggle").toggleClass("active");
 				
-				console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
+			//	console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
 				KO.Config.$socialIconsContainerMobile.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
@@ -807,20 +807,20 @@ Function.prototype.throttle = function (milliseconds) {
 
 		focusCheck:function () { 
 
-			console.log("document.hasFocus() : ",document.hasFocus(),"active el is : ",document.activeElement);
-			console.log(document.activeElement == $("iframe"));
+		//	console.log("document.hasFocus() : ",document.hasFocus(),"active el is : ",document.activeElement);
+		//	console.log(document.activeElement == $("iframe"));
 			if (!document.hasFocus()) { 
 				console.log("condition meet .hasFocus() : ",document.hasFocus(),"active el is : ",document.activeElement);
 
 				KO.Config.$window.focus();
-				console.log("focus changed to : ",document.hasFocus(),"active el is : ",document.activeElement);
+		//		console.log("focus changed to : ",document.hasFocus(),"active el is : ",document.activeElement);
 
 			}
 		},
 
 		ready: function () {
 
-			console.log(ready);
+		//	console.log(ready);
 		},
 
 		fadeOutLoader: function () { 
@@ -1047,7 +1047,7 @@ Function.prototype.throttle = function (milliseconds) {
 	},
 
 		animateSideLogoCompleted: function() {
-			console.log("animate thissss completed ");
+	//		console.log("animate thissss completed ");
 		},
 
 	arrowControl: function () {

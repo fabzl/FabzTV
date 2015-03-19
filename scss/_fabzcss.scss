@@ -8,94 +8,6 @@ $triangleSizeTooltip : 10px;
 $shadowColourTooltip :  rgba(112,112,112,1);
 $backgroundColourTooltip : rgba(0, 0, 17, 0.8); 
 
-// $grey: #202020;
-// $white: rgba(37,86,136,.15);;
-// $red:  rgba(37,86,136,.3);;
-// $blue: #1D3F5A;
-
-// $speed: 2s;
-
-// // SIZES
-
-// $lg: 22em;
-// $sh: 1em;
-// $he: 1em;
-// $bl: 7em;
-
-// .flag {
-// 	//opacity:0;
-// 	position: absolute;
-// 	top: 15%;
-// 	left: 50%;
-// 	width: $lg;
-// 	transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-// }
-
-// .stripe {
-
-//   	width: $lg;
-//   	height: $he;
-//   	background-color: $red;
-//  	transform-origin: left;
-//  	animation: stripesAnimation $speed  steps(6) infinite;// steps(6);
-// 	//  transition: all 1s steps(6) infinite;
-// 	animation-delay:5s;
-// 	animation-direction: alternate;
-
-// 	&:nth-child(even) {
-// 	    background-color: $white;
-// 	}
-// 	&.has-step-padding-1 {
-// 		width: 60%;
-// 	}
-  
-// 	&.has-step-padding-2 {
-// 		width: 70%;
-// 	}
-// 	&.has-step-padding-3 {
-// 		width: 80%;
-// 	}
-// 	&.has-step-padding-4 {
-// 		width: 90%;
-// 	}
-// 	&.has-step-padding-5 {
-// 		width: 95%;
-// 	}
-// 	&.has-step-padding-6 {
-// 		width: 100%;
-// 	}
-// }
-
-
-
-
-@keyframes stripesAnimation { 
-
-	0% {
-		transform: translateX(-100);
-		opacity:0;
-		
-	}
-	20% {
-		opacity:100%;
-
-	}
-
-
-	80% {
-		opacity:100%;
-
-	}
-
-
-	100% {
-
-
-		left:100%;
-		opacity:0;
-		transform: translateX(100%);
-	}
-} 
 
 // LOADER DESCRIPTION 
 
@@ -1207,7 +1119,7 @@ $iconsSize : 14px;
 			}
 			&.romboid { 
 
-
+				display: block;
 				//padding-right: 50%;
 				margin: 0 auto;
 				// romboid
@@ -1226,6 +1138,8 @@ $iconsSize : 14px;
 
 				display:none;
 				@include respond-min($breakpoint-mid) {
+
+					display:block;
 					content: '';
 					position: absolute;
 					width:12px;
@@ -1242,7 +1156,8 @@ $iconsSize : 14px;
 
 			a {
 
-				
+				outline-style: none;
+				-moz-outline-style:none;
 			//	width:100%;
 				transition : all .2s ease-in-out;
 
@@ -1251,7 +1166,6 @@ $iconsSize : 14px;
 					width:100%;
 					color:#DDD;
 					font-size:1.2em;
-					//
 					padding-right: 100%;
 					z-index: 10;
 
@@ -1264,6 +1178,8 @@ $iconsSize : 14px;
 							// selected nav state
 							//padding-right: 50%;
 							//padding-left: 50%;
+							padding-top:5px;
+							display:block;
 							letter-spacing:2px;
 							cursor: default;
 							pointer-events: none;
