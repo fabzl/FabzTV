@@ -3442,7 +3442,7 @@ textarea[contenteditable] {
     text-align: center;
     background-color: transparent;
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
   }
 }
 
