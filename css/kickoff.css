@@ -3271,15 +3271,18 @@ textarea[contenteditable] {
   overflow: visible;
   font-family: 'denseregular';
   text-align: center;
-  background-color: rgba(100, 100, 100, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   padding-left: 10%;
   position: absolute;
   z-index: -10;
+  padding-right: 10%;
 }
 @media screen and (min-width: 48em) {
   .nav-content {
     width: 90%;
+    padding-left: 10%;
+    padding-right: auto;
   }
 }
 .nav-content ol {
@@ -3369,11 +3372,14 @@ textarea[contenteditable] {
 }
 .nav-content .active {
   color: #FFF;
-  display: inline-block;
+  border-bottom: 1px solid #DDD;
+  display: block;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
+  text-align: center;
+  padding: 2%;
 }
 @media screen and (min-width: 48em) {
   .nav-content {

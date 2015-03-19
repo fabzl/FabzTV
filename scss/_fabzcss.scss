@@ -47,10 +47,8 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 
 
-
 	&.main-description:after {
 
-	
 			bottom: 0%;
 			left: 0%;
 			transform: translateY(-50%) translateX(-100%);
@@ -493,14 +491,13 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 ///////// HELPERS
 
 .noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
-
 
 
 .has-padding-top {
@@ -670,6 +667,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			&.description-tooltip {
 				display : none; 
 				opacity:0;
+		
 				margin:auto;
 
 			}
@@ -1091,15 +1089,18 @@ $iconsSize : 14px;
 	overflow: visible;
 	font-family: 'denseregular';
 	text-align: center;
-	background-color: rgba(100, 100, 100, 0.6);
+	background-color: rgba(0, 0, 0, 0.8);
 	width:100%;
 	padding-left: 10%;
 	position:absolute;
 	z-index: -10;
+	padding-right: 10%;
 
 	@include respond-min($breakpoint-mid) {
 
 		width:90%;
+		padding-left: 10%;
+		padding-right: auto;
 	}
 	ol {
 
@@ -1137,6 +1138,7 @@ $iconsSize : 14px;
 			&.romboid:before {
 
 				display:none;
+
 				@include respond-min($breakpoint-mid) {
 
 					display:block;
@@ -1212,9 +1214,13 @@ $iconsSize : 14px;
 	.active {
 
 		color:#FFF;
-		display:inline-block;
+		border-bottom: 1px solid #DDD;
+		display:block;
 		transition : top .5s ease-in-out;
 		transition : opacity .5s ease-in-out;
+		text-align:center;
+		padding : 2%;
+
 	} 
 
 	@include respond-min($breakpoint-mid) {
