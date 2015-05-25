@@ -1313,7 +1313,6 @@ Function.prototype.throttle = function (milliseconds) {
 				var imageOffsetValueStringY = "translateY("+imageOffsetValueNumberY+"px)";
 				var imageOffsetValueStringX = "translateX("+imageOffsetValueNumberX+"px)";
 
-
 	//			console.log("$currentImages : ",$currentImages.width(),"$currentSection : ",$currentSection.width(),$currentContainer.width(),"canvasFillValue : ",KO.Config.canvasFillValue);
 
 				var scaleValue = KO.Config.$window.stageW+KO.Config.canvasFillValue;
@@ -1387,29 +1386,25 @@ Function.prototype.throttle = function (milliseconds) {
 	},
 
 	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
+
 		
-		if(currentArticleDescription != null ) { 
+		if(currentArticleDescription != null) { 
 
 			$(".sidebar-description").show();
-			KO.Config.sidebarDescription.innerHTML = currentArticleDescription.prop('outerHTML');
-			console.log(currentArticleDescription.prop('outerHTML'));
+
+				currentArticleDescription = currentArticleDescription.prop('outerHTML');
+
+					console.log("currentArticleDescription:", currentArticleDescription);
+		console.log( currentArticleDescription.toString() != "undefined" );
+
+			 if( currentArticleDescription != "undefined" ) {
+
+			 	KO.Config.sidebarDescription.innerHTML = currentArticleDescription;
+			 }		
 
 		}else { 
 			$(".sidebar-description").hide();
 		}
-
-		KO.Config.sidebarDescription
-	//	console.dir(KO.Config.$content);
-
-	//	console.dir(KO.Config.$overlayers);
-		//console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
-		
-		//console.log($(".overlayer-description").children("description-content-holder"));
-		// gets the current section. 
-		//console.log($(".section").eq(KO.Config.currentSection));
-		//console.log(KO.Config.$sections[KO.Config.currentSection].currentArticleName);
-		
-		//console.log($(".overlayer-description").index(KO.Config.currentSection));
 
 	},
 
@@ -1503,7 +1498,6 @@ Function.prototype.throttle = function (milliseconds) {
 	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 		KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 
-		KO.Config.sectionDetectionEngine();
 	},
 
 	updateCurrentArticleHorizontal :function(currentArticle) {
@@ -1539,11 +1533,13 @@ Function.prototype.throttle = function (milliseconds) {
 	updateContentLeftPosition:function(leftPosX) {
 
 		KO.Config.$currentContentLeft = leftPosX;
+		KO.Config.sectionDetectionEngine();
 	},
 
 	updateContentTopPosition:function(topPosY) {
 
 		KO.Config.$currentContentTop = topPosY;
+		KO.Config.sectionDetectionEngine();
 		//		console.log(topPosY,KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticleName);
 	},
 
