@@ -2805,6 +2805,11 @@ textarea[contenteditable] {
     min-height: 80px;
     padding-right: 85px;
     right: 50px;
+    overflow: visible;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
 }
 .description-content-holder h2 {
@@ -3091,35 +3096,34 @@ textarea[contenteditable] {
 }
 
 .social-icons {
-  -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
   cursor: pointer;
   max-width: none;
-  -webkit-transform: scale(0.75);
-  -moz-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  transform: scale(0.75);
-  -webkit-transform-origin: 50% 0%;
-  -moz-transform-origin: 50% 0%;
-  -ms-transform-origin: 50% 0%;
-  transform-origin: 50% 0%;
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  transform: scale(0.6);
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
 }
 @media screen and (min-width: 48em) {
   .social-icons {
     max-width: 200px;
     position: relative;
-    top: 50%;
-    -webkit-transform: scale(0.75) translateY(-50%);
-    -moz-transform: scale(0.75) translateY(-50%);
-    -ms-transform: scale(0.75) translateY(-50%);
-    transform: scale(0.75) translateY(-50%);
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6);
   }
   .social-icons:hover {
-    -webkit-transform: scale(1) translateY(-50%);
-    -moz-transform: scale(1) translateY(-50%);
-    -ms-transform: scale(1) translateY(-50%);
-    transform: scale(1) translateY(-50%);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
@@ -3141,15 +3145,16 @@ textarea[contenteditable] {
 
 .social-icons-container {
   display: none;
-  top: auto;
   overflow: hidden;
   opacity: 0;
 }
 @media screen and (min-width: 48em) {
   .social-icons-container {
-    display: block;
+    width: 50%;
+    display: inline-block;
     position: relative;
     text-align: center;
+    float: left;
     -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     /* easeInOutSine */
@@ -3159,15 +3164,14 @@ textarea[contenteditable] {
     display: inline-block;
     background-color: transparent;
     opacity: 1;
-    width: 100%;
     position: absolute;
     top: auto;
   }
   .social-icons-container.social-icons-container:hover {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -3211,8 +3215,8 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .fabz-logo-romboid-container {
-    padding-top: 0px;
-    width: 95%;
+    padding-top: 60px;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     text-align: center;
@@ -3223,24 +3227,29 @@ textarea[contenteditable] {
   max-width: 180px;
   overflow: visible;
   position: relative;
-  top: 50%;
-  -webkit-transform: scale(0.9) translateY(-50%);
-  -moz-transform: scale(0.9) translateY(-50%);
-  -ms-transform: scale(0.9) translateY(-50%);
-  transform: scale(0.9) translateY(-50%);
-  -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
-  -webkit-transform-origin: 50% 0%;
-  -moz-transform-origin: 50% 0%;
-  -ms-transform-origin: 50% 0%;
-  transform-origin: 50% 0%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
 }
 .fabz-logo-romboid-container .side-logo:hover {
-  -webkit-transform: scale(1) translateY(-50%);
-  -moz-transform: scale(1) translateY(-50%);
-  -ms-transform: scale(1) translateY(-50%);
-  transform: scale(1) translateY(-50%);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.fabz-logo-romboid-container .side-logo.make-small {
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  transform: scale(0.6);
 }
 
 .section {
@@ -3280,7 +3289,6 @@ textarea[contenteditable] {
 .sidebar-wrapper {
   min-width: 50px;
   min-height: 100px;
-  background-color: #001;
   overflow: visible;
   width: 100%;
   height: 100px;
@@ -3290,7 +3298,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .sidebar-wrapper {
-    width: 15%;
+    position: relative;
     height: 100%;
     overflow: hidden;
   }
@@ -3305,10 +3313,9 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .showcase-wrapper {
-    width: 85%;
     height: 100%;
-    left: 15%;
-    top: 0%;
+    right: 0;
+    top: 0;
   }
 }
 
@@ -3318,6 +3325,11 @@ textarea[contenteditable] {
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
   background-color: #000;
+}
+@media screen and (min-width: 48em) {
+  .content {
+    float: right;
+  }
 }
 
 .slider-container {
@@ -3333,14 +3345,15 @@ textarea[contenteditable] {
   font-family: 'denseregular';
   text-align: center;
   background-color: rgba(100, 100, 100, 0.6);
-  width: 100%;
+  width: 50%;
   padding-left: 10%;
   position: absolute;
   z-index: -10;
 }
 @media screen and (min-width: 48em) {
   .nav-content {
-    width: 90%;
+    position: relative;
+    float: left;
   }
 }
 .nav-content ol {
@@ -3356,7 +3369,6 @@ textarea[contenteditable] {
 .nav-content li.romboid {
   margin: 0 auto;
   width: 100%;
-  height: 60px;
   position: relative;
   text-align: center;
 }
@@ -3368,11 +3380,11 @@ textarea[contenteditable] {
     display: block;
     content: '';
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border: 1px solid #000;
     left: 50%;
-    top: 2.2em;
+    top: 2em;
     background: #FFF;
     -webkit-transform: rotate(45deg) translateX(-100%);
     -moz-transform: rotate(45deg) translateX(-100%);
@@ -3393,7 +3405,8 @@ textarea[contenteditable] {
   .nav-content li a {
     width: 100%;
     color: #DDD;
-    font-size: 1.2em;
+    font-size: 1em;
+    line-height: 1.2;
     padding-right: 100%;
     z-index: 10;
   }
@@ -3408,11 +3421,9 @@ textarea[contenteditable] {
     cursor: default;
     pointer-events: none;
     margin: 0 auto;
-    line-height: 95%;
     padding-right: 0;
     color: #FFF;
-    top: 2.2em;
-    height: 50px;
+    height: 55px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -3498,12 +3509,12 @@ textarea[contenteditable] {
   .arrow-keys-info {
     z-index: 88;
     width: 60px;
-    right: 0;
+    right: 50px;
     display: inline-block;
     text-align: center;
     background-color: transparent;
     position: absolute;
-    bottom: 0;
+    top: 200px;
   }
 }
 
@@ -3708,6 +3719,7 @@ body {
   scrollbar-shadow-color: #001;
   scrollbar-highlight-color: #001;
   scrollbar-3d-light-color: #001;
+  background-color: #001;
 }
 
 h2 {

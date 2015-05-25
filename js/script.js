@@ -543,22 +543,36 @@ Function.prototype.throttle = function (milliseconds) {
 				var objectsTotal 			= fabzLogoH + navigationH + socialIconsContainerH;
 				var differenceH 			= sideBarH-objectsTotal;
 
+				//adjust the sidebar
+				KO.Config.$sideBar.width(KO.Config.getDimensionsWidth(KO.Config.$window) - KO.Config.$window.stageH);
+
 
 				if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
 					// grab the sidebar elements and resize them to match the sidebar 
-					KO.Config.$fabzLogo.height(sideBarH*.3);
-					KO.Config.$socialIconsContainer.height(sideBarH*.3);
-					KO.Config.$navigationContainer.height(sideBarH*.4);
+				//	KO.Config.$fabzLogo.height(sideBarH*.3);
+				//	KO.Config.$socialIconsContainer.height(sideBarH*.3);
+				//	KO.Config.$navigationContainer.height(sideBarH*.4);
 					// put the socialIcons back
-					KO.Config.$socialIconsContainer.toggleClass("active");
+			//		KO.Config.$socialIconsContainer.toggleClass("active");
 					}
+					
+					KO.Config.$socialIconsContainer.on( "mouseover", KO.CsmallLogoSmall);
+
 
 				}else { 
 
 					KO.Config.$fabzLogo.height("100px");
 					KO.Config.$socialIconsContainer.height("auto");
 					KO.Config.$navigationContainer.height("auto");
+					KO.Config.$sideBar.width("100%");
+
 				}
+
+		},
+
+		makeLogoSmall:function () {
+			console.log("makeLogoSmall");
+			KO.Config.$fabzLogo.toggleClass(".make-small");
 		},
 
 		openMobileNavToggle:function () {
@@ -1504,8 +1518,13 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$navigationContainer.css("opacity",1); 
 			KO.Config.closeMobileShareToggle();
 		}else{
+			if(KO.Config.verticalMode === true) {
+				KO.Config.$window.stageW -=  KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+			}else{	
+				KO.Config.$window.stageW -= (KO.Config.$window.stageW - KO.Config.$window.stageH);  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 
-			KO.Config.$window.stageW -= KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+			}
+
 			KO.Config.verticalMode = false;
 		}
 
@@ -1770,7 +1789,6 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.camera.lookAt( KO.Config.scene3D.position );
 				KO.Config.renderer.render(KO.Config.scene3D,KO.Config.camera);
 			},
-
 
 			onWindowResizeClients:function () {
  

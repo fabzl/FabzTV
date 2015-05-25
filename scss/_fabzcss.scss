@@ -689,6 +689,8 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		min-height:80px;
 		padding-right: 85px;
 		right: 50px;
+		overflow:visible;
+		transform: translateX(-100%);
 	}
 
 	h2 {
@@ -961,22 +963,21 @@ $iconsSize : 14px;
 
 .social-icons {
 
-	transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 	cursor: pointer;
 	max-width:none;
-	transform: scale(.75);
-	transform-origin: 50% 0%;
+	transform: scale(.6);
+	transform-origin: 50% 50%;
 
 	@include respond-min($breakpoint-mid) {
 
 		max-width: 200px;
 		position: relative;
-		top: 50%;
-		transform: scale(.75) translateY(-50%);
-
+		transform: scale(.6);
+//
 		&:hover {
 
-			transform: scale(1) translateY(-50%) ;
+			transform: scale(1.2);
 		}
 	}
 }
@@ -990,21 +991,20 @@ $iconsSize : 14px;
 	transform-origin: 50% 0%;
 }
 
-
-
-
 .social-icons-container {
 
 	display: none;
-	top: auto;
+//	padding-top: 120px;
 	overflow:hidden;
 	opacity:0;
 
 	@include respond-min($breakpoint-mid) {
 
-		display: block;
+		width: 50%;
+		display: inline-block;
 		position: relative;
 		text-align:center;
+		float:left;
 		transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 		opacity:1;
 
@@ -1012,13 +1012,14 @@ $iconsSize : 14px;
 			display: inline-block;
 			background-color:transparent;
 			opacity:1;
-			width:100%;
+			//width:100%;
 			position: absolute;
 			top: auto;
 		}
 
 		&.social-icons-container:hover { 
-			transform:scale(1.2);
+
+			transform:scale(1);
 
 		}
 	}
@@ -1069,9 +1070,9 @@ $iconsSize : 14px;
 
 	@include respond-min($breakpoint-mid) {
 
-		padding-top: 0px;;
-		width : 95%;
-		height:auto;
+		padding-top: 60px;
+		width : 100%;
+		height: auto;
 		margin: 0 auto;
 		text-align: center;
 	}
@@ -1082,18 +1083,22 @@ $iconsSize : 14px;
 		max-width: 180px;
 		overflow: visible;
 		position: relative;
-		top: 50%;
-		transform: scale(.9) translateY(-50%);
-
-		transition: all 250ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 		
-		transform-origin: 50% 0%;
+		transform: scale(1);
+		transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+		
+		transform-origin: 50% 50%;
 
 		&:hover { 
-			transform: scale(1) translateY(-50%);
+			transform: scale(1.2);
+		}
+		&.make-small {
+
+			transform: scale(.6);
 		}	
 	}
 }
+
 
 .section {
 
@@ -1132,7 +1137,7 @@ $iconsSize : 14px;
 
 	min-width: 50px;
 	min-height: 100px;
-	background-color: #001;
+	//background-color: #001;
 	overflow:visible;
 	width: 100%;
 	height:100px;
@@ -1141,7 +1146,9 @@ $iconsSize : 14px;
 	z-index: 999;
 
 	@include respond-min($breakpoint-mid) {
-		width: 15%;
+		
+		position: relative;
+		//width: 15%;
 		height:100%;
 		overflow: hidden;
 	}
@@ -1156,10 +1163,11 @@ $iconsSize : 14px;
 	position: absolute;
 
 	@include respond-min($breakpoint-mid) {
-		width: 85%;
+		
+		//width: 85%;
 		height:100%;
-		left: 15%;
-		top:0%;
+		right: 0;
+		top:0;
 	}
 }
 
@@ -1170,6 +1178,12 @@ $iconsSize : 14px;
 	position: relative;
 	transition : top .5s ease-in-out;
 	background-color:#000;
+	
+	@include respond-min($breakpoint-mid) {
+
+	float: right;
+
+	}
 }
 
 .slider-container {
@@ -1186,14 +1200,17 @@ $iconsSize : 14px;
 	font-family: 'denseregular';
 	text-align: center;
 	background-color: rgba(100, 100, 100, 0.6);
-	width:100%;
+	width:50%;
 	padding-left: 10%;
 	position:absolute;
 	z-index: -10;
 
 	@include respond-min($breakpoint-mid) {
 
-		width:90%;
+		//width:90%;
+		position:relative;
+		float:left;
+	
 	}
 	ol {
 
@@ -1218,7 +1235,7 @@ $iconsSize : 14px;
 				margin: 0 auto;
 				// romboid
 				width: 100%;
-				height: 60px;
+			//	height: 60px;
 			//	border: 30px solid transparent;
 				//border-bottom-color:rgba(37,86,136,.5);
 				position: relative;
@@ -1235,11 +1252,11 @@ $iconsSize : 14px;
 					display:block;
 					content: '';
 					position: absolute;
-					width:12px;
-					height:12px;
+					width:10px;
+					height:10px;
 					border:1px solid #000;
 					left:50%;
-					top:2.2em;
+					top:2em;
 					background:#FFF;
 					transform: rotate(45deg) translateX(-100%);
 					text-align: center;
@@ -1258,8 +1275,8 @@ $iconsSize : 14px;
 
 					width:100%;
 					color:#DDD;
-					font-size:1.2em;
-					//
+					font-size:1em;
+					line-height: 1.2;
 					padding-right: 100%;
 					z-index: 10;
 
@@ -1277,12 +1294,12 @@ $iconsSize : 14px;
 							cursor: default;
 							pointer-events: none;
 							margin:0 auto;
-							line-height: 95%;
-							//no select
+							
 							padding-right: 0;
 							color:#FFF;
-							top:2.2em;
-							height: 50px;
+							height: 55px;
+
+							//no select
 							-webkit-touch-callout: none;
 							-webkit-user-select: none;
 							-khtml-user-select: none;
@@ -1399,12 +1416,12 @@ $iconsSize : 14px;
 	@include respond-min($breakpoint-mid) {
 		z-index: 88;
 		width:60px;
-		right: 0;
+		right: 50px;
 		display: inline-block;
 		text-align:center;
 		background-color:rgba(0,0,0,0);
 		position:absolute;
-		bottom: 0;
+		top: 200px;
 
 
 	}
@@ -1631,8 +1648,10 @@ body {
 	scrollbar-track-color: #001;
 	scrollbar-face-color: #001;
 	scrollbar-shadow-color: #001;
-	scrollbar-highlight-color: #001;;
+	scrollbar-highlight-color: #001;
 	scrollbar-3d-light-color: #001;
+	background-color: #001;
+
 }
 
 
