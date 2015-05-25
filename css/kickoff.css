@@ -543,12 +543,12 @@ samp {
 }
 
 ::-moz-selection {
-  color: #001;
+  color: #999;
   background: #666;
 }
 
 ::selection {
-  color: #001;
+  color: #999;
   background: #666;
 }
 
@@ -2799,10 +2799,12 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .description-content-holder {
+    margin-right: 30px;
     width: auto;
     min-width: 80px;
     min-height: 80px;
     padding-right: 85px;
+    right: 50px;
   }
 }
 .description-content-holder h2 {
@@ -3363,6 +3365,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .nav-content li.romboid:before {
+    display: block;
     content: '';
     position: absolute;
     width: 12px;
@@ -3379,6 +3382,10 @@ textarea[contenteditable] {
   }
 }
 .nav-content li a {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -3396,6 +3403,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) and (min-width: 48em) {
   .nav-content li a.romboid {
+    display: block;
     letter-spacing: 2px;
     cursor: default;
     pointer-events: none;

@@ -539,12 +539,12 @@ samp {
 }
 
 ::-moz-selection {
-  color: #001;
+  color: #999;
   background: #666;
 }
 
 ::selection {
-  color: #001;
+  color: #999;
   background: #666;
 }
 

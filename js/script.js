@@ -270,11 +270,6 @@ Function.prototype.throttle = function (milliseconds) {
 		    $(id)[0].contentWindow.postMessage(JSON.stringify({ method: 'play' }), $(id).attr('src').split('?')[0]);
 		},
 
-
-
-
-
-
 		initVimeoFroogaloop:function () { 
 
 

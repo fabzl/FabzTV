@@ -275,7 +275,6 @@ Function.prototype.throttle = function (milliseconds) {
 			if(KO.Config.isAndroidNativeBrowserBoolean ) { 
 				KO.Config.displayRoadBlock();
 			} 
-
 		},
 
 		displayRoadBlock:function() { 
