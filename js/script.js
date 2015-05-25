@@ -1395,12 +1395,12 @@ Function.prototype.throttle = function (milliseconds) {
 				currentArticleDescription = currentArticleDescription.prop('outerHTML');
 
 					console.log("currentArticleDescription:", currentArticleDescription);
-		console.log( currentArticleDescription.toString() != "undefined" );
-
+		
 			 if( currentArticleDescription != "undefined" ) {
 
-			 	KO.Config.sidebarDescription.innerHTML = currentArticleDescription;
-			 }		
+			 	currentArticleDescription="";	
+			 }
+			 KO.Config.sidebarDescription.innerHTML = currentArticleDescription;	
 
 		}else { 
 			$(".sidebar-description").hide();
