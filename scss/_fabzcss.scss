@@ -646,6 +646,24 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 }
 
 
+.sidebar-description {
+
+	display:none;
+
+	@include respond-min($breakpoint-mid) {
+		display : inline;
+		width: 100%;
+		position:relative;
+		height:auto;
+		border:1px red solid;
+	}
+	.description-tooltip { 
+
+		display:inline;
+	}
+
+}
+
 
 
 .description-list {
@@ -662,15 +680,28 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	font-size:1em;
 }
 
+.overlayer-description .description-content-holder  { 
+
+	display:inline-block;
+
+	@include respond-min($breakpoint-mid) {
+		
+		display:none;
+	}
+
+
+	
+}
+
 .description-content-holder {
 
-	position:absolute;
-	background-color:rgba(255, 255, 255, 0.9);
+	position:relative;
+	
 	text-align:left;
 	bottom: 0;
 	height: auto;
 	padding-right: 0px;
-
+	background-color:rgba(255, 255, 255, 0.9);
 	min-width: 60px;
 	min-height:60px;
 	right: 0;
@@ -683,12 +714,15 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	@include respond-min($breakpoint-mid) {
 
-		margin-right: 30px;
-		width: auto;
-		min-width: 80px;
-		min-height:80px;
-		padding-right: 85px;
-		right: 50px;
+		position:relative;
+	//	margin-right: 30px;
+		bottom: auto;
+		display:inline-block;
+	//	min-width: 80px;
+	//	min-height:80px;
+	//	padding-right: 85px;
+		//right: 50px;
+		background-color:rgba(255, 255, 255, 1);
 		overflow:visible;
 		//transform: translateX(-100%);
 	}
@@ -717,6 +751,12 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		color: #001;
 		display : none; 
 		opacity:0;
+
+		@include respond-min($breakpoint-mid) {
+			display : inline; 
+			opacity:1;
+		}
+
 		&.description-tooltip {
 			display : block;
 			opacity:1;
@@ -812,6 +852,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	@include respond-min($breakpoint-mid) {
 		top:11px;
+		display:none;
 	}
 	&.active {
 
@@ -966,18 +1007,18 @@ $iconsSize : 14px;
 	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 	cursor: pointer;
 	max-width:none;
-	transform: scale(.6);
+	transform: scale(.8);
 	transform-origin: 50% 50%;
 
 	@include respond-min($breakpoint-mid) {
 
 		max-width: 200px;
 		position: relative;
-		transform: scale(.6);
+		transform: scale(.8);
 //
 		&:hover {
 
-			transform: scale(1.2);
+			transform: scale(1);
 		}
 	}
 }
@@ -1075,6 +1116,8 @@ $iconsSize : 14px;
 		height: auto;
 		margin: 0 auto;
 		text-align: center;
+		z-index:auto;
+
 	}
 
 	.side-logo {
@@ -1408,6 +1451,15 @@ $iconsSize : 14px;
 	}
 }
 
+
+.arrow-keys-info-container {
+
+	height:60px;
+	width:50%;
+	text-align:center;
+
+
+}
 .arrow-keys-info {
 
 	display:none;
@@ -1416,12 +1468,13 @@ $iconsSize : 14px;
 	@include respond-min($breakpoint-mid) {
 		z-index: 88;
 		width:60px;
-		right: 50px;
+	//	left: 25%;
+		transform:translateY(-100%);
 		display: inline-block;
 		text-align:center;
 		background-color:rgba(0,0,0,0);
-		position:absolute;
-		top: 200px;
+		position:relative;
+	//	top: 400px;
 
 
 	}

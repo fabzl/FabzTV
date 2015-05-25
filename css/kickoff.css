@@ -2768,6 +2768,22 @@ textarea[contenteditable] {
   color: #FFF !important;
 }
 
+.sidebar-description {
+  display: none;
+}
+@media screen and (min-width: 48em) {
+  .sidebar-description {
+    display: inline;
+    width: 100%;
+    position: relative;
+    height: auto;
+    border: 1px red solid;
+  }
+}
+.sidebar-description .description-tooltip {
+  display: inline;
+}
+
 .description-list {
   width: 100%;
   font-size: .7em;
@@ -2780,13 +2796,22 @@ textarea[contenteditable] {
   font-size: 1em;
 }
 
+.overlayer-description .description-content-holder {
+  display: inline-block;
+}
+@media screen and (min-width: 48em) {
+  .overlayer-description .description-content-holder {
+    display: none;
+  }
+}
+
 .description-content-holder {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
+  position: relative;
   text-align: left;
   bottom: 0;
   height: auto;
   padding-right: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
   min-width: 60px;
   min-height: 60px;
   right: 0;
@@ -2799,17 +2824,11 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .description-content-holder {
-    margin-right: 30px;
-    width: auto;
-    min-width: 80px;
-    min-height: 80px;
-    padding-right: 85px;
-    right: 50px;
+    position: relative;
+    bottom: auto;
+    display: inline-block;
+    background-color: white;
     overflow: visible;
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
   }
 }
 .description-content-holder h2 {
@@ -2835,6 +2854,12 @@ textarea[contenteditable] {
   color: #001;
   display: none;
   opacity: 0;
+}
+@media screen and (min-width: 48em) {
+  .description-content-holder p, .description-content-holder a, .description-content-holder li {
+    display: inline;
+    opacity: 1;
+  }
 }
 .description-content-holder p.description-tooltip, .description-content-holder a.description-tooltip, .description-content-holder li.description-tooltip {
   display: block;
@@ -2935,6 +2960,7 @@ textarea[contenteditable] {
 @media screen and (min-width: 48em) {
   .more-info-toggle-container {
     top: 11px;
+    display: none;
   }
 }
 .more-info-toggle-container.active {
@@ -3101,10 +3127,10 @@ textarea[contenteditable] {
   /* easeInOutSine */
   cursor: pointer;
   max-width: none;
-  -webkit-transform: scale(0.6);
-  -moz-transform: scale(0.6);
-  -ms-transform: scale(0.6);
-  transform: scale(0.6);
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
   -webkit-transform-origin: 50% 50%;
   -moz-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
@@ -3114,16 +3140,16 @@ textarea[contenteditable] {
   .social-icons {
     max-width: 200px;
     position: relative;
-    -webkit-transform: scale(0.6);
-    -moz-transform: scale(0.6);
-    -ms-transform: scale(0.6);
-    transform: scale(0.6);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
   }
   .social-icons:hover {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -3220,6 +3246,7 @@ textarea[contenteditable] {
     height: auto;
     margin: 0 auto;
     text-align: center;
+    z-index: auto;
   }
 }
 .fabz-logo-romboid-container .side-logo {
@@ -3502,6 +3529,12 @@ textarea[contenteditable] {
   }
 }
 
+.arrow-keys-info-container {
+  height: 60px;
+  width: 50%;
+  text-align: center;
+}
+
 .arrow-keys-info {
   display: none;
 }
@@ -3509,12 +3542,14 @@ textarea[contenteditable] {
   .arrow-keys-info {
     z-index: 88;
     width: 60px;
-    right: 50px;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
     display: inline-block;
     text-align: center;
     background-color: transparent;
-    position: absolute;
-    top: 200px;
+    position: relative;
   }
 }
 

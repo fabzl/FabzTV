@@ -168,8 +168,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 		currentSection : 0,
 		canvasFillValue: 0,
+		currentArticleName: "",
 		navToggle:document.querySelector(".nav-toggle"),
 		shareToggle:document.querySelector(".share-toggle"),
+		sidebarDescription: document.querySelector(".sidebar-description"),
 		//jquery objs
 		$fabzLogo : $(".fabz-logo-romboid-container"),
 		$sectionsAmount : $('.section').length,
@@ -194,6 +196,9 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowUp: $(".arrow_top"),
 		$arrowDown: $(".arrow_down"),
 		$arrowLeft: $(".arrow_left"),
+
+
+
 		//booleans
 		tooltipOnBoolean:true,
 		arrowKeysInfoBoolean:true,
@@ -222,6 +227,7 @@ Function.prototype.throttle = function (milliseconds) {
 		mouseY : 0,
 		stats:{},
 		clientsLogoGroup:{},
+
 
 		init : function () {
 
@@ -273,8 +279,9 @@ Function.prototype.throttle = function (milliseconds) {
 		initVimeoFroogaloop:function () { 
 
 
-			console.log("vimeoinit");
+		//	console.log("vimeoinit");
 			// Listen for messages from the player
+
 			if (window.addEventListener){
 
 				window.addEventListener('message', KO.Config.onMessageReceived, false);
@@ -287,7 +294,7 @@ Function.prototype.throttle = function (milliseconds) {
 		// Handle messages received from the player
 		onMessageReceived:function (e) {
 			var data = JSON.parse(e.data);
-			console.dir(data);
+		//	console.dir(data);
 
 			switch (data.event) {
 				case 'ready':
@@ -547,16 +554,16 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.$sideBar.width(KO.Config.getDimensionsWidth(KO.Config.$window) - KO.Config.$window.stageH);
 
 
-				if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
+			//	if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
 					// grab the sidebar elements and resize them to match the sidebar 
 				//	KO.Config.$fabzLogo.height(sideBarH*.3);
 				//	KO.Config.$socialIconsContainer.height(sideBarH*.3);
 				//	KO.Config.$navigationContainer.height(sideBarH*.4);
 					// put the socialIcons back
 			//		KO.Config.$socialIconsContainer.toggleClass("active");
-					}
+			//		}
 					
-					KO.Config.$socialIconsContainer.on( "mouseover", KO.CsmallLogoSmall);
+					KO.Config.$socialIconsContainer.on( "mouseover", KO.Config.makeLogoSmall);
 
 
 				}else { 
@@ -1363,6 +1370,49 @@ Function.prototype.throttle = function (milliseconds) {
 		}
 	},
 
+
+	sectionDetectionEngine : function () { 
+
+		
+		var currentArticle = KO.Config.currentArticleName = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("h2").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
+		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".description-content-holder").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+	//	var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
+
+		console.log(currentArticle, currentArticleDescription ) ; 
+		
+		if(KO.Config.verticalMode === false ) {
+
+			KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
+		}
+	},
+
+	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
+		
+		if(currentArticleDescription != null ) { 
+
+			$(".sidebar-description").show();
+			KO.Config.sidebarDescription.innerHTML = currentArticleDescription.prop('outerHTML');
+			console.log(currentArticleDescription.prop('outerHTML'));
+
+		}else { 
+			$(".sidebar-description").hide();
+		}
+
+		KO.Config.sidebarDescription
+	//	console.dir(KO.Config.$content);
+
+	//	console.dir(KO.Config.$overlayers);
+		//console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
+		
+		//console.log($(".overlayer-description").children("description-content-holder"));
+		// gets the current section. 
+		//console.log($(".section").eq(KO.Config.currentSection));
+		//console.log(KO.Config.$sections[KO.Config.currentSection].currentArticleName);
+		
+		//console.log($(".overlayer-description").index(KO.Config.currentSection));
+
+	},
+
 	onClickInfoToggle : function (e) {
 		// stop the event propagation
 		e.stopPropagation();
@@ -1452,14 +1502,17 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 		KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+
+		KO.Config.sectionDetectionEngine();
 	},
 
 	updateCurrentArticleHorizontal :function(currentArticle) {
 
-//		console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
+	//	console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 //		KO.Config.$sections[currentSection].currentArticle = KO.Config.$sections[currentSection].currentArticle;
 
 		KO.Config.updateArrowsVisibility();
+
 	},
 
 	moveContentByIndexVertically:function(index) {
