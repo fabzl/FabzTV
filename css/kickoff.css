@@ -262,7 +262,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: 700;
   text-rendering: optimizelegibility;
 }
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
@@ -543,12 +543,12 @@ samp {
 }
 
 ::-moz-selection {
-  color: #999;
+  color: #001;
   background: #666;
 }
 
 ::selection {
-  color: #999;
+  color: #001;
   background: #666;
 }
 
@@ -2010,65 +2010,6 @@ textarea[contenteditable] {
     page-break-after: avoid;
   }
 }
-@-webkit-keyframes stripesAnimation {
-  0% {
-    -webkit-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-@-moz-keyframes stripesAnimation {
-  0% {
-    -moz-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -moz-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
-@keyframes stripesAnimation {
-  0% {
-    -webkit-transform: translateX(-100);
-    -moz-transform: translateX(-100);
-    transform: translateX(-100);
-    opacity: 0;
-  }
-  20% {
-    opacity: 100%;
-  }
-  80% {
-    opacity: 100%;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-}
 .loader-description {
   font-family: 'denseregular';
   font-size: 2.2em;
@@ -2131,6 +2072,10 @@ textarea[contenteditable] {
   transform: translateX(-50%);
   -moz-transition-delay: 5s;
   transition-delay: 5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @media screen and (min-width: 48em) {
   .tooltip {
@@ -2418,7 +2363,11 @@ textarea[contenteditable] {
   color: #FFF;
   box-shadow: 0px 10px 24px -14px #707070;
   left: 50%;
-  bottom: 0;
+  bottom: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @media screen and (min-width: 48em) {
   .tooltip-arrowKeys {
@@ -2757,7 +2706,7 @@ textarea[contenteditable] {
 .description-text {
   padding: 0 10% 0 0;
   color: #FFF;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .white {
@@ -2766,43 +2715,6 @@ textarea[contenteditable] {
 
 .black {
   color: #FFF !important;
-}
-
-.show-on-mobile {
-  display: inline;
-}
-@media screen and (min-width: 48em) {
-  .show-on-mobile {
-    display: none;
-  }
-}
-
-.show-on-desktop {
-  display: none;
-}
-@media screen and (min-width: 48em) {
-  .show-on-desktop {
-    display: inline;
-  }
-}
-
-.sidebar-description {
-  display: none;
-}
-@media screen and (min-width: 48em) {
-  .sidebar-description {
-    display: inline;
-    width: 100%;
-    position: relative;
-    height: auto;
-    margin-top: 20px;
-  }
-}
-.sidebar-description .description-tooltip {
-  display: inline;
-}
-.sidebar-description .description-text {
-  padding-left: 20px;
 }
 
 .description-list {
@@ -2817,22 +2729,13 @@ textarea[contenteditable] {
   font-size: 1em;
 }
 
-.overlayer-description .description-content-holder {
-  display: inline-block;
-}
-@media screen and (min-width: 48em) {
-  .overlayer-description .description-content-holder {
-    display: none;
-  }
-}
-
 .description-content-holder {
-  position: relative;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
   text-align: left;
   bottom: 0;
   height: auto;
   padding-right: 0px;
-  background-color: rgba(255, 255, 255, 0.9);
   min-width: 60px;
   min-height: 60px;
   right: 0;
@@ -2845,11 +2748,10 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .description-content-holder {
-    position: relative;
-    bottom: auto;
-    display: inline-block;
-    background-color: white;
-    overflow: visible;
+    width: auto;
+    min-width: 80px;
+    min-height: 80px;
+    padding-right: 85px;
   }
 }
 .description-content-holder h2 {
@@ -2875,12 +2777,6 @@ textarea[contenteditable] {
   color: #001;
   display: none;
   opacity: 0;
-}
-@media screen and (min-width: 48em) {
-  .description-content-holder p, .description-content-holder a, .description-content-holder li {
-    display: inline;
-    opacity: 1;
-  }
 }
 .description-content-holder p.description-tooltip, .description-content-holder a.description-tooltip, .description-content-holder li.description-tooltip {
   display: block;
@@ -2981,7 +2877,6 @@ textarea[contenteditable] {
 @media screen and (min-width: 48em) {
   .more-info-toggle-container {
     top: 11px;
-    display: none;
   }
 }
 .more-info-toggle-container.active {
@@ -3143,34 +3038,35 @@ textarea[contenteditable] {
 }
 
 .social-icons {
-  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
   cursor: pointer;
   max-width: none;
-  -webkit-transform: scale(0.8);
-  -moz-transform: scale(0.8);
-  -ms-transform: scale(0.8);
-  transform: scale(0.8);
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 50% 0%;
+  -moz-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
 }
 @media screen and (min-width: 48em) {
   .social-icons {
     max-width: 200px;
     position: relative;
-    -webkit-transform: scale(0.8);
-    -moz-transform: scale(0.8);
-    -ms-transform: scale(0.8);
-    transform: scale(0.8);
+    top: 50%;
+    -webkit-transform: scale(0.75) translateY(-50%);
+    -moz-transform: scale(0.75) translateY(-50%);
+    -ms-transform: scale(0.75) translateY(-50%);
+    transform: scale(0.75) translateY(-50%);
   }
   .social-icons:hover {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(1) translateY(-50%);
+    -moz-transform: scale(1) translateY(-50%);
+    -ms-transform: scale(1) translateY(-50%);
+    transform: scale(1) translateY(-50%);
   }
 }
 
@@ -3192,16 +3088,15 @@ textarea[contenteditable] {
 
 .social-icons-container {
   display: none;
+  top: auto;
   overflow: hidden;
   opacity: 0;
 }
 @media screen and (min-width: 48em) {
   .social-icons-container {
-    width: 50%;
-    display: inline-block;
+    display: block;
     position: relative;
     text-align: center;
-    float: left;
     -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     /* easeInOutSine */
@@ -3211,14 +3106,15 @@ textarea[contenteditable] {
     display: inline-block;
     background-color: transparent;
     opacity: 1;
+    width: 100%;
     position: absolute;
     top: auto;
   }
   .social-icons-container.social-icons-container:hover {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
@@ -3262,12 +3158,11 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .fabz-logo-romboid-container {
-    padding-top: 60px;
-    width: 100%;
+    padding-top: 0px;
+    width: 95%;
     height: auto;
     margin: 0 auto;
     text-align: center;
-    z-index: auto;
   }
 }
 .fabz-logo-romboid-container .side-logo {
@@ -3275,29 +3170,24 @@ textarea[contenteditable] {
   max-width: 180px;
   overflow: visible;
   position: relative;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  top: 50%;
+  -webkit-transform: scale(0.9) translateY(-50%);
+  -moz-transform: scale(0.9) translateY(-50%);
+  -ms-transform: scale(0.9) translateY(-50%);
+  transform: scale(0.9) translateY(-50%);
+  -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 0%;
+  -moz-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
 }
 .fabz-logo-romboid-container .side-logo:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-.fabz-logo-romboid-container .side-logo.make-small {
-  -webkit-transform: scale(0.6);
-  -moz-transform: scale(0.6);
-  -ms-transform: scale(0.6);
-  transform: scale(0.6);
+  -webkit-transform: scale(1) translateY(-50%);
+  -moz-transform: scale(1) translateY(-50%);
+  -ms-transform: scale(1) translateY(-50%);
+  transform: scale(1) translateY(-50%);
 }
 
 .section {
@@ -3337,6 +3227,7 @@ textarea[contenteditable] {
 .sidebar-wrapper {
   min-width: 50px;
   min-height: 100px;
+  background-color: #001;
   overflow: visible;
   width: 100%;
   height: 100px;
@@ -3346,7 +3237,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .sidebar-wrapper {
-    position: relative;
+    width: 15%;
     height: 100%;
     overflow: hidden;
   }
@@ -3361,9 +3252,10 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) {
   .showcase-wrapper {
+    width: 85%;
     height: 100%;
-    right: 0;
-    top: 0;
+    left: 15%;
+    top: 0%;
   }
 }
 
@@ -3373,11 +3265,6 @@ textarea[contenteditable] {
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
   background-color: #000;
-}
-@media screen and (min-width: 48em) {
-  .content {
-    float: right;
-  }
 }
 
 .slider-container {
@@ -3391,23 +3278,23 @@ textarea[contenteditable] {
 .nav-content {
   overflow: visible;
   font-family: 'denseregular';
-  background-color: rgba(100, 100, 100, 0.6);
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  padding-left: auto;
+  padding-left: 10%;
   position: absolute;
   z-index: -10;
+  padding-right: 10%;
 }
 @media screen and (min-width: 48em) {
   .nav-content {
-    position: relative;
-    float: left;
-    width: 50%;
+    width: 90%;
     padding-left: 10%;
+    padding-right: auto;
   }
 }
 .nav-content ol {
   position: relative;
-  text-align: center;
 }
 .nav-content li {
   display: none;
@@ -3415,11 +3302,12 @@ textarea[contenteditable] {
   transition: all .2s ease-in-out;
   width: auto;
   text-align: left;
-  margin: 0 auto;
 }
 .nav-content li.romboid {
+  display: block;
   margin: 0 auto;
   width: 100%;
+  height: 60px;
   position: relative;
   text-align: center;
 }
@@ -3431,11 +3319,11 @@ textarea[contenteditable] {
     display: block;
     content: '';
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border: 1px solid #000;
     left: 50%;
-    top: 2em;
+    top: 2.2em;
     background: #FFF;
     -webkit-transform: rotate(45deg) translateX(-100%);
     -moz-transform: rotate(45deg) translateX(-100%);
@@ -3445,22 +3333,16 @@ textarea[contenteditable] {
   }
 }
 .nav-content li a {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  outline-style: none;
+  -moz-outline-style: none;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  width: 100%;
-  display: block;
-  font-size: 1.75em;
 }
 @media screen and (min-width: 48em) {
   .nav-content li a {
     width: 100%;
     color: #DDD;
-    font-size: 1em;
-    line-height: 1.2;
+    font-size: 1.2em;
     padding-right: 100%;
     z-index: 10;
   }
@@ -3470,14 +3352,17 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 48em) and (min-width: 48em) {
   .nav-content li a.romboid {
+    padding-top: 5px;
     display: block;
     letter-spacing: 2px;
     cursor: default;
     pointer-events: none;
     margin: 0 auto;
+    line-height: 95%;
     padding-right: 0;
     color: #FFF;
-    height: 55px;
+    top: 2.2em;
+    height: 50px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -3495,11 +3380,14 @@ textarea[contenteditable] {
 }
 .nav-content .active {
   color: #FFF;
-  display: inline-block;
+  border-bottom: 1px solid #DDD;
+  display: block;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
+  text-align: center;
+  padding: 2%;
 }
 @media screen and (min-width: 48em) {
   .nav-content {
@@ -3513,11 +3401,6 @@ textarea[contenteditable] {
     margin-left: 5%;
     border-bottom: 1px solid #444;
   }
-}
-.nav-content li {
-  width: 80%;
-  border-bottom: 1px solid #444;
-  text-align: center;
 }
 
 .fabz-logo-wrapper {
@@ -3561,12 +3444,6 @@ textarea[contenteditable] {
   }
 }
 
-.arrow-keys-info-container {
-  height: 60px;
-  width: 50%;
-  text-align: center;
-}
-
 .arrow-keys-info {
   display: none;
 }
@@ -3574,14 +3451,12 @@ textarea[contenteditable] {
   .arrow-keys-info {
     z-index: 88;
     width: 60px;
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
+    right: 0;
     display: inline-block;
     text-align: center;
     background-color: transparent;
-    position: relative;
+    position: absolute;
+    bottom: 20px;
   }
 }
 
@@ -3786,7 +3661,6 @@ body {
   scrollbar-shadow-color: #001;
   scrollbar-highlight-color: #001;
   scrollbar-3d-light-color: #001;
-  background-color: #001;
 }
 
 h2 {
