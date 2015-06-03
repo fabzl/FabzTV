@@ -266,7 +266,7 @@ h2, .h2, .beta {
   font-size: 1.5rem;
   margin-top: 0;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   h2, .h2, .beta {
     margin-bottom: 28px;
   }
@@ -621,7 +621,7 @@ label.checkbox, label.radio {
 label input, label textarea, label select {
   display: block;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   label {
     line-heigth: 2.5em;
     margin-bottom: 5px;
@@ -647,7 +647,7 @@ select,
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   input,
   textarea,
   select,
@@ -924,7 +924,7 @@ textarea:focus:required:invalid:focus {
   padding: 27px 20px 28px;
   zoom: 1;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   .form-actions {
     margin-top: 28px;
     margin-bottom: 28px;
@@ -1037,7 +1037,7 @@ textarea:focus:required:invalid:focus {
   padding-left: 5px;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   /* ==========================================================================
      Horizontal-specific styles
      * add .form--horizontal to the <form> element
@@ -1587,7 +1587,7 @@ img, object, embed, video {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 25em) {
+@media screen and (min-width: 26.25em) {
   .media {
     padding: 35px 0;
   }
@@ -1694,7 +1694,7 @@ img, object, embed, video {
   height: auto;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   .l-blockGrid li {
     display: block;
     height: auto;

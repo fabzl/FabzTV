@@ -65,9 +65,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 // 	}
 // }
 
-
-
-
 @keyframes stripesAnimation { 
 
 	0% {
@@ -80,12 +77,10 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	}
 
-
 	80% {
 		opacity:100%;
 
 	}
-
 
 	100% {
 
@@ -121,23 +116,20 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	border:solid #FFF 20px;
 	line-height:90%;
 
-	@include respond-min($breakpoint-mid*.5) {
+	@include respond-min($breakpoint-narrow) {
 		font-size:1.8em;
 		padding:11px;
 	}
 
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		font-size:2.2em;
 		padding:11px;
 	}
 
 
-
-
 	&.main-description:after {
 
-	
 			bottom: 0%;
 			left: 0%;
 			transform: translateY(-50%) translateX(-100%);
@@ -166,7 +158,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	transition-delay: 5s;
 	
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		left:15%;
 		animation: tooltipLogoAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translateY(-50%);
@@ -189,7 +181,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		border-color: transparent transparent $backgroundColourTooltip transparent;
 		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 
-		@include respond-min($breakpoint-mid) {
+		@include respond-min($breakpoint-wide) {
 
 			bottom: 0%;
 			left: 0%;
@@ -307,7 +299,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	left:50%;
 	bottom: 0;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		left:15%;
 		animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translate(0);
@@ -330,7 +322,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		border-color: transparent transparent $backgroundColourTooltip transparent;
 		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 
-		@include respond-min($breakpoint-mid) {
+		@include respond-min($breakpoint-wide) {
 
 			bottom: 0%;
 			left: 0%;
@@ -427,7 +419,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	
 	stroke:#FFF;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display: none;
 	}
 }
@@ -463,7 +455,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	display:inline-block;
 	float:right;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		max-width: 50%;
 	}
@@ -477,7 +469,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	right: 5%;
 	display:none;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		width: 40%;
 		float: right;
 		margin:auto;
@@ -528,7 +520,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		width:100%;
 	}
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		width: 50%;
 		float:left;
@@ -548,7 +540,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	background-color:rgba(0, 0, 17, 0.8);
 	orphans: 3;
 	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 	
 		max-height:none;
 		margin-top: auto;
@@ -596,7 +588,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	padding-top: 10%!important;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		padding-top:3%!important;
 	}
@@ -623,7 +615,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	width:100%;
 	margin-bottom:2px!important;
 	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		width:auto;
 		display : inline;
 	}
@@ -648,7 +640,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	display:inline; 
 	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display:none; 
 	}
 }
@@ -656,7 +648,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	display:none; 
 	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display:inline; 
 	}
 }
@@ -666,7 +658,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	display:none;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display : inline;
 		width: 100%;
 		position:relative;
@@ -704,7 +696,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 	display:inline-block;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		
 		display:none;
 	}
@@ -713,38 +705,47 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	
 }
 
+
+
+
+@keyframes display-description {
+
+  0% {
+   height:60px;
+  }
+
+  100% {
+	height:100%;
+  }
+}
+
+
+
+
 .description-content-holder {
 
-	position:relative;
-	
+	position:relative;	
 	text-align:left;
 	bottom: 0;
-	height: auto;
-	padding-right: 0px;
-	background-color:rgba(255, 255, 255, 0.9);
-	min-width: 60px;
-	min-height:60px;
-	right: 0;
+	//padding-right: 0px;
+	background-color:rgba(255, 255, 255, 0.8);
+	height:60px;
+	//right: 0;
 	cursor:pointer;
 	display:inline-block;
 	width: 100%;
 	//transition : all  .3s ease-in-out;
-	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+	transition: all 750ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+	
 
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		position:relative;
-	//	margin-right: 30px;
 		bottom: auto;
 		display:inline-block;
-	//	min-width: 80px;
-	//	min-height:80px;
-	//	padding-right: 85px;
-		//right: 50px;
 		background-color:rgba(255, 255, 255, 1);
 		overflow:visible;
-		//transform: translateX(-100%);
 	}
 
 	h2 {
@@ -757,7 +758,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		margin:0;
 		margin-right: 20%;
 
-		@include respond-min($breakpoint-mid) {
+		@include respond-min($breakpoint-wide) {
 			padding: 1px 10px 0 10px;
 		}
 
@@ -769,11 +770,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 		float:left;
 		color: #001;
-		display : none; 
-		opacity:0;
+	//	display : none; 
+		opacity : 0;
 
-		@include respond-min($breakpoint-mid) {
-			display : inline; 
+		@include respond-min($breakpoint-wide) {
+			//display : inline; 
 			opacity:1;
 		}
 
@@ -785,7 +786,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			margin:0;
 			width:100%;
 			line-height:1em;
-			@include respond-min($breakpoint-mid) {
+			@include respond-min($breakpoint-wide) {
 				padding: 0px 10px 0 10px;
 			}
 		}
@@ -798,7 +799,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			width:100%;
 			line-height:1em;
 
-			@include respond-min($breakpoint-mid) {
+			@include respond-min($breakpoint-wide) {
 				padding: 5px 10px 0 10px;
 				line-height:1em;
 			}
@@ -808,14 +809,14 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	&.active {
 
 		display: block;
-		bottom:0;
 		opacity:1;
-		right:0;
-		max-height:initial;
-		transform: translateY(0);
-		padding-right: 0px;
+	//	right:0;
+	//	max-height:initial;
+	//	transform: translateY(0);
+	//	padding-right: 0px;
+		height:100%;
 
-		@include respond-min($breakpoint-mid) {
+		@include respond-min($breakpoint-wide) {
 			padding-right: 100px;
 		}
 
@@ -832,6 +833,16 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 			&.description-text { 
 
 				padding-left:5%;
+				opacity: 0;
+				display:none;
+				transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+				transition-delay: 250ms;
+				
+
+				&.active { 
+					display:inline;
+					opacity: 1;	
+				}
 			}
 			&.description-year {
 				display : block;
@@ -846,6 +857,9 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		}
 	}
 }
+
+
+
 
 .more-info-toggle { 
 
@@ -870,7 +884,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	display:inline-block;
 	transition : all .3s ease-in-out;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		top:11px;
 		display:none;
 	}
@@ -886,7 +900,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	width:100%;
 	position: relative;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		width:80%;
 		position: relative;
@@ -1029,8 +1043,9 @@ $iconsSize : 14px;
 	max-width:none;
 	transform: scale(.8);
 	transform-origin: 50% 50%;
+	height:auto;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		max-width: 200px;
 		position: relative;
@@ -1055,7 +1070,6 @@ $iconsSize : 14px;
 .social-icons-container {
 
 	display: none;
-//	padding-top: 120px;
 	overflow:hidden;
 	opacity:0;
 
@@ -1105,7 +1119,7 @@ $iconsSize : 14px;
 	}
 
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display: none;
 	}
 }
@@ -1116,7 +1130,7 @@ $iconsSize : 14px;
 	display: block;
 	cursor: pointer;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 		display: none;
 	}
 }
@@ -1126,15 +1140,26 @@ $iconsSize : 14px;
 	text-align:center;
 	width : 100px;
 	height: 100px;
-	margin: 0px auto;
+	margin: 0 auto;
 	z-index:998;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 
-		padding-top: 60px;
+		margin-top: 20px;
+		width : 100px;
+		height: 100px;
+		text-align: center;
+		z-index:auto;
+
+	}
+
+
+
+	@include respond-min($breakpoint-wide) {
+
+		margin-top: 60px;
 		width : 100%;
 		height: auto;
-		margin: 0 auto;
 		text-align: center;
 		z-index:auto;
 
@@ -1153,8 +1178,15 @@ $iconsSize : 14px;
 		transform-origin: 50% 50%;
 
 		&:hover { 
+
+		@include respond-min($breakpoint-wide) {
+
 			transform: scale(1.2);
+
+			}
 		}
+
+
 		&.make-small {
 
 			transform: scale(.6);
@@ -1198,9 +1230,7 @@ $iconsSize : 14px;
 
 .sidebar-wrapper {
 
-	min-width: 50px;
 	min-height: 100px;
-	//background-color: #001;
 	overflow:visible;
 	width: 100%;
 	height:100px;
@@ -1208,12 +1238,15 @@ $iconsSize : 14px;
 	top: 0;
 	z-index: 999;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 		
 		position: relative;
-		//width: 15%;
 		height:100%;
 		overflow: hidden;
+	}
+
+	@include respond-min($breakpoint-wide) {
+		
 	}
 }
 
@@ -1225,9 +1258,8 @@ $iconsSize : 14px;
 	overflow:hidden;
 	position: absolute;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 		
-		//width: 85%;
 		height:100%;
 		right: 0;
 		top:0;
@@ -1237,12 +1269,12 @@ $iconsSize : 14px;
 
 .content {
 
-	top:0;
+	//top:0;
 	position: relative;
 	transition : top .5s ease-in-out;
 	background-color:#000;
 	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 
 	float: right;
 
@@ -1257,53 +1289,52 @@ $iconsSize : 14px;
 	left:0;
 }
 
+
+
 .nav-content {
 
 	overflow: visible;
 	font-family: 'denseregular';
-	background-color: rgba(100, 100, 100, 0.6);
+	background-color: rgba(0, 0, 0, 0.6);
 	width:100%;
-	padding-left: auto;
+	height:auto;
 	position:absolute;
 	z-index: -10;
+	opacity: 0;
+	display: none;
+	float:none;
 
-	@include respond-min($breakpoint-mid) {
 
-		//width:90%;
-		position:relative;
-		float:left;
-		width:50%;
-		//padding-left: 10%;
-	
-	}
+	&.active {
+
+		color:#FFF;
+		display:block;
+		opacity:1;
+	} 
+
 	ol {
-
+	
 		position: relative;
 		text-align:center;
-
+		width:80%;
+		margin: 0 auto;
 	}
 
 	li {
 
-		display: none;
 		transition : all .2s ease-in-out;
-		width:auto;
-		text-align: left;
-		margin: 0 auto;
+		
+		border-bottom: 1px solid #FFF;
+		
+		@include respond-min($breakpoint-narrow) {
+			border-bottom: 1px solid #444;
+		}
+		text-align : center;
 
-			&:hover { 
-			//	padding-left: 20%;
-
-			}
 			&.romboid { 
 
-
-				//padding-right: 50%;
 				margin: 0 auto;
-				// romboid
-				width: 100%;
 				position: relative;
-			//	background-color:rgba(37,86,136,.5);
 				text-align: center;
 			
 			}
@@ -1312,13 +1343,14 @@ $iconsSize : 14px;
 			&.romboid:before {
 
 				display:none;
-				@include respond-min($breakpoint-mid) {
+				
+
+				@include respond-min($breakpoint-narrow) {
 					display:block;
 					content: '';
 					position: absolute;
 					width:10px;
 					height:10px;
-					border:1px solid #000;
 					left:50%;
 					top:2em;
 					background:#FFF;
@@ -1328,15 +1360,15 @@ $iconsSize : 14px;
 
 			}
 
-			a {
+		a {
 
 			   	user-select: none;
 				transition : all .2s ease-in-out;
 				width:100%;
-				display:block;
+			//	display:block;
 				font-size:1.75em;
 
-				@include respond-min($breakpoint-mid) {
+				@include respond-min($breakpoint-narrow) {
 
 					width:100%;
 					color:#DDD;
@@ -1344,30 +1376,24 @@ $iconsSize : 14px;
 					line-height: 1.2;
 					padding-right: 100%;
 					z-index: 10;
-
+					
 
 					&.romboid {
 
 					display:none;
 
-						@include respond-min($breakpoint-mid) {
+						@include respond-min($breakpoint-narrow) {
 						
 							display:block;
 							letter-spacing:2px;
 							cursor: default;
 							pointer-events: none;
 							margin:0 auto;
-							
 							padding-right: 0;
 							color:#FFF;
 							height: 55px;
 
 							//no select
-							-webkit-touch-callout: none;
-							-webkit-user-select: none;
-							-khtml-user-select: none;
-							-moz-user-select: none;
-							-ms-user-select: none;
 							user-select: none;
 
 						}
@@ -1382,35 +1408,28 @@ $iconsSize : 14px;
 			}
 	}
 
-	.active {
 
-		color:#FFF;
-		display:inline-block;
-		transition : top .5s ease-in-out;
-		transition : opacity .5s ease-in-out;
-	} 
+	@include respond-min($breakpoint-narrow) {
+			
+			display:block;
+			opacity: 1;
+			position:relative;	
+			width:100%;
+			z-index: auto;
+		}
 
 	@include respond-min($breakpoint-mid) {
 
-		background-color: rgba(0, 0, 0, 0);
-		position:relative;
-		top: auto;
-		z-index: 10;
-
-		li { 
-			width:100%;
-			display: block;
-			margin-left: 5%;
-			border-bottom: 1px solid #444;
+			width:50%;
+			float:left;
+		
 		}
-	}
 
-	li { 
-			width:80%;
-			border-bottom: 1px solid #444;
-			text-align : center;
-		}
 }
+
+
+
+
 
 .fabz-logo-wrapper {
 
@@ -1462,19 +1481,18 @@ $iconsSize : 14px;
 
 }
 
-
-
 // arrows
 
 .arrow-keys-tip {
 
 	display:none;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-narrow) {
 
-		display: inline-block;
+		display: block;
 		width:100%;
 		position:relative;
+		text-align:center;
 	}
 }
 
@@ -1482,26 +1500,43 @@ $iconsSize : 14px;
 .arrow-keys-info-container {
 
 	height:60px;
-	width:50%;
 	text-align:center;
+
+	@include respond-min($breakpoint-narrow) {
+		width:100%;
+	}	
+	@include respond-min($breakpoint-mid) {
+		width:50%;
+	}	
 
 
 }
 .arrow-keys-info {
 
 	display:none;
+	
 
+	@include respond-min($breakpoint-narrow) {
+	
+		width:100px;
+		display: block;
+		text-align:center;
+		background-color:rgba(0,0,0,0);
+		position:relative;
+		margin: 30px auto;
 
+	}
 	@include respond-min($breakpoint-mid) {
-		z-index: 88;
+	
 		width:60px;
 	//	left: 25%;
 		transform:translateY(-100%);
 		display: inline-block;
 		text-align:center;
-		background-color:rgba(0,0,0,0);
 		position:relative;
 	//	top: 400px;
+		margin: 0 auto;
+
 
 
 	}
@@ -1636,6 +1671,8 @@ $iconsSize : 14px;
 	position: absolute;
 	right: 5%;
 	top: 34%;
+
+	
 }
 
 .nav-toggle {
@@ -1664,7 +1701,22 @@ $iconsSize : 14px;
 	position: absolute;
 	width: 35px;
 
-	@include respond-min($breakpoint-mid) {
+
+	@include respond-min($breakpoint-narrow) {
+
+		left: auto;
+		top: auto;
+		position: relative;
+		margin: 30px auto;
+  		display: block;
+
+		&.share-toggle-svg { 
+
+			max-width: 35px;
+		}
+	}
+
+	@include respond-min($breakpoint-wide) {
 
 		display: none;
 
@@ -1693,7 +1745,7 @@ $iconsSize : 14px;
 .nav-toggle.active span {
 	background-color: transparent;
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		display: none;
 	}
 
@@ -1749,7 +1801,7 @@ h2 {
 		width: 80%;
 	}
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		font-size: 1.4em;
 		width:100%;

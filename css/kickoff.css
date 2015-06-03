@@ -281,7 +281,7 @@ h2, .h2, .beta {
   font-size: 1.5rem;
   margin-top: 0;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   h2, .h2, .beta {
     margin-bottom: 28px;
   }
@@ -865,7 +865,7 @@ label.checkbox, label.radio {
 label input, label textarea, label select {
   display: block;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   label {
     line-heigth: 2.5em;
     margin-bottom: 5px;
@@ -891,7 +891,7 @@ select,
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   input,
   textarea,
   select,
@@ -1168,7 +1168,7 @@ textarea:focus:required:invalid:focus {
   padding: 27px 20px 28px;
   zoom: 1;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   .form-actions {
     margin-top: 28px;
     margin-bottom: 28px;
@@ -1281,7 +1281,7 @@ textarea:focus:required:invalid:focus {
   padding-left: 5px;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   /* ==========================================================================
      Horizontal-specific styles
      * add .form--horizontal to the <form> element
@@ -1413,7 +1413,7 @@ img, object, embed, video {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 25em) {
+@media screen and (min-width: 26.25em) {
   .media {
     padding: 35px 0;
   }
@@ -1551,7 +1551,7 @@ img, object, embed, video {
   height: auto;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   .l-blockGrid li {
     display: block;
     height: auto;
@@ -2088,13 +2088,13 @@ textarea[contenteditable] {
   border: solid #FFF 20px;
   line-height: 90%;
 }
-@media screen and (min-width: 24em) {
+@media screen and (min-width: 26.25em) {
   .main-description {
     font-size: 1.8em;
     padding: 11px;
   }
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .main-description {
     font-size: 2.2em;
     padding: 11px;
@@ -2132,7 +2132,7 @@ textarea[contenteditable] {
   -moz-transition-delay: 5s;
   transition-delay: 5s;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .tooltip {
     left: 15%;
     -webkit-animation: tooltipLogoAnimationDesktopIn 1s 1;
@@ -2164,7 +2164,7 @@ textarea[contenteditable] {
   border-color: transparent transparent rgba(0, 0, 17, 0.8) transparent;
   box-shadow: 0px 10px 24px -14px #707070;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .tooltip.tooltip:after {
     bottom: 0%;
     left: 0%;
@@ -2420,7 +2420,7 @@ textarea[contenteditable] {
   left: 50%;
   bottom: 0;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .tooltip-arrowKeys {
     left: 15%;
     -webkit-animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
@@ -2452,7 +2452,7 @@ textarea[contenteditable] {
   border-color: transparent transparent rgba(0, 0, 17, 0.8) transparent;
   box-shadow: 0px 10px 24px -14px #707070;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .tooltip-arrowKeys.tooltip-arrowKeys:after {
     bottom: 0%;
     left: 0%;
@@ -2579,7 +2579,7 @@ textarea[contenteditable] {
 .stripe-down .stripe-up {
   stroke: #FFF;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .stripe-down .stripe-up {
     display: none;
   }
@@ -2610,7 +2610,7 @@ textarea[contenteditable] {
   display: inline-block;
   float: right;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .contact-mailto-link {
     max-width: 50%;
   }
@@ -2623,7 +2623,7 @@ textarea[contenteditable] {
   right: 5%;
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .contact-illustration-container {
     width: 40%;
     float: right;
@@ -2668,7 +2668,7 @@ textarea[contenteditable] {
 .overlayer-contact h2 {
   width: 100%;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .overlayer-contact {
     width: 50%;
     float: left;
@@ -2687,7 +2687,7 @@ textarea[contenteditable] {
   background-color: rgba(0, 0, 17, 0.8);
   orphans: 3;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .overlayer-about {
     max-height: none;
     margin-top: auto;
@@ -2725,7 +2725,7 @@ textarea[contenteditable] {
 .has-padding-top {
   padding-top: 10% !important;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .has-padding-top {
     padding-top: 3% !important;
   }
@@ -2747,7 +2747,7 @@ textarea[contenteditable] {
   width: 100%;
   margin-bottom: 2px !important;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-year {
     width: auto;
     display: inline;
@@ -2771,7 +2771,7 @@ textarea[contenteditable] {
 .show-on-mobile {
   display: inline;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .show-on-mobile {
     display: none;
   }
@@ -2780,7 +2780,7 @@ textarea[contenteditable] {
 .show-on-desktop {
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .show-on-desktop {
     display: inline;
   }
@@ -2789,7 +2789,7 @@ textarea[contenteditable] {
 .sidebar-description {
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .sidebar-description {
     display: inline;
     width: 100%;
@@ -2820,30 +2820,52 @@ textarea[contenteditable] {
 .overlayer-description .description-content-holder {
   display: inline-block;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .overlayer-description .description-content-holder {
     display: none;
   }
 }
 
+@-webkit-keyframes display-description {
+  0% {
+    height: 60px;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@-moz-keyframes display-description {
+  0% {
+    height: 60px;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes display-description {
+  0% {
+    height: 60px;
+  }
+  100% {
+    height: 100%;
+  }
+}
 .description-content-holder {
   position: relative;
   text-align: left;
   bottom: 0;
-  height: auto;
-  padding-right: 0px;
-  background-color: rgba(255, 255, 255, 0.9);
-  min-width: 60px;
-  min-height: 60px;
-  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 60px;
   cursor: pointer;
   display: inline-block;
   width: 100%;
-  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: all 750ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 750ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder {
     position: relative;
     bottom: auto;
@@ -2862,7 +2884,7 @@ textarea[contenteditable] {
   margin: 0;
   margin-right: 20%;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder h2 {
     padding: 1px 10px 0 10px;
   }
@@ -2873,12 +2895,10 @@ textarea[contenteditable] {
 .description-content-holder p, .description-content-holder a, .description-content-holder li {
   float: left;
   color: #001;
-  display: none;
   opacity: 0;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder p, .description-content-holder a, .description-content-holder li {
-    display: inline;
     opacity: 1;
   }
 }
@@ -2891,7 +2911,7 @@ textarea[contenteditable] {
   width: 100%;
   line-height: 1em;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder p.description-tooltip, .description-content-holder a.description-tooltip, .description-content-holder li.description-tooltip {
     padding: 0px 10px 0 10px;
   }
@@ -2904,7 +2924,7 @@ textarea[contenteditable] {
   width: 100%;
   line-height: 1em;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder p.description-year, .description-content-holder a.description-year, .description-content-holder li.description-year {
     padding: 5px 10px 0 10px;
     line-height: 1em;
@@ -2912,17 +2932,10 @@ textarea[contenteditable] {
 }
 .description-content-holder.active {
   display: block;
-  bottom: 0;
   opacity: 1;
-  right: 0;
-  max-height: initial;
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-  padding-right: 0px;
+  height: 100%;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-content-holder.active {
     padding-right: 100px;
   }
@@ -2938,6 +2951,17 @@ textarea[contenteditable] {
 }
 .description-content-holder.active p.description-text, .description-content-holder.active a.description-text, .description-content-holder.active li.description-text {
   padding-left: 5%;
+  opacity: 0;
+  display: none;
+  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  /* easeInOutSine */
+  -moz-transition-delay: 250ms;
+  transition-delay: 250ms;
+}
+.description-content-holder.active p.description-text.active, .description-content-holder.active a.description-text.active, .description-content-holder.active li.description-text.active {
+  display: inline;
+  opacity: 1;
 }
 .description-content-holder.active p.description-year, .description-content-holder.active a.description-year, .description-content-holder.active li.description-year {
   display: block;
@@ -2978,7 +3002,7 @@ textarea[contenteditable] {
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .more-info-toggle-container {
     top: 11px;
     display: none;
@@ -2992,7 +3016,7 @@ textarea[contenteditable] {
   width: 100%;
   position: relative;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .description-video-insert {
     width: 80%;
     position: relative;
@@ -3156,8 +3180,9 @@ textarea[contenteditable] {
   -moz-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
+  height: auto;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .social-icons {
     max-width: 200px;
     position: relative;
@@ -3195,7 +3220,7 @@ textarea[contenteditable] {
   overflow: hidden;
   opacity: 0;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 50em) {
   .social-icons-container {
     width: 50%;
     display: inline-block;
@@ -3236,7 +3261,7 @@ textarea[contenteditable] {
   position: absolute;
   top: 100px;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .social-icons-container-mobile {
     display: none;
   }
@@ -3247,7 +3272,7 @@ textarea[contenteditable] {
   display: block;
   cursor: pointer;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .nav-toggle {
     display: none;
   }
@@ -3257,15 +3282,23 @@ textarea[contenteditable] {
   text-align: center;
   width: 100px;
   height: 100px;
-  margin: 0px auto;
+  margin: 0 auto;
   z-index: 998;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .fabz-logo-romboid-container {
-    padding-top: 60px;
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    z-index: auto;
+  }
+}
+@media screen and (min-width: 62em) {
+  .fabz-logo-romboid-container {
+    margin-top: 60px;
     width: 100%;
     height: auto;
-    margin: 0 auto;
     text-align: center;
     z-index: auto;
   }
@@ -3287,11 +3320,13 @@ textarea[contenteditable] {
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
-.fabz-logo-romboid-container .side-logo:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
+@media screen and (min-width: 62em) {
+  .fabz-logo-romboid-container .side-logo:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 }
 .fabz-logo-romboid-container .side-logo.make-small {
   -webkit-transform: scale(0.6);
@@ -3335,7 +3370,6 @@ textarea[contenteditable] {
 }
 
 .sidebar-wrapper {
-  min-width: 50px;
   min-height: 100px;
   overflow: visible;
   width: 100%;
@@ -3344,7 +3378,7 @@ textarea[contenteditable] {
   top: 0;
   z-index: 999;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .sidebar-wrapper {
     position: relative;
     height: 100%;
@@ -3359,7 +3393,7 @@ textarea[contenteditable] {
   overflow: hidden;
   position: absolute;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .showcase-wrapper {
     height: 100%;
     right: 0;
@@ -3368,13 +3402,12 @@ textarea[contenteditable] {
 }
 
 .content {
-  top: 0;
   position: relative;
   -moz-transition: top .5s ease-in-out;
   transition: top .5s ease-in-out;
   background-color: #000;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .content {
     float: right;
   }
@@ -3391,48 +3424,52 @@ textarea[contenteditable] {
 .nav-content {
   overflow: visible;
   font-family: 'denseregular';
-  background-color: rgba(100, 100, 100, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
-  padding-left: auto;
+  height: auto;
   position: absolute;
   z-index: -10;
+  opacity: 0;
+  display: none;
+  float: none;
 }
-@media screen and (min-width: 48em) {
-  .nav-content {
-    position: relative;
-    float: left;
-    width: 50%;
-  }
+.nav-content.active {
+  color: #FFF;
+  display: block;
+  opacity: 1;
 }
 .nav-content ol {
   position: relative;
   text-align: center;
+  width: 80%;
+  margin: 0 auto;
 }
 .nav-content li {
-  display: none;
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  width: auto;
-  text-align: left;
-  margin: 0 auto;
+  border-bottom: 1px solid #FFF;
+  text-align: center;
+}
+@media screen and (min-width: 26.25em) {
+  .nav-content li {
+    border-bottom: 1px solid #444;
+  }
 }
 .nav-content li.romboid {
   margin: 0 auto;
-  width: 100%;
   position: relative;
   text-align: center;
 }
 .nav-content li.romboid:before {
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .nav-content li.romboid:before {
     display: block;
     content: '';
     position: absolute;
     width: 10px;
     height: 10px;
-    border: 1px solid #000;
     left: 50%;
     top: 2em;
     background: #FFF;
@@ -3451,10 +3488,9 @@ textarea[contenteditable] {
   -moz-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   width: 100%;
-  display: block;
   font-size: 1.75em;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .nav-content li a {
     width: 100%;
     color: #DDD;
@@ -3467,7 +3503,7 @@ textarea[contenteditable] {
     display: none;
   }
 }
-@media screen and (min-width: 48em) and (min-width: 48em) {
+@media screen and (min-width: 26.25em) and (min-width: 26.25em) {
   .nav-content li a.romboid {
     display: block;
     letter-spacing: 2px;
@@ -3477,47 +3513,33 @@ textarea[contenteditable] {
     padding-right: 0;
     color: #FFF;
     height: 55px;
-    -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
   }
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .nav-content li a:hover {
     padding-left: 20%;
     letter-spacing: 2px;
     text-align: center;
   }
 }
-.nav-content .active {
-  color: #FFF;
-  display: inline-block;
-  -moz-transition: top .5s ease-in-out;
-  transition: top .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  transition: opacity .5s ease-in-out;
-}
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .nav-content {
-    background-color: transparent;
-    position: relative;
-    top: auto;
-    z-index: 10;
-  }
-  .nav-content li {
-    width: 100%;
     display: block;
-    margin-left: 5%;
-    border-bottom: 1px solid #444;
+    opacity: 1;
+    position: relative;
+    width: 100%;
+    z-index: auto;
   }
 }
-.nav-content li {
-  width: 80%;
-  border-bottom: 1px solid #444;
-  text-align: center;
+@media screen and (min-width: 50em) {
+  .nav-content {
+    width: 50%;
+    float: left;
+  }
 }
 
 .fabz-logo-wrapper {
@@ -3553,26 +3575,45 @@ textarea[contenteditable] {
 .arrow-keys-tip {
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .arrow-keys-tip {
-    display: inline-block;
+    display: block;
     width: 100%;
     position: relative;
+    text-align: center;
   }
 }
 
 .arrow-keys-info-container {
   height: 60px;
-  width: 50%;
   text-align: center;
+}
+@media screen and (min-width: 26.25em) {
+  .arrow-keys-info-container {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 50em) {
+  .arrow-keys-info-container {
+    width: 50%;
+  }
 }
 
 .arrow-keys-info {
   display: none;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
   .arrow-keys-info {
-    z-index: 88;
+    width: 100px;
+    display: block;
+    text-align: center;
+    background-color: transparent;
+    position: relative;
+    margin: 30px auto;
+  }
+}
+@media screen and (min-width: 50em) {
+  .arrow-keys-info {
     width: 60px;
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
@@ -3580,8 +3621,8 @@ textarea[contenteditable] {
     transform: translateY(-100%);
     display: inline-block;
     text-align: center;
-    background-color: transparent;
     position: relative;
+    margin: 0 auto;
   }
 }
 
@@ -3724,7 +3765,19 @@ textarea[contenteditable] {
   position: absolute;
   width: 35px;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 26.25em) {
+  .share-toggle {
+    left: auto;
+    top: auto;
+    position: relative;
+    margin: 30px auto;
+    display: block;
+  }
+  .share-toggle.share-toggle-svg {
+    max-width: 35px;
+  }
+}
+@media screen and (min-width: 62em) {
   .share-toggle {
     display: none;
   }
@@ -3749,7 +3802,7 @@ textarea[contenteditable] {
 .nav-toggle.active span {
   background-color: transparent;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   .nav-toggle.active span {
     display: none;
   }
@@ -3800,7 +3853,7 @@ h2 {
 h2.active {
   width: 80%;
 }
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 62em) {
   h2 {
     font-size: 1.4em;
     width: 100%;

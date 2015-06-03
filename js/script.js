@@ -139,14 +139,18 @@ Function.prototype.throttle = function (milliseconds) {
 		isAndroidNativeBrowserBoolean: false,
 		historySupported : false,
 		scrollerFlag: true,
-		verticalMode:false,
+		mobileMode:false,
+		tabletMode:false,
 		// value holders
-		swapToVerticalBreakpoint:768,
+		swapToMobileBreakpoint:420,
+		swapToTabletBreakpoint:800,
+
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
 		verticalSideBarBreakpoint: 600,
 		ScrollerSpeed : 350,
 		totalLogoClientsCount:54,
+		sideBarMinTablet : 120,
 		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
 		scene3D:{},
@@ -291,7 +295,7 @@ Function.prototype.throttle = function (milliseconds) {
 			if(window.location.hash == "#!/home") {
 				KO.Config.createTooltipLogo();
 
-				if(KO.Config.verticalMode===false) {
+				if(KO.Config.mobileMode===false) {
 
 					KO.Config.createTooltipArrowKeys();
 				}
@@ -308,7 +312,7 @@ Function.prototype.throttle = function (milliseconds) {
 			
 			var topTooltip = "120px";
 			
-			if(!KO.Config.verticalMode) {
+			if(!KO.Config.mobileMode) {
 				topTooltip = ( KO.Config.$window.stageH*.3) *.5+"px";
 				console.log("topTooltip",topTooltip)
 			}
@@ -332,7 +336,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.tooltipOnBoolean = false;
 				KO.Config.destroyTooltips();
 		
-				if(!KO.Config.verticalMode === true) {
+				if(!KO.Config.mobileMode === true) {
 					KO.Config.destroyTooltipArrows();
 				}
 			}
@@ -344,7 +348,7 @@ Function.prototype.throttle = function (milliseconds) {
 			
 			//	console.log("destroy tooltip");
 			var tooltip = KO.Config.$wrapper.find(".tooltip");
-			var animation = (KO.Config.verticalMode) ? "tooltipLogoAnimationMobileOut" : "tooltipLogoAnimationDesktopOut";
+			var animation = (KO.Config.mobileMode) ? "tooltipLogoAnimationMobileOut" : "tooltipLogoAnimationDesktopOut";
 			tooltip.bind('oanimationend animationend webkitAnimationEnd', function(){
 				tooltip.remove();
 			});
@@ -372,7 +376,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		destroyTooltipArrowsKeysInfo:function () {
 
-				if(!KO.Config.verticalMode && KO.Config.arrowKeysInfoBoolean) {
+				if(!KO.Config.mobileMode && KO.Config.arrowKeysInfoBoolean) {
 
 				KO.Config.arrowKeysInfoBoolean = false;
 
@@ -408,7 +412,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		swipeControl:function ()  {	
 
-			if(KO.Config.verticalMode) { 
+			if(KO.Config.mobileMode) { 
 				KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
 										.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
 										.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
@@ -425,7 +429,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		onContentVisible:function() { 
 		
-			KO.Config.animateSideBarIn();
+		//	KO.Config.animateSideBarIn();
 			KO.Config.displayTooltips();
 
 		},
@@ -435,13 +439,13 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.hideAndShowSidebar("block");
 
-			if (KO.Config.verticalMode) {
+			if (KO.Config.mobileMode) {
 
-				KO.Config.$socialIconsContainer.css("display", "none");
+			//	KO.Config.$socialIconsContainer.css("display", "none");
 				KO.Config.$navigationContainer.removeClass("animated bounceInDown");
 				KO.Config.$socialIconsContainer.removeClass("animated bounceInDown");
 			} else {
-				KO.Config.$navigationContainer.addClass("animated bounceInDown");
+			//	KO.Config.$navigationContainer.addClass("animated bounceInDown");
 				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
 			}
 				KO.Config.$fabzLogo.addClass("animated bounceInDown");
@@ -451,14 +455,14 @@ Function.prototype.throttle = function (milliseconds) {
 		hideAndShowSidebar:function(displayValue) {
 
 
-				KO.Config.$fabzLogo.css("display",displayValue);
-				KO.Config.$navigationContainer.css("display",displayValue);
+				// KO.Config.$fabzLogo.css("display",displayValue);
+				// KO.Config.$navigationContainer.css("display",displayValue);
 
-				if (KO.Config.verticalMode) {
-					KO.Config.$socialIconsContainer.css("display", "none");
-				}else { 
-					KO.Config.$socialIconsContainer.css("display", displayValue);
-				}
+				// if (KO.Config.mobileMode) {
+				// 	KO.Config.$socialIconsContainer.css("display", "none");
+				// }else { 
+				// 	KO.Config.$socialIconsContainer.css("display", displayValue);
+				// }
 		},
 
 		activateMobileNavButtons:function() {
@@ -470,12 +474,12 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 		adjustSideBarElements:function() { 
 
-			if (KO.Config.verticalMode === false ) {
+			if (KO.Config.mobileMode === false ) {
 
 				// all relevant elements
 				var sideBarH 				= KO.Config.$sideBar.height();
 				var fabzLogoH 				= KO.Config.$fabzLogo.height();
-				var navigationH 			= KO.Config.$navigationContainer .height();
+				var navigationH 			= KO.Config.$navigationContainer.height();
 				var socialIconsContainerH	= KO.Config.$socialIconsContainer.height();
 				var sideBarW 				= KO.Config.$sideBar.width();
 				var fabzLogoW 				= KO.Config.$fabzLogo.width();
@@ -485,27 +489,22 @@ Function.prototype.throttle = function (milliseconds) {
 				var differenceH 			= sideBarH-objectsTotal;
 
 				//adjust the sidebar
-				KO.Config.$sideBar.width(KO.Config.getDimensionsWidth(KO.Config.$window) - KO.Config.$window.stageH);
+				var sidebarWidth = KO.Config.getDimensionsWidth(KO.Config.$window) - KO.Config.$window.stageH;
+				
+				if (sidebarWidth < KO.Config.sideBarMinTablet ) { 
+					sidebarWidth = KO.Config.sideBarMinTablet;
+				}
+				KO.Config.$sideBar.width(sidebarWidth);
+
+				//KO.Config.$socialIconsContainer.on( "mouseover", KO.Config.makeLogoSmall);
 
 
-			//	if(sideBarH > KO.Config.verticalSideBarBreakpoint) { 
-					// grab the sidebar elements and resize them to match the sidebar 
-				//	KO.Config.$fabzLogo.height(sideBarH*.3);
-				//	KO.Config.$socialIconsContainer.height(sideBarH*.3);
-				//	KO.Config.$navigationContainer.height(sideBarH*.4);
-					// put the socialIcons back
-			//		KO.Config.$socialIconsContainer.toggleClass("active");
-			//		}
-					
-					KO.Config.$socialIconsContainer.on( "mouseover", KO.Config.makeLogoSmall);
+				} else { 
 
-
-				}else { 
-
-					KO.Config.$fabzLogo.height("100px");
-					KO.Config.$socialIconsContainer.height("auto");
-					KO.Config.$navigationContainer.height("auto");
-					KO.Config.$sideBar.width("100%");
+				//	KO.Config.$fabzLogo.height("100px");
+			//		KO.Config.$socialIconsContainer.height("auto");
+			//		KO.Config.$navigationContainer.height("auto");
+				//	KO.Config.$sideBar.width("100%");
 
 				}
 
@@ -513,7 +512,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		makeLogoSmall:function () {
 			console.log("makeLogoSmall");
-			KO.Config.$fabzLogo.toggleClass(".make-small");
+			KO.Config.$fabzLogo.toggleClass("make-small");
 		},
 
 		openMobileNavToggle:function () {
@@ -523,19 +522,21 @@ Function.prototype.throttle = function (milliseconds) {
 			//if share toggle is open close it
 			KO.Config.closeMobileShareToggle();
 			// activate toggle 
-			this.classList.toggle("active");
-			KO.Config.$navigationContainer.find("li").addClass("active");
+			KO.Config.$navigationContainer.toggleClass("active");
+			KO.Config.navToggle.classList.toggle("active");
+
+		//	KO.Config.$navigationContainer.find("li").addClass("active");
 
 			// if the control flag is false change it to true
 			if(KO.Config.mobileNavToggleActiveBoolean === false) {
 
 				KO.Config.mobileNavToggleActiveBoolean = true;
-				KO.Config.$navigationContainer.css("opacity",1);
+				//KO.Config.$navigationContainer.css("opacity",1);
 
-			}else{
+			} else {
 
 				KO.Config.mobileNavToggleActiveBoolean = false;
-				KO.Config.$navigationContainer.css("opacity",0);
+			//	KO.Config.$navigationContainer.css("opacity",0);
 			}
 		},
 
@@ -544,10 +545,11 @@ Function.prototype.throttle = function (milliseconds) {
 			if (KO.Config.mobileNavToggleActiveBoolean === true) {
 
 				KO.Config.navToggle.classList.toggle("active");
-				KO.Config.$navigationContainer.find("li").toggleClass("active");
-				KO.Config.$navigationContainer.css("opacity",0);
+				KO.Config.$navigationContainer.toggleClass("active");
+		//		KO.Config.$navigationContainer.find("li").toggleClass("active");
+			//	KO.Config.$navigationContainer.css("opacity",0);
 			}
-				KO.Config.mobileNavToggleActiveBoolean = false;
+				KO.Config.mobileNavToggleActiveBoolean = false;	
 		},
 
 		openMobileShareToggle:function () { 
@@ -569,8 +571,8 @@ Function.prototype.throttle = function (milliseconds) {
 				if(KO.Config.mobileShareToggleActiveBoolean === false) { 
 					KO.Config.mobileShareToggleActiveBoolean = true;
 				}
-				KO.Config.$socialIconsContainerMobile.css("opacity",1);
-				KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
+			//	KO.Config.$socialIconsContainerMobile.css("opacity",1);
+			//	KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
 		},
 
 		closeMobileShareToggle:function () {
@@ -617,6 +619,7 @@ Function.prototype.throttle = function (milliseconds) {
 					//console.log("history is supported");
 					KO.Config.gotoCorrectURL();
 				}else {
+
 				//	console.log("history is NOT supported");
 			}
 		},
@@ -642,7 +645,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		addRomboidToNav:function() { 
 
-		if(!KO.Config.verticalMode)	
+		if(!KO.Config.mobileMode)	
 			KO.Config.$navigation.each(
 
 				function (i) { 
@@ -1192,14 +1195,6 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.canvasFillValue = 0;
 		}
 
-
-		if(KO.Config.verticalMode===true) {
-			KO.Config.$socialIconsContainer.hide();
-		}else{
-			KO.Config.$socialIconsContainer.show();
-
-		}
-
 		var i = 0;
 
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
@@ -1311,9 +1306,9 @@ Function.prototype.throttle = function (milliseconds) {
 		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".description-content-holder").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 	//	var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 
-		console.log(currentArticle, currentArticleDescription ) ; 
+		//console.log(currentArticle, currentArticleDescription ) ; 
 		
-		if(KO.Config.verticalMode === false ) {
+		if(KO.Config.mobileMode === false ) {
 
 			KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
 		}
@@ -1328,7 +1323,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				currentArticleDescription = currentArticleDescription.prop('outerHTML');
 
-					console.log("currentArticleDescription:", currentArticleDescription);
+					//console.log("currentArticleDescription:", currentArticleDescription);
 		
 			 if( currentArticleDescription != "undefined" ) {
 
@@ -1347,10 +1342,13 @@ Function.prototype.throttle = function (milliseconds) {
 		e.stopPropagation();
 
 		// create the players
-		var $contentHolder = $(e.currentTarget);
-		var $toggleContainer= $contentHolder.parent().find(".more-info-toggle-container");
-		var toogleSVG = e.currentTarget.querySelector(".more-info-toggle"); 
+		var $contentHolder 		= $(e.currentTarget);
+		var $toggleContainer 	= $contentHolder.parent().find(".more-info-toggle-container");
+		var toogleSVG  			= e.currentTarget.querySelector(".more-info-toggle"); 
 		var $descriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
+		var $descriptionText  	=   $(e.currentTarget).find(".description-text");
+		
+
 		var displacementToogleInfo;
 		var displacementToogleInfoString;
 		var	toggleDisplayOffset = -67;
@@ -1358,7 +1356,11 @@ Function.prototype.throttle = function (milliseconds) {
 		// activate the toggles
 		$contentHolder.toggleClass("active");
 		$toggleContainer.toggleClass("active");
+		$descriptionText.toggleClass("active");
+		
+
 		$contentHolder.find("h2").toggleClass("active");
+		
 		toogleSVG.classList.toggle("active");
 
 
@@ -1417,7 +1419,7 @@ Function.prototype.throttle = function (milliseconds) {
 		KO.Config.moveContentByIndexVertically(clickedItemIndex);
 		KO.Config.addRomboidToNav();
 
-		if( KO.Config.verticalMode === true ) {
+		if( KO.Config.mobileMode === true ) {
 			KO.Config.closeMobileNavToggle();
 		}
 	},
@@ -1487,32 +1489,56 @@ Function.prototype.throttle = function (milliseconds) {
 
 		KO.Config.$window.stageW = KO.Config.getDimensionsWidth(KO.Config.$window);
 
-		// if the breakpoint conditions is met activate vertical move 
-		if(KO.Config.$window.stageW < KO.Config.swapToVerticalBreakpoint) {
+		// if the breakpoint conditions is met activate vertical move for mobile 
+		if(KO.Config.$window.stageW < KO.Config.swapToMobileBreakpoint) {
 
+
+			console.log("mobile");
 			// boolean to control the vertical positioning
-			KO.Config.verticalMode = true;
+			KO.Config.mobileMode = true;
+			KO.Config.tabletMode = false;
 			// if the Height is than the min height will 100. 
 			var navigationHeight = 100;
 			
 			
 			KO.Config.$window.stageH -= navigationHeight;
 			// bug fix to show the navigation again when things are changed in the main
-			KO.Config.$navigationContainer.css("opacity",1); 
+			//KO.Config.$navigationContainer.css("opacity",1); 
 			KO.Config.closeMobileShareToggle();
-		}else{
-			if(KO.Config.verticalMode === true) {
-				KO.Config.$window.stageW -=  KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
-			}else{	
-				KO.Config.$window.stageW -= (KO.Config.$window.stageW - KO.Config.$window.stageH);  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 
+			//KO.Config.$window.stageW -=  KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+
+		// if this brakpoint condition is met display the tablet mode	
+		}else if(KO.Config.$window.stageW < KO.Config.swapToTabletBreakpoint) { 
+
+			console.log("tablet");
+			var sidebarWidth = KO.Config.$window.stageW - KO.Config.$window.stageH;
+			console.log("sidebarWidth",sidebarWidth);
+			// if the sidebar is too small make it big enough
+			if (sidebarWidth < KO.Config.sideBarMinTablet ) { 
+
+				sidebarWidth = KO.Config.sideBarMinTablet ;
 			}
 
-			KO.Config.verticalMode = false;
+			KO.Config.$window.stageW -= sidebarWidth;  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+
+
+			KO.Config.mobileMode = false;
+			KO.Config.tabletMode = true;
+
+			
+		}else {
+
+
+			KO.Config.$window.stageW -= (KO.Config.$window.stageW - KO.Config.$window.stageH);  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+			KO.Config.mobileMode = false;
+			KO.Config.tabletMode = false;
+			console.log("desktop");
+
 		}
 
 
-//		console.log("nav analized",navigationHeight, KO.Config.verticalMode ); 
+//		console.log("nav analized",navigationHeight, KO.Config.mobileMode ); 
 
 //		console.log("stage size is H : ", KO.Config.$window.stageH,"W : ",KO.Config.$window.stageW);
 
@@ -1573,7 +1599,7 @@ Function.prototype.throttle = function (milliseconds) {
 	clickToMove:function() {
 
 
-		if (KO.Config.verticalMode === false ) { 
+		if (KO.Config.mobileMode === false ) { 
 			KO.Config.$showcaseWrapper.click(function() {
 				//console.log( "Handler for .click() called." );
 				console.log( "pageX: " + event.pageX + ", pageY: " + event.pageY );
@@ -1663,7 +1689,7 @@ Function.prototype.throttle = function (milliseconds) {
 				var meshHeight = 20;
 				var initialRadius =KO.Config.$window.stageW*.75;
 
-				if (KO.Config.verticalMode) { 
+				if (KO.Config.mobileMode) { 
 					// if mobile add more space
 					initialRadius = initialRadius*2.2;	
 					meshHeight = meshHeight*.8;				
@@ -1763,7 +1789,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				requestAnimationFrame(KO.Config.animate);
 
-				if (KO.Config.verticalMode) { 
+				if (KO.Config.mobileMode) { 
 						KO.Config.clientsLogoGroup.rotation.y += 0.01;
 				}else { 
 					KO.Config.camera.position.x += ( KO.Config.mouseX - KO.Config.camera.position.x ) * .05;
