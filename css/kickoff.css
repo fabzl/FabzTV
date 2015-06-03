@@ -281,7 +281,7 @@ h2, .h2, .beta {
   font-size: 1.5rem;
   margin-top: 0;
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   h2, .h2, .beta {
     margin-bottom: 28px;
   }
@@ -865,7 +865,7 @@ label.checkbox, label.radio {
 label input, label textarea, label select {
   display: block;
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   label {
     line-heigth: 2.5em;
     margin-bottom: 5px;
@@ -891,7 +891,7 @@ select,
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   input,
   textarea,
   select,
@@ -1168,7 +1168,7 @@ textarea:focus:required:invalid:focus {
   padding: 27px 20px 28px;
   zoom: 1;
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .form-actions {
     margin-top: 28px;
     margin-bottom: 28px;
@@ -1281,7 +1281,7 @@ textarea:focus:required:invalid:focus {
   padding-left: 5px;
 }
 
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   /* ==========================================================================
      Horizontal-specific styles
      * add .form--horizontal to the <form> element
@@ -1551,7 +1551,7 @@ img, object, embed, video {
   height: auto;
 }
 
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .l-blockGrid li {
     display: block;
     height: auto;
@@ -3205,22 +3205,41 @@ textarea[contenteditable] {
   /* easeInOutSine */
   cursor: pointer;
   max-width: none;
-  -webkit-transform: scale(0.75);
-  -moz-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  transform: scale(0.75);
-  -webkit-transform-origin: 50% 0%;
-  -moz-transform-origin: 50% 0%;
-  -ms-transform-origin: 50% 0%;
-  transform-origin: 50% 0%;
+  -webkit-transform: scale(0.85);
+  -moz-transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  transform: scale(0.85);
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+@media screen and (min-width: 26.25em) {
+  .social-icons-mobile {
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    position: absolute;
+    -webkit-transform-origin: 50% 10%;
+    -moz-transform-origin: 50% 10%;
+    -ms-transform-origin: 50% 10%;
+    transform-origin: 50% 10%;
+  }
+}
+@media screen and (min-width: 62em) {
+  .social-icons-mobile {
+    display: none;
+  }
 }
 
 .social-icons-container {
   display: none;
   overflow: hidden;
   opacity: 0;
+  float: none;
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .social-icons-container {
     width: 50%;
     display: inline-block;
@@ -3249,17 +3268,30 @@ textarea[contenteditable] {
 
 .social-icons-container-mobile {
   display: none;
-  top: auto;
+  top: 0;
   overflow: hidden;
   opacity: 0;
+  z-index: 2;
+  right: auto;
 }
 .social-icons-container-mobile.active {
-  display: inline-block;
+  display: block;
   background-color: rgba(0, 0, 17, 0.9);
   opacity: 1;
   width: 100%;
   position: absolute;
-  top: 100px;
+  height: 100%;
+  margin: auto;
+}
+@media screen and (min-width: 62em) {
+  .social-icons-container-mobile.active {
+    display: none;
+  }
+}
+@media screen and (min-width: 26.25em) {
+  .social-icons-container-mobile {
+    right: 0;
+  }
 }
 @media screen and (min-width: 62em) {
   .social-icons-container-mobile {
@@ -3528,6 +3560,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 26.25em) {
   .nav-content {
+    background-color: transparent;
     display: block;
     opacity: 1;
     position: relative;
@@ -3535,7 +3568,7 @@ textarea[contenteditable] {
     z-index: auto;
   }
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .nav-content {
     width: 50%;
     float: left;
@@ -3585,17 +3618,20 @@ textarea[contenteditable] {
 }
 
 .arrow-keys-info-container {
+  display: none;
   height: 60px;
   text-align: center;
 }
 @media screen and (min-width: 26.25em) {
   .arrow-keys-info-container {
     width: 100%;
+    display: block;
   }
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .arrow-keys-info-container {
     width: 50%;
+    display: block;
   }
 }
 
@@ -3612,7 +3648,7 @@ textarea[contenteditable] {
     margin: 30px auto;
   }
 }
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 62em) {
   .arrow-keys-info {
     width: 60px;
     -webkit-transform: translateY(-100%);

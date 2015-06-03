@@ -572,7 +572,7 @@ Function.prototype.throttle = function (milliseconds) {
 					KO.Config.mobileShareToggleActiveBoolean = true;
 				}
 			//	KO.Config.$socialIconsContainerMobile.css("opacity",1);
-			//	KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH - KO.Config.getDimensionsHeight(KO.Config.$navigationContainer))+"px");
+				//KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH)+"px");
 		},
 
 		closeMobileShareToggle:function () {
@@ -1195,6 +1195,14 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.canvasFillValue = 0;
 		}
 
+		// resize te mobile info share according to the stage size
+		if (KO.Config.mobileMode === true ) { 
+			$(".social-icons-container-mobile").width("100%");
+
+		}else { 
+
+			$(".social-icons-container-mobile").width(KO.Config.$window.stageW);
+		}
 		var i = 0;
 
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
@@ -1513,7 +1521,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 			console.log("tablet");
 			var sidebarWidth = KO.Config.$window.stageW - KO.Config.$window.stageH;
-			console.log("sidebarWidth",sidebarWidth);
 			// if the sidebar is too small make it big enough
 			if (sidebarWidth < KO.Config.sideBarMinTablet ) { 
 
@@ -1530,7 +1537,16 @@ Function.prototype.throttle = function (milliseconds) {
 		}else {
 
 
-			KO.Config.$window.stageW -= (KO.Config.$window.stageW - KO.Config.$window.stageH);  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+			var sidebarWidth = KO.Config.$window.stageW - KO.Config.$window.stageH;
+			// if the sidebar is too small make it big enough
+			if (sidebarWidth < KO.Config.sideBarMinTablet ) { 
+
+				sidebarWidth = KO.Config.sideBarMinTablet ;
+			}
+
+			KO.Config.$window.stageW -= sidebarWidth;  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
+
+
 			KO.Config.mobileMode = false;
 			KO.Config.tabletMode = false;
 			console.log("desktop");
