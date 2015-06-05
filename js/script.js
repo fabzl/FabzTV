@@ -1359,16 +1359,15 @@ Function.prototype.throttle = function (milliseconds) {
 
 		var displacementToogleInfo;
 		var displacementToogleInfoString;
-		var	toggleDisplayOffset = -67;
+		var	toggleDisplayOffset = 0;
 
 		// activate the toggles
 		$contentHolder.toggleClass("active");
 		$toggleContainer.toggleClass("active");
 		$descriptionText.toggleClass("active");
-		
-
+		$contentHolder.parent().toggleClass("active");
 		$contentHolder.find("h2").toggleClass("active");
-		
+
 		toogleSVG.classList.toggle("active");
 
 

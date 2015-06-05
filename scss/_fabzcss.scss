@@ -509,11 +509,35 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 }
 .overlayer-description {
 
+	transition: all 500ms ease-out;
 	z-index: 1;
 	position:absolute;
-	height: 100%;
+	//height: 100%;
+	overflow:hidden;
 
+	&:hover {
+
+		@include respond-min($breakpoint-wide) {
+			overflow:visible;
+		}
+	}
+
+	.active { 
+
+		overflow:visible;
+
+	}
 }
+
+.hidden-holder {
+
+		height:65px;
+
+	&.active { 
+		height:auto;
+	}		
+}
+
 ///////// HELPERS
 
 .noselect {
@@ -529,11 +553,11 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 .has-padding-top {
 
-	padding-top: 5px!important;
+	padding-top: 10px!important;
 
 	@include respond-min($breakpoint-mid) {
 
-		padding-top:5px!important;
+		padding-top:10px!important;
 	}
 }
 
@@ -599,51 +623,63 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 // sidebar description
 .sidebar-description .description-content-holder { 
+	
+	display : none;
 
-	height:auto;
-	background-color:rgba(200, 200, 200, 1);
-	transition: all 500ms ease-out;
-	padding-bottom:74px;
-	//overflow: auto;
-	//background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 85%,rgba(237,237,237,1) 100%);
+	@include respond-min($breakpoint-mid) { 
+		
 
-	&:hover { 
+		display : block;	
+		height:auto;
+		background-color:rgba(200, 200, 200, 1);
+		transition: all 500ms ease-out;
+		padding-bottom:77px;
 
-	//	max-height%:auto;
-		transform:translateY(-100%);
-		//font-size :1.4em;
-	//	transform:translateY(-100%);
-	//	transform-origin: 50% 100%;
-	//	padding-bottom:100%;
-		background-color:rgba(255,255, 255, 1);
+		&:hover { 
 
-		.description-tooltip { 
+			transform:translateY(-90%);
+			background-color:rgba(255,255, 255, 1);
+
+			.description-tooltip { 
+				
+				transition: all 500ms ease-out;
+				opacity:0;
+			}
+			.description-text {
 			
-			transition: all 500ms ease-out; /* easeInOutSine */
-			opacity:0;
-		}
-		.description-text {
-		
-		//max-height:auto;
-		//	font-size :.6em;
-			transition: all 500ms ease-out; /* easeInOutSine */
-			transform:translateY(0);
-		//font-size :1.4em;
-		}
-		.description-link { 
+				transition: all 500ms ease-out;
+				transform:translateY(0);
+					
+				
 
-		///	font-size :.5em;
-		}
+			}
+		//	.description-link { 
+
+			///	font-size :.5em;
+		//	}
 		
+		}
+	
 	}
 }
 
 // in content description 
 .overlayer-description .description-content-holder  { 
 
-	display:inline-block;
+	display:block;
+	transition: all 500ms ease-out;
+	.description-text {
 
-	@include respond-min($breakpoint-wide) {
+	 	font-size :.6em;
+		
+		@include respond-min($breakpoint-mid) {
+			font-size :.8em;
+		}
+
+	 }
+
+
+	@include respond-min($breakpoint-mid) {
 		
 		display:none;
 	}
@@ -662,14 +698,14 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		position:absolute;
 		bottom:0;
 		left:0;
-		height:74px;
-		transition: all 500ms ease-in;
-		transform:translateY(0);
+		height:77px;
+		transition: all 500ms ease-out;
 	//	transform-origin: 50% 100%;
 		&:hover { 
 		//	height:auto;
 			overflow: visible;
-			transform:translateY(74px);
+			transform:translateY(77px);
+			opacity:1;
 		}
 	}
 	.description-tooltip { 
@@ -701,55 +737,28 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 }
 
 
-
-
-
-@keyframes display-description {
-
-  0% {
-   height:60px;
-  }
-
-  100% {
-	height:100%;
-  }
-}
-
-
-
-
 .description-content-holder {
 
 	position:relative;	
 	text-align:left;
-	bottom: 0;
-	//padding-right: 0px;
-	background-color:rgba(255, 255, 255, 0.8);
-	height:60px;
+	float: left;
+	background-color:rgba(255, 255, 255, 0.6);
 	//right: 0;
 	cursor:pointer;
-	display:inline-block;
 	width: 100%;
 	//transition : all  .3s ease-in-out;
 	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
+	transform:translateY(0%);
+
 	
 
-
-	@include respond-min($breakpoint-wide) {
-
-		position:relative;
-		bottom: auto;
-		display:inline-block;
-		background-color:rgba(255, 255, 255, 1);
-		overflow:visible;
-	}
-
 	h2 {
+
 		white-space: nowrap;
 		border-bottom: 1px solid #001;
 		padding: 0px 5px 0 5px;
 		color: #001;
-		float:left;
+		//float:left;
 		display:block;
 		margin:0;
 		margin-right: 20%;
@@ -766,27 +775,23 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 		float:left;
 		color: #001;
-	//	display : none; 
-		opacity : 0;
+	}
 
-		@include respond-min($breakpoint-wide) {
-			//display : inline; 
-			opacity:1;
-		}
+	 .description-tooltip {
 
-		&.description-tooltip {
+
 			display : block;
-			opacity:1;
 			padding: 0 5px 0 5px;
 			font-size: .5em;
 			margin:0;
 			width:100%;
+			padding-bottom:3px;
 			line-height:1em;
 			@include respond-min($breakpoint-wide) {
 				padding: 0px 10px 0 10px;
 			}
 		}
-		&.description-year {
+	.description-year {
 
 			padding: 2px 5px 0 5px;
 			display : block;
@@ -800,57 +805,40 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 				line-height:1em;
 			}
 		}
-	}
+	
 
 	&.active {
 
 		display: block;
-		opacity:1;
-	//	right:0;
-	//	max-height:initial;
-	//	transform: translateY(0);
-	//	padding-right: 0px;
-		height:100%;
+		
+		//overflow:visible;
+		//transform:translateY(100%);
+		background-color:rgba(255,255, 255, 1);
 
-		@include respond-min($breakpoint-wide) {
-			padding-right: 100px;
-		}
+		
+		.description-tooltip {
 
-		p, a ,li { 
-			opacity:1;
-			display : block;
-
-			&.description-tooltip {
-				display : none; 
+				transition: all 500ms ease-out; /* easeInOutSine */
 				opacity:0;
-				margin:auto;
-
-			}
-			&.description-text { 
-
+		}
+	
+		.description-text { 
+				opacity:1;
 				padding-left:5%;
-				opacity: 0;
-				display:none;
-				transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
-				transition-delay: 250ms;
+				background-color:rgba(255,255, 255, 1);
+				transition: all 500ms ease-out; 
 				
-
-				&.active { 
-					display:inline;
-					opacity: 1;	
-				}
-			}
-			&.description-year {
-				display : block;
+		}
+		.description-year {
+		
 				float:left;
 				width: 100%;
-			}
-			&.ul {
+		}
+		.ul {
 
 				padding-left: 10%;
-				margin:auto;
-			}
-		}
+				margin:auto;		
+		}		
 	}
 }
 
@@ -859,6 +847,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 .more-info-toggle { 
 
+	
 	max-width:60px;
 	min-width:60px;
 	width:60px;
@@ -868,25 +857,26 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 	display:inline-block;
 
 	&.active {
-		transform:rotate(-45deg) scale(.8);
+		
 		}
 	}
 
 .more-info-toggle-container {
 
-	right: 5%;
+	right: 0;
 	top:3px;
 	position: absolute;
 	display:inline-block;
-	transition : all .3s ease-in-out;
+	transition : all .5s ease-in-out;
 
-	@include respond-min($breakpoint-wide) {
-		top:11px;
+	@include respond-min($breakpoint-mid) {
+		
 		display:none;
 	}
-	&.active {
 
-		right: 1%;
+	&.active {
+		transform:rotate(-45deg);
+//		right: 1%;
 	}
 }
 
