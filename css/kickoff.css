@@ -2723,16 +2723,16 @@ textarea[contenteditable] {
 }
 
 .has-padding-top {
-  padding-top: 10% !important;
+  padding-top: 5px !important;
 }
 @media screen and (min-width: 62em) {
   .has-padding-top {
-    padding-top: 3% !important;
+    padding-top: 5px !important;
   }
 }
 
 .has-padding-bottom {
-  padding-bottom: 3% !important;
+  padding-bottom: 10px !important;
 }
 
 .has-text-center {
@@ -2787,15 +2787,42 @@ textarea[contenteditable] {
 }
 
 .sidebar-description .description-content-holder {
-  position: relative;
-  margin-top: 25px;
-  padding-bottom: 100%;
+  height: auto;
+  background-color: #c8c8c8;
+  -moz-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+  padding-bottom: 74px;
 }
 .sidebar-description .description-content-holder:hover {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+  background-color: white;
+}
+.sidebar-description .description-content-holder:hover .description-tooltip {
+  -moz-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+  /* easeInOutSine */
+  opacity: 0;
+}
+.sidebar-description .description-content-holder:hover .description-text {
+  -moz-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+  /* easeInOutSine */
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.overlayer-description .description-content-holder {
+  display: inline-block;
+}
+@media screen and (min-width: 62em) {
+  .overlayer-description .description-content-holder {
+    display: none;
+  }
 }
 
 .sidebar-description {
@@ -2803,10 +2830,25 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 62em) {
   .sidebar-description {
-    display: inline;
+    display: block;
     width: 100%;
-    position: relative;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 74px;
+    -moz-transition: all 500ms ease-in;
+    transition: all 500ms ease-in;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .sidebar-description:hover {
+    overflow: visible;
+    -webkit-transform: translateY(74px);
+    -moz-transform: translateY(74px);
+    -ms-transform: translateY(74px);
+    transform: translateY(74px);
   }
 }
 .sidebar-description .description-tooltip {
@@ -2826,15 +2868,6 @@ textarea[contenteditable] {
   content: '\00B7';
   padding-right: 5px;
   font-size: 1em;
-}
-
-.overlayer-description .description-content-holder {
-  display: inline-block;
-}
-@media screen and (min-width: 62em) {
-  .overlayer-description .description-content-holder {
-    display: none;
-  }
 }
 
 @-webkit-keyframes display-description {
@@ -2872,8 +2905,8 @@ textarea[contenteditable] {
   cursor: pointer;
   display: inline-block;
   width: 100%;
-  -moz-transition: all 750ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: all 750ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
 }
 @media screen and (min-width: 62em) {
@@ -3041,9 +3074,13 @@ textarea[contenteditable] {
 }
 
 .description-link {
-  font-weight: bold;
   display: block;
   width: 100%;
+}
+@media screen and (min-width: 62em) {
+  .description-link {
+    font-weight: bold;
+  }
 }
 
 .icon-arrow:before {

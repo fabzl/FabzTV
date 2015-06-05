@@ -1314,7 +1314,7 @@ Function.prototype.throttle = function (milliseconds) {
 		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".description-content-holder").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 	//	var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 
-		console.log(currentArticle, currentArticleDescription ) ; 
+	//	console.log(currentArticle, currentArticleDescription ) ; 
 		
 		if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
 
@@ -1331,14 +1331,14 @@ Function.prototype.throttle = function (milliseconds) {
 
 				currentArticleDescription = currentArticleDescription.prop('outerHTML');
 
-				console.log("currentArticleDescription:", currentArticleDescription);
+		//		console.log("currentArticleDescription:", currentArticleDescription);
 		
 			 if( currentArticleDescription == undefined ) {
 
 			 	currentArticleDescription="";	
 			 }
 			 KO.Config.sidebarDescription.innerHTML = currentArticleDescription;	
-			 console.log( "im passing here . ",KO.Config.sidebarDescription.innerHTML, currentArticleDescription);
+		//	 console.log( "im passing here . ",KO.Config.sidebarDescription.innerHTML, currentArticleDescription);
 		}else { 
 			$(".sidebar-description").hide();
 		}
