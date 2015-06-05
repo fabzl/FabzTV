@@ -597,15 +597,28 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 }
 
 
+
+.sidebar-description .description-content-holder { 
+
+	position: relative;
+	margin-top:25px;
+	padding-bottom:100%;
+	//overflow: auto;
+	
+	&:hover { 
+
+		transform:translateY(-50%);
+	}
+}
+
 .sidebar-description {
 
 	display:none;
 
-	@include respond-min($breakpoint-wide) {
+	@include respond-min($breakpoint-mid) {
 		display : inline;
 		width: 100%;
 		position:relative;
-		height:auto;
 		margin-top:20px;
 	}
 	.description-tooltip { 
@@ -613,7 +626,7 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		display:inline;
 	}
 	.description-text { 
-
+	
 		padding-left: 20px;
 	}
 
@@ -643,7 +656,6 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 		
 		display:none;
 	}
-
 
 	
 }

@@ -2786,6 +2786,18 @@ textarea[contenteditable] {
   }
 }
 
+.sidebar-description .description-content-holder {
+  position: relative;
+  margin-top: 25px;
+  padding-bottom: 100%;
+}
+.sidebar-description .description-content-holder:hover {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .sidebar-description {
   display: none;
 }
@@ -2794,7 +2806,6 @@ textarea[contenteditable] {
     display: inline;
     width: 100%;
     position: relative;
-    height: auto;
     margin-top: 20px;
   }
 }

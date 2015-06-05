@@ -1333,7 +1333,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				console.log("currentArticleDescription:", currentArticleDescription);
 		
-			 if( currentArticleDescription == "undefined" ) {
+			 if( currentArticleDescription == undefined ) {
 
 			 	currentArticleDescription="";	
 			 }
