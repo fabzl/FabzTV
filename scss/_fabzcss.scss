@@ -863,11 +863,14 @@ $backgroundColourTooltip : rgba(0, 0, 17, 0.8);
 
 .more-info-toggle-container {
 
-	right: 0;
+	right: 2px;
 	top:3px;
 	position: absolute;
 	display:inline-block;
-	transition : all .5s ease-in-out;
+	transition : all .3s ease-in-out;
+	@include respond-min($breakpoint-narrow) {
+		right: 5%;
+	}
 
 	@include respond-min($breakpoint-mid) {
 		

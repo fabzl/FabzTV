@@ -3004,12 +3004,17 @@ textarea[contenteditable] {
 }
 
 .more-info-toggle-container {
-  right: 0;
+  right: 2px;
   top: 3px;
   position: absolute;
   display: inline-block;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+@media screen and (min-width: 26.25em) {
+  .more-info-toggle-container {
+    right: 5%;
+  }
 }
 @media screen and (min-width: 62em) {
   .more-info-toggle-container {
