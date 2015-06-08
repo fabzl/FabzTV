@@ -708,7 +708,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	 }
 
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		
 		display:none;
 	}
@@ -851,9 +851,11 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 				opacity:0;
 		}
 	
-		.description-text { 
+		.description-text {
+
 				opacity:1;
 				padding-left:5%;
+				margin-right: 11%;
 				background-color:rgba(255,255, 255, 1);
 				transition: all 500ms ease-out; 
 				
@@ -871,11 +873,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	}
 }
 
-
-
-
 .more-info-toggle { 
-
 	
 	max-width:60px;
 	min-width:60px;
@@ -883,7 +881,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	margin: 0 auto;
 	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
 	transform: rotate(0deg) scale(.8);
-	display:inline-block;
+	display: inline-block;
 
 	&.active {
 		
@@ -897,11 +895,12 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	position: absolute;
 	display:inline-block;
 	transition : all .3s ease-in-out;
+
 	@include respond-min($breakpoint-narrow) {
-		right: 5%;
+		right: 11%;
 	}
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		
 		display:none;
 	}
@@ -930,11 +929,11 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 .description-link {
 
- @include respond-min($breakpoint-mid) {
-	
- 	font-weight: bold;
 
-	}
+	font-weight: bold;
+
+	@include respond-min($breakpoint-mid) {
+	
 
  	display: block;
  	width:100%;
@@ -944,6 +943,10 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 		color:#444; 
 		text-stroke: 1px black;
+		text-decoration: underline;
+		font-size:.7em;
+
+ 	}
  	}
 }
 
@@ -1116,7 +1119,7 @@ $iconsSize : 14px;
 	float:none;
 
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 		width: 50%;
 		display: inline-block;
@@ -1470,7 +1473,7 @@ $iconsSize : 14px;
 			z-index: auto;
 		}
 
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 
 			width:50%;
 			float:left;		
@@ -1547,7 +1550,6 @@ $iconsSize : 14px;
 .arrow_down  {
 
 
-
 	@include respond-min($breakpoint-narrow) {
 
 		transform:translateY(100%);
@@ -1576,7 +1578,7 @@ $iconsSize : 14px;
 		text-align:center;
 		overflow:visible;
 	}	
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 		width:50%;
 	}	
 
@@ -1599,18 +1601,15 @@ $iconsSize : 14px;
 		overflow:visible;
 
 	}
-	@include respond-min($breakpoint-mid) {
+	@include respond-min($breakpoint-wide) {
 	
 		width:60px;
-	//	left: 25%;
+
 		transform:translateY(-100%);
 		display: inline-block;
 		text-align:center;
 		position:relative;
-	//	top: 400px;
 		margin: 0 auto;
-
-
 
 	}
 }

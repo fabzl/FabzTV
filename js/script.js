@@ -144,7 +144,7 @@ Function.prototype.throttle = function (milliseconds) {
 		desktopMode:false,
 		// value holders
 		swapToMobileBreakpoint:420,
-		swapToTabletBreakpoint:800,
+		swapToTabletBreakpoint:1025,
 
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
@@ -343,13 +343,10 @@ Function.prototype.throttle = function (milliseconds) {
 			var topTooltip = $arrowKeysContainer.offset().top +( $arrowKeysInfo.height()) *.5+"px";
 			var leftTooltip =  $arrowKeysContainer.width()*.5 - KO.Config.$wrapper.find(".tooltip-arrowKeys").width()*.5 -20 + "px";
 
-
-			console.log("MObileMOdes: ",KO.Config.getDimensionsHeight(KO.Config.$window), 992); 	
 			if(KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) < KO.Config.swapToTabletBreakpoint ) {
 				
 				topTooltip =  $arrowKeysInfo.offset().top + 15 + "px";
 				leftTooltip = ($arrowKeysContainer.width()*.5) + $arrowKeysInfo.width()*.5 + "px";
-				console.log("TABLEETTT MOODDEE  !!");
 			}
 
 			KO.Config.$wrapper.find(".tooltip-arrowKeys").css({
@@ -673,7 +670,7 @@ Function.prototype.throttle = function (milliseconds) {
 				if (nameArticle == "null" ) {
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection);
 				}else { 
-				//	history.pushState(KO.Config.stateObj,"", "#!/"+nameSection+"/"+nameArticle);
+					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection+"/"+nameArticle);
 				}
 			}
 		},
@@ -714,7 +711,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			} else {
 				// home change to home 
-				KO.Config.historyReplaceValue("home","null");
+				KO.Config.historyReplaceValue("home",KO.Config.currentArticleName);
 				KO.Config.updateArrowsVisibility();
 			}
 		},

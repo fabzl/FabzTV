@@ -2095,7 +2095,7 @@ textarea[contenteditable] {
     padding: 11px;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .main-description {
     font-size: 2.2em;
     padding: 11px;
@@ -2584,7 +2584,7 @@ textarea[contenteditable] {
 .stripe-down .stripe-up {
   stroke: #FFF;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .stripe-down .stripe-up {
     display: none;
   }
@@ -2615,7 +2615,7 @@ textarea[contenteditable] {
   display: inline-block;
   float: right;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .contact-mailto-link {
     max-width: 50%;
   }
@@ -2628,7 +2628,7 @@ textarea[contenteditable] {
   right: 5%;
   display: none;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .contact-illustration-container {
     width: 40%;
     float: right;
@@ -2673,7 +2673,7 @@ textarea[contenteditable] {
 .overlayer-contact h2 {
   width: 100%;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .overlayer-contact {
     width: 50%;
     float: left;
@@ -2692,7 +2692,7 @@ textarea[contenteditable] {
   background-color: rgba(0, 0, 17, 0.8);
   orphans: 3;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .overlayer-about {
     max-height: none;
     margin-top: auto;
@@ -2719,7 +2719,7 @@ textarea[contenteditable] {
   position: absolute;
   overflow: hidden;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .overlayer-description:hover {
     overflow: visible;
   }
@@ -2793,7 +2793,7 @@ textarea[contenteditable] {
 .show-on-mobile {
   display: inline;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .show-on-mobile {
     display: none;
   }
@@ -2802,7 +2802,7 @@ textarea[contenteditable] {
 .show-on-desktop {
   display: none;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .show-on-desktop {
     display: inline;
   }
@@ -2855,7 +2855,7 @@ textarea[contenteditable] {
     font-size: .8em;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .overlayer-description .description-content-holder {
     display: none;
   }
@@ -2927,7 +2927,7 @@ textarea[contenteditable] {
   margin: 0;
   margin-right: 20%;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .description-content-holder h2 {
     padding: 1px 10px 0 10px;
   }
@@ -2948,7 +2948,7 @@ textarea[contenteditable] {
   padding-bottom: 3px;
   line-height: 1em;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .description-content-holder .description-tooltip {
     padding: 0px 10px 0 10px;
   }
@@ -2961,7 +2961,7 @@ textarea[contenteditable] {
   width: 100%;
   line-height: 1em;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .description-content-holder .description-year {
     padding: 5px 10px 0 10px;
     line-height: 1em;
@@ -2980,6 +2980,7 @@ textarea[contenteditable] {
 .description-content-holder.active .description-text {
   opacity: 1;
   padding-left: 5%;
+  margin-right: 11%;
   background-color: white;
   -moz-transition: all 500ms ease-out;
   transition: all 500ms ease-out;
@@ -3018,10 +3019,10 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 26.25em) {
   .more-info-toggle-container {
-    right: 5%;
+    right: 11%;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .more-info-toggle-container {
     display: none;
   }
@@ -3051,18 +3052,20 @@ textarea[contenteditable] {
 }
 
 .description-link {
-  display: block;
-  width: 100%;
-  text-stroke: 1px black;
+  font-weight: bold;
 }
 @media screen and (min-width: 62em) {
   .description-link {
-    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-stroke: 1px black;
   }
-}
-.description-link:hover {
-  color: #444;
-  text-stroke: 1px black;
+  .description-link:hover {
+    color: #444;
+    text-stroke: 1px black;
+    text-decoration: underline;
+    font-size: .7em;
+  }
 }
 
 .icon-arrow:before {
@@ -3212,7 +3215,7 @@ textarea[contenteditable] {
   transform-origin: 50% 50%;
   height: auto;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .social-icons {
     max-width: 200px;
     position: relative;
@@ -3269,7 +3272,7 @@ textarea[contenteditable] {
   opacity: 0;
   float: none;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .social-icons-container {
     width: 50%;
     display: inline-block;
@@ -3356,7 +3359,7 @@ textarea[contenteditable] {
     z-index: auto;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .fabz-logo-romboid-container {
     margin-top: 60px;
     width: 100%;
@@ -3382,7 +3385,7 @@ textarea[contenteditable] {
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .fabz-logo-romboid-container .side-logo:hover {
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -3598,7 +3601,7 @@ textarea[contenteditable] {
     z-index: auto;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .nav-content {
     width: 50%;
     float: left;
@@ -3657,7 +3660,7 @@ textarea[contenteditable] {
     transform: translateY(100%);
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .arrow_down {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
@@ -3679,7 +3682,7 @@ textarea[contenteditable] {
     overflow: visible;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .arrow-keys-info-container {
     width: 50%;
   }
@@ -3699,7 +3702,7 @@ textarea[contenteditable] {
     overflow: visible;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .arrow-keys-info {
     width: 60px;
     -webkit-transform: translateY(-100%);
@@ -3864,7 +3867,7 @@ textarea[contenteditable] {
     max-width: 35px;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .share-toggle {
     display: none;
   }
@@ -3889,7 +3892,7 @@ textarea[contenteditable] {
 .nav-toggle.active span {
   background-color: transparent;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   .nav-toggle.active span {
     display: none;
   }
@@ -3940,7 +3943,7 @@ h2 {
 h2.active {
   width: 80%;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64.0625em) {
   h2 {
     font-size: 1.4em;
     width: 100%;
