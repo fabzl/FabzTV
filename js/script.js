@@ -311,7 +311,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
 			KO.Config.$wrapper.find(".tooltip").click(KO.Config.destroyTooltip);
 			
-			var topTooltip = "120px";
+			var topTooltip = "160px";
 			
 			if(!KO.Config.mobileMode) {
 				topTooltip = ( KO.Config.$window.stageH*.3) *.5+"px";
@@ -420,10 +420,8 @@ Function.prototype.throttle = function (milliseconds) {
 										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
-
 				//Global setting:
-
-    			$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
+				$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
    				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
 			}
 		},
@@ -487,7 +485,7 @@ Function.prototype.throttle = function (milliseconds) {
 				var navigationW 			= KO.Config.$navigationContainer.width();
 				var socialIconsContainerW	= KO.Config.$socialIconsContainer.width();
 				var objectsTotal 			= fabzLogoH + navigationH + socialIconsContainerH;
-				var differenceH 			= sideBarH-objectsTotal;
+				var differenceH 			= sideBarH - objectsTotal;
 
 				//adjust the sidebar
 				var sidebarWidth = KO.Config.getDimensionsWidth(KO.Config.$window) - KO.Config.$window.stageH;

@@ -2133,9 +2133,9 @@ textarea[contenteditable] {
   -moz-transition-delay: 5s;
   transition-delay: 5s;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 26.25em) {
   .tooltip {
-    left: 15%;
+    left: 25%;
     -webkit-animation: tooltipLogoAnimationDesktopIn 1s 1;
     -moz-animation: tooltipLogoAnimationDesktopIn 1s 1;
     animation: tooltipLogoAnimationDesktopIn 1s 1;

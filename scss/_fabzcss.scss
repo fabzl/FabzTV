@@ -103,8 +103,8 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	transition-delay: 5s;
 	
 
-	@include respond-min($breakpoint-wide) {
-		left:15%;
+	@include respond-min($breakpoint-narrow) {
+		left:25%;
 		animation: tooltipLogoAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translateY(-50%);
 		transition-delay: 5s;
