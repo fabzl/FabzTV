@@ -141,6 +141,7 @@ Function.prototype.throttle = function (milliseconds) {
 		scrollerFlag: true,
 		mobileMode:false,
 		tabletMode:false,
+		desktopMode:false,
 		// value holders
 		swapToMobileBreakpoint:420,
 		swapToTabletBreakpoint:800,
@@ -310,24 +311,52 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
 			KO.Config.$wrapper.find(".tooltip").click(KO.Config.destroyTooltip);
-			
-			var topTooltip = "160px";
-			
-			if(!KO.Config.mobileMode) {
-				topTooltip = ( KO.Config.$window.stageH*.3) *.5+"px";
-				console.log("topTooltip",topTooltip)
-			}
+			var topTooltip = (KO.Config.$fabzLogo.height()*.5) +  parseInt(KO.Config.$fabzLogo.css("margin-top"), 10) + "px";
+			var leftTooltip = (KO.Config.$sideBar.width()*.5) + (KO.Config.$fabzLogo.height()*.5);
 
+			if(KO.Config.mobileMode === true) {
+
+				topTooltip = KO.Config.$fabzLogo.height() +  parseInt(KO.Config.$fabzLogo.css("margin-top"), 10) + 10 + "px";
+			}
+			
 			KO.Config.$wrapper.find(".tooltip").css({
 
-				"top":topTooltip
+				"top":topTooltip,
 			});
+			if(KO.Config.mobileMode === false) {
+
+				KO.Config.$wrapper.find(".tooltip").css({
+
+					"left":leftTooltip
+				});
+			}
 		},
 
 		createTooltipArrowKeys:function() { 
 
 			KO.Config.$wrapper.append("<div class='tooltip-arrowKeys'>or use the arrow keys</div>");
 			KO.Config.$wrapper.find(".tooltip-arrowKeys").click(KO.Config.checkToDestroyTooltip);
+
+			var $arrowKeysContainer = $('.arrow-keys-info-container');
+			var $arrowKeysInfo = $('.arrow-keys-info');
+
+			var topTooltip = $arrowKeysContainer.offset().top +( $arrowKeysInfo.height()) *.5+"px";
+			var leftTooltip =  $arrowKeysContainer.width()*.5 - KO.Config.$wrapper.find(".tooltip-arrowKeys").width()*.5 -20 + "px";
+
+
+			console.log("MObileMOdes: ",KO.Config.getDimensionsHeight(KO.Config.$window), 992); 	
+			if(KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) < KO.Config.swapToTabletBreakpoint ) {
+				
+				topTooltip =  $arrowKeysInfo.offset().top + 15 + "px";
+				leftTooltip = ($arrowKeysContainer.width()*.5) + $arrowKeysInfo.width()*.5 + "px";
+				console.log("TABLEETTT MOODDEE  !!");
+			}
+
+			KO.Config.$wrapper.find(".tooltip-arrowKeys").css({
+
+				"top":topTooltip,
+				"left":leftTooltip
+			});
 			
 		},
 		checkToDestroyTooltip:function() {
@@ -1510,6 +1539,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// boolean to control the vertical positioning
 			KO.Config.mobileMode = true;
 			KO.Config.tabletMode = false;
+			KO.Config.desktopMode = false;
 			// if the Height is than the min height will 100. 
 			var navigationHeight = 100;
 			
@@ -1537,6 +1567,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.mobileMode = false;
 			KO.Config.tabletMode = true;
+			KO.Config.desktopMode = false;
 
 			
 		}else {
@@ -1560,6 +1591,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.mobileMode = false;
 			KO.Config.tabletMode = false;
+			KO.Config.desktopMode = true;
 			console.log("desktop");
 
 		}

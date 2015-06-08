@@ -89,7 +89,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 .tooltip {
 
 	text-align:center;
-	background-color:$backgroundColourTooltip;
+	background-color: rgba(0, 0, 1, 0.8); 
 	position:absolute;
 	padding: 10px 10px 10px 10px;
 	z-index:999;
@@ -104,10 +104,16 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	
 
 	@include respond-min($breakpoint-narrow) {
-		left:25%;
+
+		background-color:$backgroundColourTooltip;
 		animation: tooltipLogoAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translateY(-50%);
 		transition-delay: 5s;
+		left:auto;
+	}
+
+	@include respond-min($breakpoint-mid) {
+	
 	}
 
 	&.tooltip:after {
@@ -123,10 +129,11 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 		height: 0;
 		border-style: solid;
 		border-width: 0 $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip;
-		border-color: transparent transparent $backgroundColourTooltip transparent;
+		
+		border-color: transparent transparent rgba(0, 0, 1, 0.8)  transparent;
 		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 
-		@include respond-min($breakpoint-wide) {
+		@include respond-min($breakpoint-narrow) {
 
 			bottom: 0%;
 			left: 0%;
@@ -232,49 +239,69 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 .tooltip-arrowKeys { 
 
-	text-align:center;
-	background-color:$backgroundColourTooltip;
-	position:absolute;
-	padding: 10px 10px 10px 10px;
-	z-index:999;
-	border-radius: 3px;
-	font-size:.7em;
-	color:#FFF;
-	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
-	left:50%;
-	bottom: 0;
+	//left:50%;
+	//bottom: 0;
+	display:none;
 
-	@include respond-min($breakpoint-wide) {
-		left:15%;
+	@include respond-min($breakpoint-narrow) {
+
+		display:block;
+		text-align:center;
+		background-color:$backgroundColourTooltip;
+		position:absolute;
+		padding: 10px 10px 10px 10px;
+		z-index:999;
+		border-radius: 3px;
+		font-size:.7em;
+		color:#FFF;
+		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 		animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
 		transform: translateX($triangleSizeTooltip) translate(0);
 		transition-delay: 6s;
 	}
 
+
 	&.tooltip-arrowKeys:after { 
 
-		bottom: 100%;
-		left: 50%;
+
+
+	
 		position: absolute;
-		transform:translateX(-50%);
+		
 		content: " ";
 		font-size: 0;
 		line-height: 0;
 		width: 0;
 		height: 0;
 		border-style: solid;
-		border-width: 0 $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip;
-		border-color: transparent transparent $backgroundColourTooltip transparent;
-		box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 
-		@include respond-min($breakpoint-wide) {
+		
+		@include respond-min($breakpoint-narrow) {
 
+		
 			bottom: 0%;
 			left: 0%;
 			transform: translateY(-50%) translateX(-100%);
 			border-width: $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip 0;
 			border-color: transparent $backgroundColourTooltip transparent transparent;
+
 		}
+
+
+
+		@include respond-min($breakpoint-mid) {
+
+			bottom: 100%;
+			left: 50%;
+			transform:translateX(-50%);
+			border-width: 0 $triangleSizeTooltip $triangleSizeTooltip $triangleSizeTooltip;
+			border-color: transparent transparent $backgroundColourTooltip  transparent;
+			box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
+
+
+	
+		}
+
 	}
 }
 
@@ -1510,9 +1537,27 @@ $iconsSize : 14px;
 
 		display: block;
 		width:100%;
+		height:100%;
 		position:relative;
 		text-align:center;
+		overflow:visible!important;
 	}
+}
+
+.arrow_down  {
+
+
+
+	@include respond-min($breakpoint-narrow) {
+
+		transform:translateY(100%);
+	}
+	
+	@include respond-min($breakpoint-wide) {
+
+		transform:translateY(0);
+	}
+
 }
 
 
@@ -1520,16 +1565,19 @@ $iconsSize : 14px;
 
 
 	display:none;
-	height:60px;
-	text-align:center;
+	
+	
 
 	@include respond-min($breakpoint-narrow) {
 		width:100%;
 		display: block;
+		float:left;
+		height:auto;
+		text-align:center;
+		overflow:visible;
 	}	
 	@include respond-min($breakpoint-mid) {
 		width:50%;
-		display: block;
 	}	
 
 
@@ -1540,13 +1588,15 @@ $iconsSize : 14px;
 	
 
 	@include respond-min($breakpoint-narrow) {
-	
-		width:100px;
+		
+
+		width:80px;
 		display: block;
 		text-align:center;
 		background-color:rgba(0,0,0,0);
 		position:relative;
 		margin: 30px auto;
+		overflow:visible;
 
 	}
 	@include respond-min($breakpoint-mid) {

@@ -2114,7 +2114,7 @@ textarea[contenteditable] {
 
 .tooltip {
   text-align: center;
-  background-color: rgba(200, 200, 200, 0.8);
+  background-color: rgba(0, 0, 1, 0.8);
   position: absolute;
   padding: 10px 10px 10px 10px;
   z-index: 999;
@@ -2135,7 +2135,7 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 26.25em) {
   .tooltip {
-    left: 25%;
+    background-color: rgba(200, 200, 200, 0.8);
     -webkit-animation: tooltipLogoAnimationDesktopIn 1s 1;
     -moz-animation: tooltipLogoAnimationDesktopIn 1s 1;
     animation: tooltipLogoAnimationDesktopIn 1s 1;
@@ -2145,6 +2145,7 @@ textarea[contenteditable] {
     transform: translateX(10px) translateY(-50%);
     -moz-transition-delay: 5s;
     transition-delay: 5s;
+    left: auto;
   }
 }
 .tooltip.tooltip:after {
@@ -2162,10 +2163,10 @@ textarea[contenteditable] {
   height: 0;
   border-style: solid;
   border-width: 0 10px 10px 10px;
-  border-color: transparent transparent rgba(200, 200, 200, 0.8) transparent;
+  border-color: transparent transparent rgba(0, 0, 1, 0.8) transparent;
   box-shadow: 0px 10px 24px -14px #707070;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 26.25em) {
   .tooltip.tooltip:after {
     bottom: 0%;
     left: 0%;
@@ -2409,21 +2410,20 @@ textarea[contenteditable] {
   }
 }
 .tooltip-arrowKeys {
-  text-align: center;
-  background-color: rgba(200, 200, 200, 0.8);
-  position: absolute;
-  padding: 10px 10px 10px 10px;
-  z-index: 999;
-  border-radius: 3px;
-  font-size: .7em;
-  color: #FFF;
-  box-shadow: 0px 10px 24px -14px #707070;
-  left: 50%;
-  bottom: 0;
+  display: none;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 26.25em) {
   .tooltip-arrowKeys {
-    left: 15%;
+    display: block;
+    text-align: center;
+    background-color: rgba(200, 200, 200, 0.8);
+    position: absolute;
+    padding: 10px 10px 10px 10px;
+    z-index: 999;
+    border-radius: 3px;
+    font-size: .7em;
+    color: #FFF;
+    box-shadow: 0px 10px 24px -14px #707070;
     -webkit-animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
     -moz-animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
     animation: tooltipArrowKeysAnimationDesktopIn 1s 1;
@@ -2436,24 +2436,15 @@ textarea[contenteditable] {
   }
 }
 .tooltip-arrowKeys.tooltip-arrowKeys:after {
-  bottom: 100%;
-  left: 50%;
   position: absolute;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
   content: " ";
   font-size: 0;
   line-height: 0;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 10px 10px 10px;
-  border-color: transparent transparent rgba(200, 200, 200, 0.8) transparent;
-  box-shadow: 0px 10px 24px -14px #707070;
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 26.25em) {
   .tooltip-arrowKeys.tooltip-arrowKeys:after {
     bottom: 0%;
     left: 0%;
@@ -2463,6 +2454,19 @@ textarea[contenteditable] {
     transform: translateY(-50%) translateX(-100%);
     border-width: 10px 10px 10px 0;
     border-color: transparent rgba(200, 200, 200, 0.8) transparent transparent;
+  }
+}
+@media screen and (min-width: 62em) {
+  .tooltip-arrowKeys.tooltip-arrowKeys:after {
+    bottom: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent rgba(200, 200, 200, 0.8) transparent;
+    box-shadow: 0px 10px 24px -14px #707070;
   }
 }
 
@@ -3638,26 +3642,46 @@ textarea[contenteditable] {
   .arrow-keys-tip {
     display: block;
     width: 100%;
+    height: 100%;
     position: relative;
     text-align: center;
+    overflow: visible !important;
+  }
+}
+
+@media screen and (min-width: 26.25em) {
+  .arrow_down {
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+  }
+}
+@media screen and (min-width: 62em) {
+  .arrow_down {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 .arrow-keys-info-container {
   display: none;
-  height: 60px;
-  text-align: center;
 }
 @media screen and (min-width: 26.25em) {
   .arrow-keys-info-container {
     width: 100%;
     display: block;
+    float: left;
+    height: auto;
+    text-align: center;
+    overflow: visible;
   }
 }
 @media screen and (min-width: 62em) {
   .arrow-keys-info-container {
     width: 50%;
-    display: block;
   }
 }
 
@@ -3666,12 +3690,13 @@ textarea[contenteditable] {
 }
 @media screen and (min-width: 26.25em) {
   .arrow-keys-info {
-    width: 100px;
+    width: 80px;
     display: block;
     text-align: center;
     background-color: transparent;
     position: relative;
     margin: 30px auto;
+    overflow: visible;
   }
 }
 @media screen and (min-width: 62em) {
