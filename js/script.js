@@ -131,8 +131,6 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowDown: $(".arrow_down"),
 		$arrowLeft: $(".arrow_left"),
 
-
-
 		//booleans
 		tooltipOnBoolean:true,
 		arrowKeysInfoBoolean:true,
@@ -144,7 +142,7 @@ Function.prototype.throttle = function (milliseconds) {
 		desktopMode:false,
 		// value holders
 		swapToMobileBreakpoint:420,
-		swapToTabletBreakpoint:1025,
+		swapToTabletBreakpoint:1024,
 
 		mobileNavToggleActiveBoolean:false,
 		mobileShareToggleActiveBoolean:false,
@@ -343,8 +341,9 @@ Function.prototype.throttle = function (milliseconds) {
 			var topTooltip = $arrowKeysContainer.offset().top +( $arrowKeysInfo.height()) *.5+"px";
 			var leftTooltip =  $arrowKeysContainer.width()*.5 - KO.Config.$wrapper.find(".tooltip-arrowKeys").width()*.5 -20 + "px";
 
-			if(KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) < KO.Config.swapToTabletBreakpoint ) {
+			if( KO.Config.tabletMode === true && KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) <= KO.Config.swapToTabletBreakpoint ) {
 				
+				console.log("tooltip tablet");
 				topTooltip =  $arrowKeysInfo.offset().top + 15 + "px";
 				leftTooltip = ($arrowKeysContainer.width()*.5) + $arrowKeysInfo.width()*.5 + "px";
 			}
