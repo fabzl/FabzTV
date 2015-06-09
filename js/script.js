@@ -667,6 +667,7 @@ Function.prototype.throttle = function (milliseconds) {
 			if(KO.Config.$historySupported) {
 				//	console.log("historyPushValue");
 				if (nameArticle == "null" ) {
+
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection);
 				}else {
 
@@ -715,23 +716,28 @@ Function.prototype.throttle = function (milliseconds) {
 
 			//console.log("the URL : ",currentURL, pathArray , pathArray[0], pathArray[1] );
 			//console.dir(pathArray);
-	
-			currentURL  = pathArray[0] +"/"+ pathArray[1];
+			
+			
+			if(pathArray.length >= 3 ) { 
+				currentURL  = pathArray[0] +"/"+ pathArray[1];		
+			}
+			KO.Config.gotoSectionByURL(currentURL);
+			
+			if(pathArray.length >= 3 ) { 
+				KO.Config.gotoArticleByURL(pathArray[2]);
+			}
 
-//			console.log(currentURL,"currentURL2");
+			console.log("currentURL :",currentURL);
 
 			if(currentURL !== "" && currentURL !== "#!/home") { 
 
-			//	console.log("not initial section");
-				KO.Config.gotoSectionByURL(currentURL);
-
+				//console.log("not initial section");
 				
-					KO.Config.gotoArticleByURL(pathArray[2]);
 				} else {
 
-				// home change to home 
+				// change to home 
 				KO.Config.historyReplaceValue("home","null");
-				KO.Config.updateArrowsVisibility();
+				//KO.Config.updateArrowsVisibility();
 			}
 		},
 
@@ -746,10 +752,11 @@ Function.prototype.throttle = function (milliseconds) {
 				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
 					KO.Config.currentSection = i;
 					matchedNumber = i;
+					KO.Config.moveContentByIndexVertically(matchedNumber);
 					break;
 					}
 				}
-				KO.Config.moveContentByIndexVertically(matchedNumber);
+				
 		},
 
 		gotoArticleByURL: function (currentURL) {
@@ -757,12 +764,12 @@ Function.prototype.throttle = function (milliseconds) {
 
 			if(currentURL != undefined ) {
 
-			// find the section name match it with the exisitng ones and goes there.
+				// find the section name match it with the exisitng ones and goes there.
 				var articuleURL = currentURL.replace(/ /g,'');
 				var matchedNumber;
 				var titlesArray =  $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("h2");
-			//	console.log("titlesArray : ",titlesArray, titlesArray.length, titlesArray[0] )
-			//	console.log("articuleURL : ", articuleURL);
+				//	console.log("titlesArray : ",titlesArray, titlesArray.length, titlesArray[0] )
+				//	console.log("articuleURL : ", articuleURL);
 
 				console.log("totalArticle",  KO.Config.$sections[KO.Config.currentSection].totalArticle);
 
@@ -1928,7 +1935,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.mouseX = ( event.clientX - window.innerWidth *.5 ) * 10;
 				KO.Config.mouseY = ( event.clientY - window.innerHeight *.5 ) * 10;
-
 			},
 
 
