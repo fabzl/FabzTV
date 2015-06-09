@@ -671,13 +671,15 @@ Function.prototype.throttle = function (milliseconds) {
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection);
 				}else {
 
+					nameArticle = nameArticle.replace(/ /g,'');
+
 					// nasty amend for Sendmeanemail bug
 					if( nameArticle == "Sendmeanemail" ) {
 
 						nameArticle = "";
 					}
 
-					nameArticle = nameArticle.replace(/ /g,'');
+					
 				//	console.log("#!/"+nameSection+"/"+nameArticle); 
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection+"/"+nameArticle);
 				}
@@ -712,6 +714,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			//check if the URL is home and if not go to it. 
 			var currentURL = window.location.hash;
+			// split it per value so we can work with it 
 			var pathArray = window.location.hash.split( '/' );
 
 			//console.log("the URL : ",currentURL, pathArray , pathArray[0], pathArray[1] );
@@ -723,7 +726,11 @@ Function.prototype.throttle = function (milliseconds) {
 			}
 			KO.Config.gotoSectionByURL(currentURL);
 			
-			if(pathArray.length >= 3 ) { 
+			if(pathArray.length >= 3  ) {
+
+
+				console.log("pathArray ", pathArray[2].innerText);
+				
 				KO.Config.gotoArticleByURL(pathArray[2]);
 			}
 
@@ -732,6 +739,11 @@ Function.prototype.throttle = function (milliseconds) {
 			if(currentURL !== "" && currentURL !== "#!/home") { 
 
 				//console.log("not initial section");
+
+				if(currentURL == "#!/contact") { 
+
+					KO.Config.historyReplaceValue("contact","null");
+				}
 				
 				} else {
 
@@ -765,13 +777,13 @@ Function.prototype.throttle = function (milliseconds) {
 			if(currentURL != undefined ) {
 
 				// find the section name match it with the exisitng ones and goes there.
-				var articuleURL = currentURL.replace(/ /g,'');
+				var articuleURL = KO.Config.currentArticleName = currentURL.replace(/ /g,'');
 				var matchedNumber;
 				var titlesArray =  $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("h2");
 				//	console.log("titlesArray : ",titlesArray, titlesArray.length, titlesArray[0] )
 				//	console.log("articuleURL : ", articuleURL);
 
-				console.log("totalArticle",  KO.Config.$sections[KO.Config.currentSection].totalArticle);
+			//	console.log("totalArticle",  KO.Config.$sections[KO.Config.currentSection].totalArticle);
 
 			 	for(var i=0 ; i < titlesArray.length ; i++ ) { 
 			
@@ -779,6 +791,7 @@ Function.prototype.throttle = function (milliseconds) {
 				//	console.log("i",i);
 
 				//	console.dir(titlesArray[i]);
+
 					var titleToMatch = titlesArray[i].innerText.replace(/ /g,'');
 
 				//	console.log(titleToMatch, currentURL);
@@ -790,11 +803,14 @@ Function.prototype.throttle = function (milliseconds) {
 			 	//	KO.Config.currentArticle = i;
 					matchedNumber = i;
 				//	console.log("matchedNumber",matchedNumber);
+
+					// nasty amend contact seccion;
+					
 					KO.Config.moveContentByIndexHorizontally(matchedNumber);
-
-
-
 					KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName, articuleURL);
+
+					
+
 			 		break;
 			 		}
 			 	}
@@ -1526,7 +1542,7 @@ Function.prototype.throttle = function (milliseconds) {
 		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName, KO.Config.currentArticleName);
 		KO.Config.stopPlayingvideos();
 
-		console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
+	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 	
 		KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 

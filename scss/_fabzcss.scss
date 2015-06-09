@@ -435,20 +435,16 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 .contact-illustration-container {
 
-	width: 40%;
-	position: absolute;
-	bottom: 2%;
-	right: 5%;
+	
 	display:none;
 
-	@include respond-min($breakpoint-wide) {
-		width: 40%;
+	@include respond-min($breakpoint-narrow) {
+		width: 50%;
 		float: right;
 		margin:auto;
 		display:inline-block;
-		position: relative;
-		top: 50%;
- 		transform: translateY(-50%);
+		position: absolute;
+ 		transform: translateY(25%);
 	}
 }
 
@@ -488,7 +484,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	background-color:rgba(0, 0, 17, 0.5);
 	height: 100%;
 	overflow: auto;
-	
+
 	h2 {
 		width:100%;
 	}
