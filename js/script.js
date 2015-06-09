@@ -577,7 +577,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.navToggle.classList.toggle("active");
 				KO.Config.$navigationContainer.toggleClass("active");
-		//		KO.Config.$navigationContainer.find("li").toggleClass("active");
+			//	KO.Config.$navigationContainer.find("li").toggleClass("active");
 			//	KO.Config.$navigationContainer.css("opacity",0);
 			}
 				KO.Config.mobileNavToggleActiveBoolean = false;	
@@ -590,7 +590,7 @@ Function.prototype.throttle = function (milliseconds) {
 				this.classList.toggle("active");
 				$(".nav-toggle").toggleClass("active");
 				
-				console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
+				//console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
 				KO.Config.$socialIconsContainerMobile.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
@@ -668,7 +668,16 @@ Function.prototype.throttle = function (milliseconds) {
 				//	console.log("historyPushValue");
 				if (nameArticle == "null" ) {
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection);
-				}else { 
+				}else {
+
+					// nasty amend for Sendmeanemail bug
+					if( nameArticle == "Sendmeanemail" ) {
+
+						nameArticle = "";
+					}
+
+					nameArticle = nameArticle.replace(/ /g,'');
+				//	console.log("#!/"+nameSection+"/"+nameArticle); 
 					history.pushState(KO.Config.stateObj,"", "#!/"+nameSection+"/"+nameArticle);
 				}
 			}
@@ -702,13 +711,24 @@ Function.prototype.throttle = function (milliseconds) {
 
 			//check if the URL is home and if not go to it. 
 			var currentURL = window.location.hash;
+			var pathArray = window.location.hash.split( '/' );
+
+			//console.log("the URL : ",currentURL, pathArray , pathArray[0], pathArray[1] );
+			//console.dir(pathArray);
+	
+			currentURL  = pathArray[0] +"/"+ pathArray[1];
+
+//			console.log(currentURL,"currentURL2");
 
 			if(currentURL !== "" && currentURL !== "#!/home") { 
 
-				//	console.log("not initial section");
+			//	console.log("not initial section");
 				KO.Config.gotoSectionByURL(currentURL);
 
-			} else {
+				
+					KO.Config.gotoArticleByURL(pathArray[2]);
+				} else {
+
 				// home change to home 
 				KO.Config.historyReplaceValue("home","null");
 				KO.Config.updateArrowsVisibility();
@@ -721,7 +741,8 @@ Function.prototype.throttle = function (milliseconds) {
 			var sectionURL = currentURL.replace(/^.*#!/,'');
 			var matchedNumber;
 				for(var i=0 ; i < KO.Config.$sectionsAmount ; i++ ) { 
-			//	console.log($sections[i].currentArticleName, sectionURL);
+			//	console.log(KO.Config.$sections[i].currentArticleName, sectionURL);
+
 				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
 					KO.Config.currentSection = i;
 					matchedNumber = i;
@@ -733,18 +754,47 @@ Function.prototype.throttle = function (milliseconds) {
 
 		gotoArticleByURL: function (currentURL) {
 
+
+			if(currentURL != undefined ) {
+
 			// find the section name match it with the exisitng ones and goes there.
-			var sectionURL = currentURL.replace(/^.*#!/,'');
-			var matchedNumber;
-				for(var i=0 ; i < KO.Config.$sectionsAmount ; i++ ) { 
-			//	console.log($sections[i].currentArticleName, sectionURL);
-				if ("/"+KO.Config.$sections[i].currentArticleName == sectionURL ) {
-					KO.Config.currentSection = i;
+				var articuleURL = currentURL.replace(/ /g,'');
+				var matchedNumber;
+				var titlesArray =  $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("h2");
+			//	console.log("titlesArray : ",titlesArray, titlesArray.length, titlesArray[0] )
+			//	console.log("articuleURL : ", articuleURL);
+
+				console.log("totalArticle",  KO.Config.$sections[KO.Config.currentSection].totalArticle);
+
+			 	for(var i=0 ; i < titlesArray.length ; i++ ) { 
+			
+				//	console.log(KO.Config.$sections[i].currentArticleName, articuleURL);
+				//	console.log("i",i);
+
+				//	console.dir(titlesArray[i]);
+					var titleToMatch = titlesArray[i].innerText.replace(/ /g,'');
+
+				//	console.log(titleToMatch, currentURL);
+
+
+			 		if ( titleToMatch == articuleURL ) {
+
+
+			 	//	KO.Config.currentArticle = i;
 					matchedNumber = i;
-					break;
-					}
-				}
-				KO.Config.moveContentByIndexVertically(matchedNumber);
+				//	console.log("matchedNumber",matchedNumber);
+					KO.Config.moveContentByIndexHorizontally(matchedNumber);
+
+
+
+					KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName, articuleURL);
+			 		break;
+			 		}
+			 	}
+
+			
+			}
+		
 		},
 		// pause vimeo player 
 		stopPlayingvideos: function() { 
@@ -1466,10 +1516,11 @@ Function.prototype.throttle = function (milliseconds) {
 		//	console.log("currentSection",currentSection);
 		KO.Config.currentSection  = currentSection;
 		KO.Config.updateArrowsVisibility();
-		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName,"null");
+		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName, KO.Config.currentArticleName);
 		KO.Config.stopPlayingvideos();
 
-	//	console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
+		console.log("section: ",currentSection,"article: ", KO.Config.$sections[currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
+	
 		KO.Config.moveContentByIndexHorizontally(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 
 	},
@@ -1478,8 +1529,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 	//	console.log("section: ",KO.Config.currentSection,"article: ", KO.Config.$sections[KO.Config.currentSection].currentArticle,"total: ",KO.Config.$sections[KO.Config.currentSection].totalArticle);
 //		KO.Config.$sections[currentSection].currentArticle = KO.Config.$sections[currentSection].currentArticle;
-
+		
 		KO.Config.updateArrowsVisibility();
+		KO.Config.historyReplaceValue(KO.Config.$sections[KO.Config.currentSection].currentArticleName, KO.Config.currentArticleName);
+
 
 	},
 
@@ -1496,9 +1549,8 @@ Function.prototype.throttle = function (milliseconds) {
 	moveContentByIndexHorizontally:function(index) { 
 
 
-		//	console.log("move Obj by index horzontally", index);
+		//console.log("move Obj by index horzontally", index);
 		var newPos = -((KO.Config.$window.stageW+KO.Config.canvasFillValue) * index);
-		//	KO.Config.$sections[currentSection].currentArticle.css("left",newPos);
 		KO.Config.$sections.eq(KO.Config.currentSection).find(".slider-container").css("left",newPos);
 		KO.Config.updateContentTopPosition(newPos);
 		KO.Config.updateCurrentArticleHorizontal(index);
@@ -1550,7 +1602,9 @@ Function.prototype.throttle = function (milliseconds) {
 		// if this brakpoint condition is met display the tablet mode	
 		}else if(KO.Config.$window.stageW < KO.Config.swapToTabletBreakpoint) { 
 
+			
 			console.log("tablet");
+
 			var sidebarWidth = KO.Config.$window.stageW - KO.Config.$window.stageH;
 			// if the sidebar is too small make it big enough
 			if (sidebarWidth < KO.Config.sideBarMinTablet ) { 

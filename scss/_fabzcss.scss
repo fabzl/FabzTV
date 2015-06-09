@@ -289,7 +289,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 
 
-		@include respond-min($breakpoint-mid) {
+		@include respond-min($breakpoint-wide) {
 
 			bottom: 100%;
 			left: 50%;

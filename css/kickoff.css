@@ -2456,7 +2456,7 @@ textarea[contenteditable] {
     border-color: transparent rgba(200, 200, 200, 0.8) transparent transparent;
   }
 }
-@media screen and (min-width: 62em) {
+@media screen and (min-width: 64em) {
   .tooltip-arrowKeys.tooltip-arrowKeys:after {
     bottom: 100%;
     left: 50%;
