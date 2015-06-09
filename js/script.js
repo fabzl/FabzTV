@@ -711,7 +711,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			} else {
 				// home change to home 
-				KO.Config.historyReplaceValue("home",KO.Config.currentArticleName);
+				KO.Config.historyReplaceValue("home","null");
 				KO.Config.updateArrowsVisibility();
 			}
 		},
