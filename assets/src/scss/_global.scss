@@ -8,6 +8,9 @@ $triangleSizeTooltip : 10px;
 $shadowColourTooltip :  rgba(112,112,112,1);
 $backgroundColourTooltip : rgba(200, 200, 200, 0.8); 
 
+li {
+	list-style-type:none;
+}
 
 @keyframes stripesAnimation { 
 
@@ -47,10 +50,9 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 .main-description {
 
-
 	display:none;
 	text-align:center;
-	max-width:600px;
+	// max-width:600px;
 	background-color:#FFF;
 	color:#001;
 	font-size:1em;
@@ -417,20 +419,21 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 // contact
 
 .contact-mailto-link { 
-
+	margin-left:100%;
 	text-align:center;
 	background-color:rgba(0, 0, 17, 0.8);
 	position:relative;
+	float:right;
 	padding: 12px 12px 12px 12px;
 	border-radius: 3px;
 	font-size:.9em;
 	color:#FFF;
-	display:inline-block;
-	float:right;
+	display:block;
+	
 
 	@include respond-min($bp-wide) {
 
-		max-width: 50%;
+		// max-width: 50%;
 	}
 }
 
@@ -476,6 +479,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 .overlayer-contact {
 
+
 	width: 95%;
 	line-height: 90%;
 	font-size: 1em;
@@ -483,7 +487,7 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 	z-index: 1;
 	margin: 0 auto;
 	background-color:rgba(0, 0, 17, 0.5);
-	height: 100%;
+	height: 100vh;
 	overflow: auto;
 
 	h2 {
@@ -494,7 +498,8 @@ $backgroundColourTooltip : rgba(200, 200, 200, 0.8);
 
 		width: 50%;
 		float:left;
-		padding: 3% 2% 2% 2%;
+		padding: 10% 3% 2% 3%;
+		height: 100vh;
 	}
 }
 
