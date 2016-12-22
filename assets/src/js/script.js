@@ -1835,7 +1835,7 @@ Function.prototype.throttle = function (milliseconds) {
 					// create the urls to load te images
 					var textureFront, textureBack, materials, plane, planeMesh;
 					var urltoLoadClientLogo = "000"+i;
-					var dir = "../assets/img/clients/";
+					var dir = "../img/clients/";
 					var extension = ".jpg";
 
 					// striping the extra zeros out 
