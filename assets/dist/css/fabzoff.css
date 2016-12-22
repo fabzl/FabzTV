@@ -2434,7 +2434,7 @@ pre {
       -ms-transform: translateY(15%);
           transform: translateY(15%);
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_arrow.svg");
+  background-image: url("../../img/svg-icons/icon_arrow.svg");
   background-size: 14px 14px;
   background-repeat: no-repeat;
   height: 14px;
@@ -2448,7 +2448,7 @@ pre {
       -ms-transform: translateY(15%);
           transform: translateY(15%);
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_book.svg");
+  background-image: url("../../img/svg-icons/icon_book.svg");
   background-size: 14px 14px;
   background-repeat: no-repeat;
   height: 14px;
@@ -2458,7 +2458,7 @@ pre {
   display: inline-block;
   content: '';
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_envelope.svg");
+  background-image: url("../../img/svg-icons/icon_envelope.svg");
   background-size: 14px 14px;
   background-repeat: no-repeat;
   height: 14px;
@@ -2472,7 +2472,7 @@ pre {
       -ms-transform: translateY(15%);
           transform: translateY(15%);
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_file.svg");
+  background-image: url("../../img/svg-icons/icon_file.svg");
   background-size: 14px 14px;
   background-repeat: no-repeat;
   height: 14px;
@@ -2486,7 +2486,7 @@ pre {
       -ms-transform: translateY(15%);
           transform: translateY(15%);
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_mobile.svg");
+  background-image: url("../../img/svg-icons/icon_mobile.svg");
   background-size: 14px 14px;
   background-repeat: no-repeat;
   height: 14px;
@@ -2496,7 +2496,7 @@ pre {
   display: inline-block;
   content: '';
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_phone.svg");
+  background-image: url("../../img/svg-icons/icon_phone.svg");
   background-size: 14px 14px;
   -webkit-transform: translateY(15%);
      -moz-transform: translateY(15%);
@@ -2510,7 +2510,7 @@ pre {
   display: inline-block;
   content: '';
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_fb.svg");
+  background-image: url("../../img/svg-icons/icon_fb.svg");
   background-size: 14px 14px;
   -webkit-transform: translateY(15%);
      -moz-transform: translateY(15%);
@@ -2524,7 +2524,7 @@ pre {
   display: inline-block;
   content: '';
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_source.svg");
+  background-image: url("../../img/svg-icons/icon_source.svg");
   background-size: 14px 14px;
   -webkit-transform: translateY(15%);
      -moz-transform: translateY(15%);
@@ -2538,7 +2538,7 @@ pre {
   display: inline-block;
   content: '';
   padding-left: 21px;
-  background-image: url("../assets/img/svg-icons/icon_tv.svg");
+  background-image: url("../../img/svg-icons/icon_tv.svg");
   background-size: 14px 14px;
   -webkit-transform: translateY(15%);
      -moz-transform: translateY(15%);
@@ -2901,11 +2901,11 @@ pre {
 
 .home {
   text-align: center;
-  background-image: url("../../assets/img/bg_swansea_mobile.jpg");
+  background-image: url("../../img/bg_swansea_mobile.jpg");
   background-size: cover; }
   @media screen and (min-width: 48em) {
     .home {
-      background-image: url("../../assets/img/bg_swansea.jpg"); } }
+      background-image: url("../../img/bg_swansea.jpg"); } }
 
 .graphics-slider-container {
   overflow: hidden; }
