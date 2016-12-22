@@ -50,10 +50,11 @@ module.exports = {
 			'./node_modules/cookies-js/dist/cookies.js',
 			'./node_modules/dom-i18n/src/dom-i18n.js',
 			'<%=config.srcDir%>/js/libs/picturefill.js',
-			'<%=config.srcDir%>/js/libs/tabletop.js',
 			'<%=config.srcDir%>/js/libs/tweenlite.js',
+			'<%=config.srcDir%>/js/libs/snap.svg-min.js',
+			'<%=config.srcDir%>/js/libs/jquery.detect_swipe.js',
+			'<%=config.srcDir%>/js/libs/three.min.js',
 			'<%=config.srcDir%>/js/script.js',
-
 
 		]
 	},
