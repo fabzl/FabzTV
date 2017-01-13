@@ -150,7 +150,7 @@ Function.prototype.throttle = function (milliseconds) {
 		ScrollerSpeed : 350,
 		totalLogoClientsCount:54,
 		sideBarMinTablet : 120,
-		sideBarMaxDesktop : 550,
+		sideBarMaxDesktop : 3550,
 		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
 		scene3D:{},
@@ -177,10 +177,12 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.indexNavigation();
 			KO.Config.indexSVGs();
 			KO.Config.indexSections();
+
+			KO.Config.make3DSlideShow();
 			// resize to fit
 			KO.Config.resizeSections();
 			// hide the sidebar elements
-			KO.Config.initVimeoFroogaloop();
+			// KO.Config.initVimeoFroogaloop();
 			KO.Config.hideAndShowSidebar("none");
 			// add controllers
 			KO.Config.scrollerControl();
@@ -195,9 +197,16 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.swipeControl();
 			KO.Config.activateForm();
 			KO.Config.addRomboidToNav();
+			KO.Config.initialSlideBugFix(); 
 			// get rid of the loader screen
 			KO.Config.fadeOutLoader();
+			// KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
 
+		},
+
+
+		initialSlideBugFix : function () {
+				KO.Config.$content.css("top:0px");
 		},
 //vimeo stuff
 
@@ -447,7 +456,7 @@ Function.prototype.throttle = function (milliseconds) {
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
 				//Global setting:
 				$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
-   				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
+				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
 			}
 		},
 
@@ -459,7 +468,6 @@ Function.prototype.throttle = function (milliseconds) {
 		},
 
 		animateSideBarIn:function() {
-
 
 			KO.Config.hideAndShowSidebar("block");
 
@@ -474,7 +482,6 @@ Function.prototype.throttle = function (milliseconds) {
 			}
 				KO.Config.$fabzLogo.addClass("animated bounceInDown");
 		},
-
 
 		hideAndShowSidebar:function(displayValue) {
 
@@ -520,10 +527,10 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 
 				// if desktop is too the sidebar not so big.
-				if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
+				// if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
 
-					sidebarWidth = KO.Config.sideBarMaxDesktop ;
-				}
+				// 	sidebarWidth = KO.Config.sideBarMaxDesktop ;
+				// }
 
 				KO.Config.$sideBar.width(sidebarWidth);
 
@@ -532,10 +539,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 				} else { 
 
-				//	KO.Config.$fabzLogo.height("100px");
-			//		KO.Config.$socialIconsContainer.height("auto");
-			//		KO.Config.$navigationContainer.height("auto");
-				//	KO.Config.$sideBar.width("100%");
+					KO.Config.$fabzLogo.height("100px");
+					KO.Config.$socialIconsContainer.height("auto");
+					KO.Config.$navigationContainer.height("auto");
+					KO.Config.$sideBar.width("100%");
 
 				}
 
@@ -739,6 +746,7 @@ Function.prototype.throttle = function (milliseconds) {
 			if(currentURL !== "" && currentURL !== "#!/home") { 
 
 				//console.log("not initial section");
+				// KO.Config.sectionDetectionEngine();
 
 				if(currentURL == "#!/contact") { 
 
@@ -1087,7 +1095,6 @@ Function.prototype.throttle = function (milliseconds) {
 				obj.stop().animate({ opacity: 0}, time);
 			}
 		},
-
 		colorObjectHelper: function (obj,colour) { 
 
 			obj.attr({
@@ -1331,7 +1338,6 @@ Function.prototype.throttle = function (milliseconds) {
 			// define the amount of articles
 			KO.Config.$sections[i].totalArticle = $currentSlides.length;
 
-
 			if(KO.Config.$sections[i].totalArticle !== 0 ) { 
 
 				var scaleValue = 0; 
@@ -1392,6 +1398,11 @@ Function.prototype.throttle = function (milliseconds) {
 
 					$currentImages.css("left", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(i+1)-(KO.Config.$window.stageW+KO.Config.canvasFillValue));
 
+
+				// if ($currentContainer.find(".threde-slide")) {
+				// 		console.dir($currentContainer);
+				// 		// KO.Config.make3DSlideShow($currentContainer);
+				// }
 				// detect if there is vimeo iframes 
 
 				if ($currentSlides.find(".vimeo-video")) {
@@ -1413,18 +1424,174 @@ Function.prototype.throttle = function (milliseconds) {
 
 	sectionDetectionEngine : function () { 
 
-		
+		KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle);
 		var currentArticle = KO.Config.currentArticleName = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("h2").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".description-content-holder").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+
+		KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
+
 	//	var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 
-	//	console.log(currentArticle, currentArticleDescription ) ; 
+		// console.log(currentArticle, currentArticleDescription ) ; 
 		
 		if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
 
 			KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
 		}
 	},
+
+	articuleTrigger : function (section, article) {
+		
+		// console.log("current Section : ",section,"current Article : ",article);
+
+		var $slide  = $(KO.Config.$sections[KO.Config.currentSection]).find(".slide").eq(article);
+		// var triggers = $(KO.Config.$sections[KO.Config.currentSection]).find(".threde-slide").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+		var $thredeSlide = $slide.find(".threde-slide");
+
+		// console.dir($slide);
+
+		// console.log($thredeSlide);
+		if ($thredeSlide.length != 0) {
+			console.log("3d");
+			KO.Config.activate3DSlideShow($slide,$thredeSlide);
+		} 
+	},
+// slider 3D 
+	make3DSlideShow: function () {
+
+		var $objects = $(".slide");
+
+
+		if ($objects.find(".slider-control")) {
+			console.log(" already created");
+		} else {
+
+			console.log("not created yet ");
+		}
+
+		console.dir ($objects);
+		// to make the dots
+		var $thredeSlide = $objects.find(".threde-slide");
+		$thredeSlide.parent().append("<div class='slider-control'></div>");
+		var $sliderControl = $objects.find(".slider-control");
+
+		// to make 3d effect
+		// iterate to inject all the products defined
+		$.each($objects, function(key,value) {
+
+
+					$($(value).find(".threde-slide").get(0)).addClass('active');
+					var amountOfThredeSlides = $(value).find(".threde-slide").length
+
+					if(amountOfThredeSlides != 0) {
+						console.log(amountOfThredeSlides,"threde-slide");
+
+						for (var i = 0 ; i < amountOfThredeSlides ; i ++ ) {
+
+							console.log( i , "i" );
+
+							$(value).find(".slider-control").append("<div class='slider-dot'></div>");
+							if(i == 0 ) {
+								$(value).find(".slider-control").children().first().addClass("active");
+							}
+						}
+						// KO.Config.firstImageToIndex(0,$(value).find(".threde-slide")));
+
+					} 
+					// $($thredeSlide[key]).find('img').css({
+					// console.log("key :",key, "value:",value);
+					// //adding the mixins
+					// 	transform: "translate3d(0,0,"+distance+")",
+					// 	MozTransform:  "translate3d(0,0,"+distance+")",
+					// 	WebkitTransform:  "translate3d(0,0,"+distance+")",
+					// 	msTransform:  "translate3d(0,0,"+distance+")"
+					// });
+
+					// distance += distanceIncrease;
+
+				
+				});
+			 $sliderControl.children().on("click",KO.Config.onDotClick);
+
+		},
+
+	activate3DSlideShow: function ($objects) {
+
+		// KO.Config.sliderTotalImage  = KO.Config.sliderHomeControl.children().length-1;
+
+		// KO.Config.sliderHomeControl.children().on("click",KO.Config.onDotClick);
+				
+
+		// KO.Config.changeImageToIndex(0);
+
+		// 		KO.Config.playSlider();
+		// 		KO.Config.createInterval();
+
+
+	},
+
+		onDotClick : function (e) {
+
+			console.log($(e.currentTarget).index());
+			KO.Config.changeImageToIndex($(e.currentTarget).index(),$(e.currentTarget));
+			// KO.Config.deleteInterval();
+		},
+
+		changeImageToIndex : function (index,e) {
+
+			e.parent().children().removeClass("active"); 
+			e.addClass("active");
+
+			var $slideShowElements = $(e.parent().parent().find(".threde-slide"));
+
+			$slideShowElements.removeClass("active");
+			$($slideShowElements.get(index)).addClass('active');
+		},
+
+		firstImageToIndex : function (index,e) {
+
+			// e.parent().children().removeClass("active"); 
+			e.children().first().addClass("active");
+
+			var $slideShowElements = $(e.parent().parent().find(".threde-slide"));
+
+			// $slideShowElements.removeClass("active");
+			$($slideShowElements.get(0)).addClass('active');
+		},
+
+		// createInterval : function () { 
+		// 	 FBZ.model.sliderClock = setInterval( function() 
+		// {
+		// 		// console.log("interval");
+		// 		KO.Config.playSlider();
+  //       }, FBZ.model.sliderTime);
+		// }, 
+
+		// deleteInterval : function () { 
+		// 	clearInterval(FBZ.model.sliderClock);
+		// },
+
+
+		// playSlider: function () { 
+
+		// 	KO.Config.changeImageToIndex(FBZ.model.sliderCurrentImage);
+		// 	// console.log(FBZ.model.sliderCurrentImage, FBZ.model.sliderTotalImage);
+			
+		// 	if(FBZ.model.sliderCurrentImage < FBZ.model.sliderTotalImage) { 
+		// 		FBZ.model.sliderCurrentImage ++;
+		// 	}else { 
+
+		// 		FBZ.model.sliderCurrentImage = 0;
+		// 	}
+
+		// },
+
+
+
+
+
+
+//
 
 	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
 
@@ -1828,8 +1995,7 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 				var radius = initialRadius;
 				var angle = 10;
-				
-				
+
 				for ( i ; i <= totalObjects  ; i ++ ) {
 
 					// create the urls to load te images

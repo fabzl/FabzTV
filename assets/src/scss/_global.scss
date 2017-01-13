@@ -1,5 +1,67 @@
 
 
+//// sliders
+
+.black-dots {
+		.slider-dot {
+
+				border: 2px solid #999!important;
+		
+			&.active  {
+				background-color:#999!important;
+			}
+		}
+}
+
+.slider-dot { 
+
+	margin:0  5px;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	cursor:pointer;
+	position:relative;
+	transform:rotate(45deg);
+	border: 2px solid $color-primary;
+
+	&.active  {
+		background-color:$color-primary;
+	}
+}
+
+// .slider-control {
+// 	text-align:center;
+// 	position:absolute;
+// 	z-index:51;
+// 	height: 10px;
+// 	opacity:0;
+
+// 	&.active {
+// 		height: 100%;
+// 		opacity:1;
+
+// 	}
+
+// }
+
+// slider home 
+
+.slider-control {
+	width:100%;
+	top:90%;
+	text-align:center;
+	position:absolute;
+	height:auto!important;
+	opacity:1;
+	transition: all 800ms cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.2s;
+
+
+}
+
+
+
+
+
 /// stripes animation
 
 // tooltip config
@@ -86,7 +148,6 @@ li {
 	}
 }
 
-
 // tooltip log
 
 .tooltip {
@@ -101,10 +162,9 @@ li {
 	color:#FFF;
 	box-shadow: 0px 10px 24px -14px $shadowColourTooltip;
 	left:50%;
-   	animation: tooltipLogoAnimationMobileIn 1s 1;
+	animation: tooltipLogoAnimationMobileIn 1s 1;
 	transform: translateX(-50%);
 	transition-delay: 5s;
-	
 
 	@include respond-min($bp-narrow) {
 
@@ -1109,9 +1169,9 @@ $iconsSize : 14px;
 		transform-origin: 50% 10%;
 
 	}
-	@include respond-min($bp-mid) {
-		display:none;
-	}
+	// @include respond-min($bp-mid) {
+	// 	display:none;
+	// }
 }
 
 .social-icons-container {
@@ -1125,7 +1185,7 @@ $iconsSize : 14px;
 	@include respond-min($bp-wide) {
 
 		width: 50%;
-		display: inline-block;
+		// display: inline-block;
 		position: relative;
 		text-align:center;
 		float:left;
@@ -1133,7 +1193,7 @@ $iconsSize : 14px;
 		opacity:1;
 
 	&.active {
-			display: inline-block;
+			// display: inline-block;
 			background-color:transparent;
 			opacity:1;
 			//width:100%;
@@ -1167,18 +1227,9 @@ $iconsSize : 14px;
 		position: absolute;
 		height:100%;
 		margin:auto;
-		@include respond-min($bp-mid) {
-			display: none;
-		}
 	}
 
-	@include respond-min($bp-narrow) {
-		right: 0;
-	}
 
-	@include respond-min($bp-mid) {
-		display: none;
-	}
 }
 
 .nav-toggle {
@@ -1215,7 +1266,7 @@ $iconsSize : 14px;
 	@include respond-min($bp-wide) {
 
 		margin-top: 60px;
-		width : 100%;
+		width : 60%;
 		height: auto;
 		text-align: center;
 		z-index:auto;
@@ -1225,7 +1276,7 @@ $iconsSize : 14px;
 	.side-logo {
 
 		cursor: pointer;
-		max-width: 180px;
+		max-width: 80%;
 		overflow: visible;
 		position: relative;
 		
@@ -1257,6 +1308,8 @@ $iconsSize : 14px;
 	overflow:hidden;
 }
 
+
+
 .slide {
 
 	display:inline;
@@ -1265,8 +1318,8 @@ $iconsSize : 14px;
 	margin:0;
 	padding:0;
 	float: left;
-
-
+  	perspective: 700px;
+    perspective-origin: 50% 50%;
 
 	img picture { 
 		height:auto;
@@ -1276,6 +1329,26 @@ $iconsSize : 14px;
 		position:absolute;
 	}
 }
+.threde-slide {
+	position:absolute;
+	opacity:0;
+	transform-style: preserve-3d;
+	transition: all 1s;
+	transform:translate3d(0,0,500px);
+	transform-style: preserve-3d;
+
+// 	transform	Applies a 2D or 3D transformation to an element
+// transform-origin	Allows you to change the position on transformed elements
+// transform-style	Specifies how nested elements are rendered in 3D space
+// perspective	Specifies the perspective on how 3D elements are viewed
+	// perspective-origin:
+	backface-visibility:hidden;
+	&.active {
+		opacity: 1;
+		transform:translate3d(0,0,0);
+	}
+}
+
 
 .wrapper {
 
@@ -1296,7 +1369,7 @@ $iconsSize : 14px;
 	z-index: 999;
 
 	@include respond-min($bp-narrow) {
-		
+
 		position: relative;
 		height:100%;
 		overflow: hidden;
@@ -1326,11 +1399,10 @@ $iconsSize : 14px;
 
 .content {
 
-	//top:0;
+	top:0;
 	position: relative;
 	transition : top .5s ease-in-out;
-	background-color:#000;
-	
+	background-color:#001;
 	@include respond-min($bp-narrow) {
 
 	float: right;
@@ -1356,11 +1428,20 @@ $iconsSize : 14px;
 	width:100%;
 	height:auto;
 	position:absolute;
-	z-index: -10;
+	z-index: 1000;
 	opacity: 0;
 	display: none;
 	float:none;
+	padding-top:10vh;
+	transition: 1s all;
+	padding-bottom:100%;
 
+	@include respond-min($bp-narrow) {
+
+
+	padding-top:5vh;
+
+	}
 
 	&.active {
 
@@ -1393,7 +1474,7 @@ $iconsSize : 14px;
 				margin: 0 auto;
 				position: relative;
 				text-align: center;
-			
+
 			}
 
 
@@ -1478,7 +1559,7 @@ $iconsSize : 14px;
 
 	@include respond-min($bp-wide) {
 
-			width:50%;
+			width:100%;
 			float:left;		
 		}
 }
@@ -1706,11 +1787,11 @@ $iconsSize : 14px;
 
 	&, &:before {
 		box-sizing:border-box;
-		border:5px solid blue;
-		border-left-color:#fff;
-		border-top-color:#d8dce5;
-		border-right-color:#7a9cbf;
-		border-bottom-color:#255688;
+		border:10px solid white;
+		border-left-color:rgba(255,255,255,0.3);
+		border-top-color:rgba(255,255,255,0.5);
+		border-right-color:rgba(255,255,255,0.7);
+		border-bottom-color:rgba(255,255,255,0.8);
 		border-radius:50%;
 		position:absolute;
 		display:block;
@@ -1798,7 +1879,7 @@ $iconsSize : 14px;
 
 	@include respond-min($bp-wide) {
 
-		display: none;
+		// display: none;
 
 		&.active { 
 

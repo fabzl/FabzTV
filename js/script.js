@@ -150,7 +150,7 @@ Function.prototype.throttle = function (milliseconds) {
 		ScrollerSpeed : 350,
 		totalLogoClientsCount:54,
 		sideBarMinTablet : 120,
-		sideBarMaxDesktop : 550,
+		sideBarMaxDesktop : 1500,
 		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
 		scene3D:{},
@@ -520,10 +520,10 @@ Function.prototype.throttle = function (milliseconds) {
 				}
 
 				// if desktop is too the sidebar not so big.
-				if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
+				// if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
 
-					sidebarWidth = KO.Config.sideBarMaxDesktop ;
-				}
+				// 	sidebarWidth = KO.Config.sideBarMaxDesktop ;
+				// }
 
 				KO.Config.$sideBar.width(sidebarWidth);
 
@@ -1654,10 +1654,10 @@ Function.prototype.throttle = function (milliseconds) {
 			}
 
 		// if desktop is too the sidebar not so big.
-			if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
+			// if (sidebarWidth > KO.Config.sideBarMaxDesktop ) { 
 
-				sidebarWidth = KO.Config.sideBarMaxDesktop ;
-			}
+			// 	sidebarWidth = KO.Config.sideBarMaxDesktop ;
+			// }
 
 			KO.Config.$window.stageW -= sidebarWidth;  //KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 
