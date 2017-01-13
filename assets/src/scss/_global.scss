@@ -715,11 +715,10 @@ li {
 
 // sidebar description
 .sidebar-description .description-content-holder { 
-	
+
 	display : none;
 
 	@include respond-min($bp-mid) { 
-		
 
 		display : block;	
 		height:auto;
@@ -758,7 +757,9 @@ li {
 // in content description 
 .overlayer-description .description-content-holder  { 
 
-	display:block;
+	display:none;
+
+	// display:block;
 	transition: all 500ms ease-out;
 	.description-text {
 
@@ -769,12 +770,6 @@ li {
 		}
 
 	 }
-
-
-	@include respond-min($bp-wide) {
-		
-		display:none;
-	}
 
 }
 
@@ -795,7 +790,7 @@ li {
 	//	transform-origin: 50% 100%;
 		&:hover { 
 		//	height:auto;
-			overflow: visible;
+			// overflow: visible;
 			transform:translateY(77px);
 			opacity:1;
 		}
@@ -937,40 +932,45 @@ li {
 }
 
 .more-info-toggle { 
-	
-	max-width:60px;
-	min-width:60px;
-	width:60px;
-	margin: 0 auto;
+
+	position:relative;
+	width:50px;
+	transform-origin:50% 50%;
+	text-align:center;
 	transition: all 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950); /* easeInOutSine */
-	transform: rotate(0deg) scale(.8);
 	display: inline-block;
+	margin-right:7px;
+	svg {
+		fill: #FFF;
+	}
+
+	transform:rotate(0deg) ;
+
+	@include respond-min($bp-narrow) {
+		margin-right:0px;
+	}
+
+
 
 	&.active {
-		
+		transform:rotate(-45deg)  translateX(0%) translateY(0%);
+			@include respond-min($bp-narrow) {
+				transform:rotate(-45deg);
+			}
 		}
 	}
 
 .more-info-toggle-container {
 
-	right: 2px;
-	top:3px;
-	position: absolute;
+	cursor:pointer;
+	width:100%;
+	position: relative;
 	display:inline-block;
 	transition : all .3s ease-in-out;
+	text-align:right;
 
 	@include respond-min($bp-narrow) {
-		right: 11%;
-	}
-
-	@include respond-min($bp-wide) {
-		
-		display:none;
-	}
-
-	&.active {
-		transform:rotate(-45deg);
-//		right: 1%;
+		text-align:center;
 	}
 }
 
@@ -1219,6 +1219,7 @@ $iconsSize : 14px;
  	z-index: 2;
  	right: auto;
 
+
 	&.active {
 		display: block;
 		background-color:rgba(0, 0, 17, 0.9);
@@ -1332,17 +1333,11 @@ $iconsSize : 14px;
 .threde-slide {
 	position:absolute;
 	opacity:0;
-	transform-style: preserve-3d;
 	transition: all 1s;
 	transform:translate3d(0,0,500px);
 	transform-style: preserve-3d;
-
-// 	transform	Applies a 2D or 3D transformation to an element
-// transform-origin	Allows you to change the position on transformed elements
-// transform-style	Specifies how nested elements are rendered in 3D space
-// perspective	Specifies the perspective on how 3D elements are viewed
-	// perspective-origin:
 	backface-visibility:hidden;
+
 	&.active {
 		opacity: 1;
 		transform:translate3d(0,0,0);
@@ -1367,12 +1362,16 @@ $iconsSize : 14px;
 	position: absolute;
 	top: 0;
 	z-index: 999;
+	flex-direction: row;
+	// display: flex;
 
 	@include respond-min($bp-narrow) {
 
 		position: relative;
 		height:100%;
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	@include respond-min($bp-wide) {
@@ -1436,9 +1435,11 @@ $iconsSize : 14px;
 	transition: 1s all;
 	padding-bottom:100%;
 
+
+
 	@include respond-min($bp-narrow) {
 
-
+	padding-bottom:5vh;
 	padding-top:5vh;
 
 	}
@@ -1654,10 +1655,7 @@ $iconsSize : 14px;
 
 .arrow-keys-info-container {
 
-
 	display:none;
-	
-	
 
 	@include respond-min($bp-narrow) {
 		width:100%;
@@ -1666,17 +1664,12 @@ $iconsSize : 14px;
 		height:auto;
 		text-align:center;
 		overflow:visible;
-	}	
-	@include respond-min($bp-wide) {
-		width:50%;
-	}	
-
+	}
 
 }
 .arrow-keys-info {
 
 	display:none;
-	
 
 	@include respond-min($bp-narrow) {
 		
@@ -1688,17 +1681,6 @@ $iconsSize : 14px;
 		position:relative;
 		margin: 30px auto;
 		overflow:visible;
-
-	}
-	@include respond-min($bp-wide) {
-	
-		width:60px;
-
-		transform:translateY(-100%);
-		display: inline-block;
-		text-align:center;
-		position:relative;
-		margin: 0 auto;
 
 	}
 }

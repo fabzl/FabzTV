@@ -131,6 +131,8 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowDown: $(".arrow_down"),
 		$arrowLeft: $(".arrow_left"),
 
+		$moreInfoToggle: $(".more-info-toggle"),
+
 		//booleans
 		tooltipOnBoolean:true,
 		arrowKeysInfoBoolean:true,
@@ -201,7 +203,7 @@ Function.prototype.throttle = function (milliseconds) {
 			// get rid of the loader screen
 			KO.Config.fadeOutLoader();
 			// KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
-
+			KO.Config.activateMainToggle();
 		},
 
 
@@ -380,7 +382,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 		destroyTooltips:function () {
 
-			
 			//	console.log("destroy tooltip");
 			var tooltip = KO.Config.$wrapper.find(".tooltip");
 			var animation = (KO.Config.mobileMode) ? "tooltipLogoAnimationMobileOut" : "tooltipLogoAnimationDesktopOut";
@@ -402,7 +403,7 @@ Function.prototype.throttle = function (milliseconds) {
 				tooltip.remove();
 			});
 			tooltip.css({
-				"animation-direction": "alternate",
+				// "animation-direction": "alternate",
 				"animation": animation+" .5s 1" 			
 			});
 
@@ -1434,10 +1435,11 @@ Function.prototype.throttle = function (milliseconds) {
 
 		// console.log(currentArticle, currentArticleDescription ) ; 
 		
-		if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
+		// if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
 
 			KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
-		}
+		// }
+		
 	},
 
 	articuleTrigger : function (section, article) {
@@ -1462,14 +1464,14 @@ Function.prototype.throttle = function (milliseconds) {
 		var $objects = $(".slide");
 
 
-		if ($objects.find(".slider-control")) {
-			console.log(" already created");
-		} else {
+		// if ($objects.find(".slider-control")) {
+		// 	console.log(" already created");
+		// } else {
 
-			console.log("not created yet ");
-		}
+		// 	console.log("not created yet ");
+		// }
 
-		console.dir ($objects);
+		// console.dir ($objects);
 		// to make the dots
 		var $thredeSlide = $objects.find(".threde-slide");
 		$thredeSlide.parent().append("<div class='slider-control'></div>");
@@ -1484,11 +1486,11 @@ Function.prototype.throttle = function (milliseconds) {
 					var amountOfThredeSlides = $(value).find(".threde-slide").length
 
 					if(amountOfThredeSlides != 0) {
-						console.log(amountOfThredeSlides,"threde-slide");
+						// console.log(amountOfThredeSlides,"threde-slide");
 
 						for (var i = 0 ; i < amountOfThredeSlides ; i ++ ) {
 
-							console.log( i , "i" );
+							// console.log( i , "i" );
 
 							$(value).find(".slider-control").append("<div class='slider-dot'></div>");
 							if(i == 0 ) {
@@ -1588,17 +1590,48 @@ Function.prototype.throttle = function (milliseconds) {
 
 
 
+		activateMainToggle : function () {
 
+			
+			KO.Config.$moreInfoToggle.on("click",KO.Config.onClickInfoMainToggle);
 
+		},
 
+		onClickInfoMainToggle : function (e) {
+			console.log("toggle");
+			$(e.currentTarget).toggleClass("active");
+
+		// create the players
+		// var $contentHolder 		= $(e.currentTarget);
+		// var $toggleContainer 	= $contentHolder.parent().find(".more-info-toggle-container");
+		// var toogleSVG  			= e.currentTarget.querySelector(".more-info-toggle"); 
+		// var $descriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
+		// var $descriptionText  	=   $(e.currentTarget).find(".description-text");
+		
+
+		// var displacementToogleInfo;
+		// var displacementToogleInfoString;
+		// var	toggleDisplayOffset = 0;
+
+		// // activate the toggles
+		// $contentHolder.toggleClass("active");
+		// $toggleContainer.toggleClass("active");
+		// $descriptionText.toggleClass("active");
+		// $contentHolder.parent().toggleClass("active");
+		// $contentHolder.find("h2").toggleClass("active");
+
+		// toogleSVG.classList.toggle("active");
+
+		},
 //
 
 	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
 
 		
+
 		if(currentArticleDescription != null) { 
 
-			$(".sidebar-description").show();
+			KO.Config.$moreInfoToggle.show();
 
 				currentArticleDescription = currentArticleDescription.prop('outerHTML');
 
@@ -1608,15 +1641,17 @@ Function.prototype.throttle = function (milliseconds) {
 
 			 	currentArticleDescription="";	
 			 }
-			 KO.Config.sidebarDescription.innerHTML = currentArticleDescription;	
+			 // KO.Config.sidebarDescription.innerHTML = currentArticleDescription;	
 		//	 console.log( "im passing here . ",KO.Config.sidebarDescription.innerHTML, currentArticleDescription);
 		}else { 
-			$(".sidebar-description").hide();
+			KO.Config.$moreInfoToggle.hide();
 		}
 
 	},
 
 	onClickInfoToggle : function (e) {
+		
+
 		// stop the event propagation
 		e.stopPropagation();
 
