@@ -1338,7 +1338,7 @@ img, object, embed, video {
   display: table;
   width: 100%; }
 
-@media screen and (min-width: 25em) {
+@media screen and (min-width: 31.25em) {
   .media-img,
   .media-body {
     display: table-cell;
@@ -1695,9 +1695,9 @@ pre {
  * Icons - used in conjunction with grunticon
  */
 .black-dots .slider-dot {
-  border: 2px solid #999 !important; }
+  border: 2px solid #001 !important; }
   .black-dots .slider-dot.active {
-    background-color: #999 !important; }
+    background-color: #001 !important; }
 
 .slider-dot {
   margin: 0  5px;
@@ -1721,6 +1721,7 @@ pre {
   position: absolute;
   height: auto !important;
   opacity: 1;
+  z-index: 999;
   -webkit-transition: all 800ms cubic-bezier(0.39, 0.575, 0.565, 1) 0.2s;
      -moz-transition: all 800ms cubic-bezier(0.39, 0.575, 0.565, 1) 0.2s;
           transition: all 800ms cubic-bezier(0.39, 0.575, 0.565, 1) 0.2s; }
@@ -1745,7 +1746,7 @@ li {
   font-style: bold;
   border: solid #FFF 20px;
   line-height: 90%; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .main-description {
       font-size: 1.8em;
       padding: 11px; } }
@@ -1784,7 +1785,7 @@ li {
   -webkit-transition-delay: 5s;
      -moz-transition-delay: 5s;
           transition-delay: 5s; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .tooltip {
       background-color: rgba(200, 200, 200, 0.8);
       -webkit-animation: tooltipLogoAnimationDesktopIn 1s 1;
@@ -1815,7 +1816,7 @@ li {
     border-width: 0 10px 10px 10px;
     border-color: transparent transparent rgba(0, 0, 1, 0.8) transparent;
     box-shadow: 0px 10px 24px -14px #707070; }
-    @media screen and (min-width: 25em) {
+    @media screen and (min-width: 31.25em) {
       .tooltip.tooltip:after {
         bottom: 0%;
         left: 0%;
@@ -2020,7 +2021,7 @@ li {
 
 .tooltip-arrowKeys {
   display: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .tooltip-arrowKeys {
       display: block;
       text-align: center;
@@ -2050,7 +2051,7 @@ li {
     width: 0;
     height: 0;
     border-style: solid; }
-    @media screen and (min-width: 25em) {
+    @media screen and (min-width: 31.25em) {
       .tooltip-arrowKeys.tooltip-arrowKeys:after {
         bottom: 0%;
         left: 0%;
@@ -2197,7 +2198,7 @@ li {
 
 .contact-illustration-container {
   display: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .contact-illustration-container {
       width: 50%;
       float: right;
@@ -2282,7 +2283,9 @@ li {
   font-family: "denseregular"; }
 
 .hidden-holder {
-  bottom: 0; }
+  bottom: -100%; }
+  .hidden-holder.active {
+    bottom: 0; }
 
 .noselect {
   -webkit-touch-callout: none;
@@ -2344,21 +2347,12 @@ li {
   background-color: rgba(0, 0, 1, 0.6);
   cursor: pointer;
   width: 100%;
-  -webkit-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-     -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-          transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -webkit-transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+     -moz-transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+          transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
   /* easeInOutSine */
   color: #FFF !important;
-  -webkit-transform: translateY(100%);
-     -moz-transform: translateY(100%);
-      -ms-transform: translateY(100%);
-          transform: translateY(100%);
   height: auto; }
-  .description-content-holder.active {
-    -webkit-transform: translateY(0);
-       -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-            transform: translateY(0); }
   .description-content-holder h2 {
     color: #FFF !important;
     white-space: nowrap;
@@ -2371,6 +2365,8 @@ li {
     width: 100%;
     padding-bottom: 3px;
     line-height: 1em; }
+  .description-content-holder ul {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 .more-info-toggle {
   position: relative;
@@ -2392,15 +2388,18 @@ li {
           transform: rotate(0deg); }
   .more-info-toggle svg {
     fill: #FFF; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .more-info-toggle {
       margin-right: 0px; } }
+  .more-info-toggle.disable {
+    pointer-events: none;
+    opacity: 0; }
   .more-info-toggle.active {
     -webkit-transform: rotate(-45deg) translateX(0%) translateY(0%);
        -moz-transform: rotate(-45deg) translateX(0%) translateY(0%);
         -ms-transform: rotate(-45deg) translateX(0%) translateY(0%);
             transform: rotate(-45deg) translateX(0%) translateY(0%); }
-    @media screen and (min-width: 25em) {
+    @media screen and (min-width: 31.25em) {
       .more-info-toggle.active {
         -webkit-transform: rotate(-45deg);
            -moz-transform: rotate(-45deg);
@@ -2416,7 +2415,7 @@ li {
      -moz-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
   text-align: right; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .more-info-toggle-container {
       text-align: center; } }
 
@@ -2436,7 +2435,7 @@ li {
 
 .description-link {
   font-weight: bold;
-  font-family: "Arial" !important;
+  font-family: "Helvetica" !important;
   display: block;
   width: 100%;
   font-size: 0.7em; }
@@ -2566,36 +2565,6 @@ li {
   height: 14px;
   width: 14px; }
 
-.social-icons {
-  -webkit-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-     -moz-transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-          transition: all 500ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  /* easeInOutSine */
-  cursor: pointer;
-  max-width: none;
-  -webkit-transform: scale(0.8);
-     -moz-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
-  -webkit-transform-origin: 50% 50%;
-     -moz-transform-origin: 50% 50%;
-      -ms-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-  height: auto; }
-  @media screen and (min-width: 62em) {
-    .social-icons {
-      max-width: 200px;
-      position: relative;
-      -webkit-transform: scale(0.8);
-         -moz-transform: scale(0.8);
-          -ms-transform: scale(0.8);
-              transform: scale(0.8); }
-      .social-icons:hover {
-        -webkit-transform: scale(1);
-           -moz-transform: scale(1);
-            -ms-transform: scale(1);
-                transform: scale(1); } }
-
 .social-icons-mobile {
   -webkit-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
      -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -2611,7 +2580,7 @@ li {
      -moz-transform-origin: 50% 50%;
       -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .social-icons-mobile {
       -webkit-transform: scale(0.7);
          -moz-transform: scale(0.7);
@@ -2627,38 +2596,26 @@ li {
   display: none;
   overflow: hidden;
   opacity: 0;
-  float: none; }
-  @media screen and (min-width: 62em) {
-    .social-icons-container {
-      width: 50%;
-      position: relative;
-      text-align: center;
-      float: left;
-      -webkit-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-         -moz-transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-              transition: all 250ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-      /* easeInOutSine */
-      opacity: 1; }
-      .social-icons-container.active {
-        background-color: transparent;
-        opacity: 1;
-        position: absolute;
-        top: auto; }
-      .social-icons-container.social-icons-container:hover {
-        -webkit-transform: scale(1);
-           -moz-transform: scale(1);
-            -ms-transform: scale(1);
-                transform: scale(1); } }
-
-.social-icons-container-mobile {
-  display: none;
   top: 0;
-  overflow: hidden;
-  opacity: 0;
-  z-index: 2;
-  right: auto; }
-  .social-icons-container-mobile.active {
-    display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-perspective: 700px;
+     -moz-perspective: 700px;
+          perspective: 700px;
+  -webkit-perspective-origin: 50% 50%;
+     -moz-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  cursor: pointer; }
+  .social-icons-container.active {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     background-color: rgba(0, 0, 17, 0.9);
     opacity: 1;
     width: 100%;
@@ -2666,11 +2623,65 @@ li {
     height: 100%;
     margin: auto; }
 
+.social-icons {
+  width: 60vw;
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: absolute;
+  -ms-flex-item-align: center;
+      align-self: center; }
+
+.share-icon-svg {
+  -webkit-perspective: 700px;
+     -moz-perspective: 700px;
+          perspective: 700px;
+  -webkit-perspective-origin: 50% 50%;
+     -moz-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  cursor: pointer;
+  -webkit-transform-origin: 50% 50%;
+     -moz-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  position: absolute;
+  -webkit-transform: scale(1);
+     -moz-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 0.25s;
+     -moz-transition: all 0.25s;
+          transition: all 0.25s; }
+  .share-icon-svg:hover {
+    -webkit-transform: scale(1.2) translate(0, -9%);
+       -moz-transform: scale(1.2) translate(0, -9%);
+        -ms-transform: scale(1.2) translate(0, -9%);
+            transform: scale(1.2) translate(0, -9%);
+    opacity: 1; }
+
+.close-social {
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  width: 60px; }
+  .close-social svg {
+    -webkit-transition: all 1s;
+       -moz-transition: all 1s;
+            transition: all 1s;
+    fill: #666; }
+    .close-social svg:hover {
+      fill: #FFF; }
+
 .nav-toggle {
   float: right;
   display: block;
   cursor: pointer; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .nav-toggle {
       display: none; } }
 
@@ -2792,7 +2803,7 @@ li {
   -webkit-transition: all;
      -moz-transition: all;
           transition: all; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .sidebar-wrapper {
       position: relative;
       height: 100%;
@@ -2816,7 +2827,7 @@ li {
   top: 100px;
   overflow: hidden;
   position: absolute; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .showcase-wrapper {
       height: 100%;
       right: 0;
@@ -2829,7 +2840,7 @@ li {
      -moz-transition: top .5s ease-in-out;
           transition: top .5s ease-in-out;
   background-color: #001; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .content {
       float: right; } }
 
@@ -2858,7 +2869,7 @@ li {
           transition: 1s all;
   padding-bottom: 100%;
   outline: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .nav-content {
       padding-bottom: 5vh;
       padding-top: 5vh; } }
@@ -2869,15 +2880,16 @@ li {
   .nav-content ol {
     position: relative;
     text-align: center;
-    width: 80%;
-    margin: 0 auto; }
+    width: 60%;
+    margin: 0 auto;
+    max-width: 200px; }
   .nav-content li {
     -webkit-transition: all .2s ease-in-out;
        -moz-transition: all .2s ease-in-out;
             transition: all .2s ease-in-out;
     border-bottom: 1px solid #FFF;
     text-align: center; }
-    @media screen and (min-width: 25em) {
+    @media screen and (min-width: 31.25em) {
       .nav-content li {
         border-bottom: 1px solid #444; } }
     .nav-content li.romboid {
@@ -2886,7 +2898,7 @@ li {
       text-align: center; }
     .nav-content li.romboid:before {
       display: none; }
-      @media screen and (min-width: 25em) {
+      @media screen and (min-width: 31.25em) {
         .nav-content li.romboid:before {
           display: block;
           content: '';
@@ -2911,7 +2923,7 @@ li {
               transition: all .2s ease-in-out;
       width: 100%;
       font-size: 1.75em; }
-      @media screen and (min-width: 25em) {
+      @media screen and (min-width: 31.25em) {
         .nav-content li a {
           width: 100%;
           color: #DDD;
@@ -2921,7 +2933,7 @@ li {
           z-index: 10; }
           .nav-content li a.romboid {
             display: none; } }
-    @media screen and (min-width: 25em) and (min-width: 25em) {
+    @media screen and (min-width: 31.25em) and (min-width: 31.25em) {
       .nav-content li a.romboid {
         display: block;
         letter-spacing: 2px;
@@ -2935,12 +2947,12 @@ li {
            -moz-user-select: none;
             -ms-user-select: none;
                 user-select: none; } }
-      @media screen and (min-width: 25em) {
+      @media screen and (min-width: 31.25em) {
           .nav-content li a:hover {
             padding-left: 20%;
             letter-spacing: 2px;
             text-align: center; } }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .nav-content {
       background-color: transparent;
       display: block;
@@ -2984,7 +2996,7 @@ li {
 
 .arrow-keys-tip {
   display: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .arrow-keys-tip {
       display: block;
       width: 100%;
@@ -2993,7 +3005,7 @@ li {
       text-align: center;
       overflow: visible !important; } }
 
-@media screen and (min-width: 25em) {
+@media screen and (min-width: 31.25em) {
   .arrow_down {
     -webkit-transform: translateY(100%);
        -moz-transform: translateY(100%);
@@ -3009,7 +3021,7 @@ li {
 
 .arrow-keys-info-container {
   display: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .arrow-keys-info-container {
       width: 100%;
       display: block;
@@ -3020,7 +3032,7 @@ li {
 
 .arrow-keys-info {
   display: none; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .arrow-keys-info {
       width: 80px;
       display: block;
@@ -3152,7 +3164,7 @@ li {
   top: 33%;
   position: absolute;
   width: 35px; }
-  @media screen and (min-width: 25em) {
+  @media screen and (min-width: 31.25em) {
     .share-toggle {
       left: auto;
       top: auto;

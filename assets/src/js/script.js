@@ -120,7 +120,6 @@ Function.prototype.throttle = function (milliseconds) {
 		$wrapper : $(".wrapper"),
 		$sideBar : $(".sidebar-wrapper"),
 		$socialIconsContainer: $(".social-icons-container"),
-		$socialIconsContainerMobile: $(".social-icons-container-mobile"),
 		$clientsContainer:$(".clients-container"),
 		$clientLogo:$(".client-logo"),
 		$submitFormBtn:$(".btn--primary"),
@@ -132,7 +131,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowLeft: $(".arrow_left"),
 
 		$moreInfoToggle: $(".more-info-toggle"),
-
+		$closeSocial: 	$(".close-social"),
 		//booleans
 		tooltipOnBoolean:true,
 		arrowKeysInfoBoolean:true,
@@ -143,7 +142,7 @@ Function.prototype.throttle = function (milliseconds) {
 		tabletMode:false,
 		desktopMode:false,
 		// value holders
-		swapToMobileBreakpoint:420,
+		swapToMobileBreakpoint:500,
 		swapToTabletBreakpoint:1024,
 
 		mobileNavToggleActiveBoolean:false,
@@ -168,7 +167,6 @@ Function.prototype.throttle = function (milliseconds) {
 		stats:{},
 		clientsLogoGroup:{},
 
-
 		init : function () {
 
 			console.debug('Fabz.tv is running on clouds');
@@ -179,13 +177,11 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.indexNavigation();
 			KO.Config.indexSVGs();
 			KO.Config.indexSections();
-
-			KO.Config.make3DSlideShow();
+			
 			// resize to fit
 			KO.Config.resizeSections();
-			// hide the sidebar elements
 			// KO.Config.initVimeoFroogaloop();
-			KO.Config.hideAndShowSidebar("none");
+
 			// add controllers
 			KO.Config.scrollerControl();
 			KO.Config.arrowControl();
@@ -200,6 +196,8 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.activateForm();
 			KO.Config.addRomboidToNav();
 			KO.Config.initialSlideBugFix(); 
+
+			KO.Config.make3DSlideShow();
 			// get rid of the loader screen
 			KO.Config.fadeOutLoader();
 			// KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
@@ -239,6 +237,7 @@ Function.prototype.throttle = function (milliseconds) {
 				window.attachEvent('onmessage', KO.Config.onMessageReceived, false);
 			}
 		},
+
 
 		// Handle messages received from the player
 		onMessageReceived:function (e) {
@@ -462,47 +461,19 @@ Function.prototype.throttle = function (milliseconds) {
 
 		onContentVisible:function() { 
 		
-		//	KO.Config.animateSideBarIn();
 			KO.Config.displayTooltips();
 
 		},
 
-		animateSideBarIn:function() {
-
-			KO.Config.hideAndShowSidebar("block");
-
-			if (KO.Config.mobileMode) {
-
-			//	KO.Config.$socialIconsContainer.css("display", "none");
-				KO.Config.$navigationContainer.removeClass("animated bounceInDown");
-				KO.Config.$socialIconsContainer.removeClass("animated bounceInDown");
-			} else {
-			//	KO.Config.$navigationContainer.addClass("animated bounceInDown");
-				KO.Config.$socialIconsContainer.addClass("animated bounceInDown");
-			}
-				KO.Config.$fabzLogo.addClass("animated bounceInDown");
-		},
-
-		hideAndShowSidebar:function(displayValue) {
-
-
-				// KO.Config.$fabzLogo.css("display",displayValue);
-				// KO.Config.$navigationContainer.css("display",displayValue);
-
-				// if (KO.Config.mobileMode) {
-				// 	KO.Config.$socialIconsContainer.css("display", "none");
-				// }else { 
-				// 	KO.Config.$socialIconsContainer.css("display", displayValue);
-				// }
-		},
 
 		activateMobileNavButtons:function() {
 
 			// add the functionality to Nav toggle
 			KO.Config.navToggle.addEventListener( "click",KO.Config.openMobileNavToggle);
 			// add the functionality to Share toggle
-			KO.Config.shareToggle.addEventListener( "click",KO.Config.openMobileShareToggle);
+			KO.Config.shareToggle.addEventListener( "click",KO.Config.openShareToggle);
 		},
+
 		adjustSideBarElements:function() { 
 
 			if (KO.Config.mobileMode === false ) {
@@ -511,12 +482,10 @@ Function.prototype.throttle = function (milliseconds) {
 				var sideBarH 				= KO.Config.$sideBar.height();
 				var fabzLogoH 				= KO.Config.$fabzLogo.height();
 				var navigationH 			= KO.Config.$navigationContainer.height();
-				var socialIconsContainerH	= KO.Config.$socialIconsContainer.height();
 				var sideBarW 				= KO.Config.$sideBar.width();
 				var fabzLogoW 				= KO.Config.$fabzLogo.width();
 				var navigationW 			= KO.Config.$navigationContainer.width();
-				var socialIconsContainerW	= KO.Config.$socialIconsContainer.width();
-				var objectsTotal 			= fabzLogoH + navigationH + socialIconsContainerH;
+				var objectsTotal 			= fabzLogoH + navigationH;
 				var differenceH 			= sideBarH - objectsTotal;
 
 				//adjust the sidebar
@@ -534,16 +503,13 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.$sideBar.width(sidebarWidth);
 
-				//KO.Config.$socialIconsContainer.on( "mouseover", KO.Config.makeLogoSmall);
 
 
 				} else { 
 
 					KO.Config.$fabzLogo.height("100px");
-					KO.Config.$socialIconsContainer.height("auto");
 					KO.Config.$navigationContainer.height("auto");
 					KO.Config.$sideBar.width("100%");
-
 				}
 
 		},
@@ -555,14 +521,12 @@ Function.prototype.throttle = function (milliseconds) {
 
 		openMobileNavToggle:function () {
 
-
 			KO.Config.checkToDestroyTooltip();
 			//if share toggle is open close it
-			KO.Config.closeMobileShareToggle();
+			KO.Config.closeShareToggle();
 			// activate toggle 
 			KO.Config.$navigationContainer.toggleClass("active");
 			KO.Config.navToggle.classList.toggle("active");
-
 		//	KO.Config.$navigationContainer.find("li").addClass("active");
 
 			// if the control flag is false change it to true
@@ -590,21 +554,26 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.mobileNavToggleActiveBoolean = false;	
 		},
 
-		openMobileShareToggle:function () { 
+		openShareToggle:function () {
+
+
+				KO.Config.$socialIconsContainer.addClass("animated slideInDown");
+
+
+				KO.Config.$closeSocial.on("click",KO.Config.closeShareToggle);
+				KO.Config.$socialIconsContainer.on("click",KO.Config.closeShareToggle);
 
 				KO.Config.checkToDestroyTooltip();
 				KO.Config.closeMobileNavToggle();
 				this.classList.toggle("active");
-				$(".nav-toggle").toggleClass("active");
-				
-				//console.log("KO.Config.$socialIconsContainerMobile.",KO.Config.$socialIconsContainerMobile);
-				KO.Config.$socialIconsContainerMobile.toggleClass("active");
+				// $(".nav-toggle").toggleClass("active");
+				KO.Config.$socialIconsContainer.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
-				KO.Config.shareToggle.removeEventListener("click",KO.Config.openMobileShareToggle);
+				KO.Config.shareToggle.removeEventListener("click",KO.Config.openShareToggle);
 
-				KO.Config.navToggle.addEventListener("click",KO.Config.closeMobileShareToggle);
-				KO.Config.shareToggle.addEventListener( "click",KO.Config.closeMobileShareToggle);
+				KO.Config.navToggle.addEventListener("click",KO.Config.closeShareToggle);
+				KO.Config.shareToggle.addEventListener( "click",KO.Config.closeShareToggle);
 
 				if(KO.Config.mobileShareToggleActiveBoolean === false) { 
 					KO.Config.mobileShareToggleActiveBoolean = true;
@@ -613,23 +582,28 @@ Function.prototype.throttle = function (milliseconds) {
 				//KO.Config.$socialIconsContainerMobile.css("height",(KO.Config.$window.stageH)+"px");
 		},
 
-		closeMobileShareToggle:function () {
+		closeShareToggle:function () {
 
-			if(KO.Config.mobileShareToggleActiveBoolean === true ) {
+			// if(KO.Config.mobileShareToggleActiveBoolean === true ) {
 
-				KO.Config.navToggle.removeEventListener("click",KO.Config.closeMobileShareToggle);
-				KO.Config.shareToggle.removeEventListener( "click",KO.Config.closeMobileShareToggle);
+				console.log("close toggle");
+				KO.Config.$closeSocial.off("click",KO.Config.closeShareToggle);
+				KO.Config.$socialIconsContainer.off("click",KO.Config.closeShareToggle);
+
+
+				KO.Config.navToggle.removeEventListener("click",KO.Config.closeShareToggle);
+				KO.Config.shareToggle.removeEventListener( "click",KO.Config.closeShareToggle);
 
 				KO.Config.mobileShareToggleActiveBoolean = false;
 
 				KO.Config.shareToggle.classList.toggle("active");
-				KO.Config.$socialIconsContainerMobile.toggleClass("active");
+				KO.Config.$socialIconsContainer.toggleClass("active");
 
 				KO.Config.navToggle.classList.toggle("active");
 				// reactivate the Nav Buttons
 				KO.Config.activateMobileNavButtons();
 
-			}
+			// }
 		},
 
 		isAndroidNativeBrowser: function() {
@@ -752,7 +726,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 					KO.Config.historyReplaceValue("contact","null");
 				}
-				
+ 
 				} else {
 
 				// change to home 
@@ -896,7 +870,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.$loaderBg.hide();
 				KO.Config.onContentVisible();
-				KO.Config.hideAndShowSidebar("block");
 			});
 		},
 
@@ -989,64 +962,9 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.socialIcons.mail = KO.Config.socialIcons.select(".mail");
 			KO.Config.shareIconsArray.push([KO.Config.socialIcons.mail,"mailto:fabian@fabz.tv?subject=Ask%20me%20whatever&amp;body=Contact%20from%20fabz.tv","_self"]);
 
-			
-			KO.Config.socialIconsMobile = Snap.select('.social-icons-mobile');
-
-			KO.Config.socialIconsMobile.twitter = KO.Config.socialIconsMobile.select(".twitter");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.twitter,"https://twitter.com/fabzhole","_blank"]);
-
-			KO.Config.socialIconsMobile.facebook = KO.Config.socialIconsMobile.select(".facebook");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.facebook,"https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/pages/Fabz/136712463026919","_blank"]);
-			
-			KO.Config.socialIconsMobile.tumblr = KO.Config.socialIconsMobile.select(".tumblr");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.tumblr,"http://fabzenegger.tumblr.com/","_blank"]);
-
-			KO.Config.socialIconsMobile.flickr = KO.Config.socialIconsMobile.select(".flickr");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.flickr,"https://www.flickr.com/photos/fabzfabzfabz/","_blank"]);
-			
-			KO.Config.socialIconsMobile.instagram = KO.Config.socialIconsMobile.select(".instagram");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.instagram,"http://instagram.com/fabzhole/","_blank"]);
-
-			KO.Config.socialIconsMobile.googlePlus = KO.Config.socialIconsMobile.select(".googlePlus");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.googlePlus,"https://plus.google.com/+fabianandrade/","_blank"]);
-
-			KO.Config.socialIconsMobile.behance = KO.Config.socialIconsMobile.select(".behance");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.behance,"https://www.behance.net/FavFabz","_blank"]);
-
-			KO.Config.socialIconsMobile.github = KO.Config.socialIconsMobile.select(".github");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.github,"https://github.com/fabzl","_blank"]);
-
-			KO.Config.socialIconsMobile.linkedIn = KO.Config.socialIconsMobile.select(".linkedIn");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.linkedIn,"uk.linkedin.com/pub/fabian-andrade/25/254/1a4/","_blank"]);
-
-			KO.Config.socialIconsMobile.soundcloud = KO.Config.socialIconsMobile.select(".soundcloud");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.soundcloud,"https://soundcloud.com/fabz-vs-fabz","_blank"]);
-
-			KO.Config.socialIconsMobile.vimeo = KO.Config.socialIconsMobile.select(".vimeo");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.vimeo,"https://vimeo.com/fabzfabzfabz","_blank"]);
-
-			KO.Config.socialIconsMobile.pinterest = KO.Config.socialIconsMobile.select(".pinterest");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.pinterest,"http://uk.pinterest.com/fabzfabzfabz","_blank"]);
-
-			KO.Config.socialIconsMobile.dribble = KO.Config.socialIconsMobile.select(".dribble");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.dribble,"https://dribbble.com/fabz","_blank"]);
-
-			KO.Config.socialIconsMobile.ello = KO.Config.socialIconsMobile.select(".ello");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.ello,"https://ello.co/fabzfabz","_blank"]);
-
-			KO.Config.socialIconsMobile.skype = KO.Config.socialIconsMobile.select(".skype");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.skype,"skype:fabzfabzfabz?call","_blank"]);
-
-			KO.Config.socialIconsMobile.mail = KO.Config.socialIconsMobile.select(".mail");
-			KO.Config.shareIconsArray.push([KO.Config.socialIconsMobile.mail,"mailto:fabian@fabz.tv?subject=Ask%20me%20whatever&amp;body=Contact%20from%20fabz.tv","_self"]);
-
-
-			//support functions 
-			KO.Config.addLinksToShareIcons(KO.Config.shareIconsArrayMobile);
 			//support functions 
 			KO.Config.addLinksToShareIcons(KO.Config.shareIconsArray);
 
-			
 			KO.Config.colourInSVGs();
 			KO.Config.animateSideLogo();
 
@@ -1306,14 +1224,6 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.canvasFillValue = 0;
 		}
 
-		// resize te mobile info share according to the stage size
-		if (KO.Config.mobileMode === true ) { 
-			$(".social-icons-container-mobile").width("100%");
-
-		}else { 
-
-			$(".social-icons-container-mobile").width(KO.Config.$window.stageW);
-		}
 		var i = 0;
 
 		for(i; i < KO.Config.$sections.length ; i++ ) { 
@@ -1398,11 +1308,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 					$currentImages.css("left", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(i+1)-(KO.Config.$window.stageW+KO.Config.canvasFillValue));
 
-
-				// if ($currentContainer.find(".threde-slide")) {
-				// 		console.dir($currentContainer);
-				// 		// KO.Config.make3DSlideShow($currentContainer);
-				// }
 				// detect if there is vimeo iframes 
 
 				if ($currentSlides.find(".vimeo-video")) {
@@ -1429,14 +1334,15 @@ Function.prototype.throttle = function (milliseconds) {
 
 		KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
 
-	//	var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
+		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 
-		// console.log(currentArticle, currentArticleDescription ) ; 
+		console.log(currentArticle, currentArticleDescription ) ; 
 		
 		// if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
 
-			KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
+		// KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
 		// }
+		KO.Config.checkInfoMainToggleStatus();
 		
 	},
 
@@ -1445,32 +1351,20 @@ Function.prototype.throttle = function (milliseconds) {
 		// console.log("current Section : ",section,"current Article : ",article);
 
 		var $slide  = $(KO.Config.$sections[KO.Config.currentSection]).find(".slide").eq(article);
-		// var triggers = $(KO.Config.$sections[KO.Config.currentSection]).find(".threde-slide").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 		var $thredeSlide = $slide.find(".threde-slide");
-
-		// console.dir($slide);
 
 		// console.log($thredeSlide);
 		if ($thredeSlide.length != 0) {
-			console.log("3d");
+			// console.log("3d");
 			KO.Config.activate3DSlideShow($slide,$thredeSlide);
 		} 
 	},
+
 // slider 3D 
 	make3DSlideShow: function () {
 
-
-		console.log("make 3d ");
 		var $objects = $(".slide");
 
-		// if ($objects.find(".slider-control")) {
-		// 	console.log(" already created");
-		// } else {
-
-		// 	console.log("not created yet ");
-		// }
-
-		// console.dir ($objects);
 		// to make the dots
 		var $thredeSlide = $objects.find(".threde-slide");
 		$thredeSlide.parent().append("<div class='slider-control'></div>");
@@ -1479,7 +1373,6 @@ Function.prototype.throttle = function (milliseconds) {
 		// to make 3d effect
 		// iterate to inject all the products defined
 		$.each($objects, function(key,value) {
-
 
 					$($(value).find(".threde-slide").get(0)).addClass('active');
 					var amountOfThredeSlides = $(value).find(".threde-slide").length
@@ -1497,12 +1390,9 @@ Function.prototype.throttle = function (milliseconds) {
 							}
 						}
 						// KO.Config.firstImageToIndex(0,$(value).find(".threde-slide")));
-
 					} 
-				
 				});
 			 $sliderControl.children().on("click",KO.Config.onDotClick);
-
 		},
 
 	activate3DSlideShow: function ($objects) {
@@ -1518,11 +1408,11 @@ Function.prototype.throttle = function (milliseconds) {
 		// 		KO.Config.createInterval();
 
 
-	},
+		},
 
 		onDotClick : function (e) {
 
-			console.log($(e.currentTarget).index());
+			// console.log($(e.currentTarget).index());
 			KO.Config.changeImageToIndex($(e.currentTarget).index(),$(e.currentTarget));
 			// KO.Config.deleteInterval();
 		},
@@ -1573,42 +1463,66 @@ Function.prototype.throttle = function (milliseconds) {
 
 		// 		FBZ.model.sliderCurrentImage = 0;
 		// 	}
-
 		// },
 
-
-
 		activateMainToggle : function () {
-
 			
 			KO.Config.$moreInfoToggle.on("click",KO.Config.onClickInfoMainToggle);
-
 		},
 
 		returnCurrentSlide :  function() {
 
-			var slide =$(KO.Config.$sections[KO.Config.currentSection]).find(".slide").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+			var slide = $(KO.Config.$sections[KO.Config.currentSection]).find(".slide").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
 			return slide;
 		},
 		returnCurrentDescription :  function() {
 
-			var slide =$(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+			var slide = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).find(".description-content-holder");
 			return slide;
+		},
+
+		checkInfoMainToggleStatus: function () {
+
+			console.dir(KO.Config.returnCurrentDescription().length);
+
+			if(KO.Config.returnCurrentDescription().hasClass("active")) {
+				KO.Config.$moreInfoToggle.addClass("active");
+			}else {
+				KO.Config.$moreInfoToggle.removeClass("active");
+			}
+
+			if(KO.Config.returnCurrentDescription().length != 0) { 
+
+				KO.Config.$moreInfoToggle.removeClass("disable");
+
+			}else {
+				KO.Config.$moreInfoToggle.addClass("disable");
+			}
 		},
 
 		onClickInfoMainToggle : function (e) {
 
-			KO.Config.sectionDetectionEngine();
-			console.log("toggle");
 			$(e.currentTarget).toggleClass("active");
 			var selectedSlide = KO.Config.returnCurrentSlide();
-			var selectedDescription = KO.Config.returnCurrentDescription().find(".description-content-holder");
-			// console.dir(selectedSlide.hide());
-			console.dir(selectedDescription);
+			var selectedDescription = KO.Config.returnCurrentDescription();
+			selectedDescription.parent().toggleClass("active");
+
 			selectedDescription.toggleClass("active");
+
+			selectedDescription.on("click",KO.Config.onClickInfoMainClose);
 		},
 
-	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
+		onClickInfoMainClose : function (e) {
+
+			$(e.currentTarget).off("click",KO.Config.onClickInfoMainClose);
+			KO.Config.$moreInfoToggle.removeClass("active");
+			$(e.currentTarget).parent().removeClass("active");
+			$(e.currentTarget).removeClass("active");
+
+		},
+
+
+		descriptionSideBar: function (currentArticle,currentArticleDescription) { 
 
 
 		if(currentArticleDescription != null) { 
@@ -1622,7 +1536,7 @@ Function.prototype.throttle = function (milliseconds) {
 			 	currentArticleDescription="";	
 			 }
 			 // KO.Config.sidebarDescription.innerHTML = currentArticleDescription;	
-		//	 console.log( "im passing here . ",KO.Config.sidebarDescription.innerHTML, currentArticleDescription);
+			//	 console.log( "im passing here . ",KO.Config.sidebarDescription.innerHTML, currentArticleDescription);
 		}else { 
 			KO.Config.$moreInfoToggle.hide();
 		}
@@ -1801,7 +1715,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$window.stageH -= navigationHeight;
 			// bug fix to show the navigation again when things are changed in the main
 			//KO.Config.$navigationContainer.css("opacity",1); 
-			KO.Config.closeMobileShareToggle();
+			KO.Config.closeShareToggle();
 
 			//KO.Config.$window.stageW -=  KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 
