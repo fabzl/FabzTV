@@ -558,16 +558,16 @@ Function.prototype.throttle = function (milliseconds) {
 
 
 				KO.Config.$socialIconsContainer.addClass("animated slideInDown");
-
+				// console.log("open share")
 
 				KO.Config.$closeSocial.on("click",KO.Config.closeShareToggle);
 				KO.Config.$socialIconsContainer.on("click",KO.Config.closeShareToggle);
 
 				KO.Config.checkToDestroyTooltip();
 				KO.Config.closeMobileNavToggle();
-				this.classList.toggle("active");
+				// this.classList.toggle("active");
 				// $(".nav-toggle").toggleClass("active");
-				KO.Config.$socialIconsContainer.toggleClass("active");
+				KO.Config.$socialIconsContainer.toggleClass("open");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
 				KO.Config.shareToggle.removeEventListener("click",KO.Config.openShareToggle);
@@ -586,10 +586,9 @@ Function.prototype.throttle = function (milliseconds) {
 
 			// if(KO.Config.mobileShareToggleActiveBoolean === true ) {
 
-				console.log("close toggle");
+				// console.log("close toggle");
 				KO.Config.$closeSocial.off("click",KO.Config.closeShareToggle);
 				KO.Config.$socialIconsContainer.off("click",KO.Config.closeShareToggle);
-
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.closeShareToggle);
 				KO.Config.shareToggle.removeEventListener( "click",KO.Config.closeShareToggle);
@@ -597,7 +596,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.mobileShareToggleActiveBoolean = false;
 
 				KO.Config.shareToggle.classList.toggle("active");
-				KO.Config.$socialIconsContainer.toggleClass("active");
+				KO.Config.$socialIconsContainer.removeClass("open");
 
 				KO.Config.navToggle.classList.toggle("active");
 				// reactivate the Nav Buttons
@@ -1788,7 +1787,7 @@ Function.prototype.throttle = function (milliseconds) {
 	scrollerControl:function () {
 
 		$(window).on('mousewheel', KO.Config.onScrollWheel); 
-	}.debounce(500),
+	}.debounce(1000),
 
 	onScrollWheel:function (event) {
 
