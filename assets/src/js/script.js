@@ -151,7 +151,7 @@ Function.prototype.throttle = function (milliseconds) {
 		verticalSideBarBreakpoint: 600,
 		ScrollerSpeed : 350,
 		totalLogoClientsCount:54,
-		sideBarMinTablet : 120,
+		sideBarMinTablet : 150,
 		sideBarMaxDesktop : 3550,
 		// 3js stuff  ///// clients section /// thre JS 
 		camera:{}, 
@@ -352,7 +352,7 @@ Function.prototype.throttle = function (milliseconds) {
 			var topTooltip = $arrowKeysContainer.offset().top +( $arrowKeysInfo.height()) *.5+"px";
 			var leftTooltip =  $arrowKeysContainer.width()*.5 - KO.Config.$wrapper.find(".tooltip-arrowKeys").width()*.5 -20 + "px";
 
-			if( KO.Config.tabletMode === true && KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) <= KO.Config.swapToTabletBreakpoint ) {
+			if( KO.Config.mobileMode === false && KO.Config.getDimensionsHeight(KO.Config.$window) <= KO.Config.swapToTabletBreakpoint ) {
 				
 				console.log("tooltip tablet");
 				topTooltip =  $arrowKeysInfo.offset().top + 15 + "px";
@@ -372,7 +372,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.tooltipOnBoolean = false;
 				KO.Config.destroyTooltips();
-		
 				if(!KO.Config.mobileMode === true) {
 					KO.Config.destroyTooltipArrows();
 				}
@@ -406,8 +405,6 @@ Function.prototype.throttle = function (milliseconds) {
 				// "animation-direction": "alternate",
 				"animation": animation+" .5s 1" 			
 			});
-
-			
 		},
 
 		destroyTooltipArrowsKeysInfo:function () {
@@ -419,13 +416,15 @@ Function.prototype.throttle = function (milliseconds) {
 				var arrowKeysInfo = $( ".arrow-keys-info");
 				var animation = "tooltipArrowKeysAnimationDesktopOut";
 
-				arrowKeysInfo.bind('oanimationend animationend webkitAnimationEnd', function(){
-					arrowKeysInfo.remove();
-				});
+				// arrowKeysInfo.bind('oanimationend animationend webkitAnimationEnd', function(){
+				// 	// arrowKeysInfo.remove();
+
+				// });
 
 				arrowKeysInfo.css({
-			
-					"animation": animation+" .5s 1"			
+					"animation": animation+" .5s 1 forwards",
+					"pointer-events": "none",
+					"cursor:": "default"
 				});
 			}
 		},
@@ -1390,7 +1389,7 @@ Function.prototype.throttle = function (milliseconds) {
 					$currentContainer.find(".overlayer-description").each(
 
 								function (i) { 
-									$(this).find(".description-content-holder").on("click",KO.Config.onClickInfoToggle);
+									// $(this).find(".description-content-holder").on("click",KO.Config.onClickInfoToggle);
 
 									$(this).css("left", (KO.Config.$window.stageW+KO.Config.canvasFillValue)*(i+1)-(KO.Config.$window.stageW+KO.Config.canvasFillValue));
 								//	$(this).find("description-content-holder").css("opacity",0);
@@ -1421,7 +1420,6 @@ Function.prototype.throttle = function (milliseconds) {
 
 		}
 	},
-
 
 	sectionDetectionEngine : function () { 
 
@@ -1461,8 +1459,9 @@ Function.prototype.throttle = function (milliseconds) {
 // slider 3D 
 	make3DSlideShow: function () {
 
-		var $objects = $(".slide");
 
+		console.log("make 3d ");
+		var $objects = $(".slide");
 
 		// if ($objects.find(".slider-control")) {
 		// 	console.log(" already created");
@@ -1500,17 +1499,6 @@ Function.prototype.throttle = function (milliseconds) {
 						// KO.Config.firstImageToIndex(0,$(value).find(".threde-slide")));
 
 					} 
-					// $($thredeSlide[key]).find('img').css({
-					// console.log("key :",key, "value:",value);
-					// //adding the mixins
-					// 	transform: "translate3d(0,0,"+distance+")",
-					// 	MozTransform:  "translate3d(0,0,"+distance+")",
-					// 	WebkitTransform:  "translate3d(0,0,"+distance+")",
-					// 	msTransform:  "translate3d(0,0,"+distance+")"
-					// });
-
-					// distance += distanceIncrease;
-
 				
 				});
 			 $sliderControl.children().on("click",KO.Config.onDotClick);
@@ -1597,46 +1585,38 @@ Function.prototype.throttle = function (milliseconds) {
 
 		},
 
+		returnCurrentSlide :  function() {
+
+			var slide =$(KO.Config.$sections[KO.Config.currentSection]).find(".slide").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+			return slide;
+		},
+		returnCurrentDescription :  function() {
+
+			var slide =$(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle);
+			return slide;
+		},
+
 		onClickInfoMainToggle : function (e) {
+
+			KO.Config.sectionDetectionEngine();
 			console.log("toggle");
 			$(e.currentTarget).toggleClass("active");
-
-		// create the players
-		// var $contentHolder 		= $(e.currentTarget);
-		// var $toggleContainer 	= $contentHolder.parent().find(".more-info-toggle-container");
-		// var toogleSVG  			= e.currentTarget.querySelector(".more-info-toggle"); 
-		// var $descriptionTooltip =  $(e.currentTarget).find(".description-tooltip");
-		// var $descriptionText  	=   $(e.currentTarget).find(".description-text");
-		
-
-		// var displacementToogleInfo;
-		// var displacementToogleInfoString;
-		// var	toggleDisplayOffset = 0;
-
-		// // activate the toggles
-		// $contentHolder.toggleClass("active");
-		// $toggleContainer.toggleClass("active");
-		// $descriptionText.toggleClass("active");
-		// $contentHolder.parent().toggleClass("active");
-		// $contentHolder.find("h2").toggleClass("active");
-
-		// toogleSVG.classList.toggle("active");
-
+			var selectedSlide = KO.Config.returnCurrentSlide();
+			var selectedDescription = KO.Config.returnCurrentDescription().find(".description-content-holder");
+			// console.dir(selectedSlide.hide());
+			console.dir(selectedDescription);
+			selectedDescription.toggleClass("active");
 		},
-//
 
 	descriptionSideBar: function (currentArticle,currentArticleDescription) { 
 
-		
 
 		if(currentArticleDescription != null) { 
 
 			KO.Config.$moreInfoToggle.show();
 
-				currentArticleDescription = currentArticleDescription.prop('outerHTML');
+				console.log("currentArticleDescription:", currentArticleDescription);
 
-		//		console.log("currentArticleDescription:", currentArticleDescription);
-		
 			 if( currentArticleDescription == undefined ) {
 
 			 	currentArticleDescription="";	
@@ -1656,6 +1636,7 @@ Function.prototype.throttle = function (milliseconds) {
 		e.stopPropagation();
 
 		// create the players
+
 		var $contentHolder 		= $(e.currentTarget);
 		var $toggleContainer 	= $contentHolder.parent().find(".more-info-toggle-container");
 		var toogleSVG  			= e.currentTarget.querySelector(".more-info-toggle"); 
