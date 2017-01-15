@@ -113,6 +113,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$navigationContainer : $('.nav-content'),
 		$sections : $('.section'),
 		$showcaseWrapper : $(".showcase-wrapper"),
+		$iframes : $("iframe"),
 		$content  : $(".content"),
 		$graphicsSlides : $(".graphics-slide"),
 		$loaderBg : $(".loader-bg"),
@@ -448,17 +449,24 @@ Function.prototype.throttle = function (milliseconds) {
 
 		swipeControl:function ()  {	
 
-			if(KO.Config.mobileMode) { 
+			// if(KO.Config.mobileMode) { 
 				KO.Config.$showcaseWrapper.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
 										.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
 										.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
 										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
+
+				KO.Config.$iframes.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
+										.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
+										.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
+										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
+
+
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
 				//Global setting:
 				$.detectSwipe.threshold // The number of pixels your finger must move to trigger a swipe event.  Defaults is 20.
 				$.detectSwipe.preventDefault // Should touchmove events be prevented?  Defaults to true.
-			}
+			// }
 		},
 
 		onContentVisible:function() { 

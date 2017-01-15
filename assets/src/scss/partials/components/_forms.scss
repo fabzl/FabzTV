@@ -40,7 +40,7 @@
 $input-bgColor         : $color-primary;                // Colour of input background
 $input-borderColor     : $color-secondary;                // Colour of input borders
 $form-actions-bgColor  : $color-primary;              // Background colour of form actions container (i.e. submit)
-$label-textColor       : #000;         // Text colour of form labels and legends
+$label-textColor       : white;         // Text colour of form labels and legends
 $input-textColor       : white;          // Text colour of form inputs
 
 $placeholder-textColor : $color-primary;  // Text colour of input placeholder
@@ -101,11 +101,11 @@ input[type=number]::-webkit-outer-spin-button {
 	// margin-bottom: $baseline;
 	@include font-size($type-large);
 	line-height: $leading-base;
-	color: $label-textColor;
+	// color: $label-textColor;
 	border: 0;
 	border-bottom: 1px solid #eee;
 	white-space: normal;
-
+	color: lighten(#000, 70%);
 	// Small
 	small {
 		@include font-size($type-small);
@@ -137,7 +137,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 	small {
 		font-weight: normal;
-		color: lighten($label-textColor, 30%);
+		// color: lighten($label-textColor, 30%);
 	}
 }
 
