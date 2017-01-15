@@ -963,7 +963,7 @@ $iconsSize : 14px;
 	left:0;
 	right:0;
 
-	&.open {
+	&.active {
 		display: flex;
 		justify-content:center;
 		background-color:rgba(0, 0, 17, 0.9);
@@ -1630,18 +1630,13 @@ $iconsSize : 14px;
 
 
 //////////////////// ANIMATED BURGER 
+
 .nav-toggle {
 
 	position: absolute;
 	right: 5%;
 	top: 34%;
-
-	
-}
-
-.nav-toggle {
-
-	cursor: pointer;
+ rsor: pointer;
 	padding: 10px 35px 16px 0px;
 }
 

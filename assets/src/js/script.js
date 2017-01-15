@@ -198,6 +198,8 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.initialSlideBugFix(); 
 
 			KO.Config.make3DSlideShow();
+
+			KO.Config.sectionDetectionEngine();
 			// get rid of the loader screen
 			KO.Config.fadeOutLoader();
 			// KO.Config.articuleTrigger(KO.Config.currentSection,KO.Config.$sections[KO.Config.currentSection].currentArticle); 
@@ -524,10 +526,11 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.checkToDestroyTooltip();
 			//if share toggle is open close it
 			KO.Config.closeShareToggle();
+			$(".nav-toggle").toggleClass("active");
 			// activate toggle 
 			KO.Config.$navigationContainer.toggleClass("active");
 			KO.Config.navToggle.classList.toggle("active");
-		//	KO.Config.$navigationContainer.find("li").addClass("active");
+			KO.Config.$navigationContainer.find("li").addClass("active");
 
 			// if the control flag is false change it to true
 			if(KO.Config.mobileNavToggleActiveBoolean === false) {
@@ -565,9 +568,9 @@ Function.prototype.throttle = function (milliseconds) {
 
 				KO.Config.checkToDestroyTooltip();
 				KO.Config.closeMobileNavToggle();
-				// this.classList.toggle("active");
-				// $(".nav-toggle").toggleClass("active");
-				KO.Config.$socialIconsContainer.toggleClass("open");
+				 this.classList.toggle("active");
+				$(".nav-toggle").toggleClass("active");
+				KO.Config.$socialIconsContainer.toggleClass("active");
 
 				KO.Config.navToggle.removeEventListener("click",KO.Config.openMobileNavToggle);
 				KO.Config.shareToggle.removeEventListener("click",KO.Config.openShareToggle);
@@ -596,7 +599,7 @@ Function.prototype.throttle = function (milliseconds) {
 				KO.Config.mobileShareToggleActiveBoolean = false;
 
 				KO.Config.shareToggle.classList.toggle("active");
-				KO.Config.$socialIconsContainer.removeClass("open");
+				KO.Config.$socialIconsContainer.removeClass("active");
 
 				KO.Config.navToggle.classList.toggle("active");
 				// reactivate the Nav Buttons
@@ -1714,7 +1717,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$window.stageH -= navigationHeight;
 			// bug fix to show the navigation again when things are changed in the main
 			//KO.Config.$navigationContainer.css("opacity",1); 
-			KO.Config.closeShareToggle();
+			// KO.Config.closeShareToggle();
 
 			//KO.Config.$window.stageW -=  KO.Config.getDimensionsWidth(KO.Config.$navigationContainer);
 

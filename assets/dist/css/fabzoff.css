@@ -2554,7 +2554,7 @@ li {
   left: 0;
   right: 0;
   cursor: pointer; }
-  .social-icons-container.open {
+  .social-icons-container.active {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -3089,10 +3089,8 @@ li {
 .nav-toggle {
   position: absolute;
   right: 5%;
-  top: 34%; }
-
-.nav-toggle {
-  cursor: pointer;
+  top: 34%;
+  rsor: pointer;
   padding: 10px 35px 16px 0px; }
 
 .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after {
