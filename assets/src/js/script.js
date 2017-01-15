@@ -794,6 +794,8 @@ Function.prototype.throttle = function (milliseconds) {
 
 			 	//	KO.Config.currentArticle = i;
 					matchedNumber = i;
+					KO.Config.$sections[KO.Config.currentSection].currentArticle = i;
+
 				//	console.log("matchedNumber",matchedNumber);
 
 					// nasty amend contact seccion;
@@ -1493,7 +1495,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 		checkInfoMainToggleStatus: function () {
 
-			console.dir(KO.Config.returnCurrentDescription().length);
+			// console.dir(KO.Config.returnCurrentDescription().length);
 
 			if(KO.Config.returnCurrentDescription().hasClass("active")) {
 				KO.Config.$moreInfoToggle.addClass("active");
@@ -1539,7 +1541,7 @@ Function.prototype.throttle = function (milliseconds) {
 
 			KO.Config.$moreInfoToggle.show();
 
-				console.log("currentArticleDescription:", currentArticleDescription);
+				// console.log("currentArticleDescription:", currentArticleDescription);
 
 			 if( currentArticleDescription == undefined ) {
 
@@ -1841,7 +1843,7 @@ Function.prototype.throttle = function (milliseconds) {
 		if (KO.Config.mobileMode === false ) { 
 			KO.Config.$showcaseWrapper.click(function() {
 				//console.log( "Handler for .click() called." );
-				console.log( "pageX: " + event.pageX + ", pageY: " + event.pageY );
+				// console.log( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
 				var clickValueX = event.pageX;
 

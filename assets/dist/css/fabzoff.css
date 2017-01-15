@@ -2330,10 +2330,10 @@ li {
       font-size: 15px; } }
   @media screen and (min-width: 62em) {
     .description-text {
-      font-size: 18px; } }
+      font-size: 16px; } }
   @media screen and (min-width: 100em) {
     .description-text {
-      font-size: 20px; } }
+      font-size: 17px; } }
 
 .white {
   color: #001 !important; }
@@ -3202,8 +3202,14 @@ li {
       top: auto;
       position: relative;
       margin: 10px auto;
-      display: block;
-      width: 30px; } }
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex; }
+      .share-toggle svg {
+        -ms-flex-item-align: center;
+            align-self: center;
+        width: 100%; } }
 
 .nav-toggle span:before {
   top: -10px; }
