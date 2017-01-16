@@ -2265,10 +2265,9 @@ li {
   width: 100%;
   font-size: 1em;
   bottom: 0; }
-  @media screen and (min-width: 62em) {
+  @media screen and (min-width: 31.25em) {
     .overlayer-about .description-text {
-      font-size: 1em;
-      width: 70vw; }
+      font-size: 0.9em; }
     .overlayer-about h2 {
       font-size: 2em; } }
 

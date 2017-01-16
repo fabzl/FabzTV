@@ -538,13 +538,12 @@ li {
 	
 	// transform:translateY(-100%)
 
-	@include respond-min($bp-wide) {
+	@include respond-min($bp-narrow) {
 
 
 
 		.description-text {
-			font-size: 1em;
-			width:70vw;
+			font-size: 0.9em;
 		}
 
 	 	h2 { 
