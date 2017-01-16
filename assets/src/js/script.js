@@ -132,6 +132,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$arrowLeft: $(".arrow_left"),
 
 		$moreInfoToggle: $(".more-info-toggle"),
+		$moreInfoTooltip: $(".more-info-tooltip"),
 		$closeSocial: 	$(".close-social"),
 		//booleans
 		tooltipOnBoolean:true,
@@ -323,7 +324,7 @@ Function.prototype.throttle = function (milliseconds) {
 			KO.Config.$wrapper.append("<div class='tooltip'>press the logo to move</div>");
 			KO.Config.$wrapper.find(".tooltip").click(KO.Config.destroyTooltip);
 			var topTooltip = (KO.Config.$fabzLogo.height()*.5) +  parseInt(KO.Config.$fabzLogo.css("margin-top"), 10) + "px";
-			var leftTooltip = (KO.Config.$sideBar.width()*.5) + (KO.Config.$fabzLogo.height()*.5);
+			var leftTooltip = (KO.Config.$sideBar.width()*.5) + (KO.Config.$fabzLogo.width()*.5);
 
 			if(KO.Config.mobileMode === true) {
 
@@ -720,12 +721,12 @@ Function.prototype.throttle = function (milliseconds) {
 			if(pathArray.length >= 3  ) {
 
 
-				console.log("pathArray ", pathArray[2].innerText);
+				// console.log("pathArray ", pathArray[2].innerText);
 				
 				KO.Config.gotoArticleByURL(pathArray[2]);
 			}
 
-			console.log("currentURL :",currentURL);
+			// console.log("currentURL :",currentURL);
 
 			if(currentURL !== "" && currentURL !== "#!/home") { 
 
@@ -1348,14 +1349,22 @@ Function.prototype.throttle = function (milliseconds) {
 
 		var currentArticleDescription = $(KO.Config.$sections[KO.Config.currentSection]).find(".overlayer-description").find("p").eq(KO.Config.$sections[KO.Config.currentSection].currentArticle).text();
 
-		console.log(currentArticle, currentArticleDescription ) ; 
+		// console.log(currentArticle, currentArticleDescription ) ; 
 		
 		// if(KO.Config.mobileMode === false && KO.Config.tabletMode === false ) {
 
 		// KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
 		// }
+		KO.Config.animateIntroSection(KO.Config.$sections[KO.Config.currentSection].currentArticle,KO.Config.currentSection);
+
+
 		KO.Config.checkInfoMainToggleStatus();
 		
+	},
+
+
+	animateIntroSection : function (article, section) {
+		console.log(article, section);
 	},
 
 	articuleTrigger : function (section, article) {
@@ -1478,7 +1487,7 @@ Function.prototype.throttle = function (milliseconds) {
 		// },
 
 		activateMainToggle : function () {
-			
+		
 			KO.Config.$moreInfoToggle.on("click",KO.Config.onClickInfoMainToggle);
 		},
 
@@ -1506,14 +1515,24 @@ Function.prototype.throttle = function (milliseconds) {
 			if(KO.Config.returnCurrentDescription().length != 0) { 
 
 				KO.Config.$moreInfoToggle.removeClass("disable");
+				
+				if(!KO.Config.$moreInfoTooltip.clicked) {
+
+					KO.Config.$moreInfoTooltip.removeClass("active");
+				}
 
 			}else {
 				KO.Config.$moreInfoToggle.addClass("disable");
+
+				KO.Config.$moreInfoTooltip.addClass("active");
+
 			}
 		},
 
 		onClickInfoMainToggle : function (e) {
 
+			KO.Config.$moreInfoTooltip.clicked = true;
+			KO.Config.$moreInfoTooltip.addClass("active");
 			$(e.currentTarget).toggleClass("active");
 			var selectedSlide = KO.Config.returnCurrentSlide();
 			var selectedDescription = KO.Config.returnCurrentDescription();
