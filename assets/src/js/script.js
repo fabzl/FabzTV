@@ -1355,7 +1355,10 @@ Function.prototype.throttle = function (milliseconds) {
 
 		// KO.Config.descriptionSideBar(currentArticle, currentArticleDescription);
 		// }
-		KO.Config.animateIntroSection(KO.Config.$sections[KO.Config.currentSection].currentArticle,KO.Config.currentSection);
+
+
+		
+		// KO.Config.animateIntroSection(KO.Config.$sections[KO.Config.currentSection].currentArticle,KO.Config.currentSection);
 
 
 		KO.Config.checkInfoMainToggleStatus();
