@@ -113,7 +113,7 @@ Function.prototype.throttle = function (milliseconds) {
 		$navigationContainer : $('.nav-content'),
 		$sections : $('.section'),
 		$showcaseWrapper : $(".showcase-wrapper"),
-		$iframes : $("iframe"),
+		// $iframes : $("body"),
 		$content  : $(".content"),
 		$graphicsSlides : $(".graphics-slide"),
 		$loaderBg : $(".loader-bg"),
@@ -457,10 +457,10 @@ Function.prototype.throttle = function (milliseconds) {
 										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
 
-				KO.Config.$iframes.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
-										.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
-										.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
-										.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
+				// KO.Config.$iframes.on('swipeleft',  function(){ KO.Config.moveContentHorizontally(-1); })
+				// 						.on('swiperight', function(){ KO.Config.moveContentHorizontally(1); })
+				// 						.on('swipeup',    function(){ KO.Config.moveContentVertically(1); })
+				// 						.on('swipedown',  function(){ KO.Config.moveContentVertically(-1); });
 
 
 	 			$.detectSwipe.enabled // true on touch devices, false otherwise
@@ -1357,7 +1357,7 @@ Function.prototype.throttle = function (milliseconds) {
 		// }
 
 
-		
+
 		// KO.Config.animateIntroSection(KO.Config.$sections[KO.Config.currentSection].currentArticle,KO.Config.currentSection);
 
 
