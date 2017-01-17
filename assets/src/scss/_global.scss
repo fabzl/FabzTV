@@ -4,9 +4,7 @@
 
 .black-dots {
 		.slider-dot {
-
 				border: 2px solid #001!important;
-		
 			&.active  {
 				background-color:#001!important;
 			}
@@ -746,7 +744,7 @@ li {
 
 		}
 	ul {
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-family: "Helvetica Neue", Arial, sans-serif;
 	}
 }
 
@@ -860,7 +858,7 @@ li {
 .description-link {
 
 	font-weight: bold;
-	font-family:"Helvetica"!important;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 	display: block;
 	width:100%;
 	font-size: 0.7em;
@@ -1118,10 +1116,7 @@ $iconsSize : 14px;
 	@include respond-min($bp-huge) {
 
 		margin: 60px auto;
-		width : 360px;
-		height: auto;
-		text-align: center;
-		z-index:auto;
+		width : 40%;
 
 	}
 
